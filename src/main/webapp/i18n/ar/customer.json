@@ -2,10 +2,10 @@
     "royalhallsApp": {
         "customer" : {
             "home": {
-                "title": "Customers",
-                "createLabel": "Create a new Customer",
-                "createOrEditLabel": "Create or edit a Customer",
-                "search": "Search for Customer"
+                "title": "الزبائن",
+                "createLabel": "ادخال زبون",
+                "createOrEditLabel": "تعديل زبون",
+                "search": "بحث عن زبون"
             },
             "created": "A new Customer is created with identifier {{ param }}",
             "updated": "A Customer is updated with identifier {{ param }}",
@@ -14,13 +14,13 @@
                 "question": "Are you sure you want to delete Customer {{ id }}?"
             },
             "detail": {
-                "title": "Customer"
+                "title": "زبون"
             },
-            "customerName": "Customer Name",
-            "identityId": "Identity Id",
-            "city": "City",
-            "country": "Country",
-            "contact": "Contact"
+            "customerName": "اسم الزبون",
+            "identityId": "رقم الهوية",
+            "city": "البلدة",
+            "country": "البلد",
+            "contact": "طرق الاتصال"
         }
     }
 }

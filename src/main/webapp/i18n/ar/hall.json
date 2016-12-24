@@ -2,10 +2,10 @@
     "royalhallsApp": {
         "hall" : {
             "home": {
-                "title": "Halls",
-                "createLabel": "Create a new Hall",
-                "createOrEditLabel": "Create or edit a Hall",
-                "search": "Search for Hall"
+                "title": "القاعات",
+                "createLabel": "تعريف قاعة جديدة",
+                "createOrEditLabel": "تعديل قاعة",
+                "search": "البحث عن قاعة"
             },
             "created": "A new Hall is created with identifier {{ param }}",
             "updated": "A Hall is updated with identifier {{ param }}",
@@ -14,11 +14,11 @@
                 "question": "Are you sure you want to delete Hall {{ id }}?"
             },
             "detail": {
-                "title": "Hall"
+                "title": "قاعة"
             },
-            "hallName": "Hall Name",
-            "description": "Description",
-            "price": "Price"
+            "hallName": "اسم القاعة",
+            "description": "وصف القاعة",
+            "price": "السعر"
         }
     }
 }

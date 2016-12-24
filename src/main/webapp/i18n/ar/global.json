@@ -1,28 +1,28 @@
 {
     "global": {
-        "title": "Royalhalls",
+        "title": "القاعات الملكية",
         "browsehappy": "You are using an <strong>outdated</strong> browser. Please <a href=\"http://browsehappy.com/?locale=en\">upgrade your browser</a> to improve your experience.",
         "menu": {
-            "home": "Home",
+            "home": "الرئيسة",
             "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
             "entities": {
-                "main": "Entities",
-                "hall": "Hall",
-                "customer": "Customer",
-                "contact": "Contact",
-                "event": "Event",
-                "extraOption": "Extra Option",
-                "contract": "Contract",
+                "main": "الخدمات",
+                "hall": "القاعات",
+                "customer": "الزبائن",
+                "contact": "الاتصالات",
+                "event": "الحجوزات",
+                "extraOption": "الخدمات",
+                "contract": "العقود",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
-                "main": "Account",
-                "settings": "Settings",
-                "password": "Password",
+                "main": "حسابي",
+                "settings": "الاعدادت",
+                "password": "كلمة المرور",
                 "sessions": "Sessions",
-                "login": "Sign in",
-                "logout": "Sign out",
-                "register": "Register"
+                "login": "دخول",
+                "logout": "خروج",
+                "register": "تسجيل"
             },
             "admin": {
                 "main": "Administration",
@@ -37,17 +37,17 @@
                 "database": "Database",
                 "jhipster-needle-menu-add-admin-element": "JHipster will add additional menu entries here (do not translate!)"
             },
-            "language": "Language"
+            "language": "اللغة"
         },
         "form": {
-            "username": "Username",
-            "username.placeholder": "Your username",
-            "newpassword": "New password",
-            "newpassword.placeholder": "New password",
-            "confirmpassword": "New password confirmation",
-            "confirmpassword.placeholder": "Confirm the new password",
-            "email": "E-mail",
-            "email.placeholder": "Your e-mail"
+            "username": "اسم المستخدم",
+            "username.placeholder": "اسم المستخدم",
+            "newpassword": "كلمة مرور جديدة",
+            "newpassword.placeholder": "كلمة مرور جديدة",
+            "confirmpassword": "تأكيد كلمة المرور",
+            "confirmpassword.placeholder": "تأكيد كلمة المرور",
+            "email": "البريد الالكتروني",
+            "email.placeholder": "البريد الالكتروني"
         },
         "messages": {
             "info": {
@@ -78,33 +78,33 @@
             }
         },
         "field": {
-            "id": "ID"
+            "id": "المعرف"
         },
         "ribbon": {
-            "dev":"Development"
+            "dev":"قيد الانشاء"
         }
     },
     "entity": {
         "action": {
-            "addblob": "Add blob",
-            "addimage": "Add image",
-            "back": "Back",
-            "cancel": "Cancel",
-            "delete": "Delete",
-            "edit": "Edit",
-            "open": "Open",
-            "save": "Save",
-            "view": "View"
+            "addblob": "اضافة ملف",
+            "addimage": "اضافة صورة",
+            "back": "رجوع",
+            "cancel": "الغاء",
+            "delete": "حذف",
+            "edit": "تعديل",
+            "open": "فتح",
+            "save": "حفظ",
+            "view": "عرض"
         },
         "detail": {
-            "field": "Field",
-            "value": "Value"
+            "field": "حقل",
+            "value": "قيمة"
         },
         "delete": {
-            "title": "Confirm delete operation"
+            "title": "تأكيد عملية الحذف"
         },
         "validation": {
-            "required": "This field is required.",
+            "required": "هذا الحقل اساسي",
             "minlength": "This field is required to be at least {{ min }} characters.",
             "maxlength": "This field cannot be longer than {{ max }} characters.",
             "min": "This field should be more than {{ min }}.",
@@ -125,5 +125,5 @@
         "emailexists": "E-mail is already in use!",
         "idexists": "A new {{ entityName }} cannot already have an ID"
     },
-    "footer": "This is your footer"
+    "footer": "القاعات الملكية - ٢٠١٦"
 }

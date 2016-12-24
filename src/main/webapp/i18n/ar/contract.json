@@ -2,10 +2,10 @@
     "royalhallsApp": {
         "contract" : {
             "home": {
-                "title": "Contracts",
-                "createLabel": "Create a new Contract",
-                "createOrEditLabel": "Create or edit a Contract",
-                "search": "Search for Contract"
+                "title": "العقود",
+                "createLabel": "ادخال عقد",
+                "createOrEditLabel": "تعديل عقد",
+                "search": "بحث عن عقد"
             },
             "created": "A new Contract is created with identifier {{ param }}",
             "updated": "A Contract is updated with identifier {{ param }}",
@@ -14,12 +14,12 @@
                 "question": "Are you sure you want to delete Contract {{ id }}?"
             },
             "detail": {
-                "title": "Contract"
+                "title": "عقد"
             },
-            "contractName": "Contract Name",
-            "contractDate": "Contract Date",
-            "customer": "Customer",
-            "event": "Event"
+            "contractName": "اسم العقد",
+            "contractDate": "تاريخ العقد",
+            "customer": "الزبون",
+            "event": "الحجز"
         }
     }
 }

@@ -2,10 +2,10 @@
     "royalhallsApp": {
         "contact" : {
             "home": {
-                "title": "Contacts",
-                "createLabel": "Create a new Contact",
-                "createOrEditLabel": "Create or edit a Contact",
-                "search": "Search for Contact"
+                "title": "طرق الاتصال",
+                "createLabel": "ادخال طريقة اتصال",
+                "createOrEditLabel": "تعديل طريقة اتصال",
+                "search": "بحث عن طريقة اتصال"
             },
             "created": "A new Contact is created with identifier {{ param }}",
             "updated": "A Contact is updated with identifier {{ param }}",
@@ -14,11 +14,11 @@
                 "question": "Are you sure you want to delete Contact {{ id }}?"
             },
             "detail": {
-                "title": "Contact"
+                "title": "طريقة اتصال"
             },
-            "contactName": "Contact Name",
-            "mobile": "Mobile",
-            "telephone": "Telephone"
+            "contactName": "الاسم",
+            "mobile": "الموبيل",
+            "telephone": "الهاتف"
         }
     }
 }

@@ -2,10 +2,10 @@
     "royalhallsApp": {
         "extraOption" : {
             "home": {
-                "title": "Extra Options",
-                "createLabel": "Create a new Extra Option",
-                "createOrEditLabel": "Create or edit a Extra Option",
-                "search": "Search for Extra Option"
+                "title": "الجدمات",
+                "createLabel": "تعريف خدمة",
+                "createOrEditLabel": "تعديل خدمة",
+                "search": "بحث عن خدمة"
             },
             "created": "A new Extra Option is created with identifier {{ param }}",
             "updated": "A Extra Option is updated with identifier {{ param }}",
@@ -14,11 +14,11 @@
                 "question": "Are you sure you want to delete Extra Option {{ id }}?"
             },
             "detail": {
-                "title": "Extra Option"
+                "title": "خدمة"
             },
-            "optionName": "Option Name",
-            "optionType": "Option Type",
-            "price": "Price"
+            "optionName": "اسم الخدمة",
+            "optionType": "نوع الخدمة",
+            "price": "السعر"
         }
     }
 }
