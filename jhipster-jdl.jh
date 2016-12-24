@@ -1,0 +1,63 @@
+entity Hall {
+	hallName String required,
+    description String
+    price Double
+}
+
+entity Customer {
+	customerName String required,
+    identityId String required,
+    city String,
+    country String
+}
+
+entity Contact {
+	contactName String required,
+    mobile String, 
+    telephone String
+}
+
+entity Event {
+	eventName String,
+    groomName String, 
+    prideName String,
+    eventStartDate ZonedDateTime required,
+    eventEndDate ZonedDateTime required
+}
+
+entity ExtraOption{
+	optionName String required,
+    optionType OptionType,
+    price Double
+}
+
+entity Contract {
+	contractDate ZonedDateTime required
+}
+
+enum OptionType {
+BASIC, OPTIONAL
+}
+
+relationship ManyToOne {
+	Contract{customer} to Customer
+}
+
+relationship ManyToOne {
+    Event{hall} to Hall,
+    Event{contract} to Contract{event},
+    Customer{contact} to Contact
+}
+
+relationship ManyToMany {
+	Event{option} to ExtraOption
+}
+
+
+// Set pagination options
+paginate all with pagination
+
+dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl
