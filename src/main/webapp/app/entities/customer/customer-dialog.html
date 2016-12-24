@@ -1,0 +1,68 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myCustomerLabel" data-translate="royalhallsApp.customer.home.createOrEditLabel">Create or edit a Customer</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.customer.id">
+            <label for="id" data-translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.customer.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="royalhallsApp.customer.customerName" for="field_customerName">Customer Name</label>
+            <input type="text" class="form-control" name="customerName" id="field_customerName"
+                    ng-model="vm.customer.customerName"
+                    required />
+            <div ng-show="editForm.customerName.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.customerName.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="royalhallsApp.customer.identityId" for="field_identityId">Identity Id</label>
+            <input type="text" class="form-control" name="identityId" id="field_identityId"
+                    ng-model="vm.customer.identityId"
+                    required />
+            <div ng-show="editForm.identityId.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.identityId.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="royalhallsApp.customer.city" for="field_city">City</label>
+            <input type="text" class="form-control" name="city" id="field_city"
+                    ng-model="vm.customer.city"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="royalhallsApp.customer.country" for="field_country">Country</label>
+            <input type="text" class="form-control" name="country" id="field_country"
+                    ng-model="vm.customer.country"
+                     />
+        </div>
+
+        <div class="form-group">
+            <label data-translate="royalhallsApp.customer.contact" for="field_contact">Contact</label>
+            <select class="form-control" id="field_contact" name="contact" ng-model="vm.customer.contact" ng-options="contact as contact.id for contact in vm.contacts track by contact.id">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

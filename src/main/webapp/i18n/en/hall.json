@@ -1,0 +1,24 @@
+{
+    "royalhallsApp": {
+        "hall" : {
+            "home": {
+                "title": "Halls",
+                "createLabel": "Create a new Hall",
+                "createOrEditLabel": "Create or edit a Hall",
+                "search": "Search for Hall"
+            },
+            "created": "A new Hall is created with identifier {{ param }}",
+            "updated": "A Hall is updated with identifier {{ param }}",
+            "deleted": "A Hall is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Hall {{ id }}?"
+            },
+            "detail": {
+                "title": "Hall"
+            },
+            "hallName": "Hall Name",
+            "description": "Description",
+            "price": "Price"
+        }
+    }
+}

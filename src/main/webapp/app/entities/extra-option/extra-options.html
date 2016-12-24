@@ -1,0 +1,64 @@
+<div>
+    <h2 data-translate="royalhallsApp.extraOption.home.title">Extra Options</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="extra-option.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span  data-translate="royalhallsApp.extraOption.home.createLabel">
+                        Create new Extra Option
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
+                    <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="optionName"><span data-translate="royalhallsApp.extraOption.optionName">Option Name</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="optionType"><span data-translate="royalhallsApp.extraOption.optionType">Option Type</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="price"><span data-translate="royalhallsApp.extraOption.price">Price</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="extraOption in vm.extraOptions track by extraOption.id">
+                    <td><a ui-sref="extra-option-detail({id:extraOption.id})">{{extraOption.id}}</a></td>
+                    <td>{{extraOption.optionName}}</td>
+                    <td data-translate="{{'royalhallsApp.OptionType.' + extraOption.optionType}}">{{extraOption.optionType}}</td>
+                    <td>{{extraOption.price}}</td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="extra-option-detail({id:extraOption.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="extra-option.edit({id:extraOption.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="extra-option.delete({id:extraOption.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="text-center">
+        <jhi-item-count page="vm.page" total="vm.queryCount" items-per-page="vm.itemsPerPage"></jhi-item-count>
+        <uib-pagination class="pagination-sm" total-items="vm.totalItems" items-per-page="vm.itemsPerPage" ng-model="vm.page" ng-change="vm.transition()"></uib-pagination>
+    </div>
+</div>

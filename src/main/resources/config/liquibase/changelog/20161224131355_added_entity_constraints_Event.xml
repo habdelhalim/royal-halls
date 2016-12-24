@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <!--
+        Added the constraints for entity Event.
+    -->
+    <changeSet id="20161224131355-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="hall_id"
+                                 baseTableName="event"
+                                 constraintName="fk_event_hall_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="hall"/>
+
+        <addForeignKeyConstraint baseColumnNames="contract_id"
+                                 baseTableName="event"
+                                 constraintName="fk_event_contract_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="contract"/>
+
+        <addForeignKeyConstraint baseColumnNames="events_id"
+                                 baseTableName="event_option"
+                                 constraintName="fk_event_option_events_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="event"/>
+        <addForeignKeyConstraint baseColumnNames="options_id"
+                                 baseTableName="event_option"
+                                 constraintName="fk_event_option_options_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="extra_option"/>
+        
+    </changeSet>
+</databaseChangeLog>

@@ -20,5 +20,21 @@
 
     <cache alias="com.royal.app.domain.User.persistentTokens" uses-template="simple"/>
 
+    <cache alias="com.royal.app.domain.Hall" uses-template="simple"/>
+
+    <cache alias="com.royal.app.domain.Customer" uses-template="simple"/>
+
+    <cache alias="com.royal.app.domain.Contact" uses-template="simple"/>
+
+    <cache alias="com.royal.app.domain.Event" uses-template="simple"/>
+
+    <cache alias="com.royal.app.domain.Event.options" uses-template="simple"/>
+
+    <cache alias="com.royal.app.domain.ExtraOption" uses-template="simple"/>
+
+    <cache alias="com.royal.app.domain.Contract" uses-template="simple"/>
+
+    <cache alias="com.royal.app.domain.Contract.events" uses-template="simple"/>
+
     <!-- jhipster-needle-ehcache-add-entry -->
 </config>

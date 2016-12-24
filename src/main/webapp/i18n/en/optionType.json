@@ -1,0 +1,9 @@
+{
+    "royalhallsApp": {
+        "OptionType" : {
+            "null": "",
+            "BASIC": "BASIC",
+            "OPTIONAL": "OPTIONAL"
+        }
+    }
+}

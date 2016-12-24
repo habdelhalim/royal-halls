@@ -1,0 +1,27 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "optionName",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "optionType",
+            "fieldType": "OptionType",
+            "fieldValues": "BASIC,OPTIONAL"
+        },
+        {
+            "fieldName": "price",
+            "fieldType": "Double"
+        }
+    ],
+    "changelogDate": "20161224131356",
+    "entityTableName": "extra_option",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceImpl"
+}

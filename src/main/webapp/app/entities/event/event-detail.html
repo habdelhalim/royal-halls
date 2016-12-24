@@ -1,0 +1,53 @@
+
+<div>
+    <h2><span data-translate="royalhallsApp.event.detail.title">Event</span> {{vm.event.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="royalhallsApp.event.eventName">Event Name</span></dt>
+        <dd>
+            <span>{{vm.event.eventName}}</span>
+        </dd>
+        <dt><span data-translate="royalhallsApp.event.groomName">Groom Name</span></dt>
+        <dd>
+            <span>{{vm.event.groomName}}</span>
+        </dd>
+        <dt><span data-translate="royalhallsApp.event.prideName">Pride Name</span></dt>
+        <dd>
+            <span>{{vm.event.prideName}}</span>
+        </dd>
+        <dt><span data-translate="royalhallsApp.event.eventStartDate">Event Start Date</span></dt>
+        <dd>
+            <span>{{vm.event.eventStartDate | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="royalhallsApp.event.eventEndDate">Event End Date</span></dt>
+        <dd>
+            <span>{{vm.event.eventEndDate | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="royalhallsApp.event.hall">Hall</span></dt>
+        <dd>
+            <a ui-sref="hall-detail({id:vm.event.hall.id})">{{vm.event.hall.id}}</a>
+        </dd>
+        <dt><span data-translate="royalhallsApp.event.contract">Contract</span></dt>
+        <dd>
+            <a ui-sref="contract-detail({id:vm.event.contract.id})">{{vm.event.contract.id}}</a>
+        </dd>
+        <dt><span data-translate="royalhallsApp.event.option">Option</span></dt>
+        <dd>
+            <span ng-repeat="option in vm.event.options">
+                <a ui-sref="extra-option-detail({id: option.id})">{{option.id}}</a>{{$last ? '' : ', '}}
+            </span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="event-detail.edit({id:vm.event.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

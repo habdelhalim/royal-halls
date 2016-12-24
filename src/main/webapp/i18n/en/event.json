@@ -1,0 +1,29 @@
+{
+    "royalhallsApp": {
+        "event" : {
+            "home": {
+                "title": "Events",
+                "createLabel": "Create a new Event",
+                "createOrEditLabel": "Create or edit a Event",
+                "search": "Search for Event"
+            },
+            "created": "A new Event is created with identifier {{ param }}",
+            "updated": "A Event is updated with identifier {{ param }}",
+            "deleted": "A Event is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Event {{ id }}?"
+            },
+            "detail": {
+                "title": "Event"
+            },
+            "eventName": "Event Name",
+            "groomName": "Groom Name",
+            "prideName": "Pride Name",
+            "eventStartDate": "Event Start Date",
+            "eventEndDate": "Event End Date",
+            "hall": "Hall",
+            "contract": "Contract",
+            "option": "Option"
+        }
+    }
+}

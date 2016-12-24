@@ -1,0 +1,39 @@
+
+<div>
+    <h2><span data-translate="royalhallsApp.customer.detail.title">Customer</span> {{vm.customer.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="royalhallsApp.customer.customerName">Customer Name</span></dt>
+        <dd>
+            <span>{{vm.customer.customerName}}</span>
+        </dd>
+        <dt><span data-translate="royalhallsApp.customer.identityId">Identity Id</span></dt>
+        <dd>
+            <span>{{vm.customer.identityId}}</span>
+        </dd>
+        <dt><span data-translate="royalhallsApp.customer.city">City</span></dt>
+        <dd>
+            <span>{{vm.customer.city}}</span>
+        </dd>
+        <dt><span data-translate="royalhallsApp.customer.country">Country</span></dt>
+        <dd>
+            <span>{{vm.customer.country}}</span>
+        </dd>
+        <dt><span data-translate="royalhallsApp.customer.contact">Contact</span></dt>
+        <dd>
+            <a ui-sref="contact-detail({id:vm.customer.contact.id})">{{vm.customer.contact.id}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="customer-detail.edit({id:vm.customer.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>
