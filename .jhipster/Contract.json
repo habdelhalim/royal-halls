@@ -5,7 +5,7 @@
             "relationshipType": "many-to-one",
             "relationshipName": "customer",
             "otherEntityName": "customer",
-            "otherEntityField": "id"
+            "otherEntityField": "customerName"
         },
         {
             "relationshipType": "one-to-many",
@@ -15,6 +15,10 @@
         }
     ],
     "fields": [
+        {
+            "fieldName": "contractName",
+            "fieldType": "String"
+        },
         {
             "fieldName": "contractDate",
             "fieldType": "ZonedDateTime",

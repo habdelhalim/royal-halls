@@ -5,20 +5,20 @@
             "relationshipType": "many-to-one",
             "relationshipName": "hall",
             "otherEntityName": "hall",
-            "otherEntityField": "id"
+            "otherEntityField": "hallName"
         },
         {
             "relationshipType": "many-to-one",
             "relationshipName": "contract",
             "otherEntityName": "contract",
-            "otherEntityField": "id"
+            "otherEntityField": "contractName"
         },
         {
             "relationshipType": "many-to-many",
             "otherEntityRelationshipName": "",
             "relationshipName": "option",
             "otherEntityName": "extraOption",
-            "otherEntityField": "id",
+            "otherEntityField": "optionName",
             "ownerSide": true
         }
     ],

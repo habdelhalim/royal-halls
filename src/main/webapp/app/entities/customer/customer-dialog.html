@@ -52,7 +52,7 @@
 
         <div class="form-group">
             <label data-translate="royalhallsApp.customer.contact" for="field_contact">Contact</label>
-            <select class="form-control" id="field_contact" name="contact" ng-model="vm.customer.contact" ng-options="contact as contact.id for contact in vm.contacts track by contact.id">
+            <select class="form-control" id="field_contact" name="contact" ng-model="vm.customer.contact" ng-options="contact as contact.contactName for contact in vm.contacts track by contact.id">
                 <option value=""></option>
             </select>
         </div>

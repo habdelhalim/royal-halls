@@ -4,13 +4,17 @@
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="royalhallsApp.contract.contractName">Contract Name</span></dt>
+        <dd>
+            <span>{{vm.contract.contractName}}</span>
+        </dd>
         <dt><span data-translate="royalhallsApp.contract.contractDate">Contract Date</span></dt>
         <dd>
             <span>{{vm.contract.contractDate | date:'medium'}}</span>
         </dd>
         <dt><span data-translate="royalhallsApp.contract.customer">Customer</span></dt>
         <dd>
-            <a ui-sref="customer-detail({id:vm.contract.customer.id})">{{vm.contract.customer.id}}</a>
+            <a ui-sref="customer-detail({id:vm.contract.customer.id})">{{vm.contract.customer.customerName}}</a>
         </dd>
     </dl>
 

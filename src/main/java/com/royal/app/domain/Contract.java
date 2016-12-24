@@ -26,6 +26,9 @@ public class Contract implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Column(name = "contract_name")
+    private String contractName;
+
     @NotNull
     @Column(name = "contract_date", nullable = false)
     private ZonedDateTime contractDate;
@@ -44,6 +47,19 @@ public class Contract implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getContractName() {
+        return contractName;
+    }
+
+    public Contract contractName(String contractName) {
+        this.contractName = contractName;
+        return this;
+    }
+
+    public void setContractName(String contractName) {
+        this.contractName = contractName;
     }
 
     public ZonedDateTime getContractDate() {
@@ -121,6 +137,7 @@ public class Contract implements Serializable {
     public String toString() {
         return "Contract{" +
             "id=" + id +
+            ", contractName='" + contractName + "'" +
             ", contractDate='" + contractDate + "'" +
             '}';
     }

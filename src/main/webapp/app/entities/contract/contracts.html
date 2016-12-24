@@ -19,17 +19,19 @@
             <thead>
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
                     <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="contractName"><span data-translate="royalhallsApp.contract.contractName">Contract Name</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="contractDate"><span data-translate="royalhallsApp.contract.contractDate">Contract Date</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="customer.id"><span data-translate="royalhallsApp.contract.customer">Customer</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="customer.customerName"><span data-translate="royalhallsApp.contract.customer">Customer</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="contract in vm.contracts track by contract.id">
                     <td><a ui-sref="contract-detail({id:contract.id})">{{contract.id}}</a></td>
+                    <td>{{contract.contractName}}</td>
                     <td>{{contract.contractDate | date:'medium'}}</td>
                     <td>
-                        <a ui-sref="customer-detail({id:contract.customer.id})">{{contract.customer.id}}</a>
+                        <a ui-sref="customer-detail({id:contract.customer.id})">{{contract.customer.customerName}}</a>
                     </td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">

@@ -24,8 +24,8 @@
                     <th jh-sort-by="prideName"><span data-translate="royalhallsApp.event.prideName">Pride Name</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="eventStartDate"><span data-translate="royalhallsApp.event.eventStartDate">Event Start Date</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="eventEndDate"><span data-translate="royalhallsApp.event.eventEndDate">Event End Date</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="hall.id"><span data-translate="royalhallsApp.event.hall">Hall</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="contract.id"><span data-translate="royalhallsApp.event.contract">Contract</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="hall.hallName"><span data-translate="royalhallsApp.event.hall">Hall</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="contract.contractName"><span data-translate="royalhallsApp.event.contract">Contract</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
             </thead>
@@ -38,10 +38,10 @@
                     <td>{{event.eventStartDate | date:'medium'}}</td>
                     <td>{{event.eventEndDate | date:'medium'}}</td>
                     <td>
-                        <a ui-sref="hall-detail({id:event.hall.id})">{{event.hall.id}}</a>
+                        <a ui-sref="hall-detail({id:event.hall.id})">{{event.hall.hallName}}</a>
                     </td>
                     <td>
-                        <a ui-sref="contract-detail({id:event.contract.id})">{{event.contract.id}}</a>
+                        <a ui-sref="contract-detail({id:event.contract.id})">{{event.contract.contractName}}</a>
                     </td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">

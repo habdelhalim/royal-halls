@@ -26,16 +26,16 @@
         </dd>
         <dt><span data-translate="royalhallsApp.event.hall">Hall</span></dt>
         <dd>
-            <a ui-sref="hall-detail({id:vm.event.hall.id})">{{vm.event.hall.id}}</a>
+            <a ui-sref="hall-detail({id:vm.event.hall.id})">{{vm.event.hall.hallName}}</a>
         </dd>
         <dt><span data-translate="royalhallsApp.event.contract">Contract</span></dt>
         <dd>
-            <a ui-sref="contract-detail({id:vm.event.contract.id})">{{vm.event.contract.id}}</a>
+            <a ui-sref="contract-detail({id:vm.event.contract.id})">{{vm.event.contract.contractName}}</a>
         </dd>
         <dt><span data-translate="royalhallsApp.event.option">Option</span></dt>
         <dd>
             <span ng-repeat="option in vm.event.options">
-                <a ui-sref="extra-option-detail({id: option.id})">{{option.id}}</a>{{$last ? '' : ', '}}
+                <a ui-sref="extra-option-detail({id: option.id})">{{option.optionName}}</a>{{$last ? '' : ', '}}
             </span>
         </dd>
     </dl>

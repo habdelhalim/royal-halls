@@ -16,6 +16,7 @@
             "detail": {
                 "title": "Contract"
             },
+            "contractName": "Contract Name",
             "contractDate": "Contract Date",
             "customer": "Customer",
             "event": "Event"

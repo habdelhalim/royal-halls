@@ -23,7 +23,7 @@
                     <th jh-sort-by="identityId"><span data-translate="royalhallsApp.customer.identityId">Identity Id</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="city"><span data-translate="royalhallsApp.customer.city">City</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="country"><span data-translate="royalhallsApp.customer.country">Country</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="contact.id"><span data-translate="royalhallsApp.customer.contact">Contact</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="contact.contactName"><span data-translate="royalhallsApp.customer.contact">Contact</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
             </thead>
@@ -35,7 +35,7 @@
                     <td>{{customer.city}}</td>
                     <td>{{customer.country}}</td>
                     <td>
-                        <a ui-sref="contact-detail({id:customer.contact.id})">{{customer.contact.id}}</a>
+                        <a ui-sref="contact-detail({id:customer.contact.id})">{{customer.contact.contactName}}</a>
                     </td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
