@@ -2,7 +2,7 @@
     "royalhallsApp": {
         "extraOption" : {
             "home": {
-                "title": "الجدمات",
+                "title": "الخدمات",
                 "createLabel": "تعريف خدمة",
                 "createOrEditLabel": "تعديل خدمة",
                 "search": "بحث عن خدمة"
