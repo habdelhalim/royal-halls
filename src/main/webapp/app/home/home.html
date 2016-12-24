@@ -1,41 +1,65 @@
 <div ng-cloak>
     <div class="row">
-        <div class="col-md-4">
-            <span class="hipster img-responsive img-rounded"></span>
-        </div>
-        <div class="col-md-8">
-            <h1 data-translate="home.title">Welcome, Java Hipster!</h1>
-            <p class="lead" data-translate="home.subtitle">This is your homepage</p>
+       <div class="col-md-12">
 
-            <div ng-switch="vm.isAuthenticated()">
-                <div class="alert alert-success" ng-switch-when="true" data-translate="home.logged.message" translate-values="{username: '{{vm.account.login}}'}">
-                    You are logged in as user "{{vm.account.login}}".
-                </div>
+           <form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
 
-                <div class="alert alert-warning" ng-switch-when="false" data-translate="global.messages.info.authenticated" translate-compile>
-                    If you want to <a class="alert-link" href="" ng-click="vm.login()">sign in</a>, you can try the default accounts:<br/>- Administrator (login="admin" and password="admin") <br/>- User (login="user" and password="user").
-                </div>
+               <div class="modal-header">
+                   <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                           ng-click="vm.clear()">&times;</button>
+                   <h4 class="modal-title" id="myContractLabel" data-translate="royalhallsApp.contract.home.createOrEditLabel">Create or edit a Contract</h4>
+               </div>
+               <div class="modal-body">
+                   <jhi-alert-error></jhi-alert-error>
+                   <div class="form-group" ng-show="vm.contract.id">
+                       <label for="id" data-translate="global.field.id">ID</label>
+                       <input type="text" class="form-control" id="id" name="id"
+                              ng-model="vm.contract.id" readonly />
+                   </div>
+                   <div class="form-group">
+                       <label class="control-label" data-translate="royalhallsApp.contract.contractName" for="field_contractName">Contract Name</label>
+                       <input type="text" class="form-control" name="contractName" id="field_contractName"
+                              ng-model="vm.contract.contractName"
+                       />
+                   </div>
+                   <div class="form-group">
+                       <label class="control-label" data-translate="royalhallsApp.contract.contractDate" for="field_contractDate">Contract Date</label>
+                       <div class="input-group">
+                           <input id="field_contractDate" type="text" class="form-control" name="contractDate" datetime-picker="{{dateformat}}" ng-model="vm.contract.contractDate" is-open="vm.datePickerOpenStatus.contractDate"
+                                  required  />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('contractDate')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                       </div>
+                       <div ng-show="editForm.contractDate.$invalid">
+                           <p class="help-block"
+                              ng-show="editForm.contractDate.$error.required" data-translate="entity.validation.required">
+                               This field is required.
+                           </p>
+                           <p class="help-block"
+                              ng-show="editForm.contractDate.$error.ZonedDateTimelocal" data-translate="entity.validation.ZonedDateTimelocal">
+                               This field should be a date and time.
+                           </p>
+                       </div>
+                   </div>
 
-                <div class="alert alert-warning" ng-switch-when="false" data-translate="global.messages.info.register" translate-compile>
-                    You don't have an account yet? <a class="alert-link" ui-sref="register">Register a new account</a>
-                </div>
-            </div>
+                   <div class="form-group">
+                       <label data-translate="royalhallsApp.contract.customer" for="field_customer">Customer</label>
+                       <select class="form-control" id="field_customer" name="customer" ng-model="vm.contract.customer" ng-options="customer as customer.customerName for customer in vm.customers track by customer.id">
+                           <option value=""></option>
+                       </select>
+                   </div>
+               </div>
+               <div class="modal-footer">
+                   <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+                       <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+                   </button>
+                   <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+                       <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+                   </button>
+               </div>
+           </form>
 
-            <p data-translate="home.question">
-                If you have any question on JHipster:
-            </p>
-
-            <ul>
-                <li><a href="http://jhipster.github.io/" target="_blank" data-translate="home.link.homepage">JHipster homepage</a></li>
-                <li><a href="http://stackoverflow.com/tags/jhipster/info" target="_blank" data-translate="home.link.stackoverflow">JHipster on Stack Overflow</a></li>
-                <li><a href="https://github.com/jhipster/generator-jhipster/issues?state=open" target="_blank" data-translate="home.link.bugtracker">JHipster bug tracker</a></li>
-                <li><a href="https://gitter.im/jhipster/generator-jhipster" target="_blank" data-translate="home.link.chat">JHipster public chat room</a></li>
-                <li><a href="https://twitter.com/java_hipster" target="_blank"  data-translate="home.link.follow">follow @java_hipster on Twitter</a></li>
-            </ul>
-
-            <p>
-             <span data-translate="home.like">If you like JHipster, don't forget to give us a star on </span>&nbsp;<a href="https://github.com/jhipster/generator-jhipster" target="_blank" data-translate="home.github">Github</a>!
-            </p>
-        </div>
+       </div>
     </div>
 </div>
