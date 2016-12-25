@@ -126,6 +126,8 @@
                             return {
                                 customerName: null,
                                 identityId: null,
+                                groomName: null,
+                                prideName: null,
                                 city: null,
                                 country: null,
                                 id: null

@@ -1,0 +1,12 @@
+{
+    "royalhallsApp": {
+        "ContractType" : {
+            "null": "",
+            "WEDDING": "WEDDING",
+            "ENGAGEMENT": "ENGAGEMENT",
+            "PARTY": "PARTY",
+            "MEETING": "MEETING",
+            "FUNERAL": "FUNERAL"
+        }
+    }
+}

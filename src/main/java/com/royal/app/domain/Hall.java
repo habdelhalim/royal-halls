@@ -8,6 +8,8 @@ import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.Objects;
 
+import com.royal.app.domain.enumeration.HallType;
+
 /**
  * A Hall.
  */
@@ -26,11 +28,19 @@ public class Hall implements Serializable {
     @Column(name = "hall_name", nullable = false)
     private String hallName;
 
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    @Column(name = "hall_type", nullable = false)
+    private HallType hallType;
+
     @Column(name = "description")
     private String description;
 
     @Column(name = "price")
     private Double price;
+
+    @Column(name = "capacity")
+    private Integer capacity;
 
     public Long getId() {
         return id;
@@ -51,6 +61,19 @@ public class Hall implements Serializable {
 
     public void setHallName(String hallName) {
         this.hallName = hallName;
+    }
+
+    public HallType getHallType() {
+        return hallType;
+    }
+
+    public Hall hallType(HallType hallType) {
+        this.hallType = hallType;
+        return this;
+    }
+
+    public void setHallType(HallType hallType) {
+        this.hallType = hallType;
     }
 
     public String getDescription() {
@@ -79,6 +102,19 @@ public class Hall implements Serializable {
         this.price = price;
     }
 
+    public Integer getCapacity() {
+        return capacity;
+    }
+
+    public Hall capacity(Integer capacity) {
+        this.capacity = capacity;
+        return this;
+    }
+
+    public void setCapacity(Integer capacity) {
+        this.capacity = capacity;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -104,8 +140,10 @@ public class Hall implements Serializable {
         return "Hall{" +
             "id=" + id +
             ", hallName='" + hallName + "'" +
+            ", hallType='" + hallType + "'" +
             ", description='" + description + "'" +
             ", price='" + price + "'" +
+            ", capacity='" + capacity + "'" +
             '}';
     }
 }

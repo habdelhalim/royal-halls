@@ -2,10 +2,10 @@
     "fluentMethods": true,
     "relationships": [
         {
-            "relationshipType": "many-to-one",
+            "relationshipType": "one-to-many",
             "relationshipName": "contact",
             "otherEntityName": "contact",
-            "otherEntityField": "contactName"
+            "otherEntityRelationshipName": "customer"
         }
     ],
     "fields": [
@@ -24,6 +24,14 @@
             ]
         },
         {
+            "fieldName": "groomName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "prideName",
+            "fieldType": "String"
+        },
+        {
             "fieldName": "city",
             "fieldType": "String"
         },
@@ -32,7 +40,7 @@
             "fieldType": "String"
         }
     ],
-    "changelogDate": "20161224131353",
+    "changelogDate": "20161224235136",
     "entityTableName": "customer",
     "dto": "no",
     "pagination": "pagination",

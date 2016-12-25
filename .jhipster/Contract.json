@@ -20,6 +20,14 @@
             "fieldType": "String"
         },
         {
+            "fieldName": "contractType",
+            "fieldType": "ContractType",
+            "fieldValues": "WEDDING,ENGAGEMENT,PARTY,MEETING,FUNERAL",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
             "fieldName": "contractDate",
             "fieldType": "ZonedDateTime",
             "fieldValidateRules": [
@@ -27,7 +35,7 @@
             ]
         }
     ],
-    "changelogDate": "20161224131357",
+    "changelogDate": "20161224235140",
     "entityTableName": "contract",
     "dto": "no",
     "pagination": "pagination",

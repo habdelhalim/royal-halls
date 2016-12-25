@@ -29,6 +29,7 @@ import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+import com.royal.app.domain.enumeration.HallType;
 /**
  * Test class for the HallResource REST controller.
  *
@@ -41,11 +42,17 @@ public class HallResourceIntTest {
     private static final String DEFAULT_HALL_NAME = "AAAAAAAAAA";
     private static final String UPDATED_HALL_NAME = "BBBBBBBBBB";
 
+    private static final HallType DEFAULT_HALL_TYPE = HallType.MAIN;
+    private static final HallType UPDATED_HALL_TYPE = HallType.ATTACHMENT;
+
     private static final String DEFAULT_DESCRIPTION = "AAAAAAAAAA";
     private static final String UPDATED_DESCRIPTION = "BBBBBBBBBB";
 
     private static final Double DEFAULT_PRICE = 1D;
     private static final Double UPDATED_PRICE = 2D;
+
+    private static final Integer DEFAULT_CAPACITY = 1;
+    private static final Integer UPDATED_CAPACITY = 2;
 
     @Inject
     private HallRepository hallRepository;
@@ -85,8 +92,10 @@ public class HallResourceIntTest {
     public static Hall createEntity(EntityManager em) {
         Hall hall = new Hall()
                 .hallName(DEFAULT_HALL_NAME)
+                .hallType(DEFAULT_HALL_TYPE)
                 .description(DEFAULT_DESCRIPTION)
-                .price(DEFAULT_PRICE);
+                .price(DEFAULT_PRICE)
+                .capacity(DEFAULT_CAPACITY);
         return hall;
     }
 
@@ -112,8 +121,10 @@ public class HallResourceIntTest {
         assertThat(hallList).hasSize(databaseSizeBeforeCreate + 1);
         Hall testHall = hallList.get(hallList.size() - 1);
         assertThat(testHall.getHallName()).isEqualTo(DEFAULT_HALL_NAME);
+        assertThat(testHall.getHallType()).isEqualTo(DEFAULT_HALL_TYPE);
         assertThat(testHall.getDescription()).isEqualTo(DEFAULT_DESCRIPTION);
         assertThat(testHall.getPrice()).isEqualTo(DEFAULT_PRICE);
+        assertThat(testHall.getCapacity()).isEqualTo(DEFAULT_CAPACITY);
     }
 
     @Test
@@ -156,6 +167,24 @@ public class HallResourceIntTest {
 
     @Test
     @Transactional
+    public void checkHallTypeIsRequired() throws Exception {
+        int databaseSizeBeforeTest = hallRepository.findAll().size();
+        // set the field null
+        hall.setHallType(null);
+
+        // Create the Hall, which fails.
+
+        restHallMockMvc.perform(post("/api/halls")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(hall)))
+            .andExpect(status().isBadRequest());
+
+        List<Hall> hallList = hallRepository.findAll();
+        assertThat(hallList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     public void getAllHalls() throws Exception {
         // Initialize the database
         hallRepository.saveAndFlush(hall);
@@ -166,8 +195,10 @@ public class HallResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(hall.getId().intValue())))
             .andExpect(jsonPath("$.[*].hallName").value(hasItem(DEFAULT_HALL_NAME.toString())))
+            .andExpect(jsonPath("$.[*].hallType").value(hasItem(DEFAULT_HALL_TYPE.toString())))
             .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION.toString())))
-            .andExpect(jsonPath("$.[*].price").value(hasItem(DEFAULT_PRICE.doubleValue())));
+            .andExpect(jsonPath("$.[*].price").value(hasItem(DEFAULT_PRICE.doubleValue())))
+            .andExpect(jsonPath("$.[*].capacity").value(hasItem(DEFAULT_CAPACITY)));
     }
 
     @Test
@@ -182,8 +213,10 @@ public class HallResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(hall.getId().intValue()))
             .andExpect(jsonPath("$.hallName").value(DEFAULT_HALL_NAME.toString()))
+            .andExpect(jsonPath("$.hallType").value(DEFAULT_HALL_TYPE.toString()))
             .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION.toString()))
-            .andExpect(jsonPath("$.price").value(DEFAULT_PRICE.doubleValue()));
+            .andExpect(jsonPath("$.price").value(DEFAULT_PRICE.doubleValue()))
+            .andExpect(jsonPath("$.capacity").value(DEFAULT_CAPACITY));
     }
 
     @Test
@@ -206,8 +239,10 @@ public class HallResourceIntTest {
         Hall updatedHall = hallRepository.findOne(hall.getId());
         updatedHall
                 .hallName(UPDATED_HALL_NAME)
+                .hallType(UPDATED_HALL_TYPE)
                 .description(UPDATED_DESCRIPTION)
-                .price(UPDATED_PRICE);
+                .price(UPDATED_PRICE)
+                .capacity(UPDATED_CAPACITY);
 
         restHallMockMvc.perform(put("/api/halls")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -219,8 +254,10 @@ public class HallResourceIntTest {
         assertThat(hallList).hasSize(databaseSizeBeforeUpdate);
         Hall testHall = hallList.get(hallList.size() - 1);
         assertThat(testHall.getHallName()).isEqualTo(UPDATED_HALL_NAME);
+        assertThat(testHall.getHallType()).isEqualTo(UPDATED_HALL_TYPE);
         assertThat(testHall.getDescription()).isEqualTo(UPDATED_DESCRIPTION);
         assertThat(testHall.getPrice()).isEqualTo(UPDATED_PRICE);
+        assertThat(testHall.getCapacity()).isEqualTo(UPDATED_CAPACITY);
     }
 
     @Test

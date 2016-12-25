@@ -46,6 +46,7 @@
                 }],
                 translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
                     $translatePartialLoader.addPart('contract');
+                    $translatePartialLoader.addPart('contractType');
                     $translatePartialLoader.addPart('global');
                     return $translate.refresh();
                 }]
@@ -68,6 +69,7 @@
             resolve: {
                 translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
                     $translatePartialLoader.addPart('contract');
+                    $translatePartialLoader.addPart('contractType');
                     return $translate.refresh();
                 }],
                 entity: ['$stateParams', 'Contract', function($stateParams, Contract) {
@@ -125,6 +127,7 @@
                         entity: function () {
                             return {
                                 contractName: null,
+                                contractType: null,
                                 contractDate: null,
                                 id: null
                             };

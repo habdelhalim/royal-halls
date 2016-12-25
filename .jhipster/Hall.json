@@ -10,15 +10,27 @@
             ]
         },
         {
+            "fieldName": "hallType",
+            "fieldType": "HallType",
+            "fieldValues": "MAIN,ATTACHMENT,YARD",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
             "fieldName": "description",
             "fieldType": "String"
         },
         {
             "fieldName": "price",
             "fieldType": "Double"
+        },
+        {
+            "fieldName": "capacity",
+            "fieldType": "Integer"
         }
     ],
-    "changelogDate": "20161224131352",
+    "changelogDate": "20161224235135",
     "entityTableName": "hall",
     "dto": "no",
     "pagination": "pagination",

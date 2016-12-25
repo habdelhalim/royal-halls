@@ -34,6 +34,7 @@ import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+import com.royal.app.domain.enumeration.ContractType;
 /**
  * Test class for the ContractResource REST controller.
  *
@@ -45,6 +46,9 @@ public class ContractResourceIntTest {
 
     private static final String DEFAULT_CONTRACT_NAME = "AAAAAAAAAA";
     private static final String UPDATED_CONTRACT_NAME = "BBBBBBBBBB";
+
+    private static final ContractType DEFAULT_CONTRACT_TYPE = ContractType.WEDDING;
+    private static final ContractType UPDATED_CONTRACT_TYPE = ContractType.ENGAGEMENT;
 
     private static final ZonedDateTime DEFAULT_CONTRACT_DATE = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneOffset.UTC);
     private static final ZonedDateTime UPDATED_CONTRACT_DATE = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
@@ -87,6 +91,7 @@ public class ContractResourceIntTest {
     public static Contract createEntity(EntityManager em) {
         Contract contract = new Contract()
                 .contractName(DEFAULT_CONTRACT_NAME)
+                .contractType(DEFAULT_CONTRACT_TYPE)
                 .contractDate(DEFAULT_CONTRACT_DATE);
         return contract;
     }
@@ -113,6 +118,7 @@ public class ContractResourceIntTest {
         assertThat(contractList).hasSize(databaseSizeBeforeCreate + 1);
         Contract testContract = contractList.get(contractList.size() - 1);
         assertThat(testContract.getContractName()).isEqualTo(DEFAULT_CONTRACT_NAME);
+        assertThat(testContract.getContractType()).isEqualTo(DEFAULT_CONTRACT_TYPE);
         assertThat(testContract.getContractDate()).isEqualTo(DEFAULT_CONTRACT_DATE);
     }
 
@@ -134,6 +140,24 @@ public class ContractResourceIntTest {
         // Validate the Alice in the database
         List<Contract> contractList = contractRepository.findAll();
         assertThat(contractList).hasSize(databaseSizeBeforeCreate);
+    }
+
+    @Test
+    @Transactional
+    public void checkContractTypeIsRequired() throws Exception {
+        int databaseSizeBeforeTest = contractRepository.findAll().size();
+        // set the field null
+        contract.setContractType(null);
+
+        // Create the Contract, which fails.
+
+        restContractMockMvc.perform(post("/api/contracts")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(contract)))
+            .andExpect(status().isBadRequest());
+
+        List<Contract> contractList = contractRepository.findAll();
+        assertThat(contractList).hasSize(databaseSizeBeforeTest);
     }
 
     @Test
@@ -166,6 +190,7 @@ public class ContractResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(contract.getId().intValue())))
             .andExpect(jsonPath("$.[*].contractName").value(hasItem(DEFAULT_CONTRACT_NAME.toString())))
+            .andExpect(jsonPath("$.[*].contractType").value(hasItem(DEFAULT_CONTRACT_TYPE.toString())))
             .andExpect(jsonPath("$.[*].contractDate").value(hasItem(sameInstant(DEFAULT_CONTRACT_DATE))));
     }
 
@@ -181,6 +206,7 @@ public class ContractResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(contract.getId().intValue()))
             .andExpect(jsonPath("$.contractName").value(DEFAULT_CONTRACT_NAME.toString()))
+            .andExpect(jsonPath("$.contractType").value(DEFAULT_CONTRACT_TYPE.toString()))
             .andExpect(jsonPath("$.contractDate").value(sameInstant(DEFAULT_CONTRACT_DATE)));
     }
 
@@ -204,6 +230,7 @@ public class ContractResourceIntTest {
         Contract updatedContract = contractRepository.findOne(contract.getId());
         updatedContract
                 .contractName(UPDATED_CONTRACT_NAME)
+                .contractType(UPDATED_CONTRACT_TYPE)
                 .contractDate(UPDATED_CONTRACT_DATE);
 
         restContractMockMvc.perform(put("/api/contracts")
@@ -216,6 +243,7 @@ public class ContractResourceIntTest {
         assertThat(contractList).hasSize(databaseSizeBeforeUpdate);
         Contract testContract = contractList.get(contractList.size() - 1);
         assertThat(testContract.getContractName()).isEqualTo(UPDATED_CONTRACT_NAME);
+        assertThat(testContract.getContractType()).isEqualTo(UPDATED_CONTRACT_TYPE);
         assertThat(testContract.getContractDate()).isEqualTo(UPDATED_CONTRACT_DATE);
     }
 

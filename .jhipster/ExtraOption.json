@@ -19,7 +19,7 @@
             "fieldType": "Double"
         }
     ],
-    "changelogDate": "20161224131356",
+    "changelogDate": "20161224235139",
     "entityTableName": "extra_option",
     "dto": "no",
     "pagination": "pagination",

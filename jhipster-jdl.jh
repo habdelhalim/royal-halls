@@ -1,12 +1,20 @@
 entity Hall {
 	hallName String required,
-    description String
-    price Double
+    hallType HallType required,
+    description String,
+    price Double,
+    capacity Integer
+}
+
+enum HallType {
+MAIN, ATTACHMENT, YARD
 }
 
 entity Customer {
 	customerName String required,
     identityId String required,
+    groomName String,
+    prideName String,
     city String,
     country String
 }
@@ -33,7 +41,12 @@ entity ExtraOption{
 
 entity Contract {
 	contractName String,
+    contractType ContractType required,
 	contractDate ZonedDateTime required
+}
+
+enum ContractType {
+WEDDING,ENGAGEMENT,PARTY,MEETING,FUNERAL
 }
 
 enum OptionType {
@@ -41,13 +54,10 @@ BASIC, OPTIONAL
 }
 
 relationship ManyToOne {
-	Contract{customer(customerName)} to Customer
-}
-
-relationship ManyToOne {
+	Contact{customer(customerName)} to Customer{contact(contactName)},
+	Contract{customer(customerName)} to Customer,
     Event{hall(hallName)} to Hall,
-    Event{contract(contractName)} to Contract{event(eventName)},
-    Customer{contact(contactName)} to Contact
+    Event{contract(contractName)} to Contract{event(eventName)}
 }
 
 relationship ManyToMany {

@@ -67,7 +67,7 @@ class HallGatlingTest extends Simulation {
             .exec(http("Create new hall")
             .post("/api/halls")
             .headers(headers_http_authenticated)
-            .body(StringBody("""{"id":null, "hallName":"SAMPLE_TEXT", "description":"SAMPLE_TEXT", "price":null}""")).asJSON
+            .body(StringBody("""{"id":null, "hallName":"SAMPLE_TEXT", "hallType":null, "description":"SAMPLE_TEXT", "price":null, "capacity":"0"}""")).asJSON
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_hall_url"))).exitHereIfFailed
             .pause(10)

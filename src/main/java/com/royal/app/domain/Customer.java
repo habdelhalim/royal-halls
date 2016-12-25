@@ -1,11 +1,14 @@
 package com.royal.app.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -30,14 +33,22 @@ public class Customer implements Serializable {
     @Column(name = "identity_id", nullable = false)
     private String identityId;
 
+    @Column(name = "groom_name")
+    private String groomName;
+
+    @Column(name = "pride_name")
+    private String prideName;
+
     @Column(name = "city")
     private String city;
 
     @Column(name = "country")
     private String country;
 
-    @ManyToOne
-    private Contact contact;
+    @OneToMany(mappedBy = "customer")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<Contact> contacts = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -73,6 +84,32 @@ public class Customer implements Serializable {
         this.identityId = identityId;
     }
 
+    public String getGroomName() {
+        return groomName;
+    }
+
+    public Customer groomName(String groomName) {
+        this.groomName = groomName;
+        return this;
+    }
+
+    public void setGroomName(String groomName) {
+        this.groomName = groomName;
+    }
+
+    public String getPrideName() {
+        return prideName;
+    }
+
+    public Customer prideName(String prideName) {
+        this.prideName = prideName;
+        return this;
+    }
+
+    public void setPrideName(String prideName) {
+        this.prideName = prideName;
+    }
+
     public String getCity() {
         return city;
     }
@@ -99,17 +136,29 @@ public class Customer implements Serializable {
         this.country = country;
     }
 
-    public Contact getContact() {
-        return contact;
+    public Set<Contact> getContacts() {
+        return contacts;
     }
 
-    public Customer contact(Contact contact) {
-        this.contact = contact;
+    public Customer contacts(Set<Contact> contacts) {
+        this.contacts = contacts;
         return this;
     }
 
-    public void setContact(Contact contact) {
-        this.contact = contact;
+    public Customer addContact(Contact contact) {
+        contacts.add(contact);
+        contact.setCustomer(this);
+        return this;
+    }
+
+    public Customer removeContact(Contact contact) {
+        contacts.remove(contact);
+        contact.setCustomer(null);
+        return this;
+    }
+
+    public void setContacts(Set<Contact> contacts) {
+        this.contacts = contacts;
     }
 
     @Override
@@ -138,6 +187,8 @@ public class Customer implements Serializable {
             "id=" + id +
             ", customerName='" + customerName + "'" +
             ", identityId='" + identityId + "'" +
+            ", groomName='" + groomName + "'" +
+            ", prideName='" + prideName + "'" +
             ", city='" + city + "'" +
             ", country='" + country + "'" +
             '}';

@@ -18,7 +18,8 @@
             },
             "contactName": "Contact Name",
             "mobile": "Mobile",
-            "telephone": "Telephone"
+            "telephone": "Telephone",
+            "customer": "Customer"
         }
     }
 }

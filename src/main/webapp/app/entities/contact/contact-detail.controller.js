@@ -5,9 +5,9 @@
         .module('royalhallsApp')
         .controller('ContactDetailController', ContactDetailController);
 
-    ContactDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'Contact'];
+    ContactDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'Contact', 'Customer'];
 
-    function ContactDetailController($scope, $rootScope, $stateParams, previousState, entity, Contact) {
+    function ContactDetailController($scope, $rootScope, $stateParams, previousState, entity, Contact, Customer) {
         var vm = this;
 
         vm.contact = entity;

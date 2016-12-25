@@ -1,6 +1,13 @@
 {
     "fluentMethods": true,
-    "relationships": [],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "customer",
+            "otherEntityName": "customer",
+            "otherEntityField": "customerName"
+        }
+    ],
     "fields": [
         {
             "fieldName": "contactName",
@@ -18,7 +25,7 @@
             "fieldType": "String"
         }
     ],
-    "changelogDate": "20161224131354",
+    "changelogDate": "20161224235137",
     "entityTableName": "contact",
     "dto": "no",
     "pagination": "pagination",

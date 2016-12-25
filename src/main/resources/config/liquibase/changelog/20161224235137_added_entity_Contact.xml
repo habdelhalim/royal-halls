@@ -17,56 +17,31 @@
     <property name="floatType" value="float" dbms="mysql, oracle, mssql"/>
 
     <!--
-        Added the entity Event.
+        Added the entity Contact.
     -->
-    <changeSet id="20161224131355-1" author="jhipster">
-        <createTable tableName="event">
+    <changeSet id="20161224235137-1" author="jhipster">
+        <createTable tableName="contact">
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="event_name" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-            
-            <column name="groom_name" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-            
-            <column name="pride_name" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-            
-            <column name="event_start_date" type="timestamp">
+            <column name="contact_name" type="varchar(255)">
                 <constraints nullable="false" />
             </column>
             
-            <column name="event_end_date" type="timestamp">
-                <constraints nullable="false" />
-            </column>
-            
-            <column name="hall_id" type="bigint">
+            <column name="mobile" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-
-            <column name="contract_id" type="bigint">
+            
+            <column name="telephone" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            
+            <column name="customer_id" type="bigint">
                 <constraints nullable="true" />
             </column>
 
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
-        <dropDefaultValue tableName="event" columnName="event_start_date" columnDataType="datetime"/>
-        <dropDefaultValue tableName="event" columnName="event_end_date" columnDataType="datetime"/>
-        
-        <createTable tableName="event_option">
-            <column name="options_id" type="bigint">
-                <constraints nullable="false"/>
-            </column>
-            <column name="events_id" type="bigint">
-                <constraints nullable="false"/>
-            </column>
-        </createTable>
-
-        <addPrimaryKey columnNames="events_id, options_id" tableName="event_option"/>
         
     </changeSet>
 </databaseChangeLog>

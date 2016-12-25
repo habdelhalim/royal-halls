@@ -26,6 +26,20 @@
             </div>
         </div>
         <div class="form-group">
+            <label class="control-label" data-translate="royalhallsApp.hall.hallType" for="field_hallType">Hall Type</label>
+            <select class="form-control" name="hallType" ng-model="vm.hall.hallType" id="field_hallType" required>
+                <option value="MAIN" data-translate="royalhallsApp.HallType.MAIN">MAIN</option>
+                <option value="ATTACHMENT" data-translate="royalhallsApp.HallType.ATTACHMENT">ATTACHMENT</option>
+                <option value="YARD" data-translate="royalhallsApp.HallType.YARD">YARD</option>
+            </select>
+            <div ng-show="editForm.hallType.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.hallType.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
             <label class="control-label" data-translate="royalhallsApp.hall.description" for="field_description">Description</label>
             <input type="text" class="form-control" name="description" id="field_description"
                     ng-model="vm.hall.description"
@@ -35,6 +49,12 @@
             <label class="control-label" data-translate="royalhallsApp.hall.price" for="field_price">Price</label>
             <input type="number" class="form-control" name="price" id="field_price"
                     ng-model="vm.hall.price"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="royalhallsApp.hall.capacity" for="field_capacity">Capacity</label>
+            <input type="number" class="form-control" name="capacity" id="field_capacity"
+                    ng-model="vm.hall.capacity"
                      />
         </div>
 

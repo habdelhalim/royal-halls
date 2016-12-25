@@ -12,6 +12,14 @@
         <dd>
             <span>{{vm.customer.identityId}}</span>
         </dd>
+        <dt><span data-translate="royalhallsApp.customer.groomName">Groom Name</span></dt>
+        <dd>
+            <span>{{vm.customer.groomName}}</span>
+        </dd>
+        <dt><span data-translate="royalhallsApp.customer.prideName">Pride Name</span></dt>
+        <dd>
+            <span>{{vm.customer.prideName}}</span>
+        </dd>
         <dt><span data-translate="royalhallsApp.customer.city">City</span></dt>
         <dd>
             <span>{{vm.customer.city}}</span>
@@ -19,10 +27,6 @@
         <dt><span data-translate="royalhallsApp.customer.country">Country</span></dt>
         <dd>
             <span>{{vm.customer.country}}</span>
-        </dd>
-        <dt><span data-translate="royalhallsApp.customer.contact">Contact</span></dt>
-        <dd>
-            <a ui-sref="contact-detail({id:vm.customer.contact.id})">{{vm.customer.contact.contactName}}</a>
         </dd>
     </dl>
 

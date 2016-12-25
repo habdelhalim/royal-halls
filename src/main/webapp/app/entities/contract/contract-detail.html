@@ -8,6 +8,10 @@
         <dd>
             <span>{{vm.contract.contractName}}</span>
         </dd>
+        <dt><span data-translate="royalhallsApp.contract.contractType">Contract Type</span></dt>
+        <dd>
+            <span data-translate="{{'royalhallsApp.ContractType.' + vm.contract.contractType}}">{{vm.contract.contractType}}</span>
+        </dd>
         <dt><span data-translate="royalhallsApp.contract.contractDate">Contract Date</span></dt>
         <dd>
             <span>{{vm.contract.contractDate | date:'medium'}}</span>

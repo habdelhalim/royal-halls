@@ -44,6 +44,12 @@ public class CustomerResourceIntTest {
     private static final String DEFAULT_IDENTITY_ID = "AAAAAAAAAA";
     private static final String UPDATED_IDENTITY_ID = "BBBBBBBBBB";
 
+    private static final String DEFAULT_GROOM_NAME = "AAAAAAAAAA";
+    private static final String UPDATED_GROOM_NAME = "BBBBBBBBBB";
+
+    private static final String DEFAULT_PRIDE_NAME = "AAAAAAAAAA";
+    private static final String UPDATED_PRIDE_NAME = "BBBBBBBBBB";
+
     private static final String DEFAULT_CITY = "AAAAAAAAAA";
     private static final String UPDATED_CITY = "BBBBBBBBBB";
 
@@ -89,6 +95,8 @@ public class CustomerResourceIntTest {
         Customer customer = new Customer()
                 .customerName(DEFAULT_CUSTOMER_NAME)
                 .identityId(DEFAULT_IDENTITY_ID)
+                .groomName(DEFAULT_GROOM_NAME)
+                .prideName(DEFAULT_PRIDE_NAME)
                 .city(DEFAULT_CITY)
                 .country(DEFAULT_COUNTRY);
         return customer;
@@ -117,6 +125,8 @@ public class CustomerResourceIntTest {
         Customer testCustomer = customerList.get(customerList.size() - 1);
         assertThat(testCustomer.getCustomerName()).isEqualTo(DEFAULT_CUSTOMER_NAME);
         assertThat(testCustomer.getIdentityId()).isEqualTo(DEFAULT_IDENTITY_ID);
+        assertThat(testCustomer.getGroomName()).isEqualTo(DEFAULT_GROOM_NAME);
+        assertThat(testCustomer.getPrideName()).isEqualTo(DEFAULT_PRIDE_NAME);
         assertThat(testCustomer.getCity()).isEqualTo(DEFAULT_CITY);
         assertThat(testCustomer.getCountry()).isEqualTo(DEFAULT_COUNTRY);
     }
@@ -190,6 +200,8 @@ public class CustomerResourceIntTest {
             .andExpect(jsonPath("$.[*].id").value(hasItem(customer.getId().intValue())))
             .andExpect(jsonPath("$.[*].customerName").value(hasItem(DEFAULT_CUSTOMER_NAME.toString())))
             .andExpect(jsonPath("$.[*].identityId").value(hasItem(DEFAULT_IDENTITY_ID.toString())))
+            .andExpect(jsonPath("$.[*].groomName").value(hasItem(DEFAULT_GROOM_NAME.toString())))
+            .andExpect(jsonPath("$.[*].prideName").value(hasItem(DEFAULT_PRIDE_NAME.toString())))
             .andExpect(jsonPath("$.[*].city").value(hasItem(DEFAULT_CITY.toString())))
             .andExpect(jsonPath("$.[*].country").value(hasItem(DEFAULT_COUNTRY.toString())));
     }
@@ -207,6 +219,8 @@ public class CustomerResourceIntTest {
             .andExpect(jsonPath("$.id").value(customer.getId().intValue()))
             .andExpect(jsonPath("$.customerName").value(DEFAULT_CUSTOMER_NAME.toString()))
             .andExpect(jsonPath("$.identityId").value(DEFAULT_IDENTITY_ID.toString()))
+            .andExpect(jsonPath("$.groomName").value(DEFAULT_GROOM_NAME.toString()))
+            .andExpect(jsonPath("$.prideName").value(DEFAULT_PRIDE_NAME.toString()))
             .andExpect(jsonPath("$.city").value(DEFAULT_CITY.toString()))
             .andExpect(jsonPath("$.country").value(DEFAULT_COUNTRY.toString()));
     }
@@ -232,6 +246,8 @@ public class CustomerResourceIntTest {
         updatedCustomer
                 .customerName(UPDATED_CUSTOMER_NAME)
                 .identityId(UPDATED_IDENTITY_ID)
+                .groomName(UPDATED_GROOM_NAME)
+                .prideName(UPDATED_PRIDE_NAME)
                 .city(UPDATED_CITY)
                 .country(UPDATED_COUNTRY);
 
@@ -246,6 +262,8 @@ public class CustomerResourceIntTest {
         Customer testCustomer = customerList.get(customerList.size() - 1);
         assertThat(testCustomer.getCustomerName()).isEqualTo(UPDATED_CUSTOMER_NAME);
         assertThat(testCustomer.getIdentityId()).isEqualTo(UPDATED_IDENTITY_ID);
+        assertThat(testCustomer.getGroomName()).isEqualTo(UPDATED_GROOM_NAME);
+        assertThat(testCustomer.getPrideName()).isEqualTo(UPDATED_PRIDE_NAME);
         assertThat(testCustomer.getCity()).isEqualTo(UPDATED_CITY);
         assertThat(testCustomer.getCountry()).isEqualTo(UPDATED_COUNTRY);
     }

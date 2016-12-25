@@ -50,7 +50,7 @@
             ]
         }
     ],
-    "changelogDate": "20161224131355",
+    "changelogDate": "20161224235138",
     "entityTableName": "event",
     "dto": "no",
     "pagination": "pagination",

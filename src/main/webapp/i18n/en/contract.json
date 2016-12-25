@@ -17,6 +17,7 @@
                 "title": "Contract"
             },
             "contractName": "Contract Name",
+            "contractType": "Contract Type",
             "contractDate": "Contract Date",
             "customer": "Customer",
             "event": "Event"

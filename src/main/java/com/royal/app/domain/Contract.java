@@ -12,6 +12,8 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.Objects;
 
+import com.royal.app.domain.enumeration.ContractType;
+
 /**
  * A Contract.
  */
@@ -28,6 +30,11 @@ public class Contract implements Serializable {
 
     @Column(name = "contract_name")
     private String contractName;
+
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    @Column(name = "contract_type", nullable = false)
+    private ContractType contractType;
 
     @NotNull
     @Column(name = "contract_date", nullable = false)
@@ -60,6 +67,19 @@ public class Contract implements Serializable {
 
     public void setContractName(String contractName) {
         this.contractName = contractName;
+    }
+
+    public ContractType getContractType() {
+        return contractType;
+    }
+
+    public Contract contractType(ContractType contractType) {
+        this.contractType = contractType;
+        return this;
+    }
+
+    public void setContractType(ContractType contractType) {
+        this.contractType = contractType;
     }
 
     public ZonedDateTime getContractDate() {
@@ -138,6 +158,7 @@ public class Contract implements Serializable {
         return "Contract{" +
             "id=" + id +
             ", contractName='" + contractName + "'" +
+            ", contractType='" + contractType + "'" +
             ", contractDate='" + contractDate + "'" +
             '}';
     }

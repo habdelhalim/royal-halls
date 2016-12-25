@@ -1,0 +1,10 @@
+{
+    "royalhallsApp": {
+        "HallType" : {
+            "null": "",
+            "MAIN": "MAIN",
+            "ATTACHMENT": "ATTACHMENT",
+            "YARD": "YARD"
+        }
+    }
+}
