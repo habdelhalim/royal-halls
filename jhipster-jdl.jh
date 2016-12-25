@@ -1,13 +1,13 @@
 entity Hall {
 	hallName String required,
-    hallType HallType required,
     description String,
     price Double,
     capacity Integer
 }
 
-enum HallType {
-MAIN, ATTACHMENT, YARD
+entity HallType {
+	hallTypeName String,
+    description String
 }
 
 entity Customer {
@@ -45,17 +45,19 @@ BASIC, OPTIONAL
 
 entity Contract {
 	contractName String,
-    contractType ContractType required,
 	contractDate ZonedDateTime required,
     contractStatus ContractStatus required,
     contractNotes String,
     totalAmount Double,
-    openAmount Double
+    openAmount Double,
+    creationDate ZonedDateTime
 }
 
-enum ContractType {
-WEDDING, ENGAGEMENT, PARTY, MEETING, FUNERAL, GRADUATION
+entity ContractType {
+	contractTypeName String,
+    description String
 }
+
 enum ContractStatus {
 CREATED, APPROVED, COMPLETED, CANCELLED
 }
@@ -63,6 +65,7 @@ CREATED, APPROVED, COMPLETED, CANCELLED
 entity Payment {
 	paymentType PaymentType required,
     paymentAmount Double,
+    paymentDate ZonedDateTime,
     paymentStatus PaymentStatus required
 }
 
@@ -78,8 +81,10 @@ relationship ManyToOne {
 	Payment{contract(contractName)} to Contract,
 	Contact{customer(customerName)} to Customer{contact(contactName)},
 	Contract{customer(customerName)} to Customer,
+    Contract{contractType(contractTypeName)} to ContractType,
     Event{hall(hallName)} to Hall,
-    Event{contract(contractName)} to Contract{event(eventName)}
+    Event{contract(contractName)} to Contract{event(eventName)},
+    Hall{hallType(hallTypeName)} to HallType
 }
 
 relationship ManyToMany {

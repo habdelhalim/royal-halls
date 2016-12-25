@@ -28,10 +28,6 @@
                 <constraints nullable="false" />
             </column>
             
-            <column name="hall_type" type="varchar(255)">
-                <constraints nullable="false" />
-            </column>
-            
             <column name="description" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
@@ -44,6 +40,10 @@
                 <constraints nullable="true" />
             </column>
             
+            <column name="hall_type_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
         

@@ -6,6 +6,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.io.Serializable;
+import java.time.ZonedDateTime;
 import java.util.Objects;
 
 import com.royal.app.domain.enumeration.PaymentType;
@@ -33,6 +34,9 @@ public class Payment implements Serializable {
 
     @Column(name = "payment_amount")
     private Double paymentAmount;
+
+    @Column(name = "payment_date")
+    private ZonedDateTime paymentDate;
 
     @NotNull
     @Enumerated(EnumType.STRING)
@@ -74,6 +78,19 @@ public class Payment implements Serializable {
 
     public void setPaymentAmount(Double paymentAmount) {
         this.paymentAmount = paymentAmount;
+    }
+
+    public ZonedDateTime getPaymentDate() {
+        return paymentDate;
+    }
+
+    public Payment paymentDate(ZonedDateTime paymentDate) {
+        this.paymentDate = paymentDate;
+        return this;
+    }
+
+    public void setPaymentDate(ZonedDateTime paymentDate) {
+        this.paymentDate = paymentDate;
     }
 
     public PaymentStatus getPaymentStatus() {
@@ -128,6 +145,7 @@ public class Payment implements Serializable {
             "id=" + id +
             ", paymentType='" + paymentType + "'" +
             ", paymentAmount='" + paymentAmount + "'" +
+            ", paymentDate='" + paymentDate + "'" +
             ", paymentStatus='" + paymentStatus + "'" +
             '}';
     }

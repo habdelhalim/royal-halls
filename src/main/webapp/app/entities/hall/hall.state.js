@@ -46,7 +46,6 @@
                 }],
                 translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
                     $translatePartialLoader.addPart('hall');
-                    $translatePartialLoader.addPart('hallType');
                     $translatePartialLoader.addPart('global');
                     return $translate.refresh();
                 }]
@@ -69,7 +68,6 @@
             resolve: {
                 translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
                     $translatePartialLoader.addPart('hall');
-                    $translatePartialLoader.addPart('hallType');
                     return $translate.refresh();
                 }],
                 entity: ['$stateParams', 'Hall', function($stateParams, Hall) {
@@ -127,7 +125,6 @@
                         entity: function () {
                             return {
                                 hallName: null,
-                                hallType: null,
                                 description: null,
                                 price: null,
                                 capacity: null,

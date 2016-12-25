@@ -17,6 +17,7 @@
                     if (data) {
                         data = angular.fromJson(data);
                         data.contractDate = DateUtils.convertDateTimeFromServer(data.contractDate);
+                        data.creationDate = DateUtils.convertDateTimeFromServer(data.creationDate);
                     }
                     return data;
                 }

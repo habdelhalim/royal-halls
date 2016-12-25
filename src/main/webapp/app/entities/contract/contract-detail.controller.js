@@ -5,9 +5,9 @@
         .module('royalhallsApp')
         .controller('ContractDetailController', ContractDetailController);
 
-    ContractDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'Contract', 'Customer', 'Event'];
+    ContractDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'Contract', 'Customer', 'ContractType', 'Event'];
 
-    function ContractDetailController($scope, $rootScope, $stateParams, previousState, entity, Contract, Customer, Event) {
+    function ContractDetailController($scope, $rootScope, $stateParams, previousState, entity, Contract, Customer, ContractType, Event) {
         var vm = this;
 
         vm.contract = entity;

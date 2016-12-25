@@ -28,10 +28,6 @@
                 <constraints nullable="true" />
             </column>
             
-            <column name="contract_type" type="varchar(255)">
-                <constraints nullable="false" />
-            </column>
-            
             <column name="contract_date" type="timestamp">
                 <constraints nullable="false" />
             </column>
@@ -52,13 +48,22 @@
                 <constraints nullable="true" />
             </column>
             
+            <column name="creation_date" type="timestamp">
+                <constraints nullable="true" />
+            </column>
+            
             <column name="customer_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="contract_type_id" type="bigint">
                 <constraints nullable="true" />
             </column>
 
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
         <dropDefaultValue tableName="contract" columnName="contract_date" columnDataType="datetime"/>
+        <dropDefaultValue tableName="contract" columnName="creation_date" columnDataType="datetime"/>
         
     </changeSet>
 </databaseChangeLog>

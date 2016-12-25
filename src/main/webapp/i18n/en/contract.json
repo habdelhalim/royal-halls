@@ -17,13 +17,14 @@
                 "title": "Contract"
             },
             "contractName": "Contract Name",
-            "contractType": "Contract Type",
             "contractDate": "Contract Date",
             "contractStatus": "Contract Status",
             "contractNotes": "Contract Notes",
             "totalAmount": "Total Amount",
             "openAmount": "Open Amount",
+            "creationDate": "Creation Date",
             "customer": "Customer",
+            "contractType": "Contract Type",
             "event": "Event"
         }
     }

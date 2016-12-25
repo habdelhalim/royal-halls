@@ -18,6 +18,7 @@
             },
             "paymentType": "Payment Type",
             "paymentAmount": "Payment Amount",
+            "paymentDate": "Payment Date",
             "paymentStatus": "Payment Status",
             "contract": "Contract"
         }

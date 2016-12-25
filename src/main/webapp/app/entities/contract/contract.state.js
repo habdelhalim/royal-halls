@@ -46,7 +46,6 @@
                 }],
                 translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
                     $translatePartialLoader.addPart('contract');
-                    $translatePartialLoader.addPart('contractType');
                     $translatePartialLoader.addPart('contractStatus');
                     $translatePartialLoader.addPart('global');
                     return $translate.refresh();
@@ -70,7 +69,6 @@
             resolve: {
                 translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
                     $translatePartialLoader.addPart('contract');
-                    $translatePartialLoader.addPart('contractType');
                     $translatePartialLoader.addPart('contractStatus');
                     return $translate.refresh();
                 }],
@@ -129,12 +127,12 @@
                         entity: function () {
                             return {
                                 contractName: null,
-                                contractType: null,
                                 contractDate: null,
                                 contractStatus: null,
                                 contractNotes: null,
                                 totalAmount: null,
                                 openAmount: null,
+                                creationDate: null,
                                 id: null
                             };
                         }

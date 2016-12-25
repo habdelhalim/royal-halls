@@ -1,18 +1,17 @@
 {
     "fluentMethods": true,
-    "relationships": [],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "hallType",
+            "otherEntityName": "hallType",
+            "otherEntityField": "hallTypeName"
+        }
+    ],
     "fields": [
         {
             "fieldName": "hallName",
             "fieldType": "String",
-            "fieldValidateRules": [
-                "required"
-            ]
-        },
-        {
-            "fieldName": "hallType",
-            "fieldType": "HallType",
-            "fieldValues": "MAIN,ATTACHMENT,YARD",
             "fieldValidateRules": [
                 "required"
             ]

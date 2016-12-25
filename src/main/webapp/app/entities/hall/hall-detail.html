@@ -8,10 +8,6 @@
         <dd>
             <span>{{vm.hall.hallName}}</span>
         </dd>
-        <dt><span data-translate="royalhallsApp.hall.hallType">Hall Type</span></dt>
-        <dd>
-            <span data-translate="{{'royalhallsApp.HallType.' + vm.hall.hallType}}">{{vm.hall.hallType}}</span>
-        </dd>
         <dt><span data-translate="royalhallsApp.hall.description">Description</span></dt>
         <dd>
             <span>{{vm.hall.description}}</span>
@@ -23,6 +19,10 @@
         <dt><span data-translate="royalhallsApp.hall.capacity">Capacity</span></dt>
         <dd>
             <span>{{vm.hall.capacity}}</span>
+        </dd>
+        <dt><span data-translate="royalhallsApp.hall.hallType">Hall Type</span></dt>
+        <dd>
+            <a ui-sref="hall-type-detail({id:vm.hall.hallType.id})">{{vm.hall.hallType.hallTypeName}}</a>
         </dd>
     </dl>
 

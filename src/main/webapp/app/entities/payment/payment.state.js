@@ -130,6 +130,7 @@
                             return {
                                 paymentType: null,
                                 paymentAmount: null,
+                                paymentDate: null,
                                 paymentStatus: null,
                                 id: null
                             };

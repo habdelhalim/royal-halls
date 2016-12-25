@@ -1,10 +1,23 @@
 {
     "royalhallsApp": {
-        "HallType" : {
-            "null": "",
-            "MAIN": "MAIN",
-            "ATTACHMENT": "ATTACHMENT",
-            "YARD": "YARD"
+        "hallType" : {
+            "home": {
+                "title": "Hall Types",
+                "createLabel": "Create a new Hall Type",
+                "createOrEditLabel": "Create or edit a Hall Type",
+                "search": "Search for Hall Type"
+            },
+            "created": "A new Hall Type is created with identifier {{ param }}",
+            "updated": "A Hall Type is updated with identifier {{ param }}",
+            "deleted": "A Hall Type is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Hall Type {{ id }}?"
+            },
+            "detail": {
+                "title": "Hall Type"
+            },
+            "hallTypeName": "Hall Type Name",
+            "description": "Description"
         }
     }
 }

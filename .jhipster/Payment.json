@@ -22,6 +22,10 @@
             "fieldType": "Double"
         },
         {
+            "fieldName": "paymentDate",
+            "fieldType": "ZonedDateTime"
+        },
+        {
             "fieldName": "paymentStatus",
             "fieldType": "PaymentStatus",
             "fieldValues": "PENDING,PAID,CANCELLED",

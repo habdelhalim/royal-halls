@@ -67,7 +67,7 @@ class ContractGatlingTest extends Simulation {
             .exec(http("Create new contract")
             .post("/api/contracts")
             .headers(headers_http_authenticated)
-            .body(StringBody("""{"id":null, "contractName":"SAMPLE_TEXT", "contractType":null, "contractDate":"2020-01-01T00:00:00.000Z", "contractStatus":null, "contractNotes":"SAMPLE_TEXT", "totalAmount":null, "openAmount":null}""")).asJSON
+            .body(StringBody("""{"id":null, "contractName":"SAMPLE_TEXT", "contractDate":"2020-01-01T00:00:00.000Z", "contractStatus":null, "contractNotes":"SAMPLE_TEXT", "totalAmount":null, "openAmount":null, "creationDate":"2020-01-01T00:00:00.000Z"}""")).asJSON
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_contract_url"))).exitHereIfFailed
             .pause(10)

@@ -12,6 +12,8 @@
 
         vm.payment = entity;
         vm.clear = clear;
+        vm.datePickerOpenStatus = {};
+        vm.openCalendar = openCalendar;
         vm.save = save;
         vm.contracts = Contract.query();
 
@@ -42,6 +44,10 @@
             vm.isSaving = false;
         }
 
+        vm.datePickerOpenStatus.paymentDate = false;
 
+        function openCalendar (date) {
+            vm.datePickerOpenStatus[date] = true;
+        }
     }
 })();

@@ -8,10 +8,6 @@
         <dd>
             <span>{{vm.contract.contractName}}</span>
         </dd>
-        <dt><span data-translate="royalhallsApp.contract.contractType">Contract Type</span></dt>
-        <dd>
-            <span data-translate="{{'royalhallsApp.ContractType.' + vm.contract.contractType}}">{{vm.contract.contractType}}</span>
-        </dd>
         <dt><span data-translate="royalhallsApp.contract.contractDate">Contract Date</span></dt>
         <dd>
             <span>{{vm.contract.contractDate | date:'medium'}}</span>
@@ -32,9 +28,17 @@
         <dd>
             <span>{{vm.contract.openAmount}}</span>
         </dd>
+        <dt><span data-translate="royalhallsApp.contract.creationDate">Creation Date</span></dt>
+        <dd>
+            <span>{{vm.contract.creationDate | date:'medium'}}</span>
+        </dd>
         <dt><span data-translate="royalhallsApp.contract.customer">Customer</span></dt>
         <dd>
             <a ui-sref="customer-detail({id:vm.contract.customer.id})">{{vm.contract.customer.customerName}}</a>
+        </dd>
+        <dt><span data-translate="royalhallsApp.contract.contractType">Contract Type</span></dt>
+        <dd>
+            <a ui-sref="contract-type-detail({id:vm.contract.contractType.id})">{{vm.contract.contractType.contractTypeName}}</a>
         </dd>
     </dl>
 

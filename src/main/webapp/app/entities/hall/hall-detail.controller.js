@@ -5,9 +5,9 @@
         .module('royalhallsApp')
         .controller('HallDetailController', HallDetailController);
 
-    HallDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'Hall'];
+    HallDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'Hall', 'HallType'];
 
-    function HallDetailController($scope, $rootScope, $stateParams, previousState, entity, Hall) {
+    function HallDetailController($scope, $rootScope, $stateParams, previousState, entity, Hall, HallType) {
         var vm = this;
 
         vm.hall = entity;

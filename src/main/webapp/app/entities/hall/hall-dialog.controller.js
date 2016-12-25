@@ -5,14 +5,15 @@
         .module('royalhallsApp')
         .controller('HallDialogController', HallDialogController);
 
-    HallDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Hall'];
+    HallDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Hall', 'HallType'];
 
-    function HallDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Hall) {
+    function HallDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Hall, HallType) {
         var vm = this;
 
         vm.hall = entity;
         vm.clear = clear;
         vm.save = save;
+        vm.halltypes = HallType.query();
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();

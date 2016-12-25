@@ -22,8 +22,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import java.time.Instant;
+import java.time.ZonedDateTime;
+import java.time.ZoneOffset;
+import java.time.ZoneId;
 import java.util.List;
 
+import static com.royal.app.web.rest.TestUtil.sameInstant;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -45,6 +50,9 @@ public class PaymentResourceIntTest {
 
     private static final Double DEFAULT_PAYMENT_AMOUNT = 1D;
     private static final Double UPDATED_PAYMENT_AMOUNT = 2D;
+
+    private static final ZonedDateTime DEFAULT_PAYMENT_DATE = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneOffset.UTC);
+    private static final ZonedDateTime UPDATED_PAYMENT_DATE = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
 
     private static final PaymentStatus DEFAULT_PAYMENT_STATUS = PaymentStatus.PENDING;
     private static final PaymentStatus UPDATED_PAYMENT_STATUS = PaymentStatus.PAID;
@@ -88,6 +96,7 @@ public class PaymentResourceIntTest {
         Payment payment = new Payment()
                 .paymentType(DEFAULT_PAYMENT_TYPE)
                 .paymentAmount(DEFAULT_PAYMENT_AMOUNT)
+                .paymentDate(DEFAULT_PAYMENT_DATE)
                 .paymentStatus(DEFAULT_PAYMENT_STATUS);
         return payment;
     }
@@ -115,6 +124,7 @@ public class PaymentResourceIntTest {
         Payment testPayment = paymentList.get(paymentList.size() - 1);
         assertThat(testPayment.getPaymentType()).isEqualTo(DEFAULT_PAYMENT_TYPE);
         assertThat(testPayment.getPaymentAmount()).isEqualTo(DEFAULT_PAYMENT_AMOUNT);
+        assertThat(testPayment.getPaymentDate()).isEqualTo(DEFAULT_PAYMENT_DATE);
         assertThat(testPayment.getPaymentStatus()).isEqualTo(DEFAULT_PAYMENT_STATUS);
     }
 
@@ -187,6 +197,7 @@ public class PaymentResourceIntTest {
             .andExpect(jsonPath("$.[*].id").value(hasItem(payment.getId().intValue())))
             .andExpect(jsonPath("$.[*].paymentType").value(hasItem(DEFAULT_PAYMENT_TYPE.toString())))
             .andExpect(jsonPath("$.[*].paymentAmount").value(hasItem(DEFAULT_PAYMENT_AMOUNT.doubleValue())))
+            .andExpect(jsonPath("$.[*].paymentDate").value(hasItem(sameInstant(DEFAULT_PAYMENT_DATE))))
             .andExpect(jsonPath("$.[*].paymentStatus").value(hasItem(DEFAULT_PAYMENT_STATUS.toString())));
     }
 
@@ -203,6 +214,7 @@ public class PaymentResourceIntTest {
             .andExpect(jsonPath("$.id").value(payment.getId().intValue()))
             .andExpect(jsonPath("$.paymentType").value(DEFAULT_PAYMENT_TYPE.toString()))
             .andExpect(jsonPath("$.paymentAmount").value(DEFAULT_PAYMENT_AMOUNT.doubleValue()))
+            .andExpect(jsonPath("$.paymentDate").value(sameInstant(DEFAULT_PAYMENT_DATE)))
             .andExpect(jsonPath("$.paymentStatus").value(DEFAULT_PAYMENT_STATUS.toString()));
     }
 
@@ -227,6 +239,7 @@ public class PaymentResourceIntTest {
         updatedPayment
                 .paymentType(UPDATED_PAYMENT_TYPE)
                 .paymentAmount(UPDATED_PAYMENT_AMOUNT)
+                .paymentDate(UPDATED_PAYMENT_DATE)
                 .paymentStatus(UPDATED_PAYMENT_STATUS);
 
         restPaymentMockMvc.perform(put("/api/payments")
@@ -240,6 +253,7 @@ public class PaymentResourceIntTest {
         Payment testPayment = paymentList.get(paymentList.size() - 1);
         assertThat(testPayment.getPaymentType()).isEqualTo(UPDATED_PAYMENT_TYPE);
         assertThat(testPayment.getPaymentAmount()).isEqualTo(UPDATED_PAYMENT_AMOUNT);
+        assertThat(testPayment.getPaymentDate()).isEqualTo(UPDATED_PAYMENT_DATE);
         assertThat(testPayment.getPaymentStatus()).isEqualTo(UPDATED_PAYMENT_STATUS);
     }
 

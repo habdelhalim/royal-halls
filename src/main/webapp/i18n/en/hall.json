@@ -17,10 +17,10 @@
                 "title": "Hall"
             },
             "hallName": "Hall Name",
-            "hallType": "Hall Type",
             "description": "Description",
             "price": "Price",
-            "capacity": "Capacity"
+            "capacity": "Capacity",
+            "hallType": "Hall Type"
         }
     }
 }

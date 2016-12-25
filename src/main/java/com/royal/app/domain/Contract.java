@@ -12,8 +12,6 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.Objects;
 
-import com.royal.app.domain.enumeration.ContractType;
-
 import com.royal.app.domain.enumeration.ContractStatus;
 
 /**
@@ -34,11 +32,6 @@ public class Contract implements Serializable {
     private String contractName;
 
     @NotNull
-    @Enumerated(EnumType.STRING)
-    @Column(name = "contract_type", nullable = false)
-    private ContractType contractType;
-
-    @NotNull
     @Column(name = "contract_date", nullable = false)
     private ZonedDateTime contractDate;
 
@@ -56,8 +49,14 @@ public class Contract implements Serializable {
     @Column(name = "open_amount")
     private Double openAmount;
 
+    @Column(name = "creation_date")
+    private ZonedDateTime creationDate;
+
     @ManyToOne
     private Customer customer;
+
+    @ManyToOne
+    private ContractType contractType;
 
     @OneToMany(mappedBy = "contract")
     @JsonIgnore
@@ -83,19 +82,6 @@ public class Contract implements Serializable {
 
     public void setContractName(String contractName) {
         this.contractName = contractName;
-    }
-
-    public ContractType getContractType() {
-        return contractType;
-    }
-
-    public Contract contractType(ContractType contractType) {
-        this.contractType = contractType;
-        return this;
-    }
-
-    public void setContractType(ContractType contractType) {
-        this.contractType = contractType;
     }
 
     public ZonedDateTime getContractDate() {
@@ -163,6 +149,19 @@ public class Contract implements Serializable {
         this.openAmount = openAmount;
     }
 
+    public ZonedDateTime getCreationDate() {
+        return creationDate;
+    }
+
+    public Contract creationDate(ZonedDateTime creationDate) {
+        this.creationDate = creationDate;
+        return this;
+    }
+
+    public void setCreationDate(ZonedDateTime creationDate) {
+        this.creationDate = creationDate;
+    }
+
     public Customer getCustomer() {
         return customer;
     }
@@ -174,6 +173,19 @@ public class Contract implements Serializable {
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
+    }
+
+    public ContractType getContractType() {
+        return contractType;
+    }
+
+    public Contract contractType(ContractType contractType) {
+        this.contractType = contractType;
+        return this;
+    }
+
+    public void setContractType(ContractType contractType) {
+        this.contractType = contractType;
     }
 
     public Set<Event> getEvents() {
@@ -226,12 +238,12 @@ public class Contract implements Serializable {
         return "Contract{" +
             "id=" + id +
             ", contractName='" + contractName + "'" +
-            ", contractType='" + contractType + "'" +
             ", contractDate='" + contractDate + "'" +
             ", contractStatus='" + contractStatus + "'" +
             ", contractNotes='" + contractNotes + "'" +
             ", totalAmount='" + totalAmount + "'" +
             ", openAmount='" + openAmount + "'" +
+            ", creationDate='" + creationDate + "'" +
             '}';
     }
 }

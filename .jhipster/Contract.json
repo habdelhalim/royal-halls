@@ -8,6 +8,12 @@
             "otherEntityField": "customerName"
         },
         {
+            "relationshipType": "many-to-one",
+            "relationshipName": "contractType",
+            "otherEntityName": "contractType",
+            "otherEntityField": "contractTypeName"
+        },
+        {
             "relationshipType": "one-to-many",
             "relationshipName": "event",
             "otherEntityName": "event",
@@ -18,14 +24,6 @@
         {
             "fieldName": "contractName",
             "fieldType": "String"
-        },
-        {
-            "fieldName": "contractType",
-            "fieldType": "ContractType",
-            "fieldValues": "WEDDING,ENGAGEMENT,PARTY,MEETING,FUNERAL,GRADUATION",
-            "fieldValidateRules": [
-                "required"
-            ]
         },
         {
             "fieldName": "contractDate",
@@ -53,6 +51,10 @@
         {
             "fieldName": "openAmount",
             "fieldType": "Double"
+        },
+        {
+            "fieldName": "creationDate",
+            "fieldType": "ZonedDateTime"
         }
     ],
     "changelogDate": "20161224235140",

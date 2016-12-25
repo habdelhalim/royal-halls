@@ -5,9 +5,9 @@
         .module('royalhallsApp')
         .controller('ContractDialogController', ContractDialogController);
 
-    ContractDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Contract', 'Customer', 'Event'];
+    ContractDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Contract', 'Customer', 'ContractType', 'Event'];
 
-    function ContractDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Contract, Customer, Event) {
+    function ContractDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Contract, Customer, ContractType, Event) {
         var vm = this;
 
         vm.contract = entity;
@@ -16,6 +16,7 @@
         vm.openCalendar = openCalendar;
         vm.save = save;
         vm.customers = Customer.query();
+        vm.contracttypes = ContractType.query();
         vm.events = Event.query();
 
         $timeout(function (){
@@ -46,6 +47,7 @@
         }
 
         vm.datePickerOpenStatus.contractDate = false;
+        vm.datePickerOpenStatus.creationDate = false;
 
         function openCalendar (date) {
             vm.datePickerOpenStatus[date] = true;

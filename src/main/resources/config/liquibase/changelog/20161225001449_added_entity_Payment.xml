@@ -32,6 +32,10 @@
                 <constraints nullable="true" />
             </column>
             
+            <column name="payment_date" type="timestamp">
+                <constraints nullable="true" />
+            </column>
+            
             <column name="payment_status" type="varchar(255)">
                 <constraints nullable="false" />
             </column>
@@ -42,6 +46,7 @@
 
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
+        <dropDefaultValue tableName="payment" columnName="payment_date" columnDataType="datetime"/>
         
     </changeSet>
 </databaseChangeLog>

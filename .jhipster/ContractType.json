@@ -1,0 +1,19 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "contractTypeName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20161225005215",
+    "entityTableName": "contract_type",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceImpl"
+}
