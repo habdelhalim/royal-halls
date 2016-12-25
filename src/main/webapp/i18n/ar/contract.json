@@ -20,6 +20,7 @@
             "contractType": "نوع العقد",
             "contractStatus": "حالة العقد",
             "contractDate": "تاريخ العقد",
+            "creationDate": "تاريخ انشاء العقد",
             "contractNotes": "البيان التفصيلي و الملاحظات",
             "customer": "الزبون",
             "totalAmount": "السعر الاجمالي",

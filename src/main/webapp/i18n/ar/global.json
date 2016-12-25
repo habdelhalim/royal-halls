@@ -14,6 +14,8 @@
                 "extraOption": "الخدمات",
                 "contract": "العقود",
                 "payment": "الدفعات",
+                "hallType": "نوع القاعة",
+                "contractType": "نوع الحجز" ,
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
@@ -90,6 +92,7 @@
             "addblob": "اضافة ملف",
             "addimage": "اضافة صورة",
             "back": "رجوع",
+            "new": "جديد",
             "cancel": "الغاء",
             "delete": "حذف",
             "edit": "تعديل",

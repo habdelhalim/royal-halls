@@ -17,6 +17,7 @@
                 "title": "دفعة"
             },
             "paymentType": "نوع الدفعة",
+            "paymentDate": "تاريخ الدفعة",
             "paymentAmount": "المبلغ",
             "paymentStatus": "حالة الدفعة",
             "contract": "العقد"

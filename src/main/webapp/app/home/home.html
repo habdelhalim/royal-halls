@@ -1,65 +1,189 @@
 <div ng-cloak>
     <div class="row">
-       <div class="col-md-12">
+        <div class="col-md-12">
 
-           <form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
 
-               <div class="modal-header">
-                   <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
-                           ng-click="vm.clear()">&times;</button>
-                   <h4 class="modal-title" id="myContractLabel" data-translate="royalhallsApp.contract.home.createOrEditLabel">Create or edit a Contract</h4>
-               </div>
-               <div class="modal-body">
-                   <jhi-alert-error></jhi-alert-error>
-                   <div class="form-group" ng-show="vm.contract.id">
-                       <label for="id" data-translate="global.field.id">ID</label>
-                       <input type="text" class="form-control" id="id" name="id"
-                              ng-model="vm.contract.id" readonly />
-                   </div>
-                   <div class="form-group">
-                       <label class="control-label" data-translate="royalhallsApp.contract.contractName" for="field_contractName">Contract Name</label>
-                       <input type="text" class="form-control" name="contractName" id="field_contractName"
-                              ng-model="vm.contract.contractName"
-                       />
-                   </div>
-                   <div class="form-group">
-                       <label class="control-label" data-translate="royalhallsApp.contract.contractDate" for="field_contractDate">Contract Date</label>
-                       <div class="input-group">
-                           <input id="field_contractDate" type="text" class="form-control" name="contractDate" datetime-picker="{{dateformat}}" ng-model="vm.contract.contractDate" is-open="vm.datePickerOpenStatus.contractDate"
-                                  required  />
+            <form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
+                <div class="col-md-12">
+                    <div class="form-group ">
+                        <div class="btn-toolbar">
+                            <button type="submit"  class="btn btn-default">
+                                <span class="glyphicon glyphicon-search"></span>&nbsp;<span data-translate="entity.action.open">Open</span>
+                            </button>
+                            <button type="submit" class="btn btn-default">
+                                <span class="glyphicon glyphicon-star"></span>&nbsp;<span data-translate="entity.action.new">New</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <jhi-alert-error></jhi-alert-error>
+                    <div class="form-group" ng-show="vm.contract.id">
+                        <label for="id" data-translate="global.field.id">ID</label>
+                        <input type="text" class="form-control" id="id" name="id"
+                               ng-model="vm.contract.id" readonly/>
+                    </div>
+                    <div class="form-group">
+                        <label data-translate="royalhallsApp.contract.contractType" for="field_contractType">Contract Type</label>
+                        <select class="form-control" id="field_contractType" name="contractType" ng-model="vm.contract.contractType"
+                                ng-options="contractType as contractType.contractTypeName for contractType in vm.contracttypes track by contractType.id">
+                            <option value=""></option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" data-translate="royalhallsApp.contract.contractDate" for="field_contractDate">Contract Date</label>
+                        <div class="input-group">
+                            <input id="field_contractDate" type="text" class="form-control" name="contractDate" datetime-picker="{{dateformat}}" ng-model="vm.contract.contractDate"
+                                   is-open="vm.datePickerOpenStatus.contractDate"
+                                   required/>
                     <span class="input-group-btn">
                         <button type="button" class="btn btn-default" ng-click="vm.openCalendar('contractDate')"><i class="glyphicon glyphicon-calendar"></i></button>
                     </span>
-                       </div>
-                       <div ng-show="editForm.contractDate.$invalid">
-                           <p class="help-block"
-                              ng-show="editForm.contractDate.$error.required" data-translate="entity.validation.required">
-                               This field is required.
-                           </p>
-                           <p class="help-block"
-                              ng-show="editForm.contractDate.$error.ZonedDateTimelocal" data-translate="entity.validation.ZonedDateTimelocal">
-                               This field should be a date and time.
-                           </p>
-                       </div>
-                   </div>
+                        </div>
+                        <div ng-show="editForm.contractDate.$invalid">
+                            <p class="help-block"
+                               ng-show="editForm.contractDate.$error.required" data-translate="entity.validation.required">
+                                This field is required.
+                            </p>
+                            <p class="help-block"
+                               ng-show="editForm.contractDate.$error.ZonedDateTimelocal" data-translate="entity.validation.ZonedDateTimelocal">
+                                This field should be a date and time.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" data-translate="royalhallsApp.contract.contractStatus" for="field_contractStatus">Contract Status</label>
+                        <select class="form-control" name="contractStatus" ng-model="vm.contract.contractStatus" id="field_contractStatus"   ng-disabled="true" required>
+                            <option value="CREATED" data-translate="royalhallsApp.ContractStatus.CREATED">CREATED</option>
+                            <option value="APPROVED" data-translate="royalhallsApp.ContractStatus.APPROVED">APPROVED</option>
+                            <option value="COMPLETED" data-translate="royalhallsApp.ContractStatus.COMPLETED">COMPLETED</option>
+                            <option value="CANCELLED" data-translate="royalhallsApp.ContractStatus.CANCELLED">CANCELLED</option>
+                        </select>
+                        <div ng-show="editForm.contractStatus.$invalid">
+                            <p class="help-block"
+                               ng-show="editForm.contractStatus.$error.required" data-translate="entity.validation.required">
+                                This field is required.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label data-translate="royalhallsApp.contract.customer" for="field_customer">Customer</label>
+                        <select class="form-control" id="field_customer" name="customer" ng-model="vm.contract.customer"
+                                ng-options="customer as customer.customerName for customer in vm.customers track by customer.id">
+                            <option value=""></option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" data-translate="royalhallsApp.contract.totalAmount" for="field_totalAmount">Total Amount</label>
+                        <input type="number" class="form-control" name="totalAmount" id="field_totalAmount" ng-disabled="true"
+                               ng-model="vm.contract.totalAmount"
+                        />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" data-translate="royalhallsApp.contract.openAmount" for="field_openAmount">Open Amount</label>
+                        <input type="number" class="form-control" name="openAmount" id="field_openAmount" ng-disabled="true"
+                               ng-model="vm.contract.openAmount"
+                        />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" data-translate="royalhallsApp.contract.creationDate" for="field_creationDate">Creation Date</label>
+                        <div class="input-group">
+                            <input id="field_creationDate" type="text" class="form-control" name="creationDate" datetime-picker="{{dateformat}}" ng-model="vm.contract.creationDate"
+                                   is-open="vm.datePickerOpenStatus.creationDate" ng-disabled="true"
+                            />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="vm.openCalendar('creationDate')"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label data-translate="royalhallsApp.event.option" for="field_option">Option</label>
+                        <div class="btn-toolbar">
+                            <button>+</button>
+                            <button>-</button>
+                        </div>
+                        <select class="form-control" id="field_option" multiple name="option" ng-model="vm.event.options">
+                            <option>main</option>
+                            <option>secondary</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label" data-translate="royalhallsApp.contract.contractNotes" for="field_contractNotes">Contract Notes</label>
+                        <textarea type="text" class="form-control" name="contractNotes" id="field_contractNotes"
+                                  ng-model="vm.contract.contractNotes" rows="3"
+                        />
+                    </div>
 
-                   <div class="form-group">
-                       <label data-translate="royalhallsApp.contract.customer" for="field_customer">Customer</label>
-                       <select class="form-control" id="field_customer" name="customer" ng-model="vm.contract.customer" ng-options="customer as customer.customerName for customer in vm.customers track by customer.id">
-                           <option value=""></option>
-                       </select>
-                   </div>
-               </div>
-               <div class="modal-footer">
-                   <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
-                       <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
-                   </button>
-                   <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
-                       <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
-                   </button>
-               </div>
-           </form>
+                    <div class="form-group">
+                        <h2 data-translate="royalhallsApp.payment.home.title">Payments</h2>
 
-       </div>
+                        <table class="jh-table table table-striped">
+                            <thead>
+                            <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
+                                <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                                <th jh-sort-by="paymentType"><span data-translate="royalhallsApp.payment.paymentType">Payment Type</span> <span class="glyphicon glyphicon-sort"></span></th>
+                                <th jh-sort-by="paymentAmount"><span data-translate="royalhallsApp.payment.paymentAmount">Payment Amount</span> <span class="glyphicon glyphicon-sort"></span></th>
+                                <th jh-sort-by="paymentDate"><span data-translate="royalhallsApp.payment.paymentDate">Payment Date</span> <span class="glyphicon glyphicon-sort"></span></th>
+                                <th jh-sort-by="paymentStatus"><span data-translate="royalhallsApp.payment.paymentStatus">Payment Status</span> <span class="glyphicon glyphicon-sort"></span></th>
+                                <th jh-sort-by="contract.contractName"><span data-translate="royalhallsApp.payment.contract">Contract</span> <span class="glyphicon glyphicon-sort"></span></th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="payment in vm.payments track by payment.id">
+                                <td><a ui-sref="payment-detail({id:payment.id})">{{payment.id}}</a></td>
+                                <td data-translate="{{'royalhallsApp.PaymentType.' + payment.paymentType}}">{{payment.paymentType}}</td>
+                                <td>{{payment.paymentAmount}}</td>
+                                <td>{{payment.paymentDate | date:'medium'}}</td>
+                                <td data-translate="{{'royalhallsApp.PaymentStatus.' + payment.paymentStatus}}">{{payment.paymentStatus}}</td>
+                                <td>
+                                    <a ui-sref="contract-detail({id:payment.contract.id})">{{payment.contract.contractName}}</a>
+                                </td>
+                                <td class="text-right">
+                                    <div class="btn-group flex-btn-group-container">
+                                        <button type="submit"
+                                                ui-sref="payment-detail({id:payment.id})"
+                                                class="btn btn-info btn-sm">
+                                            <span class="glyphicon glyphicon-eye-open"></span>
+                                            <span class="hidden-xs hidden-sm" data-translate="entity.action.view"></span>
+                                        </button>
+                                        <button type="submit"
+                                                ui-sref="payment.edit({id:payment.id})"
+                                                class="btn btn-primary btn-sm">
+                                            <span class="glyphicon glyphicon-pencil"></span>
+                                            <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"></span>
+                                        </button>
+                                        <button type="submit"
+                                                ui-sref="payment.delete({id:payment.id})"
+                                                class="btn btn-danger btn-sm">
+                                            <span class="glyphicon glyphicon-remove-circle"></span>
+                                            <span class="hidden-xs hidden-sm" data-translate="entity.action.delete"></span>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div class="btn-toolbar">
+                            <button>+</button>
+                            <button>-</button>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+                        <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+                    </button>
+                    <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+                        <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+                    </button>
+                </div>
+
+            </form>
+
+        </div>
     </div>
 </div>
