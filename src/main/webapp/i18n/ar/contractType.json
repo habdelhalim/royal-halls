@@ -1,0 +1,13 @@
+{
+    "royalhallsApp": {
+        "ContractType" : {
+            "null": "",
+            "WEDDING": "حفلة زواج",
+            "ENGAGEMENT": "حفلة خطوبة",
+            "PARTY": "تكريم",
+            "MEETING": "اجتماع",
+            "FUNERAL": "عزاء",
+            "GRADUATION": "حفلة تخريج"
+        }
+    }
+}

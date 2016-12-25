@@ -1,0 +1,25 @@
+{
+    "royalhallsApp": {
+        "payment" : {
+            "home": {
+                "title": "الدفعات",
+                "createLabel": "ادخال دفعة",
+                "createOrEditLabel": "تعديل دفعة",
+                "search": "بحث عن دفعة"
+            },
+            "created": "A new Payment is created with identifier {{ param }}",
+            "updated": "A Payment is updated with identifier {{ param }}",
+            "deleted": "A Payment is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Payment {{ id }}?"
+            },
+            "detail": {
+                "title": "دفعة"
+            },
+            "paymentType": "نوع الدفعة",
+            "paymentAmount": "المبلغ",
+            "paymentStatus": "حالة الدفعة",
+            "contract": "العقد"
+        }
+    }
+}

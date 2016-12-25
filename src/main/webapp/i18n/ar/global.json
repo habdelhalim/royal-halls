@@ -13,6 +13,7 @@
                 "event": "الحجوزات",
                 "extraOption": "الخدمات",
                 "contract": "العقود",
+                "payment": "الدفعات",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

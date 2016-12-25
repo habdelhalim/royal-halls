@@ -17,7 +17,13 @@
                 "title": "عقد"
             },
             "contractName": "اسم العقد",
+            "contractType": "نوع العقد",
+            "contractStatus": "حالة العقد",
             "contractDate": "تاريخ العقد",
+            "contractNotes": "البيان التفصيلي و الملاحظات",
+            "customer": "الزبون",
+            "totalAmount": "السعر الاجمالي",
+            "openAmount": "المبلغ المتبقي",
             "customer": "الزبون",
             "event": "الحجز"
         }

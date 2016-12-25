@@ -1,0 +1,9 @@
+{
+    "royalhallsApp": {
+        "PaymentType" : {
+            "null": "",
+            "CASH": "كاش",
+            "CHEQUE": "شيك"
+        }
+    }
+}

@@ -17,8 +17,10 @@
                 "title": "قاعة"
             },
             "hallName": "اسم القاعة",
+            "hallType": "نوع القاعة",
             "description": "وصف القاعة",
-            "price": "السعر"
+            "price": "السعر",
+            "capacity": "سعة القاعة"
         }
     }
 }

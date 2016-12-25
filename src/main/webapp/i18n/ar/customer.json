@@ -18,6 +18,8 @@
             },
             "customerName": "اسم الزبون",
             "identityId": "رقم الهوية",
+            "groomName": "اسم العريس",
+            "prideName": "اسم العروس",
             "city": "البلدة",
             "country": "البلد",
             "contact": "طرق الاتصال"

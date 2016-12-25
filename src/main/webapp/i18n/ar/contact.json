@@ -18,7 +18,8 @@
             },
             "contactName": "الاسم",
             "mobile": "الموبيل",
-            "telephone": "الهاتف"
+            "telephone": "الهاتف",
+            "customer": "الزبون"
         }
     }
 }
