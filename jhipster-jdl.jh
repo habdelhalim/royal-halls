@@ -13,8 +13,6 @@ entity HallType {
 entity Customer {
 	customerName String required,
     identityId String required,
-    groomName String,
-    prideName String,
     city String,
     country String
 }
@@ -27,8 +25,6 @@ entity Contact {
 
 entity Event {
 	eventName String,
-    groomName String, 
-    prideName String,
     eventStartDate ZonedDateTime required,
     eventEndDate ZonedDateTime required
 }
@@ -36,6 +32,7 @@ entity Event {
 entity ExtraOption{
 	optionName String required,
     optionType OptionType,
+    optionQty Double,
     price Double
 }
 
@@ -53,8 +50,8 @@ entity Contract {
     creationDate ZonedDateTime
 }
 
-entity ContractType {
-	contractTypeName String,
+entity EventType {
+	eventTypeName String,
     description String
 }
 
@@ -65,8 +62,11 @@ CREATED, APPROVED, COMPLETED, CANCELLED
 entity Payment {
 	paymentType PaymentType required,
     paymentAmount Double,
-    paymentDate ZonedDateTime,
+    paymentDueDate ZonedDateTime,
     paymentStatus PaymentStatus required
+    chequeNo String,
+    bankName String,
+    creationDate ZonedDateTime
 }
 
 enum PaymentType {
@@ -74,14 +74,14 @@ CASH, CHEQUE
 }
 
 enum PaymentStatus {
-PENDING, PAID, CANCELLED
+PENDING, PAID, CANCELLED, REFUNDED
 }
 
 relationship ManyToOne {
 	Payment{contract(contractName)} to Contract,
 	Contact{customer(customerName)} to Customer{contact(contactName)},
 	Contract{customer(customerName)} to Customer,
-    Contract{contractType(contractTypeName)} to ContractType,
+    Event{eventType(eventTypeName)} to EventType,
     Event{hall(hallName)} to Hall,
     Event{contract(contractName)} to Contract{event(eventName)},
     Hall{hallType(hallTypeName)} to HallType
@@ -90,7 +90,6 @@ relationship ManyToOne {
 relationship ManyToMany {
 	Event{option(optionName)} to ExtraOption
 }
-
 
 // Set pagination options
 paginate all with pagination

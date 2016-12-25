@@ -24,7 +24,6 @@
             "openAmount": "Open Amount",
             "creationDate": "Creation Date",
             "customer": "Customer",
-            "contractType": "Contract Type",
             "event": "Event"
         }
     }

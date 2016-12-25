@@ -45,6 +45,9 @@ public class ExtraOptionResourceIntTest {
     private static final OptionType DEFAULT_OPTION_TYPE = OptionType.BASIC;
     private static final OptionType UPDATED_OPTION_TYPE = OptionType.OPTIONAL;
 
+    private static final Double DEFAULT_OPTION_QTY = 1D;
+    private static final Double UPDATED_OPTION_QTY = 2D;
+
     private static final Double DEFAULT_PRICE = 1D;
     private static final Double UPDATED_PRICE = 2D;
 
@@ -87,6 +90,7 @@ public class ExtraOptionResourceIntTest {
         ExtraOption extraOption = new ExtraOption()
                 .optionName(DEFAULT_OPTION_NAME)
                 .optionType(DEFAULT_OPTION_TYPE)
+                .optionQty(DEFAULT_OPTION_QTY)
                 .price(DEFAULT_PRICE);
         return extraOption;
     }
@@ -114,6 +118,7 @@ public class ExtraOptionResourceIntTest {
         ExtraOption testExtraOption = extraOptionList.get(extraOptionList.size() - 1);
         assertThat(testExtraOption.getOptionName()).isEqualTo(DEFAULT_OPTION_NAME);
         assertThat(testExtraOption.getOptionType()).isEqualTo(DEFAULT_OPTION_TYPE);
+        assertThat(testExtraOption.getOptionQty()).isEqualTo(DEFAULT_OPTION_QTY);
         assertThat(testExtraOption.getPrice()).isEqualTo(DEFAULT_PRICE);
     }
 
@@ -168,6 +173,7 @@ public class ExtraOptionResourceIntTest {
             .andExpect(jsonPath("$.[*].id").value(hasItem(extraOption.getId().intValue())))
             .andExpect(jsonPath("$.[*].optionName").value(hasItem(DEFAULT_OPTION_NAME.toString())))
             .andExpect(jsonPath("$.[*].optionType").value(hasItem(DEFAULT_OPTION_TYPE.toString())))
+            .andExpect(jsonPath("$.[*].optionQty").value(hasItem(DEFAULT_OPTION_QTY.doubleValue())))
             .andExpect(jsonPath("$.[*].price").value(hasItem(DEFAULT_PRICE.doubleValue())));
     }
 
@@ -184,6 +190,7 @@ public class ExtraOptionResourceIntTest {
             .andExpect(jsonPath("$.id").value(extraOption.getId().intValue()))
             .andExpect(jsonPath("$.optionName").value(DEFAULT_OPTION_NAME.toString()))
             .andExpect(jsonPath("$.optionType").value(DEFAULT_OPTION_TYPE.toString()))
+            .andExpect(jsonPath("$.optionQty").value(DEFAULT_OPTION_QTY.doubleValue()))
             .andExpect(jsonPath("$.price").value(DEFAULT_PRICE.doubleValue()));
     }
 
@@ -208,6 +215,7 @@ public class ExtraOptionResourceIntTest {
         updatedExtraOption
                 .optionName(UPDATED_OPTION_NAME)
                 .optionType(UPDATED_OPTION_TYPE)
+                .optionQty(UPDATED_OPTION_QTY)
                 .price(UPDATED_PRICE);
 
         restExtraOptionMockMvc.perform(put("/api/extra-options")
@@ -221,6 +229,7 @@ public class ExtraOptionResourceIntTest {
         ExtraOption testExtraOption = extraOptionList.get(extraOptionList.size() - 1);
         assertThat(testExtraOption.getOptionName()).isEqualTo(UPDATED_OPTION_NAME);
         assertThat(testExtraOption.getOptionType()).isEqualTo(UPDATED_OPTION_TYPE);
+        assertThat(testExtraOption.getOptionQty()).isEqualTo(UPDATED_OPTION_QTY);
         assertThat(testExtraOption.getPrice()).isEqualTo(UPDATED_PRICE);
     }
 

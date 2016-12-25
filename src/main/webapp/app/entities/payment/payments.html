@@ -21,8 +21,11 @@
                     <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="paymentType"><span data-translate="royalhallsApp.payment.paymentType">Payment Type</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="paymentAmount"><span data-translate="royalhallsApp.payment.paymentAmount">Payment Amount</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="paymentDate"><span data-translate="royalhallsApp.payment.paymentDate">Payment Date</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="paymentDueDate"><span data-translate="royalhallsApp.payment.paymentDueDate">Payment Due Date</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="paymentStatus"><span data-translate="royalhallsApp.payment.paymentStatus">Payment Status</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="chequeNo"><span data-translate="royalhallsApp.payment.chequeNo">Cheque No</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="bankName"><span data-translate="royalhallsApp.payment.bankName">Bank Name</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="creationDate"><span data-translate="royalhallsApp.payment.creationDate">Creation Date</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="contract.contractName"><span data-translate="royalhallsApp.payment.contract">Contract</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
@@ -32,8 +35,11 @@
                     <td><a ui-sref="payment-detail({id:payment.id})">{{payment.id}}</a></td>
                     <td data-translate="{{'royalhallsApp.PaymentType.' + payment.paymentType}}">{{payment.paymentType}}</td>
                     <td>{{payment.paymentAmount}}</td>
-                    <td>{{payment.paymentDate | date:'medium'}}</td>
+                    <td>{{payment.paymentDueDate | date:'medium'}}</td>
                     <td data-translate="{{'royalhallsApp.PaymentStatus.' + payment.paymentStatus}}">{{payment.paymentStatus}}</td>
+                    <td>{{payment.chequeNo}}</td>
+                    <td>{{payment.bankName}}</td>
+                    <td>{{payment.creationDate | date:'medium'}}</td>
                     <td>
                         <a ui-sref="contract-detail({id:payment.contract.id})">{{payment.contract.contractName}}</a>
                     </td>

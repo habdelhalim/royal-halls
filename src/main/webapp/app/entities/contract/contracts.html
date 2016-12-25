@@ -27,7 +27,6 @@
                     <th jh-sort-by="openAmount"><span data-translate="royalhallsApp.contract.openAmount">Open Amount</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="creationDate"><span data-translate="royalhallsApp.contract.creationDate">Creation Date</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="customer.customerName"><span data-translate="royalhallsApp.contract.customer">Customer</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="contractType.contractTypeName"><span data-translate="royalhallsApp.contract.contractType">Contract Type</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
             </thead>
@@ -43,9 +42,6 @@
                     <td>{{contract.creationDate | date:'medium'}}</td>
                     <td>
                         <a ui-sref="customer-detail({id:contract.customer.id})">{{contract.customer.customerName}}</a>
-                    </td>
-                    <td>
-                        <a ui-sref="contract-type-detail({id:contract.contractType.id})">{{contract.contractType.contractTypeName}}</a>
                     </td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">

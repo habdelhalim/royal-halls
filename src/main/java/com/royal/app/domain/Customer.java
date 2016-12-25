@@ -33,12 +33,6 @@ public class Customer implements Serializable {
     @Column(name = "identity_id", nullable = false)
     private String identityId;
 
-    @Column(name = "groom_name")
-    private String groomName;
-
-    @Column(name = "pride_name")
-    private String prideName;
-
     @Column(name = "city")
     private String city;
 
@@ -82,32 +76,6 @@ public class Customer implements Serializable {
 
     public void setIdentityId(String identityId) {
         this.identityId = identityId;
-    }
-
-    public String getGroomName() {
-        return groomName;
-    }
-
-    public Customer groomName(String groomName) {
-        this.groomName = groomName;
-        return this;
-    }
-
-    public void setGroomName(String groomName) {
-        this.groomName = groomName;
-    }
-
-    public String getPrideName() {
-        return prideName;
-    }
-
-    public Customer prideName(String prideName) {
-        this.prideName = prideName;
-        return this;
-    }
-
-    public void setPrideName(String prideName) {
-        this.prideName = prideName;
     }
 
     public String getCity() {
@@ -187,8 +155,6 @@ public class Customer implements Serializable {
             "id=" + id +
             ", customerName='" + customerName + "'" +
             ", identityId='" + identityId + "'" +
-            ", groomName='" + groomName + "'" +
-            ", prideName='" + prideName + "'" +
             ", city='" + city + "'" +
             ", country='" + country + "'" +
             '}';

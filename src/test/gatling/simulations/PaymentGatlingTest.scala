@@ -67,7 +67,7 @@ class PaymentGatlingTest extends Simulation {
             .exec(http("Create new payment")
             .post("/api/payments")
             .headers(headers_http_authenticated)
-            .body(StringBody("""{"id":null, "paymentType":null, "paymentAmount":null, "paymentDate":"2020-01-01T00:00:00.000Z", "paymentStatus":null}""")).asJSON
+            .body(StringBody("""{"id":null, "paymentType":null, "paymentAmount":null, "paymentDueDate":"2020-01-01T00:00:00.000Z", "paymentStatus":null, "chequeNo":"SAMPLE_TEXT", "bankName":"SAMPLE_TEXT", "creationDate":"2020-01-01T00:00:00.000Z"}""")).asJSON
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_payment_url"))).exitHereIfFailed
             .pause(10)

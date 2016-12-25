@@ -3,6 +3,12 @@
     "relationships": [
         {
             "relationshipType": "many-to-one",
+            "relationshipName": "eventType",
+            "otherEntityName": "eventType",
+            "otherEntityField": "eventTypeName"
+        },
+        {
+            "relationshipType": "many-to-one",
             "relationshipName": "hall",
             "otherEntityName": "hall",
             "otherEntityField": "hallName"
@@ -25,14 +31,6 @@
     "fields": [
         {
             "fieldName": "eventName",
-            "fieldType": "String"
-        },
-        {
-            "fieldName": "groomName",
-            "fieldType": "String"
-        },
-        {
-            "fieldName": "prideName",
             "fieldType": "String"
         },
         {

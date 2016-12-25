@@ -18,6 +18,7 @@
             },
             "optionName": "Option Name",
             "optionType": "Option Type",
+            "optionQty": "Option Qty",
             "price": "Price"
         }
     }

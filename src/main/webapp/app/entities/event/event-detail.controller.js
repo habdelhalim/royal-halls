@@ -5,9 +5,9 @@
         .module('royalhallsApp')
         .controller('EventDetailController', EventDetailController);
 
-    EventDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'Event', 'Hall', 'Contract', 'ExtraOption'];
+    EventDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'Event', 'EventType', 'Hall', 'Contract', 'ExtraOption'];
 
-    function EventDetailController($scope, $rootScope, $stateParams, previousState, entity, Event, Hall, Contract, ExtraOption) {
+    function EventDetailController($scope, $rootScope, $stateParams, previousState, entity, Event, EventType, Hall, Contract, ExtraOption) {
         var vm = this;
 
         vm.event = entity;

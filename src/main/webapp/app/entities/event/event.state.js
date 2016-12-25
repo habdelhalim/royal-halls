@@ -125,8 +125,6 @@
                         entity: function () {
                             return {
                                 eventName: null,
-                                groomName: null,
-                                prideName: null,
                                 eventStartDate: null,
                                 eventEndDate: null,
                                 id: null

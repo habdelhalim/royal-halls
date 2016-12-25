@@ -16,6 +16,7 @@
                 "payment": "Payment",
                 "hallType": "Hall Type",
                 "contractType": "Contract Type",
+                "eventType": "Event Type",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

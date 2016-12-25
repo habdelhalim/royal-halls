@@ -55,9 +55,6 @@ public class Contract implements Serializable {
     @ManyToOne
     private Customer customer;
 
-    @ManyToOne
-    private ContractType contractType;
-
     @OneToMany(mappedBy = "contract")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -173,19 +170,6 @@ public class Contract implements Serializable {
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
-    }
-
-    public ContractType getContractType() {
-        return contractType;
-    }
-
-    public Contract contractType(ContractType contractType) {
-        this.contractType = contractType;
-        return this;
-    }
-
-    public void setContractType(ContractType contractType) {
-        this.contractType = contractType;
     }
 
     public Set<Event> getEvents() {

@@ -5,9 +5,9 @@
         .module('royalhallsApp')
         .controller('EventDialogController', EventDialogController);
 
-    EventDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Event', 'Hall', 'Contract', 'ExtraOption'];
+    EventDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Event', 'EventType', 'Hall', 'Contract', 'ExtraOption'];
 
-    function EventDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Event, Hall, Contract, ExtraOption) {
+    function EventDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Event, EventType, Hall, Contract, ExtraOption) {
         var vm = this;
 
         vm.event = entity;
@@ -15,6 +15,7 @@
         vm.datePickerOpenStatus = {};
         vm.openCalendar = openCalendar;
         vm.save = save;
+        vm.eventtypes = EventType.query();
         vm.halls = Hall.query();
         vm.contracts = Contract.query();
         vm.extraoptions = ExtraOption.query();

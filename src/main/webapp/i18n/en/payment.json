@@ -18,8 +18,11 @@
             },
             "paymentType": "Payment Type",
             "paymentAmount": "Payment Amount",
-            "paymentDate": "Payment Date",
+            "paymentDueDate": "Payment Due Date",
             "paymentStatus": "Payment Status",
+            "chequeNo": "Cheque No",
+            "bankName": "Bank Name",
+            "creationDate": "Creation Date",
             "contract": "Contract"
         }
     }

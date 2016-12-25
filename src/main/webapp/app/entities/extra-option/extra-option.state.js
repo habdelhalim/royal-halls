@@ -128,6 +128,7 @@
                             return {
                                 optionName: null,
                                 optionType: null,
+                                optionQty: null,
                                 price: null,
                                 id: null
                             };

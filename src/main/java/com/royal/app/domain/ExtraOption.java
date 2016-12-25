@@ -32,6 +32,9 @@ public class ExtraOption implements Serializable {
     @Column(name = "option_type")
     private OptionType optionType;
 
+    @Column(name = "option_qty")
+    private Double optionQty;
+
     @Column(name = "price")
     private Double price;
 
@@ -67,6 +70,19 @@ public class ExtraOption implements Serializable {
 
     public void setOptionType(OptionType optionType) {
         this.optionType = optionType;
+    }
+
+    public Double getOptionQty() {
+        return optionQty;
+    }
+
+    public ExtraOption optionQty(Double optionQty) {
+        this.optionQty = optionQty;
+        return this;
+    }
+
+    public void setOptionQty(Double optionQty) {
+        this.optionQty = optionQty;
     }
 
     public Double getPrice() {
@@ -108,6 +124,7 @@ public class ExtraOption implements Serializable {
             "id=" + id +
             ", optionName='" + optionName + "'" +
             ", optionType='" + optionType + "'" +
+            ", optionQty='" + optionQty + "'" +
             ", price='" + price + "'" +
             '}';
     }

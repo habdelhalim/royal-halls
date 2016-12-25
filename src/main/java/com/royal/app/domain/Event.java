@@ -28,12 +28,6 @@ public class Event implements Serializable {
     @Column(name = "event_name")
     private String eventName;
 
-    @Column(name = "groom_name")
-    private String groomName;
-
-    @Column(name = "pride_name")
-    private String prideName;
-
     @NotNull
     @Column(name = "event_start_date", nullable = false)
     private ZonedDateTime eventStartDate;
@@ -41,6 +35,9 @@ public class Event implements Serializable {
     @NotNull
     @Column(name = "event_end_date", nullable = false)
     private ZonedDateTime eventEndDate;
+
+    @ManyToOne
+    private EventType eventType;
 
     @ManyToOne
     private Hall hall;
@@ -76,32 +73,6 @@ public class Event implements Serializable {
         this.eventName = eventName;
     }
 
-    public String getGroomName() {
-        return groomName;
-    }
-
-    public Event groomName(String groomName) {
-        this.groomName = groomName;
-        return this;
-    }
-
-    public void setGroomName(String groomName) {
-        this.groomName = groomName;
-    }
-
-    public String getPrideName() {
-        return prideName;
-    }
-
-    public Event prideName(String prideName) {
-        this.prideName = prideName;
-        return this;
-    }
-
-    public void setPrideName(String prideName) {
-        this.prideName = prideName;
-    }
-
     public ZonedDateTime getEventStartDate() {
         return eventStartDate;
     }
@@ -126,6 +97,19 @@ public class Event implements Serializable {
 
     public void setEventEndDate(ZonedDateTime eventEndDate) {
         this.eventEndDate = eventEndDate;
+    }
+
+    public EventType getEventType() {
+        return eventType;
+    }
+
+    public Event eventType(EventType eventType) {
+        this.eventType = eventType;
+        return this;
+    }
+
+    public void setEventType(EventType eventType) {
+        this.eventType = eventType;
     }
 
     public Hall getHall() {
@@ -202,8 +186,6 @@ public class Event implements Serializable {
         return "Event{" +
             "id=" + id +
             ", eventName='" + eventName + "'" +
-            ", groomName='" + groomName + "'" +
-            ", prideName='" + prideName + "'" +
             ", eventStartDate='" + eventStartDate + "'" +
             ", eventEndDate='" + eventEndDate + "'" +
             '}';

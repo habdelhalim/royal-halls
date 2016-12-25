@@ -12,13 +12,25 @@
         <dd>
             <span>{{vm.payment.paymentAmount}}</span>
         </dd>
-        <dt><span data-translate="royalhallsApp.payment.paymentDate">Payment Date</span></dt>
+        <dt><span data-translate="royalhallsApp.payment.paymentDueDate">Payment Due Date</span></dt>
         <dd>
-            <span>{{vm.payment.paymentDate | date:'medium'}}</span>
+            <span>{{vm.payment.paymentDueDate | date:'medium'}}</span>
         </dd>
         <dt><span data-translate="royalhallsApp.payment.paymentStatus">Payment Status</span></dt>
         <dd>
             <span data-translate="{{'royalhallsApp.PaymentStatus.' + vm.payment.paymentStatus}}">{{vm.payment.paymentStatus}}</span>
+        </dd>
+        <dt><span data-translate="royalhallsApp.payment.chequeNo">Cheque No</span></dt>
+        <dd>
+            <span>{{vm.payment.chequeNo}}</span>
+        </dd>
+        <dt><span data-translate="royalhallsApp.payment.bankName">Bank Name</span></dt>
+        <dd>
+            <span>{{vm.payment.bankName}}</span>
+        </dd>
+        <dt><span data-translate="royalhallsApp.payment.creationDate">Creation Date</span></dt>
+        <dd>
+            <span>{{vm.payment.creationDate | date:'medium'}}</span>
         </dd>
         <dt><span data-translate="royalhallsApp.payment.contract">Contract</span></dt>
         <dd>

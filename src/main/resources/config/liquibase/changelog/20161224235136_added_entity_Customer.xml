@@ -32,14 +32,6 @@
                 <constraints nullable="false" />
             </column>
             
-            <column name="groom_name" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-            
-            <column name="pride_name" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-            
             <column name="city" type="varchar(255)">
                 <constraints nullable="true" />
             </column>

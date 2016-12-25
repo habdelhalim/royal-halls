@@ -32,12 +32,24 @@
                 <constraints nullable="true" />
             </column>
             
-            <column name="payment_date" type="timestamp">
+            <column name="payment_due_date" type="timestamp">
                 <constraints nullable="true" />
             </column>
             
             <column name="payment_status" type="varchar(255)">
                 <constraints nullable="false" />
+            </column>
+            
+            <column name="cheque_no" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            
+            <column name="bank_name" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            
+            <column name="creation_date" type="timestamp">
+                <constraints nullable="true" />
             </column>
             
             <column name="contract_id" type="bigint">
@@ -46,7 +58,8 @@
 
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
-        <dropDefaultValue tableName="payment" columnName="payment_date" columnDataType="datetime"/>
+        <dropDefaultValue tableName="payment" columnName="payment_due_date" columnDataType="datetime"/>
+        <dropDefaultValue tableName="payment" columnName="creation_date" columnDataType="datetime"/>
         
     </changeSet>
 </databaseChangeLog>

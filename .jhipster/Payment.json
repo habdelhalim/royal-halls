@@ -22,16 +22,28 @@
             "fieldType": "Double"
         },
         {
-            "fieldName": "paymentDate",
+            "fieldName": "paymentDueDate",
             "fieldType": "ZonedDateTime"
         },
         {
             "fieldName": "paymentStatus",
             "fieldType": "PaymentStatus",
-            "fieldValues": "PENDING,PAID,CANCELLED",
+            "fieldValues": "PENDING,PAID,CANCELLED,REFUNDED",
             "fieldValidateRules": [
                 "required"
             ]
+        },
+        {
+            "fieldName": "chequeNo",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "bankName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "creationDate",
+            "fieldType": "ZonedDateTime"
         }
     ],
     "changelogDate": "20161225001449",

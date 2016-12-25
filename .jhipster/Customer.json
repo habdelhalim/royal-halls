@@ -24,14 +24,6 @@
             ]
         },
         {
-            "fieldName": "groomName",
-            "fieldType": "String"
-        },
-        {
-            "fieldName": "prideName",
-            "fieldType": "String"
-        },
-        {
             "fieldName": "city",
             "fieldType": "String"
         },

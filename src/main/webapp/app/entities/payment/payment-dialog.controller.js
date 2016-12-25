@@ -44,7 +44,8 @@
             vm.isSaving = false;
         }
 
-        vm.datePickerOpenStatus.paymentDate = false;
+        vm.datePickerOpenStatus.paymentDueDate = false;
+        vm.datePickerOpenStatus.creationDate = false;
 
         function openCalendar (date) {
             vm.datePickerOpenStatus[date] = true;

@@ -51,11 +51,20 @@ public class PaymentResourceIntTest {
     private static final Double DEFAULT_PAYMENT_AMOUNT = 1D;
     private static final Double UPDATED_PAYMENT_AMOUNT = 2D;
 
-    private static final ZonedDateTime DEFAULT_PAYMENT_DATE = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneOffset.UTC);
-    private static final ZonedDateTime UPDATED_PAYMENT_DATE = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
+    private static final ZonedDateTime DEFAULT_PAYMENT_DUE_DATE = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneOffset.UTC);
+    private static final ZonedDateTime UPDATED_PAYMENT_DUE_DATE = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
 
     private static final PaymentStatus DEFAULT_PAYMENT_STATUS = PaymentStatus.PENDING;
     private static final PaymentStatus UPDATED_PAYMENT_STATUS = PaymentStatus.PAID;
+
+    private static final String DEFAULT_CHEQUE_NO = "AAAAAAAAAA";
+    private static final String UPDATED_CHEQUE_NO = "BBBBBBBBBB";
+
+    private static final String DEFAULT_BANK_NAME = "AAAAAAAAAA";
+    private static final String UPDATED_BANK_NAME = "BBBBBBBBBB";
+
+    private static final ZonedDateTime DEFAULT_CREATION_DATE = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneOffset.UTC);
+    private static final ZonedDateTime UPDATED_CREATION_DATE = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
 
     @Inject
     private PaymentRepository paymentRepository;
@@ -96,8 +105,11 @@ public class PaymentResourceIntTest {
         Payment payment = new Payment()
                 .paymentType(DEFAULT_PAYMENT_TYPE)
                 .paymentAmount(DEFAULT_PAYMENT_AMOUNT)
-                .paymentDate(DEFAULT_PAYMENT_DATE)
-                .paymentStatus(DEFAULT_PAYMENT_STATUS);
+                .paymentDueDate(DEFAULT_PAYMENT_DUE_DATE)
+                .paymentStatus(DEFAULT_PAYMENT_STATUS)
+                .chequeNo(DEFAULT_CHEQUE_NO)
+                .bankName(DEFAULT_BANK_NAME)
+                .creationDate(DEFAULT_CREATION_DATE);
         return payment;
     }
 
@@ -124,8 +136,11 @@ public class PaymentResourceIntTest {
         Payment testPayment = paymentList.get(paymentList.size() - 1);
         assertThat(testPayment.getPaymentType()).isEqualTo(DEFAULT_PAYMENT_TYPE);
         assertThat(testPayment.getPaymentAmount()).isEqualTo(DEFAULT_PAYMENT_AMOUNT);
-        assertThat(testPayment.getPaymentDate()).isEqualTo(DEFAULT_PAYMENT_DATE);
+        assertThat(testPayment.getPaymentDueDate()).isEqualTo(DEFAULT_PAYMENT_DUE_DATE);
         assertThat(testPayment.getPaymentStatus()).isEqualTo(DEFAULT_PAYMENT_STATUS);
+        assertThat(testPayment.getChequeNo()).isEqualTo(DEFAULT_CHEQUE_NO);
+        assertThat(testPayment.getBankName()).isEqualTo(DEFAULT_BANK_NAME);
+        assertThat(testPayment.getCreationDate()).isEqualTo(DEFAULT_CREATION_DATE);
     }
 
     @Test
@@ -197,8 +212,11 @@ public class PaymentResourceIntTest {
             .andExpect(jsonPath("$.[*].id").value(hasItem(payment.getId().intValue())))
             .andExpect(jsonPath("$.[*].paymentType").value(hasItem(DEFAULT_PAYMENT_TYPE.toString())))
             .andExpect(jsonPath("$.[*].paymentAmount").value(hasItem(DEFAULT_PAYMENT_AMOUNT.doubleValue())))
-            .andExpect(jsonPath("$.[*].paymentDate").value(hasItem(sameInstant(DEFAULT_PAYMENT_DATE))))
-            .andExpect(jsonPath("$.[*].paymentStatus").value(hasItem(DEFAULT_PAYMENT_STATUS.toString())));
+            .andExpect(jsonPath("$.[*].paymentDueDate").value(hasItem(sameInstant(DEFAULT_PAYMENT_DUE_DATE))))
+            .andExpect(jsonPath("$.[*].paymentStatus").value(hasItem(DEFAULT_PAYMENT_STATUS.toString())))
+            .andExpect(jsonPath("$.[*].chequeNo").value(hasItem(DEFAULT_CHEQUE_NO.toString())))
+            .andExpect(jsonPath("$.[*].bankName").value(hasItem(DEFAULT_BANK_NAME.toString())))
+            .andExpect(jsonPath("$.[*].creationDate").value(hasItem(sameInstant(DEFAULT_CREATION_DATE))));
     }
 
     @Test
@@ -214,8 +232,11 @@ public class PaymentResourceIntTest {
             .andExpect(jsonPath("$.id").value(payment.getId().intValue()))
             .andExpect(jsonPath("$.paymentType").value(DEFAULT_PAYMENT_TYPE.toString()))
             .andExpect(jsonPath("$.paymentAmount").value(DEFAULT_PAYMENT_AMOUNT.doubleValue()))
-            .andExpect(jsonPath("$.paymentDate").value(sameInstant(DEFAULT_PAYMENT_DATE)))
-            .andExpect(jsonPath("$.paymentStatus").value(DEFAULT_PAYMENT_STATUS.toString()));
+            .andExpect(jsonPath("$.paymentDueDate").value(sameInstant(DEFAULT_PAYMENT_DUE_DATE)))
+            .andExpect(jsonPath("$.paymentStatus").value(DEFAULT_PAYMENT_STATUS.toString()))
+            .andExpect(jsonPath("$.chequeNo").value(DEFAULT_CHEQUE_NO.toString()))
+            .andExpect(jsonPath("$.bankName").value(DEFAULT_BANK_NAME.toString()))
+            .andExpect(jsonPath("$.creationDate").value(sameInstant(DEFAULT_CREATION_DATE)));
     }
 
     @Test
@@ -239,8 +260,11 @@ public class PaymentResourceIntTest {
         updatedPayment
                 .paymentType(UPDATED_PAYMENT_TYPE)
                 .paymentAmount(UPDATED_PAYMENT_AMOUNT)
-                .paymentDate(UPDATED_PAYMENT_DATE)
-                .paymentStatus(UPDATED_PAYMENT_STATUS);
+                .paymentDueDate(UPDATED_PAYMENT_DUE_DATE)
+                .paymentStatus(UPDATED_PAYMENT_STATUS)
+                .chequeNo(UPDATED_CHEQUE_NO)
+                .bankName(UPDATED_BANK_NAME)
+                .creationDate(UPDATED_CREATION_DATE);
 
         restPaymentMockMvc.perform(put("/api/payments")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -253,8 +277,11 @@ public class PaymentResourceIntTest {
         Payment testPayment = paymentList.get(paymentList.size() - 1);
         assertThat(testPayment.getPaymentType()).isEqualTo(UPDATED_PAYMENT_TYPE);
         assertThat(testPayment.getPaymentAmount()).isEqualTo(UPDATED_PAYMENT_AMOUNT);
-        assertThat(testPayment.getPaymentDate()).isEqualTo(UPDATED_PAYMENT_DATE);
+        assertThat(testPayment.getPaymentDueDate()).isEqualTo(UPDATED_PAYMENT_DUE_DATE);
         assertThat(testPayment.getPaymentStatus()).isEqualTo(UPDATED_PAYMENT_STATUS);
+        assertThat(testPayment.getChequeNo()).isEqualTo(UPDATED_CHEQUE_NO);
+        assertThat(testPayment.getBankName()).isEqualTo(UPDATED_BANK_NAME);
+        assertThat(testPayment.getCreationDate()).isEqualTo(UPDATED_CREATION_DATE);
     }
 
     @Test

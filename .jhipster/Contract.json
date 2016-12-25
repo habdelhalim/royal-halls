@@ -8,12 +8,6 @@
             "otherEntityField": "customerName"
         },
         {
-            "relationshipType": "many-to-one",
-            "relationshipName": "contractType",
-            "otherEntityName": "contractType",
-            "otherEntityField": "contractTypeName"
-        },
-        {
             "relationshipType": "one-to-many",
             "relationshipName": "event",
             "otherEntityName": "event",

@@ -1,0 +1,19 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "eventTypeName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20161225215656",
+    "entityTableName": "event_type",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceImpl"
+}

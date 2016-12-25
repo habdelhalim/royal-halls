@@ -130,8 +130,11 @@
                             return {
                                 paymentType: null,
                                 paymentAmount: null,
-                                paymentDate: null,
+                                paymentDueDate: null,
                                 paymentStatus: null,
+                                chequeNo: null,
+                                bankName: null,
+                                creationDate: null,
                                 id: null
                             };
                         }

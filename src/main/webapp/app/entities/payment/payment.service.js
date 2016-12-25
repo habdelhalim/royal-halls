@@ -16,7 +16,8 @@
                 transformResponse: function (data) {
                     if (data) {
                         data = angular.fromJson(data);
-                        data.paymentDate = DateUtils.convertDateTimeFromServer(data.paymentDate);
+                        data.paymentDueDate = DateUtils.convertDateTimeFromServer(data.paymentDueDate);
+                        data.creationDate = DateUtils.convertDateTimeFromServer(data.creationDate);
                     }
                     return data;
                 }

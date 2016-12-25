@@ -18,8 +18,6 @@
             },
             "customerName": "Customer Name",
             "identityId": "Identity Id",
-            "groomName": "Groom Name",
-            "prideName": "Pride Name",
             "city": "City",
             "country": "Country",
             "contact": "Contact"

@@ -20,10 +20,9 @@
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
                     <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="eventName"><span data-translate="royalhallsApp.event.eventName">Event Name</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="groomName"><span data-translate="royalhallsApp.event.groomName">Groom Name</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="prideName"><span data-translate="royalhallsApp.event.prideName">Pride Name</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="eventStartDate"><span data-translate="royalhallsApp.event.eventStartDate">Event Start Date</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="eventEndDate"><span data-translate="royalhallsApp.event.eventEndDate">Event End Date</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="eventType.eventTypeName"><span data-translate="royalhallsApp.event.eventType">Event Type</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="hall.hallName"><span data-translate="royalhallsApp.event.hall">Hall</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="contract.contractName"><span data-translate="royalhallsApp.event.contract">Contract</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
@@ -33,10 +32,11 @@
                 <tr ng-repeat="event in vm.events track by event.id">
                     <td><a ui-sref="event-detail({id:event.id})">{{event.id}}</a></td>
                     <td>{{event.eventName}}</td>
-                    <td>{{event.groomName}}</td>
-                    <td>{{event.prideName}}</td>
                     <td>{{event.eventStartDate | date:'medium'}}</td>
                     <td>{{event.eventEndDate | date:'medium'}}</td>
+                    <td>
+                        <a ui-sref="event-type-detail({id:event.eventType.id})">{{event.eventType.eventTypeName}}</a>
+                    </td>
                     <td>
                         <a ui-sref="hall-detail({id:event.hall.id})">{{event.hall.hallName}}</a>
                     </td>

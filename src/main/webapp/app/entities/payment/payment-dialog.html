@@ -33,12 +33,12 @@
                      />
         </div>
         <div class="form-group">
-            <label class="control-label" data-translate="royalhallsApp.payment.paymentDate" for="field_paymentDate">Payment Date</label>
+            <label class="control-label" data-translate="royalhallsApp.payment.paymentDueDate" for="field_paymentDueDate">Payment Due Date</label>
                 <div class="input-group">
-                    <input id="field_paymentDate" type="text" class="form-control" name="paymentDate" datetime-picker="{{dateformat}}" ng-model="vm.payment.paymentDate" is-open="vm.datePickerOpenStatus.paymentDate"
+                    <input id="field_paymentDueDate" type="text" class="form-control" name="paymentDueDate" datetime-picker="{{dateformat}}" ng-model="vm.payment.paymentDueDate" is-open="vm.datePickerOpenStatus.paymentDueDate"
                       />
                     <span class="input-group-btn">
-                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('paymentDate')"><i class="glyphicon glyphicon-calendar"></i></button>
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('paymentDueDate')"><i class="glyphicon glyphicon-calendar"></i></button>
                     </span>
                 </div>
         </div>
@@ -48,6 +48,7 @@
                 <option value="PENDING" data-translate="royalhallsApp.PaymentStatus.PENDING">PENDING</option>
                 <option value="PAID" data-translate="royalhallsApp.PaymentStatus.PAID">PAID</option>
                 <option value="CANCELLED" data-translate="royalhallsApp.PaymentStatus.CANCELLED">CANCELLED</option>
+                <option value="REFUNDED" data-translate="royalhallsApp.PaymentStatus.REFUNDED">REFUNDED</option>
             </select>
             <div ng-show="editForm.paymentStatus.$invalid">
                 <p class="help-block"
@@ -55,6 +56,28 @@
                     This field is required.
                 </p>
             </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="royalhallsApp.payment.chequeNo" for="field_chequeNo">Cheque No</label>
+            <input type="text" class="form-control" name="chequeNo" id="field_chequeNo"
+                    ng-model="vm.payment.chequeNo"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="royalhallsApp.payment.bankName" for="field_bankName">Bank Name</label>
+            <input type="text" class="form-control" name="bankName" id="field_bankName"
+                    ng-model="vm.payment.bankName"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="royalhallsApp.payment.creationDate" for="field_creationDate">Creation Date</label>
+                <div class="input-group">
+                    <input id="field_creationDate" type="text" class="form-control" name="creationDate" datetime-picker="{{dateformat}}" ng-model="vm.payment.creationDate" is-open="vm.datePickerOpenStatus.creationDate"
+                      />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('creationDate')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
         </div>
 
         <div class="form-group">

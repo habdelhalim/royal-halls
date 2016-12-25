@@ -46,12 +46,6 @@ public class EventResourceIntTest {
     private static final String DEFAULT_EVENT_NAME = "AAAAAAAAAA";
     private static final String UPDATED_EVENT_NAME = "BBBBBBBBBB";
 
-    private static final String DEFAULT_GROOM_NAME = "AAAAAAAAAA";
-    private static final String UPDATED_GROOM_NAME = "BBBBBBBBBB";
-
-    private static final String DEFAULT_PRIDE_NAME = "AAAAAAAAAA";
-    private static final String UPDATED_PRIDE_NAME = "BBBBBBBBBB";
-
     private static final ZonedDateTime DEFAULT_EVENT_START_DATE = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneOffset.UTC);
     private static final ZonedDateTime UPDATED_EVENT_START_DATE = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
 
@@ -96,8 +90,6 @@ public class EventResourceIntTest {
     public static Event createEntity(EntityManager em) {
         Event event = new Event()
                 .eventName(DEFAULT_EVENT_NAME)
-                .groomName(DEFAULT_GROOM_NAME)
-                .prideName(DEFAULT_PRIDE_NAME)
                 .eventStartDate(DEFAULT_EVENT_START_DATE)
                 .eventEndDate(DEFAULT_EVENT_END_DATE);
         return event;
@@ -125,8 +117,6 @@ public class EventResourceIntTest {
         assertThat(eventList).hasSize(databaseSizeBeforeCreate + 1);
         Event testEvent = eventList.get(eventList.size() - 1);
         assertThat(testEvent.getEventName()).isEqualTo(DEFAULT_EVENT_NAME);
-        assertThat(testEvent.getGroomName()).isEqualTo(DEFAULT_GROOM_NAME);
-        assertThat(testEvent.getPrideName()).isEqualTo(DEFAULT_PRIDE_NAME);
         assertThat(testEvent.getEventStartDate()).isEqualTo(DEFAULT_EVENT_START_DATE);
         assertThat(testEvent.getEventEndDate()).isEqualTo(DEFAULT_EVENT_END_DATE);
     }
@@ -199,8 +189,6 @@ public class EventResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(event.getId().intValue())))
             .andExpect(jsonPath("$.[*].eventName").value(hasItem(DEFAULT_EVENT_NAME.toString())))
-            .andExpect(jsonPath("$.[*].groomName").value(hasItem(DEFAULT_GROOM_NAME.toString())))
-            .andExpect(jsonPath("$.[*].prideName").value(hasItem(DEFAULT_PRIDE_NAME.toString())))
             .andExpect(jsonPath("$.[*].eventStartDate").value(hasItem(sameInstant(DEFAULT_EVENT_START_DATE))))
             .andExpect(jsonPath("$.[*].eventEndDate").value(hasItem(sameInstant(DEFAULT_EVENT_END_DATE))));
     }
@@ -217,8 +205,6 @@ public class EventResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(event.getId().intValue()))
             .andExpect(jsonPath("$.eventName").value(DEFAULT_EVENT_NAME.toString()))
-            .andExpect(jsonPath("$.groomName").value(DEFAULT_GROOM_NAME.toString()))
-            .andExpect(jsonPath("$.prideName").value(DEFAULT_PRIDE_NAME.toString()))
             .andExpect(jsonPath("$.eventStartDate").value(sameInstant(DEFAULT_EVENT_START_DATE)))
             .andExpect(jsonPath("$.eventEndDate").value(sameInstant(DEFAULT_EVENT_END_DATE)));
     }
@@ -243,8 +229,6 @@ public class EventResourceIntTest {
         Event updatedEvent = eventRepository.findOne(event.getId());
         updatedEvent
                 .eventName(UPDATED_EVENT_NAME)
-                .groomName(UPDATED_GROOM_NAME)
-                .prideName(UPDATED_PRIDE_NAME)
                 .eventStartDate(UPDATED_EVENT_START_DATE)
                 .eventEndDate(UPDATED_EVENT_END_DATE);
 
@@ -258,8 +242,6 @@ public class EventResourceIntTest {
         assertThat(eventList).hasSize(databaseSizeBeforeUpdate);
         Event testEvent = eventList.get(eventList.size() - 1);
         assertThat(testEvent.getEventName()).isEqualTo(UPDATED_EVENT_NAME);
-        assertThat(testEvent.getGroomName()).isEqualTo(UPDATED_GROOM_NAME);
-        assertThat(testEvent.getPrideName()).isEqualTo(UPDATED_PRIDE_NAME);
         assertThat(testEvent.getEventStartDate()).isEqualTo(UPDATED_EVENT_START_DATE);
         assertThat(testEvent.getEventEndDate()).isEqualTo(UPDATED_EVENT_END_DATE);
     }

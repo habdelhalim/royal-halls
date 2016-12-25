@@ -35,13 +35,22 @@ public class Payment implements Serializable {
     @Column(name = "payment_amount")
     private Double paymentAmount;
 
-    @Column(name = "payment_date")
-    private ZonedDateTime paymentDate;
+    @Column(name = "payment_due_date")
+    private ZonedDateTime paymentDueDate;
 
     @NotNull
     @Enumerated(EnumType.STRING)
     @Column(name = "payment_status", nullable = false)
     private PaymentStatus paymentStatus;
+
+    @Column(name = "cheque_no")
+    private String chequeNo;
+
+    @Column(name = "bank_name")
+    private String bankName;
+
+    @Column(name = "creation_date")
+    private ZonedDateTime creationDate;
 
     @ManyToOne
     private Contract contract;
@@ -80,17 +89,17 @@ public class Payment implements Serializable {
         this.paymentAmount = paymentAmount;
     }
 
-    public ZonedDateTime getPaymentDate() {
-        return paymentDate;
+    public ZonedDateTime getPaymentDueDate() {
+        return paymentDueDate;
     }
 
-    public Payment paymentDate(ZonedDateTime paymentDate) {
-        this.paymentDate = paymentDate;
+    public Payment paymentDueDate(ZonedDateTime paymentDueDate) {
+        this.paymentDueDate = paymentDueDate;
         return this;
     }
 
-    public void setPaymentDate(ZonedDateTime paymentDate) {
-        this.paymentDate = paymentDate;
+    public void setPaymentDueDate(ZonedDateTime paymentDueDate) {
+        this.paymentDueDate = paymentDueDate;
     }
 
     public PaymentStatus getPaymentStatus() {
@@ -104,6 +113,45 @@ public class Payment implements Serializable {
 
     public void setPaymentStatus(PaymentStatus paymentStatus) {
         this.paymentStatus = paymentStatus;
+    }
+
+    public String getChequeNo() {
+        return chequeNo;
+    }
+
+    public Payment chequeNo(String chequeNo) {
+        this.chequeNo = chequeNo;
+        return this;
+    }
+
+    public void setChequeNo(String chequeNo) {
+        this.chequeNo = chequeNo;
+    }
+
+    public String getBankName() {
+        return bankName;
+    }
+
+    public Payment bankName(String bankName) {
+        this.bankName = bankName;
+        return this;
+    }
+
+    public void setBankName(String bankName) {
+        this.bankName = bankName;
+    }
+
+    public ZonedDateTime getCreationDate() {
+        return creationDate;
+    }
+
+    public Payment creationDate(ZonedDateTime creationDate) {
+        this.creationDate = creationDate;
+        return this;
+    }
+
+    public void setCreationDate(ZonedDateTime creationDate) {
+        this.creationDate = creationDate;
     }
 
     public Contract getContract() {
@@ -145,8 +193,11 @@ public class Payment implements Serializable {
             "id=" + id +
             ", paymentType='" + paymentType + "'" +
             ", paymentAmount='" + paymentAmount + "'" +
-            ", paymentDate='" + paymentDate + "'" +
+            ", paymentDueDate='" + paymentDueDate + "'" +
             ", paymentStatus='" + paymentStatus + "'" +
+            ", chequeNo='" + chequeNo + "'" +
+            ", bankName='" + bankName + "'" +
+            ", creationDate='" + creationDate + "'" +
             '}';
     }
 }
