@@ -15,7 +15,6 @@
                 "contract": "العقود",
                 "payment": "الدفعات",
                 "hallType": "نوع القاعة",
-                "contractType": "نوع الحجز" ,
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

@@ -17,7 +17,6 @@
                 "title": "عقد"
             },
             "contractName": "اسم العقد",
-            "contractType": "نوع العقد",
             "contractStatus": "حالة العقد",
             "contractDate": "تاريخ العقد",
             "creationDate": "تاريخ انشاء العقد",

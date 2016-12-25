@@ -13,7 +13,6 @@
     <include file="classpath:config/liquibase/changelog/20161224235140_added_entity_Contract.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20161225001449_added_entity_Payment.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20161225005209_added_entity_HallType.xml" relativeToChangelogFile="false"/>
-    <include file="classpath:config/liquibase/changelog/20161225005215_added_entity_ContractType.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20161225215656_added_entity_EventType.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="classpath:config/liquibase/changelog/20161224235137_added_entity_constraints_Contact.xml" relativeToChangelogFile="false"/>
