@@ -1,0 +1,11 @@
+{
+    "royalhallsApp": {
+        "ContractStatus" : {
+            "null": "",
+            "CREATED": "CREATED",
+            "APPROVED": "APPROVED",
+            "COMPLETED": "COMPLETED",
+            "CANCELLED": "CANCELLED"
+        }
+    }
+}

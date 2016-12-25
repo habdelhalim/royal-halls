@@ -1,0 +1,38 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "contract",
+            "otherEntityName": "contract",
+            "otherEntityField": "contractName"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "paymentType",
+            "fieldType": "PaymentType",
+            "fieldValues": "CASH,CHEQUE",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "paymentAmount",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "paymentStatus",
+            "fieldType": "PaymentStatus",
+            "fieldValues": "PENDING,PAID,CANCELLED",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20161225001449",
+    "entityTableName": "payment",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceImpl"
+}

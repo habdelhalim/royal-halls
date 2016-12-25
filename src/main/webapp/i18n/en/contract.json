@@ -19,6 +19,10 @@
             "contractName": "Contract Name",
             "contractType": "Contract Type",
             "contractDate": "Contract Date",
+            "contractStatus": "Contract Status",
+            "contractNotes": "Contract Notes",
+            "totalAmount": "Total Amount",
+            "openAmount": "Open Amount",
             "customer": "Customer",
             "event": "Event"
         }

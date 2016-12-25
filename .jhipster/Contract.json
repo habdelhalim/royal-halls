@@ -22,7 +22,7 @@
         {
             "fieldName": "contractType",
             "fieldType": "ContractType",
-            "fieldValues": "WEDDING,ENGAGEMENT,PARTY,MEETING,FUNERAL",
+            "fieldValues": "WEDDING,ENGAGEMENT,PARTY,MEETING,FUNERAL,GRADUATION",
             "fieldValidateRules": [
                 "required"
             ]
@@ -33,6 +33,26 @@
             "fieldValidateRules": [
                 "required"
             ]
+        },
+        {
+            "fieldName": "contractStatus",
+            "fieldType": "ContractStatus",
+            "fieldValues": "CREATED,APPROVED,COMPLETED,CANCELLED",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "contractNotes",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "totalAmount",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "openAmount",
+            "fieldType": "Double"
         }
     ],
     "changelogDate": "20161224235140",

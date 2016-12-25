@@ -17,48 +17,31 @@
     <property name="floatType" value="float" dbms="mysql, oracle, mssql"/>
 
     <!--
-        Added the entity Contract.
+        Added the entity Payment.
     -->
-    <changeSet id="20161224235140-1" author="jhipster">
-        <createTable tableName="contract">
+    <changeSet id="20161225001449-1" author="jhipster">
+        <createTable tableName="payment">
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="contract_name" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-            
-            <column name="contract_type" type="varchar(255)">
+            <column name="payment_type" type="varchar(255)">
                 <constraints nullable="false" />
             </column>
             
-            <column name="contract_date" type="timestamp">
+            <column name="payment_amount" type="double">
+                <constraints nullable="true" />
+            </column>
+            
+            <column name="payment_status" type="varchar(255)">
                 <constraints nullable="false" />
             </column>
             
-            <column name="contract_status" type="varchar(255)">
-                <constraints nullable="false" />
-            </column>
-            
-            <column name="contract_notes" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-            
-            <column name="total_amount" type="double">
-                <constraints nullable="true" />
-            </column>
-            
-            <column name="open_amount" type="double">
-                <constraints nullable="true" />
-            </column>
-            
-            <column name="customer_id" type="bigint">
+            <column name="contract_id" type="bigint">
                 <constraints nullable="true" />
             </column>
 
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
-        <dropDefaultValue tableName="contract" columnName="contract_date" columnDataType="datetime"/>
         
     </changeSet>
 </databaseChangeLog>

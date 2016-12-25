@@ -1,0 +1,10 @@
+{
+    "royalhallsApp": {
+        "PaymentStatus" : {
+            "null": "",
+            "PENDING": "PENDING",
+            "PAID": "PAID",
+            "CANCELLED": "CANCELLED"
+        }
+    }
+}

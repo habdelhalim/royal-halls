@@ -9,17 +9,17 @@
 
     function stateConfig($stateProvider) {
         $stateProvider
-        .state('contract', {
+        .state('payment', {
             parent: 'entity',
-            url: '/contract?page&sort&search',
+            url: '/payment?page&sort&search',
             data: {
                 authorities: ['ROLE_USER'],
-                pageTitle: 'royalhallsApp.contract.home.title'
+                pageTitle: 'royalhallsApp.payment.home.title'
             },
             views: {
                 'content@': {
-                    templateUrl: 'app/entities/contract/contracts.html',
-                    controller: 'ContractController',
+                    templateUrl: 'app/entities/payment/payments.html',
+                    controller: 'PaymentController',
                     controllerAs: 'vm'
                 }
             },
@@ -45,41 +45,41 @@
                     };
                 }],
                 translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
-                    $translatePartialLoader.addPart('contract');
-                    $translatePartialLoader.addPart('contractType');
-                    $translatePartialLoader.addPart('contractStatus');
+                    $translatePartialLoader.addPart('payment');
+                    $translatePartialLoader.addPart('paymentType');
+                    $translatePartialLoader.addPart('paymentStatus');
                     $translatePartialLoader.addPart('global');
                     return $translate.refresh();
                 }]
             }
         })
-        .state('contract-detail', {
+        .state('payment-detail', {
             parent: 'entity',
-            url: '/contract/{id}',
+            url: '/payment/{id}',
             data: {
                 authorities: ['ROLE_USER'],
-                pageTitle: 'royalhallsApp.contract.detail.title'
+                pageTitle: 'royalhallsApp.payment.detail.title'
             },
             views: {
                 'content@': {
-                    templateUrl: 'app/entities/contract/contract-detail.html',
-                    controller: 'ContractDetailController',
+                    templateUrl: 'app/entities/payment/payment-detail.html',
+                    controller: 'PaymentDetailController',
                     controllerAs: 'vm'
                 }
             },
             resolve: {
                 translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
-                    $translatePartialLoader.addPart('contract');
-                    $translatePartialLoader.addPart('contractType');
-                    $translatePartialLoader.addPart('contractStatus');
+                    $translatePartialLoader.addPart('payment');
+                    $translatePartialLoader.addPart('paymentType');
+                    $translatePartialLoader.addPart('paymentStatus');
                     return $translate.refresh();
                 }],
-                entity: ['$stateParams', 'Contract', function($stateParams, Contract) {
-                    return Contract.get({id : $stateParams.id}).$promise;
+                entity: ['$stateParams', 'Payment', function($stateParams, Payment) {
+                    return Payment.get({id : $stateParams.id}).$promise;
                 }],
                 previousState: ["$state", function ($state) {
                     var currentStateData = {
-                        name: $state.current.name || 'contract',
+                        name: $state.current.name || 'payment',
                         params: $state.params,
                         url: $state.href($state.current.name, $state.params)
                     };
@@ -87,22 +87,22 @@
                 }]
             }
         })
-        .state('contract-detail.edit', {
-            parent: 'contract-detail',
+        .state('payment-detail.edit', {
+            parent: 'payment-detail',
             url: '/detail/edit',
             data: {
                 authorities: ['ROLE_USER']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/contract/contract-dialog.html',
-                    controller: 'ContractDialogController',
+                    templateUrl: 'app/entities/payment/payment-dialog.html',
+                    controller: 'PaymentDialogController',
                     controllerAs: 'vm',
                     backdrop: 'static',
                     size: 'lg',
                     resolve: {
-                        entity: ['Contract', function(Contract) {
-                            return Contract.get({id : $stateParams.id}).$promise;
+                        entity: ['Payment', function(Payment) {
+                            return Payment.get({id : $stateParams.id}).$promise;
                         }]
                     }
                 }).result.then(function() {
@@ -112,84 +112,80 @@
                 });
             }]
         })
-        .state('contract.new', {
-            parent: 'contract',
+        .state('payment.new', {
+            parent: 'payment',
             url: '/new',
             data: {
                 authorities: ['ROLE_USER']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/contract/contract-dialog.html',
-                    controller: 'ContractDialogController',
+                    templateUrl: 'app/entities/payment/payment-dialog.html',
+                    controller: 'PaymentDialogController',
                     controllerAs: 'vm',
                     backdrop: 'static',
                     size: 'lg',
                     resolve: {
                         entity: function () {
                             return {
-                                contractName: null,
-                                contractType: null,
-                                contractDate: null,
-                                contractStatus: null,
-                                contractNotes: null,
-                                totalAmount: null,
-                                openAmount: null,
+                                paymentType: null,
+                                paymentAmount: null,
+                                paymentStatus: null,
                                 id: null
                             };
                         }
                     }
                 }).result.then(function() {
-                    $state.go('contract', null, { reload: 'contract' });
+                    $state.go('payment', null, { reload: 'payment' });
                 }, function() {
-                    $state.go('contract');
+                    $state.go('payment');
                 });
             }]
         })
-        .state('contract.edit', {
-            parent: 'contract',
+        .state('payment.edit', {
+            parent: 'payment',
             url: '/{id}/edit',
             data: {
                 authorities: ['ROLE_USER']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/contract/contract-dialog.html',
-                    controller: 'ContractDialogController',
+                    templateUrl: 'app/entities/payment/payment-dialog.html',
+                    controller: 'PaymentDialogController',
                     controllerAs: 'vm',
                     backdrop: 'static',
                     size: 'lg',
                     resolve: {
-                        entity: ['Contract', function(Contract) {
-                            return Contract.get({id : $stateParams.id}).$promise;
+                        entity: ['Payment', function(Payment) {
+                            return Payment.get({id : $stateParams.id}).$promise;
                         }]
                     }
                 }).result.then(function() {
-                    $state.go('contract', null, { reload: 'contract' });
+                    $state.go('payment', null, { reload: 'payment' });
                 }, function() {
                     $state.go('^');
                 });
             }]
         })
-        .state('contract.delete', {
-            parent: 'contract',
+        .state('payment.delete', {
+            parent: 'payment',
             url: '/{id}/delete',
             data: {
                 authorities: ['ROLE_USER']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/contract/contract-delete-dialog.html',
-                    controller: 'ContractDeleteController',
+                    templateUrl: 'app/entities/payment/payment-delete-dialog.html',
+                    controller: 'PaymentDeleteController',
                     controllerAs: 'vm',
                     size: 'md',
                     resolve: {
-                        entity: ['Contract', function(Contract) {
-                            return Contract.get({id : $stateParams.id}).$promise;
+                        entity: ['Payment', function(Payment) {
+                            return Payment.get({id : $stateParams.id}).$promise;
                         }]
                     }
                 }).result.then(function() {
-                    $state.go('contract', null, { reload: 'contract' });
+                    $state.go('payment', null, { reload: 'payment' });
                 }, function() {
                     $state.go('^');
                 });

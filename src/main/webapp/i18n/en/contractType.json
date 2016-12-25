@@ -6,7 +6,8 @@
             "ENGAGEMENT": "ENGAGEMENT",
             "PARTY": "PARTY",
             "MEETING": "MEETING",
-            "FUNERAL": "FUNERAL"
+            "FUNERAL": "FUNERAL",
+            "GRADUATION": "GRADUATION"
         }
     }
 }

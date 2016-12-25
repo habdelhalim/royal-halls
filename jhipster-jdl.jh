@@ -39,21 +39,43 @@ entity ExtraOption{
     price Double
 }
 
-entity Contract {
-	contractName String,
-    contractType ContractType required,
-	contractDate ZonedDateTime required
-}
-
-enum ContractType {
-WEDDING,ENGAGEMENT,PARTY,MEETING,FUNERAL
-}
-
 enum OptionType {
 BASIC, OPTIONAL
 }
 
+entity Contract {
+	contractName String,
+    contractType ContractType required,
+	contractDate ZonedDateTime required,
+    contractStatus ContractStatus required,
+    contractNotes String,
+    totalAmount Double,
+    openAmount Double
+}
+
+enum ContractType {
+WEDDING, ENGAGEMENT, PARTY, MEETING, FUNERAL, GRADUATION
+}
+enum ContractStatus {
+CREATED, APPROVED, COMPLETED, CANCELLED
+}
+
+entity Payment {
+	paymentType PaymentType required,
+    paymentAmount Double,
+    paymentStatus PaymentStatus required
+}
+
+enum PaymentType {
+CASH, CHEQUE
+}
+
+enum PaymentStatus {
+PENDING, PAID, CANCELLED
+}
+
 relationship ManyToOne {
+	Payment{contract(contractName)} to Contract,
 	Contact{customer(customerName)} to Customer{contact(contactName)},
 	Contract{customer(customerName)} to Customer,
     Event{hall(hallName)} to Hall,

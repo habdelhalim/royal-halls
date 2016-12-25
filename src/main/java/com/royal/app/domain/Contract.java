@@ -14,6 +14,8 @@ import java.util.Objects;
 
 import com.royal.app.domain.enumeration.ContractType;
 
+import com.royal.app.domain.enumeration.ContractStatus;
+
 /**
  * A Contract.
  */
@@ -39,6 +41,20 @@ public class Contract implements Serializable {
     @NotNull
     @Column(name = "contract_date", nullable = false)
     private ZonedDateTime contractDate;
+
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    @Column(name = "contract_status", nullable = false)
+    private ContractStatus contractStatus;
+
+    @Column(name = "contract_notes")
+    private String contractNotes;
+
+    @Column(name = "total_amount")
+    private Double totalAmount;
+
+    @Column(name = "open_amount")
+    private Double openAmount;
 
     @ManyToOne
     private Customer customer;
@@ -93,6 +109,58 @@ public class Contract implements Serializable {
 
     public void setContractDate(ZonedDateTime contractDate) {
         this.contractDate = contractDate;
+    }
+
+    public ContractStatus getContractStatus() {
+        return contractStatus;
+    }
+
+    public Contract contractStatus(ContractStatus contractStatus) {
+        this.contractStatus = contractStatus;
+        return this;
+    }
+
+    public void setContractStatus(ContractStatus contractStatus) {
+        this.contractStatus = contractStatus;
+    }
+
+    public String getContractNotes() {
+        return contractNotes;
+    }
+
+    public Contract contractNotes(String contractNotes) {
+        this.contractNotes = contractNotes;
+        return this;
+    }
+
+    public void setContractNotes(String contractNotes) {
+        this.contractNotes = contractNotes;
+    }
+
+    public Double getTotalAmount() {
+        return totalAmount;
+    }
+
+    public Contract totalAmount(Double totalAmount) {
+        this.totalAmount = totalAmount;
+        return this;
+    }
+
+    public void setTotalAmount(Double totalAmount) {
+        this.totalAmount = totalAmount;
+    }
+
+    public Double getOpenAmount() {
+        return openAmount;
+    }
+
+    public Contract openAmount(Double openAmount) {
+        this.openAmount = openAmount;
+        return this;
+    }
+
+    public void setOpenAmount(Double openAmount) {
+        this.openAmount = openAmount;
     }
 
     public Customer getCustomer() {
@@ -160,6 +228,10 @@ public class Contract implements Serializable {
             ", contractName='" + contractName + "'" +
             ", contractType='" + contractType + "'" +
             ", contractDate='" + contractDate + "'" +
+            ", contractStatus='" + contractStatus + "'" +
+            ", contractNotes='" + contractNotes + "'" +
+            ", totalAmount='" + totalAmount + "'" +
+            ", openAmount='" + openAmount + "'" +
             '}';
     }
 }

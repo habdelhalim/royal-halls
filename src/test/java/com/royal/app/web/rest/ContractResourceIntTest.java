@@ -35,6 +35,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import com.royal.app.domain.enumeration.ContractType;
+import com.royal.app.domain.enumeration.ContractStatus;
 /**
  * Test class for the ContractResource REST controller.
  *
@@ -52,6 +53,18 @@ public class ContractResourceIntTest {
 
     private static final ZonedDateTime DEFAULT_CONTRACT_DATE = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneOffset.UTC);
     private static final ZonedDateTime UPDATED_CONTRACT_DATE = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
+
+    private static final ContractStatus DEFAULT_CONTRACT_STATUS = ContractStatus.CREATED;
+    private static final ContractStatus UPDATED_CONTRACT_STATUS = ContractStatus.APPROVED;
+
+    private static final String DEFAULT_CONTRACT_NOTES = "AAAAAAAAAA";
+    private static final String UPDATED_CONTRACT_NOTES = "BBBBBBBBBB";
+
+    private static final Double DEFAULT_TOTAL_AMOUNT = 1D;
+    private static final Double UPDATED_TOTAL_AMOUNT = 2D;
+
+    private static final Double DEFAULT_OPEN_AMOUNT = 1D;
+    private static final Double UPDATED_OPEN_AMOUNT = 2D;
 
     @Inject
     private ContractRepository contractRepository;
@@ -92,7 +105,11 @@ public class ContractResourceIntTest {
         Contract contract = new Contract()
                 .contractName(DEFAULT_CONTRACT_NAME)
                 .contractType(DEFAULT_CONTRACT_TYPE)
-                .contractDate(DEFAULT_CONTRACT_DATE);
+                .contractDate(DEFAULT_CONTRACT_DATE)
+                .contractStatus(DEFAULT_CONTRACT_STATUS)
+                .contractNotes(DEFAULT_CONTRACT_NOTES)
+                .totalAmount(DEFAULT_TOTAL_AMOUNT)
+                .openAmount(DEFAULT_OPEN_AMOUNT);
         return contract;
     }
 
@@ -120,6 +137,10 @@ public class ContractResourceIntTest {
         assertThat(testContract.getContractName()).isEqualTo(DEFAULT_CONTRACT_NAME);
         assertThat(testContract.getContractType()).isEqualTo(DEFAULT_CONTRACT_TYPE);
         assertThat(testContract.getContractDate()).isEqualTo(DEFAULT_CONTRACT_DATE);
+        assertThat(testContract.getContractStatus()).isEqualTo(DEFAULT_CONTRACT_STATUS);
+        assertThat(testContract.getContractNotes()).isEqualTo(DEFAULT_CONTRACT_NOTES);
+        assertThat(testContract.getTotalAmount()).isEqualTo(DEFAULT_TOTAL_AMOUNT);
+        assertThat(testContract.getOpenAmount()).isEqualTo(DEFAULT_OPEN_AMOUNT);
     }
 
     @Test
@@ -180,6 +201,24 @@ public class ContractResourceIntTest {
 
     @Test
     @Transactional
+    public void checkContractStatusIsRequired() throws Exception {
+        int databaseSizeBeforeTest = contractRepository.findAll().size();
+        // set the field null
+        contract.setContractStatus(null);
+
+        // Create the Contract, which fails.
+
+        restContractMockMvc.perform(post("/api/contracts")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(contract)))
+            .andExpect(status().isBadRequest());
+
+        List<Contract> contractList = contractRepository.findAll();
+        assertThat(contractList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     public void getAllContracts() throws Exception {
         // Initialize the database
         contractRepository.saveAndFlush(contract);
@@ -191,7 +230,11 @@ public class ContractResourceIntTest {
             .andExpect(jsonPath("$.[*].id").value(hasItem(contract.getId().intValue())))
             .andExpect(jsonPath("$.[*].contractName").value(hasItem(DEFAULT_CONTRACT_NAME.toString())))
             .andExpect(jsonPath("$.[*].contractType").value(hasItem(DEFAULT_CONTRACT_TYPE.toString())))
-            .andExpect(jsonPath("$.[*].contractDate").value(hasItem(sameInstant(DEFAULT_CONTRACT_DATE))));
+            .andExpect(jsonPath("$.[*].contractDate").value(hasItem(sameInstant(DEFAULT_CONTRACT_DATE))))
+            .andExpect(jsonPath("$.[*].contractStatus").value(hasItem(DEFAULT_CONTRACT_STATUS.toString())))
+            .andExpect(jsonPath("$.[*].contractNotes").value(hasItem(DEFAULT_CONTRACT_NOTES.toString())))
+            .andExpect(jsonPath("$.[*].totalAmount").value(hasItem(DEFAULT_TOTAL_AMOUNT.doubleValue())))
+            .andExpect(jsonPath("$.[*].openAmount").value(hasItem(DEFAULT_OPEN_AMOUNT.doubleValue())));
     }
 
     @Test
@@ -207,7 +250,11 @@ public class ContractResourceIntTest {
             .andExpect(jsonPath("$.id").value(contract.getId().intValue()))
             .andExpect(jsonPath("$.contractName").value(DEFAULT_CONTRACT_NAME.toString()))
             .andExpect(jsonPath("$.contractType").value(DEFAULT_CONTRACT_TYPE.toString()))
-            .andExpect(jsonPath("$.contractDate").value(sameInstant(DEFAULT_CONTRACT_DATE)));
+            .andExpect(jsonPath("$.contractDate").value(sameInstant(DEFAULT_CONTRACT_DATE)))
+            .andExpect(jsonPath("$.contractStatus").value(DEFAULT_CONTRACT_STATUS.toString()))
+            .andExpect(jsonPath("$.contractNotes").value(DEFAULT_CONTRACT_NOTES.toString()))
+            .andExpect(jsonPath("$.totalAmount").value(DEFAULT_TOTAL_AMOUNT.doubleValue()))
+            .andExpect(jsonPath("$.openAmount").value(DEFAULT_OPEN_AMOUNT.doubleValue()));
     }
 
     @Test
@@ -231,7 +278,11 @@ public class ContractResourceIntTest {
         updatedContract
                 .contractName(UPDATED_CONTRACT_NAME)
                 .contractType(UPDATED_CONTRACT_TYPE)
-                .contractDate(UPDATED_CONTRACT_DATE);
+                .contractDate(UPDATED_CONTRACT_DATE)
+                .contractStatus(UPDATED_CONTRACT_STATUS)
+                .contractNotes(UPDATED_CONTRACT_NOTES)
+                .totalAmount(UPDATED_TOTAL_AMOUNT)
+                .openAmount(UPDATED_OPEN_AMOUNT);
 
         restContractMockMvc.perform(put("/api/contracts")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -245,6 +296,10 @@ public class ContractResourceIntTest {
         assertThat(testContract.getContractName()).isEqualTo(UPDATED_CONTRACT_NAME);
         assertThat(testContract.getContractType()).isEqualTo(UPDATED_CONTRACT_TYPE);
         assertThat(testContract.getContractDate()).isEqualTo(UPDATED_CONTRACT_DATE);
+        assertThat(testContract.getContractStatus()).isEqualTo(UPDATED_CONTRACT_STATUS);
+        assertThat(testContract.getContractNotes()).isEqualTo(UPDATED_CONTRACT_NOTES);
+        assertThat(testContract.getTotalAmount()).isEqualTo(UPDATED_TOTAL_AMOUNT);
+        assertThat(testContract.getOpenAmount()).isEqualTo(UPDATED_OPEN_AMOUNT);
     }
 
     @Test

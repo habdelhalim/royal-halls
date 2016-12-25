@@ -16,6 +16,22 @@
         <dd>
             <span>{{vm.contract.contractDate | date:'medium'}}</span>
         </dd>
+        <dt><span data-translate="royalhallsApp.contract.contractStatus">Contract Status</span></dt>
+        <dd>
+            <span data-translate="{{'royalhallsApp.ContractStatus.' + vm.contract.contractStatus}}">{{vm.contract.contractStatus}}</span>
+        </dd>
+        <dt><span data-translate="royalhallsApp.contract.contractNotes">Contract Notes</span></dt>
+        <dd>
+            <span>{{vm.contract.contractNotes}}</span>
+        </dd>
+        <dt><span data-translate="royalhallsApp.contract.totalAmount">Total Amount</span></dt>
+        <dd>
+            <span>{{vm.contract.totalAmount}}</span>
+        </dd>
+        <dt><span data-translate="royalhallsApp.contract.openAmount">Open Amount</span></dt>
+        <dd>
+            <span>{{vm.contract.openAmount}}</span>
+        </dd>
         <dt><span data-translate="royalhallsApp.contract.customer">Customer</span></dt>
         <dd>
             <a ui-sref="customer-detail({id:vm.contract.customer.id})">{{vm.contract.customer.customerName}}</a>

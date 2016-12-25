@@ -38,5 +38,7 @@
 
     <cache alias="com.royal.app.domain.Customer.contacts" uses-template="simple"/>
 
+    <cache alias="com.royal.app.domain.Payment" uses-template="simple"/>
+
     <!-- jhipster-needle-ehcache-add-entry -->
 </config>

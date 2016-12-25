@@ -1,0 +1,65 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myPaymentLabel" data-translate="royalhallsApp.payment.home.createOrEditLabel">Create or edit a Payment</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.payment.id">
+            <label for="id" data-translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.payment.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="royalhallsApp.payment.paymentType" for="field_paymentType">Payment Type</label>
+            <select class="form-control" name="paymentType" ng-model="vm.payment.paymentType" id="field_paymentType" required>
+                <option value="CASH" data-translate="royalhallsApp.PaymentType.CASH">CASH</option>
+                <option value="CHEQUE" data-translate="royalhallsApp.PaymentType.CHEQUE">CHEQUE</option>
+            </select>
+            <div ng-show="editForm.paymentType.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.paymentType.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="royalhallsApp.payment.paymentAmount" for="field_paymentAmount">Payment Amount</label>
+            <input type="number" class="form-control" name="paymentAmount" id="field_paymentAmount"
+                    ng-model="vm.payment.paymentAmount"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="royalhallsApp.payment.paymentStatus" for="field_paymentStatus">Payment Status</label>
+            <select class="form-control" name="paymentStatus" ng-model="vm.payment.paymentStatus" id="field_paymentStatus" required>
+                <option value="PENDING" data-translate="royalhallsApp.PaymentStatus.PENDING">PENDING</option>
+                <option value="PAID" data-translate="royalhallsApp.PaymentStatus.PAID">PAID</option>
+                <option value="CANCELLED" data-translate="royalhallsApp.PaymentStatus.CANCELLED">CANCELLED</option>
+            </select>
+            <div ng-show="editForm.paymentStatus.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.paymentStatus.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label data-translate="royalhallsApp.payment.contract" for="field_contract">Contract</label>
+            <select class="form-control" id="field_contract" name="contract" ng-model="vm.payment.contract" ng-options="contract as contract.contractName for contract in vm.contracts track by contract.id">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>
