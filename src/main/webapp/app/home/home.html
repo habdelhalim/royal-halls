@@ -7,7 +7,7 @@
                 <div class="col-md-12">
                     <div class="form-group ">
                         <div class="btn-toolbar">
-                            <button type="submit"  class="btn btn-default">
+                            <button type="submit" class="btn btn-default">
                                 <span class="glyphicon glyphicon-search"></span>&nbsp;<span data-translate="entity.action.open">Open</span>
                             </button>
                             <button type="submit" class="btn btn-default">
@@ -25,62 +25,57 @@
                                ng-model="vm.contract.id" readonly/>
                     </div>
                     <div class="form-group">
-                        <label class="control-label" data-translate="royalhallsApp.contract.contractDate" for="field_contractDate">Contract Date</label>
-                        <div class="input-group">
-                            <input id="field_contractDate" type="text" class="form-control" name="contractDate" datetime-picker="{{dateformat}}" ng-model="vm.contract.contractDate"
-                                   is-open="vm.datePickerOpenStatus.contractDate"
-                                   required/>
-                    <span class="input-group-btn">
-                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('contractDate')"><i class="glyphicon glyphicon-calendar"></i></button>
-                    </span>
-                        </div>
-                        <div ng-show="editForm.contractDate.$invalid">
+                        <label class="control-label" data-translate="royalhallsApp.customer.customerName" for="field_customerName">Customer Name</label>
+                        <input type="text" class="form-control" name="customerName" id="field_customerName"
+                               ng-model="vm.customer.customerName"
+                               required/>
+                        <div ng-show="editForm.customerName.$invalid">
                             <p class="help-block"
-                               ng-show="editForm.contractDate.$error.required" data-translate="entity.validation.required">
+                               ng-show="editForm.customerName.$error.required" data-translate="entity.validation.required">
                                 This field is required.
-                            </p>
-                            <p class="help-block"
-                               ng-show="editForm.contractDate.$error.ZonedDateTimelocal" data-translate="entity.validation.ZonedDateTimelocal">
-                                This field should be a date and time.
                             </p>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label" data-translate="royalhallsApp.contract.contractStatus" for="field_contractStatus">Contract Status</label>
-                        <select class="form-control" name="contractStatus" ng-model="vm.contract.contractStatus" id="field_contractStatus"   ng-disabled="true" required>
-                            <option value="CREATED" data-translate="royalhallsApp.ContractStatus.CREATED">CREATED</option>
-                            <option value="APPROVED" data-translate="royalhallsApp.ContractStatus.APPROVED">APPROVED</option>
-                            <option value="COMPLETED" data-translate="royalhallsApp.ContractStatus.COMPLETED">COMPLETED</option>
-                            <option value="CANCELLED" data-translate="royalhallsApp.ContractStatus.CANCELLED">CANCELLED</option>
-                        </select>
-                        <div ng-show="editForm.contractStatus.$invalid">
+                        <label class="control-label" data-translate="royalhallsApp.customer.identityId" for="field_identityId">Identity Id</label>
+                        <input type="text" class="form-control" name="identityId" id="field_identityId"
+                               ng-model="vm.customer.identityId"
+                               required/>
+                        <div ng-show="editForm.identityId.$invalid">
                             <p class="help-block"
-                               ng-show="editForm.contractStatus.$error.required" data-translate="entity.validation.required">
+                               ng-show="editForm.identityId.$error.required" data-translate="entity.validation.required">
                                 This field is required.
                             </p>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label class="control-label" data-translate="royalhallsApp.contact.mobile" for="field_mobile">Mobile</label>
+                        <input type="text" class="form-control" name="mobile" id="field_mobile"
+                               ng-model="vm.contact.mobile"
+                        />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" data-translate="royalhallsApp.contact.telephone" for="field_telephone">Telephone</label>
+                        <input type="text" class="form-control" name="telephone" id="field_telephone"
+                               ng-model="vm.contact.telephone"
+                        />
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label" data-translate="royalhallsApp.customer.city" for="field_city">City</label>
+                        <input type="text" class="form-control" name="city" id="field_city"
+                               ng-model="vm.customer.city"
+                        />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" data-translate="royalhallsApp.customer.country" for="field_country">Country</label>
+                        <input type="text" class="form-control" name="country" id="field_country"
+                               ng-model="vm.customer.country"
+                        />
+                    </div>
+
                 </div>
                 <div class="col-md-6">
-                    <div class="form-group">
-                        <label data-translate="royalhallsApp.contract.customer" for="field_customer">Customer</label>
-                        <select class="form-control" id="field_customer" name="customer" ng-model="vm.contract.customer"
-                                ng-options="customer as customer.customerName for customer in vm.customers track by customer.id">
-                            <option value=""></option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label" data-translate="royalhallsApp.contract.totalAmount" for="field_totalAmount">Total Amount</label>
-                        <input type="number" class="form-control" name="totalAmount" id="field_totalAmount" ng-disabled="true"
-                               ng-model="vm.contract.totalAmount"
-                        />
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label" data-translate="royalhallsApp.contract.openAmount" for="field_openAmount">Open Amount</label>
-                        <input type="number" class="form-control" name="openAmount" id="field_openAmount" ng-disabled="true"
-                               ng-model="vm.contract.openAmount"
-                        />
-                    </div>
                     <div class="form-group">
                         <label class="control-label" data-translate="royalhallsApp.contract.creationDate" for="field_creationDate">Creation Date</label>
                         <div class="input-group">
@@ -93,15 +88,34 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label data-translate="royalhallsApp.event.option" for="field_option">Option</label>
-                        <div class="btn-toolbar">
-                            <button>+</button>
-                            <button>-</button>
+                        <label class="control-label" data-translate="royalhallsApp.contract.contractStatus" for="field_contractStatus">Contract Status</label>
+                        <select class="form-control" name="contractStatus" ng-model="vm.contract.contractStatus" id="field_contractStatus" ng-disabled="true" required>
+                            <option value="CREATED" data-translate="royalhallsApp.ContractStatus.CREATED">CREATED</option>
+                            <option value="APPROVED" data-translate="royalhallsApp.ContractStatus.APPROVED">APPROVED</option>
+                            <option value="COMPLETED" data-translate="royalhallsApp.ContractStatus.COMPLETED">COMPLETED</option>
+                            <option value="CANCELLED" data-translate="royalhallsApp.ContractStatus.CANCELLED">CANCELLED</option>
+                        </select>
+                        <div ng-show="editForm.contractStatus.$invalid">
+                            <p class="help-block"
+                               ng-show="editForm.contractStatus.$error.required" data-translate="entity.validation.required">
+                                This field is required.
+                            </p>
                         </div>
+                    </div>
+                    <div class="form-group">
+                        <label data-translate="royalhallsApp.event.option" for="field_option">Option</label>
                         <select class="form-control" id="field_option" multiple name="option" ng-model="vm.event.options">
                             <option>main</option>
                             <option>secondary</option>
                         </select>
+                        <div class="btn-group btn-group-sm">
+                            <button type="submit" class="btn btn-default">
+                                <span class="glyphicon glyphicon-plus"></span>
+                            </button>
+                            <button type="submit" class="btn btn-default">
+                                <span class="glyphicon glyphicon-minus"></span>
+                            </button>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-12">
@@ -119,12 +133,14 @@
                             <thead>
                             <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
                                 <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
-                                <th jh-sort-by="paymentType"><span data-translate="royalhallsApp.payment.paymentType">Payment Type</span> <span class="glyphicon glyphicon-sort"></span></th>
-                                <th jh-sort-by="paymentAmount"><span data-translate="royalhallsApp.payment.paymentAmount">Payment Amount</span> <span class="glyphicon glyphicon-sort"></span></th>
-                                <th jh-sort-by="paymentDate"><span data-translate="royalhallsApp.payment.paymentDate">Payment Date</span> <span class="glyphicon glyphicon-sort"></span></th>
-                                <th jh-sort-by="paymentStatus"><span data-translate="royalhallsApp.payment.paymentStatus">Payment Status</span> <span class="glyphicon glyphicon-sort"></span></th>
-                                <th jh-sort-by="contract.contractName"><span data-translate="royalhallsApp.payment.contract">Contract</span> <span class="glyphicon glyphicon-sort"></span></th>
-                                <th></th>
+                                <th jh-sort-by="paymentType"><span data-translate="royalhallsApp.payment.paymentType">Payment Type</span> <span
+                                    class="glyphicon glyphicon-sort"></span></th>
+                                <th jh-sort-by="paymentAmount"><span data-translate="royalhallsApp.payment.paymentAmount">Payment Amount</span> <span
+                                    class="glyphicon glyphicon-sort"></span></th>
+                                <th jh-sort-by="paymentDate"><span data-translate="royalhallsApp.payment.paymentDate">Payment Date</span> <span
+                                    class="glyphicon glyphicon-sort"></span></th>
+                                <th jh-sort-by="paymentStatus"><span data-translate="royalhallsApp.payment.paymentStatus">Payment Status</span> <span
+                                    class="glyphicon glyphicon-sort"></span></th>
                             </tr>
                             </thead>
                             <tbody>
@@ -162,17 +178,45 @@
                             </tr>
                             </tbody>
                         </table>
-                        <div class="btn-toolbar">
-                            <button>+</button>
-                            <button>-</button>
+                        <div class="btn-group btn-group-sm">
+                            <button type="submit" class="btn btn-default">
+                                <span class="glyphicon glyphicon-plus"></span>
+                            </button>
+                            <button type="submit" class="btn btn-default">
+                                <span class="glyphicon glyphicon-minus"></span>
+                            </button>
                         </div>
                     </div>
-                    <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
-                        <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
-                    </button>
+
+                    <div class="row">
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label" data-translate="royalhallsApp.contract.openAmount" for="field_openAmount">Open Amount</label>
+                                <input type="number" class="form-control" name="openAmount" id="field_openAmount" ng-disabled="true"
+                                       ng-model="vm.contract.openAmount"
+                                />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label" data-translate="royalhallsApp.contract.totalAmount" for="field_totalAmount">Total Amount</label>
+                                <input type="number" class="form-control" name="totalAmount" id="field_totalAmount" ng-disabled="true"
+                                       ng-model="vm.contract.totalAmount"
+                                />
+                            </div>
+                        </div>
+                    </div>
+
+
+
                     <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
                         <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
                     </button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+                        <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+                    </button>
+
                 </div>
 
             </form>

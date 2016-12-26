@@ -24,6 +24,8 @@
             resolve: {
                 mainTranslatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate,$translatePartialLoader) {
                     $translatePartialLoader.addPart('home');
+                    $translatePartialLoader.addPart('contact');
+                    $translatePartialLoader.addPart('customer');
                     $translatePartialLoader.addPart('event');
                     $translatePartialLoader.addPart('payment');
                     $translatePartialLoader.addPart('contract');
