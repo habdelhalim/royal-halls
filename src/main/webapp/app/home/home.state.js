@@ -62,6 +62,18 @@
                 }
             },
             resolve: {
+                mainTranslatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate,$translatePartialLoader) {
+                    $translatePartialLoader.addPart('home');
+                    $translatePartialLoader.addPart('contact');
+                    $translatePartialLoader.addPart('customer');
+                    $translatePartialLoader.addPart('event');
+                    $translatePartialLoader.addPart('payment');
+                    $translatePartialLoader.addPart('paymentStatus');
+                    $translatePartialLoader.addPart('paymentType');
+                    $translatePartialLoader.addPart('contract');
+                    $translatePartialLoader.addPart('contractStatus');
+                    return $translate.refresh();
+                }],
                 entity: function () {
                     return {
                         contractDate: null,
@@ -89,6 +101,18 @@
                 }
             },
             resolve: {
+                mainTranslatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate,$translatePartialLoader) {
+                    $translatePartialLoader.addPart('home');
+                    $translatePartialLoader.addPart('contact');
+                    $translatePartialLoader.addPart('customer');
+                    $translatePartialLoader.addPart('event');
+                    $translatePartialLoader.addPart('payment');
+                    $translatePartialLoader.addPart('paymentStatus');
+                    $translatePartialLoader.addPart('paymentType');
+                    $translatePartialLoader.addPart('contract');
+                    $translatePartialLoader.addPart('contractStatus');
+                    return $translate.refresh();
+                }],
                 entity: ['$stateParams', 'Contract', function($stateParams, Contract) {
                     return Contract.get({id : $stateParams.id}).$promise;
                 }]
