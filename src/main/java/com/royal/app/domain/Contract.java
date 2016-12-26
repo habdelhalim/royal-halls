@@ -1,18 +1,17 @@
 package com.royal.app.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.royal.app.domain.enumeration.ContractStatus;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.ZonedDateTime;
 import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
-
-import com.royal.app.domain.enumeration.ContractStatus;
+import java.util.Set;
 
 /**
  * A Contract.
@@ -53,13 +52,11 @@ public class Contract implements Serializable {
     private Customer customer;
 
     @OneToMany(mappedBy = "contract")
-    @JsonIgnore
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    @JsonManagedReference
     private Set<Payment> payments = new HashSet<>();
 
     @OneToMany(mappedBy = "contract")
-    @JsonIgnore
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    @JsonManagedReference
     private Set<Event> events = new HashSet<>();
 
     public Long getId() {

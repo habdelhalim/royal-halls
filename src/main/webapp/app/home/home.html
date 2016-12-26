@@ -103,29 +103,79 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label data-translate="royalhallsApp.event.option" for="field_option">Option</label>
-                        <select class="form-control" id="field_option" multiple name="option" ng-model="vm.contract.events">
-                            <option>main</option>
-                            <option>secondary</option>
-                        </select>
-                        <div class="btn-group btn-group-sm">
-                            <button type="submit" class="btn btn-default">
-                                <span class="glyphicon glyphicon-plus"></span>
-                            </button>
-                            <button type="submit" class="btn btn-default">
-                                <span class="glyphicon glyphicon-minus"></span>
-                            </button>
-                        </div>
+                        <label class="control-label" data-translate="royalhallsApp.contract.contractNotes" for="field_contractNotes">Contract Notes</label>
+                        <textarea type="text" class="form-control" name="contractNotes" id="field_contractNotes"
+                                  ng-model="vm.contract.contractNotes" rows="8"
+                        ></textarea>
                     </div>
                 </div>
                 <div class="col-md-12">
+                    <hr>
                     <div class="form-group">
-                        <label class="control-label" data-translate="royalhallsApp.contract.contractNotes" for="field_contractNotes">Contract Notes</label>
-                        <textarea type="text" class="form-control" name="contractNotes" id="field_contractNotes"
-                                  ng-model="vm.contract.contractNotes" rows="3"
-                        ></textarea>
+                        <h2 data-translate="royalhallsApp.event.home.title">Events</h2>
+                        <div class="table-responsive">
+                            <table class="jh-table table table-striped">
+                                <thead>
+                                <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
+                                    <th jh-sort-by="eventName"><span data-translate="royalhallsApp.event.eventName">Event Name</span> <span class="glyphicon glyphicon-sort"></span>
+                                    </th>
+                                    <th jh-sort-by="eventStartDate"><span data-translate="royalhallsApp.event.eventStartDate">Event Start Date</span> <span
+                                        class="glyphicon glyphicon-sort"></span></th>
+                                    <th jh-sort-by="eventEndDate"><span data-translate="royalhallsApp.event.eventEndDate">Event End Date</span> <span
+                                        class="glyphicon glyphicon-sort"></span></th>
+                                    <th jh-sort-by="eventType.eventTypeName"><span data-translate="royalhallsApp.event.eventType">Event Type</span> <span
+                                        class="glyphicon glyphicon-sort"></span></th>
+                                    <th jh-sort-by="hall.hallName"><span data-translate="royalhallsApp.event.hall">Hall</span> <span class="glyphicon glyphicon-sort"></span></th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="event in vm.contract.events track by event.id">
+                                    <td>{{event.eventName}}</td>
+                                    <td>{{event.eventStartDate | date:'medium'}}</td>
+                                    <td>{{event.eventEndDate | date:'medium'}}</td>
+                                    <td>
+                                        <a ui-sref="event-type-detail({id:event.eventType.id})">{{event.eventType.eventTypeName}}</a>
+                                    </td>
+                                    <td>
+                                        <a ui-sref="hall-detail({id:event.hall.id})">{{event.hall.hallName}}</a>
+                                    </td>
+                                    <td class="text-right">
+                                        <div class="btn-group flex-btn-group-container">
+                                            <button type="submit"
+                                                    ui-sref="event-detail({id:event.id})"
+                                                    class="btn btn-info btn-sm">
+                                                <span class="glyphicon glyphicon-eye-open"></span>
+                                                <span class="hidden-xs hidden-sm" data-translate="entity.action.view"></span>
+                                            </button>
+                                            <button type="submit"
+                                                    ui-sref="event.edit({id:event.id})"
+                                                    class="btn btn-primary btn-sm">
+                                                <span class="glyphicon glyphicon-pencil"></span>
+                                                <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"></span>
+                                            </button>
+                                            <button type="submit"
+                                                    ui-sref="event.delete({id:event.id})"
+                                                    class="btn btn-danger btn-sm">
+                                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                                <span class="hidden-xs hidden-sm" data-translate="entity.action.delete"></span>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="btn-group btn-group-sm">
+                            <button class="btn btn-primary" ui-sref="event.new">
+                                <span class="glyphicon glyphicon-plus"></span>
+                                <span data-translate="royalhallsApp.event.home.createLabel">
+                                    Create new Event
+                                </span>
+                            </button>
+                        </div>
                     </div>
-
+                    <hr>
                     <div class="form-group">
                         <h2 data-translate="royalhallsApp.payment.home.title">Payments</h2>
 
@@ -133,13 +183,20 @@
                             <table class="jh-table table table-striped">
                                 <thead>
                                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
-                                    <th jh-sort-by="paymentType"><span data-translate="royalhallsApp.payment.paymentType">Payment Type</span> <span class="glyphicon glyphicon-sort"></span></th>
-                                    <th jh-sort-by="paymentAmount"><span data-translate="royalhallsApp.payment.paymentAmount">Payment Amount</span> <span class="glyphicon glyphicon-sort"></span></th>
-                                    <th jh-sort-by="paymentDueDate"><span data-translate="royalhallsApp.payment.paymentDueDate">Payment Due Date</span> <span class="glyphicon glyphicon-sort"></span></th>
-                                    <th jh-sort-by="paymentStatus"><span data-translate="royalhallsApp.payment.paymentStatus">Payment Status</span> <span class="glyphicon glyphicon-sort"></span></th>
-                                    <th jh-sort-by="chequeNo"><span data-translate="royalhallsApp.payment.chequeNo">Cheque No</span> <span class="glyphicon glyphicon-sort"></span></th>
-                                    <th jh-sort-by="bankName"><span data-translate="royalhallsApp.payment.bankName">Bank Name</span> <span class="glyphicon glyphicon-sort"></span></th>
-                                    <th jh-sort-by="creationDate"><span data-translate="royalhallsApp.payment.creationDate">Creation Date</span> <span class="glyphicon glyphicon-sort"></span></th>
+                                    <th jh-sort-by="paymentType"><span data-translate="royalhallsApp.payment.paymentType">Payment Type</span> <span
+                                        class="glyphicon glyphicon-sort"></span></th>
+                                    <th jh-sort-by="paymentAmount"><span data-translate="royalhallsApp.payment.paymentAmount">Payment Amount</span> <span
+                                        class="glyphicon glyphicon-sort"></span></th>
+                                    <th jh-sort-by="paymentDueDate"><span data-translate="royalhallsApp.payment.paymentDueDate">Payment Due Date</span> <span
+                                        class="glyphicon glyphicon-sort"></span></th>
+                                    <th jh-sort-by="paymentStatus"><span data-translate="royalhallsApp.payment.paymentStatus">Payment Status</span> <span
+                                        class="glyphicon glyphicon-sort"></span></th>
+                                    <th jh-sort-by="chequeNo"><span data-translate="royalhallsApp.payment.chequeNo">Cheque No</span> <span class="glyphicon glyphicon-sort"></span>
+                                    </th>
+                                    <th jh-sort-by="bankName"><span data-translate="royalhallsApp.payment.bankName">Bank Name</span> <span class="glyphicon glyphicon-sort"></span>
+                                    </th>
+                                    <th jh-sort-by="creationDate"><span data-translate="royalhallsApp.payment.creationDate">Creation Date</span> <span
+                                        class="glyphicon glyphicon-sort"></span></th>
                                     <th></th>
                                 </tr>
                                 </thead>
@@ -179,15 +236,15 @@
                             </table>
                         </div>
                         <div class="btn-group btn-group-sm">
-                            <button type="submit" class="btn btn-default">
+                            <button class="btn btn-primary" ui-sref="payment.new" >
                                 <span class="glyphicon glyphicon-plus"></span>
-                            </button>
-                            <button type="submit" class="btn btn-default">
-                                <span class="glyphicon glyphicon-minus"></span>
+                                <span  data-translate="royalhallsApp.payment.home.createLabel">
+                                    Create new Payment
+                                </span>
                             </button>
                         </div>
                     </div>
-
+                    <hr>
                     <div class="row">
 
                         <div class="col-md-6">
@@ -207,7 +264,6 @@
                             </div>
                         </div>
                     </div>
-
 
 
                     <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">

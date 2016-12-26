@@ -21,7 +21,7 @@ import java.util.List;
 public class ContractServiceImpl implements ContractService{
 
     private final Logger log = LoggerFactory.getLogger(ContractServiceImpl.class);
-    
+
     @Inject
     private ContractRepository contractRepository;
 
@@ -39,11 +39,11 @@ public class ContractServiceImpl implements ContractService{
 
     /**
      *  Get all the contracts.
-     *  
+     *
      *  @param pageable the pagination information
      *  @return the list of entities
      */
-    @Transactional(readOnly = true) 
+    @Transactional(readOnly = true)
     public Page<Contract> findAll(Pageable pageable) {
         log.debug("Request to get all Contracts");
         Page<Contract> result = contractRepository.findAll(pageable);
@@ -56,10 +56,12 @@ public class ContractServiceImpl implements ContractService{
      *  @param id the id of the entity
      *  @return the entity
      */
-    @Transactional(readOnly = true) 
+    @Transactional(readOnly = true)
     public Contract findOne(Long id) {
         log.debug("Request to get Contract : {}", id);
         Contract contract = contractRepository.findOne(id);
+        contract.getPayments().size();
+        contract.getEvents().size();
         return contract;
     }
 

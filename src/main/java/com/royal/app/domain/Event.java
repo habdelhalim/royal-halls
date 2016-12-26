@@ -1,15 +1,16 @@
 package com.royal.app.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.ZonedDateTime;
 import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * A Event.
@@ -43,13 +44,14 @@ public class Event implements Serializable {
     private Hall hall;
 
     @ManyToOne
+    @JsonBackReference
     private Contract contract;
 
     @ManyToMany
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     @JoinTable(name = "event_option",
-               joinColumns = @JoinColumn(name="events_id", referencedColumnName="ID"),
-               inverseJoinColumns = @JoinColumn(name="options_id", referencedColumnName="ID"))
+        joinColumns = @JoinColumn(name = "events_id", referencedColumnName = "ID"),
+        inverseJoinColumns = @JoinColumn(name = "options_id", referencedColumnName = "ID"))
     private Set<ExtraOption> options = new HashSet<>();
 
     public Long getId() {

@@ -28,6 +28,8 @@
                     $translatePartialLoader.addPart('customer');
                     $translatePartialLoader.addPart('event');
                     $translatePartialLoader.addPart('payment');
+                    $translatePartialLoader.addPart('paymentStatus');
+                    $translatePartialLoader.addPart('paymentType');
                     $translatePartialLoader.addPart('contract');
                     $translatePartialLoader.addPart('contractStatus');
                     return $translate.refresh();
