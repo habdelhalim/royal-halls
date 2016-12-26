@@ -8,7 +8,8 @@
     stateConfig.$inject = ['$stateProvider'];
 
     function stateConfig($stateProvider) {
-        $stateProvider.state('home', {
+        $stateProvider
+        .state('home', {
             parent: 'app',
             url: '/',
             data: {
@@ -34,8 +35,62 @@
                     $translatePartialLoader.addPart('contractStatus');
                     return $translate.refresh();
                 }],
-                entity: ['Contract', function(Contract) {
-                    return Contract.get({id : 1}).$promise;
+                entity: function () {
+                    return {
+                        contractDate: null,
+                        contractStatus: null,
+                        contractNotes: null,
+                        totalAmount: null,
+                        openAmount: null,
+                        creationDate: null,
+                        id: null
+                    };
+                }
+            }
+        })
+        .state('home.new', {
+            parent: 'app',
+            url: '/new',
+            data: {
+                authorities: ['ROLE_USER']
+            },
+            views: {
+                'content@': {
+                    templateUrl: 'app/home/home.html',
+                    controller: 'HomeController',
+                    controllerAs: 'vm'
+                }
+            },
+            resolve: {
+                entity: function () {
+                    return {
+                        contractDate: null,
+                        contractStatus: null,
+                        contractNotes: null,
+                        totalAmount: null,
+                        openAmount: null,
+                        creationDate: null,
+                        id: null
+                    };
+                }
+            }
+        })
+        .state('home.edit', {
+            parent: 'app',
+            url: '/edit/{id}',
+            data: {
+                authorities: []
+            },
+            views: {
+                'content@': {
+                    templateUrl: 'app/home/home.html',
+                    controller: 'HomeController',
+                    controllerAs: 'vm'
+                }
+            },
+            resolve: {
+                entity: ['$stateParams', 'Contract', function($stateParams, Contract) {
+                    return Contract.get({id : $stateParams.id}).$promise;
                 }]
             }
         });

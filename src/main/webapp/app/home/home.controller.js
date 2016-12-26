@@ -15,6 +15,7 @@
         vm.isAuthenticated = null;
         vm.login = LoginService.open;
         vm.register = register;
+        vm.createContract = createContract;
         $scope.$on('authenticationSuccess', function() {
             getAccount();
         });
@@ -29,6 +30,10 @@
         }
         function register () {
             $state.go('register');
+        }
+        function createContract(){
+            console.log('calling create contract');
+            $state.go('home.new');
         }
     }
 })();
