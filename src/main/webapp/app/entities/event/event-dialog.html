@@ -74,7 +74,7 @@
         </div>
         <div class="form-group">
             <label data-translate="royalhallsApp.event.contract" for="field_contract">Contract</label>
-            <select class="form-control" id="field_contract" name="contract" ng-model="vm.event.contract" ng-options="contract as contract.contractName for contract in vm.contracts track by contract.id">
+            <select class="form-control" id="field_contract" name="contract" ng-model="vm.event.contract" ng-options="contract as contract.id for contract in vm.contracts track by contract.id">
                 <option value=""></option>
             </select>
         </div>

@@ -44,9 +44,6 @@ import com.royal.app.domain.enumeration.ContractStatus;
 @SpringBootTest(classes = RoyalhallsApp.class)
 public class ContractResourceIntTest {
 
-    private static final String DEFAULT_CONTRACT_NAME = "AAAAAAAAAA";
-    private static final String UPDATED_CONTRACT_NAME = "BBBBBBBBBB";
-
     private static final ZonedDateTime DEFAULT_CONTRACT_DATE = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneOffset.UTC);
     private static final ZonedDateTime UPDATED_CONTRACT_DATE = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
 
@@ -102,7 +99,6 @@ public class ContractResourceIntTest {
      */
     public static Contract createEntity(EntityManager em) {
         Contract contract = new Contract()
-                .contractName(DEFAULT_CONTRACT_NAME)
                 .contractDate(DEFAULT_CONTRACT_DATE)
                 .contractStatus(DEFAULT_CONTRACT_STATUS)
                 .contractNotes(DEFAULT_CONTRACT_NOTES)
@@ -133,7 +129,6 @@ public class ContractResourceIntTest {
         List<Contract> contractList = contractRepository.findAll();
         assertThat(contractList).hasSize(databaseSizeBeforeCreate + 1);
         Contract testContract = contractList.get(contractList.size() - 1);
-        assertThat(testContract.getContractName()).isEqualTo(DEFAULT_CONTRACT_NAME);
         assertThat(testContract.getContractDate()).isEqualTo(DEFAULT_CONTRACT_DATE);
         assertThat(testContract.getContractStatus()).isEqualTo(DEFAULT_CONTRACT_STATUS);
         assertThat(testContract.getContractNotes()).isEqualTo(DEFAULT_CONTRACT_NOTES);
@@ -209,7 +204,6 @@ public class ContractResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(contract.getId().intValue())))
-            .andExpect(jsonPath("$.[*].contractName").value(hasItem(DEFAULT_CONTRACT_NAME.toString())))
             .andExpect(jsonPath("$.[*].contractDate").value(hasItem(sameInstant(DEFAULT_CONTRACT_DATE))))
             .andExpect(jsonPath("$.[*].contractStatus").value(hasItem(DEFAULT_CONTRACT_STATUS.toString())))
             .andExpect(jsonPath("$.[*].contractNotes").value(hasItem(DEFAULT_CONTRACT_NOTES.toString())))
@@ -229,7 +223,6 @@ public class ContractResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(contract.getId().intValue()))
-            .andExpect(jsonPath("$.contractName").value(DEFAULT_CONTRACT_NAME.toString()))
             .andExpect(jsonPath("$.contractDate").value(sameInstant(DEFAULT_CONTRACT_DATE)))
             .andExpect(jsonPath("$.contractStatus").value(DEFAULT_CONTRACT_STATUS.toString()))
             .andExpect(jsonPath("$.contractNotes").value(DEFAULT_CONTRACT_NOTES.toString()))
@@ -257,7 +250,6 @@ public class ContractResourceIntTest {
         // Update the contract
         Contract updatedContract = contractRepository.findOne(contract.getId());
         updatedContract
-                .contractName(UPDATED_CONTRACT_NAME)
                 .contractDate(UPDATED_CONTRACT_DATE)
                 .contractStatus(UPDATED_CONTRACT_STATUS)
                 .contractNotes(UPDATED_CONTRACT_NOTES)
@@ -274,7 +266,6 @@ public class ContractResourceIntTest {
         List<Contract> contractList = contractRepository.findAll();
         assertThat(contractList).hasSize(databaseSizeBeforeUpdate);
         Contract testContract = contractList.get(contractList.size() - 1);
-        assertThat(testContract.getContractName()).isEqualTo(UPDATED_CONTRACT_NAME);
         assertThat(testContract.getContractDate()).isEqualTo(UPDATED_CONTRACT_DATE);
         assertThat(testContract.getContractStatus()).isEqualTo(UPDATED_CONTRACT_STATUS);
         assertThat(testContract.getContractNotes()).isEqualTo(UPDATED_CONTRACT_NOTES);

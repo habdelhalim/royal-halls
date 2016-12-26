@@ -9,16 +9,18 @@
         },
         {
             "relationshipType": "one-to-many",
+            "relationshipName": "payment",
+            "otherEntityName": "payment",
+            "otherEntityRelationshipName": "contract"
+        },
+        {
+            "relationshipType": "one-to-many",
             "relationshipName": "event",
             "otherEntityName": "event",
             "otherEntityRelationshipName": "contract"
         }
     ],
     "fields": [
-        {
-            "fieldName": "contractName",
-            "fieldType": "String"
-        },
         {
             "fieldName": "contractDate",
             "fieldType": "ZonedDateTime",

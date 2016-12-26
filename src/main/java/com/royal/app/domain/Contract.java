@@ -28,9 +28,6 @@ public class Contract implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "contract_name")
-    private String contractName;
-
     @NotNull
     @Column(name = "contract_date", nullable = false)
     private ZonedDateTime contractDate;
@@ -58,6 +55,11 @@ public class Contract implements Serializable {
     @OneToMany(mappedBy = "contract")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<Payment> payments = new HashSet<>();
+
+    @OneToMany(mappedBy = "contract")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Event> events = new HashSet<>();
 
     public Long getId() {
@@ -66,19 +68,6 @@ public class Contract implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getContractName() {
-        return contractName;
-    }
-
-    public Contract contractName(String contractName) {
-        this.contractName = contractName;
-        return this;
-    }
-
-    public void setContractName(String contractName) {
-        this.contractName = contractName;
     }
 
     public ZonedDateTime getContractDate() {
@@ -172,6 +161,31 @@ public class Contract implements Serializable {
         this.customer = customer;
     }
 
+    public Set<Payment> getPayments() {
+        return payments;
+    }
+
+    public Contract payments(Set<Payment> payments) {
+        this.payments = payments;
+        return this;
+    }
+
+    public Contract addPayment(Payment payment) {
+        payments.add(payment);
+        payment.setContract(this);
+        return this;
+    }
+
+    public Contract removePayment(Payment payment) {
+        payments.remove(payment);
+        payment.setContract(null);
+        return this;
+    }
+
+    public void setPayments(Set<Payment> payments) {
+        this.payments = payments;
+    }
+
     public Set<Event> getEvents() {
         return events;
     }
@@ -221,7 +235,6 @@ public class Contract implements Serializable {
     public String toString() {
         return "Contract{" +
             "id=" + id +
-            ", contractName='" + contractName + "'" +
             ", contractDate='" + contractDate + "'" +
             ", contractStatus='" + contractStatus + "'" +
             ", contractNotes='" + contractNotes + "'" +

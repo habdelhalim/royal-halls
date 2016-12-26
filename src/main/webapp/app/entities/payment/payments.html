@@ -26,7 +26,7 @@
                     <th jh-sort-by="chequeNo"><span data-translate="royalhallsApp.payment.chequeNo">Cheque No</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="bankName"><span data-translate="royalhallsApp.payment.bankName">Bank Name</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="creationDate"><span data-translate="royalhallsApp.payment.creationDate">Creation Date</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="contract.contractName"><span data-translate="royalhallsApp.payment.contract">Contract</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="contract.id"><span data-translate="royalhallsApp.payment.contract">Contract</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
             </thead>
@@ -41,7 +41,7 @@
                     <td>{{payment.bankName}}</td>
                     <td>{{payment.creationDate | date:'medium'}}</td>
                     <td>
-                        <a ui-sref="contract-detail({id:payment.contract.id})">{{payment.contract.contractName}}</a>
+                        <a ui-sref="contract-detail({id:payment.contract.id})">{{payment.contract.id}}</a>
                     </td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">

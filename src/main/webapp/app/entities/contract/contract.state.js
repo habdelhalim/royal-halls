@@ -126,7 +126,6 @@
                     resolve: {
                         entity: function () {
                             return {
-                                contractName: null,
                                 contractDate: null,
                                 contractStatus: null,
                                 contractNotes: null,

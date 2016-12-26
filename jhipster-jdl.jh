@@ -41,7 +41,6 @@ BASIC, OPTIONAL
 }
 
 entity Contract {
-	contractName String,
 	contractDate ZonedDateTime required,
     contractStatus ContractStatus required,
     contractNotes String,
@@ -78,12 +77,12 @@ PENDING, PAID, CANCELLED, REFUNDED
 }
 
 relationship ManyToOne {
-	Payment{contract(contractName)} to Contract,
+	Payment{contract} to Contract{payment},
 	Contact{customer(customerName)} to Customer{contact(contactName)},
 	Contract{customer(customerName)} to Customer,
     Event{eventType(eventTypeName)} to EventType,
     Event{hall(hallName)} to Hall,
-    Event{contract(contractName)} to Contract{event(eventName)},
+    Event{contract} to Contract{event(eventName)},
     Hall{hallType(hallTypeName)} to HallType
 }
 

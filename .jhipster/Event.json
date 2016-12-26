@@ -17,7 +17,7 @@
             "relationshipType": "many-to-one",
             "relationshipName": "contract",
             "otherEntityName": "contract",
-            "otherEntityField": "contractName"
+            "otherEntityField": "id"
         },
         {
             "relationshipType": "many-to-many",

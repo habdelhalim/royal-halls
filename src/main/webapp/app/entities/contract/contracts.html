@@ -19,7 +19,6 @@
             <thead>
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
                     <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="contractName"><span data-translate="royalhallsApp.contract.contractName">Contract Name</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="contractDate"><span data-translate="royalhallsApp.contract.contractDate">Contract Date</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="contractStatus"><span data-translate="royalhallsApp.contract.contractStatus">Contract Status</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="contractNotes"><span data-translate="royalhallsApp.contract.contractNotes">Contract Notes</span> <span class="glyphicon glyphicon-sort"></span></th>
@@ -33,7 +32,6 @@
             <tbody>
                 <tr ng-repeat="contract in vm.contracts track by contract.id">
                     <td><a ui-sref="contract-detail({id:contract.id})">{{contract.id}}</a></td>
-                    <td>{{contract.contractName}}</td>
                     <td>{{contract.contractDate | date:'medium'}}</td>
                     <td data-translate="{{'royalhallsApp.ContractStatus.' + contract.contractStatus}}">{{contract.contractStatus}}</td>
                     <td>{{contract.contractNotes}}</td>
