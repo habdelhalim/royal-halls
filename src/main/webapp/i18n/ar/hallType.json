@@ -1,10 +1,23 @@
 {
     "royalhallsApp": {
-        "HallType" : {
-            "null": "",
-            "MAIN": "قاعة",
-            "ATTACHMENT": "ملحق",
-            "YARD": "ساحة"
+        "hallType" : {
+            "home": {
+                "title": "انواع القاعات",
+                "createLabel": "ادخال نوع قاعة",
+                "createOrEditLabel": "تعديل نوع قاعة",
+                "search": "بحث عن نوع"
+            },
+            "created": "A new Hall Type is created with identifier {{ param }}",
+            "updated": "A Hall Type is updated with identifier {{ param }}",
+            "deleted": "A Hall Type is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Hall Type {{ id }}?"
+            },
+            "detail": {
+                "title": "نوع القاعة"
+            },
+            "hallTypeName": "الاسم",
+            "description": "الوصف"
         }
     }
 }

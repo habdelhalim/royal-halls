@@ -3,8 +3,8 @@
         "eventType" : {
             "home": {
                 "title": "انواع الحجوزات",
-                "createLabel": "ادخال نوع",
-                "createOrEditLabel": "تعديل نوع",
+                "createLabel": "ادخال نوع حجز",
+                "createOrEditLabel": "تعديل نوع حجز",
                 "search": "بحث عن نوع"
             },
             "created": "A new Event Type is created with identifier {{ param }}",
