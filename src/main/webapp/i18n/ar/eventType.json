@@ -1,0 +1,23 @@
+{
+    "royalhallsApp": {
+        "eventType" : {
+            "home": {
+                "title": "انواع الحجوزات",
+                "createLabel": "ادخال نوع",
+                "createOrEditLabel": "تعديل نوع",
+                "search": "بحث عن نوع"
+            },
+            "created": "A new Event Type is created with identifier {{ param }}",
+            "updated": "A Event Type is updated with identifier {{ param }}",
+            "deleted": "A Event Type is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Event Type {{ id }}?"
+            },
+            "detail": {
+                "title": "نوع الحجز"
+            },
+            "eventTypeName": "الاسم",
+            "description": "الوصف"
+        }
+    }
+}

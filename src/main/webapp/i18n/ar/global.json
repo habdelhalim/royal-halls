@@ -14,7 +14,8 @@
                 "extraOption": "الخدمات",
                 "contract": "العقود",
                 "payment": "الدفعات",
-                "hallType": "نوع القاعة",
+                "hallType": "انواع القاعات",
+                "eventType": "انواع الحجوزات",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

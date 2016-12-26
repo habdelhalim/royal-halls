@@ -31,7 +31,19 @@
                     $translatePartialLoader.addPart('contract');
                     $translatePartialLoader.addPart('contractStatus');
                     return $translate.refresh();
-                }]
+                }],
+                entity: function () {
+                    return {
+                        contractName: null,
+                        contractDate: null,
+                        contractStatus: null,
+                        contractNotes: null,
+                        totalAmount: null,
+                        openAmount: null,
+                        creationDate: null,
+                        id: null
+                    };
+                }
             }
         });
     }

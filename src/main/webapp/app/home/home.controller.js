@@ -5,12 +5,13 @@
         .module('royalhallsApp')
         .controller('HomeController', HomeController);
 
-    HomeController.$inject = ['$scope', 'Principal', 'LoginService', '$state'];
+    HomeController.$inject = ['$scope', 'Principal', 'LoginService', '$state', 'entity'];
 
-    function HomeController ($scope, Principal, LoginService, $state) {
+    function HomeController ($scope, Principal, LoginService, $state, entity) {
         var vm = this;
 
         vm.account = null;
+        vm.contract = entity;
         vm.isAuthenticated = null;
         vm.login = LoginService.open;
         vm.register = register;
