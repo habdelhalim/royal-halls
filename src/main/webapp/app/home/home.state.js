@@ -93,6 +93,35 @@
                     return Contract.get({id : $stateParams.id}).$promise;
                 }]
             }
-        });
+        })
+        .state('home.search', {
+            parent: 'app',
+            url: '/search',
+            data: {
+                authorities: ['ROLE_USER']
+            },
+            onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
+                $uibModal.open({
+                    templateUrl: 'app/entities/contract/contract-search.html',
+                    controller: 'ContractSearchController',
+                    controllerAs: 'vm',
+                    backdrop: 'static',
+                    size: 'lg',
+                    resolve: {
+                        entity: function () {
+                            return {
+                                contractDate: null,
+                                contractStatus: null,
+                                contractNotes: null,
+                                totalAmount: null,
+                                openAmount: null,
+                                creationDate: null,
+                                id: null
+                            };
+                        }
+                    }
+                });
+            }]
+        }) ;
     }
 })();
