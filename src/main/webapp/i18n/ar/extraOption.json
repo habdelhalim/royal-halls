@@ -18,6 +18,7 @@
             },
             "optionName": "اسم الخدمة",
             "optionType": "نوع الخدمة",
+            "optionQty": "العدد",
             "price": "السعر"
         }
     }

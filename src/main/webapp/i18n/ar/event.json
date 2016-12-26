@@ -17,10 +17,9 @@
                 "title": "حجز"
             },
             "eventName": "اسم الحجز",
-            "groomName": "اسم العريس",
-            "prideName": "اسم العروس",
             "eventStartDate": "تاريخ الحجز",
             "eventEndDate": "حتى",
+            "eventType": "نوع الحجز",
             "hall": "القاعة",
             "contract": "العقد",
             "option": "التفاصيل"

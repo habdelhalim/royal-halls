@@ -17,9 +17,12 @@
                 "title": "دفعة"
             },
             "paymentType": "نوع الدفعة",
-            "paymentDate": "تاريخ الدفعة",
             "paymentAmount": "المبلغ",
+            "paymentDueDate": "تاريخ الدفعة",
             "paymentStatus": "حالة الدفعة",
+            "chequeNo": "رقم الشيك",
+            "bankName": "اسم البنك",
+            "creationDate": "تاريخ الانشاء",
             "contract": "العقد"
         }
     }
