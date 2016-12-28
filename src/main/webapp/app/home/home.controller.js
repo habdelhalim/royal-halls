@@ -5,9 +5,9 @@
         .module('royalhallsApp')
         .controller('HomeController', HomeController);
 
-    HomeController.$inject = ['$scope', 'Principal', 'LoginService', '$state', 'entity'];
+    HomeController.$inject = ['$scope', 'Principal', 'LoginService', '$state', 'entity', 'Contract'];
 
-    function HomeController ($scope, Principal, LoginService, $state, entity) {
+    function HomeController ($scope, Principal, LoginService, $state, entity, Contract) {
         var vm = this;
 
         vm.account = null;
@@ -17,6 +17,9 @@
         vm.register = register;
         vm.createContract = createContract;
         vm.searchContract = searchContract;
+        vm.save = save;
+
+        console.log(vm.contract);
 
         $scope.$on('authenticationSuccess', function() {
             getAccount();
@@ -34,10 +37,28 @@
             $state.go('register');
         }
         function createContract(){
-            $state.go('home.new');
+            $state.go('home');
         }
         function searchContract(){
             $state.go('home.search');
+        }
+
+        function save () {
+            vm.isSaving = true;
+            if (vm.contract.id !== null) {
+                Contract.update(vm.contract, onSaveSuccess, onSaveError);
+            } else {
+                Contract.save(vm.contract, onSaveSuccess, onSaveError);
+            }
+        }
+
+        function onSaveSuccess (result) {
+            $scope.$emit('royalhallsApp:contractUpdate', result);
+            vm.isSaving = false;
+        }
+
+        function onSaveError () {
+            vm.isSaving = false;
         }
     }
 })();

@@ -1,29 +1,32 @@
 package com.royal.app.service.impl;
 
-import com.royal.app.service.ContractService;
 import com.royal.app.domain.Contract;
 import com.royal.app.repository.ContractRepository;
+import com.royal.app.service.ContractService;
+import com.royal.app.service.CustomerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
-import java.util.List;
 
 /**
  * Service Implementation for managing Contract.
  */
 @Service
 @Transactional
-public class ContractServiceImpl implements ContractService{
+public class ContractServiceImpl implements ContractService {
 
     private final Logger log = LoggerFactory.getLogger(ContractServiceImpl.class);
 
     @Inject
     private ContractRepository contractRepository;
+
+    @Inject
+    private CustomerService customerService;
 
     /**
      * Save a contract.
@@ -33,6 +36,10 @@ public class ContractServiceImpl implements ContractService{
      */
     public Contract save(Contract contract) {
         log.debug("Request to save Contract : {}", contract);
+        if (contract.getCustomer() != null) {
+            customerService.save(contract.getCustomer());
+        }
+
         Contract result = contractRepository.save(contract);
         return result;
     }

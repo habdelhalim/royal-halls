@@ -37,51 +37,12 @@
                     }],
                     entity: function () {
                         return {
-                            contractDate: null,
-                            contractStatus: null,
+                            contractDate: new Date(),
+                            contractStatus: "CREATED",
                             contractNotes: null,
                             totalAmount: null,
                             openAmount: null,
-                            creationDate: null,
-                            id: null
-                        };
-                    }
-                }
-            })
-            .state('home.new', {
-                parent: 'app',
-                url: '/new',
-                data: {
-                    authorities: ['ROLE_USER']
-                },
-                views: {
-                    'content@': {
-                        templateUrl: 'app/home/home.html',
-                        controller: 'HomeController',
-                        controllerAs: 'vm'
-                    }
-                },
-                resolve: {
-                    mainTranslatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
-                        $translatePartialLoader.addPart('home');
-                        $translatePartialLoader.addPart('contact');
-                        $translatePartialLoader.addPart('customer');
-                        $translatePartialLoader.addPart('event');
-                        $translatePartialLoader.addPart('payment');
-                        $translatePartialLoader.addPart('paymentStatus');
-                        $translatePartialLoader.addPart('paymentType');
-                        $translatePartialLoader.addPart('contract');
-                        $translatePartialLoader.addPart('contractStatus');
-                        return $translate.refresh();
-                    }],
-                    entity: function () {
-                        return {
-                            contractDate: null,
-                            contractStatus: null,
-                            contractNotes: null,
-                            totalAmount: null,
-                            openAmount: null,
-                            creationDate: null,
+                            creationDate: new Date(),
                             id: null
                         };
                     }
