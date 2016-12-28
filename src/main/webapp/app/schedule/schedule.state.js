@@ -18,7 +18,7 @@
                 views: {
                     'content@': {
                         templateUrl: 'app/schedule/schedule.html',
-                        controller: 'HomeController',
+                        controller: 'ScheduleController',
                         controllerAs: 'vm'
                     }
                 },
@@ -34,18 +34,7 @@
                         $translatePartialLoader.addPart('contract');
                         $translatePartialLoader.addPart('contractStatus');
                         return $translate.refresh();
-                    }],
-                    entity: function () {
-                        return {
-                            contractDate: null,
-                            contractStatus: null,
-                            contractNotes: null,
-                            totalAmount: null,
-                            openAmount: null,
-                            creationDate: null,
-                            id: null
-                        };
-                    }
+                    }]
                 }
             });
     }
