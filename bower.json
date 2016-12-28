@@ -56,6 +56,13 @@
       "main": [
         "dist/css/bootstrap.css"
       ]
+    },
+    "fullcalendar": {
+      "main": [
+        "dist/fullcalendar.js",
+        "dist/fullcalendar.css",
+        "dist/lang/ar.js"
+      ]
     }
   },
   "resolutions": {
