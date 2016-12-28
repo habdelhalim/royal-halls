@@ -1,11 +1,11 @@
 {
     "login": {
-        "title": "Sign in",
+        "title": "تسجيل الدخول",
         "form": {
-            "password": "Password",
-            "password.placeholder": "Your password",
-            "rememberme": "Remember me",
-            "button": "Sign in"
+            "password": "كلمة المرور",
+            "password.placeholder": "كلمة المرور",
+            "rememberme": "تذكرنى",
+            "button": "تسجيل الدخول"
         },
         "messages": {
             "error": {
@@ -13,7 +13,7 @@
             }
         },
         "password" : {
-            "forgot": "Did you forget your password?"
+            "forgot": "هل نسيت كلمة المرور الخاصة بك؟"
         }
     }
 }

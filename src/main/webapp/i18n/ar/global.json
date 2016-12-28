@@ -29,8 +29,8 @@
                 "register": "تسجيل"
             },
             "admin": {
-                "main": "Administration",
-                "userManagement": "User management",
+                "main": "إدارة",
+                "userManagement": "إدارة المستخدم",
                 "tracker": "User tracker",
                 "metrics": "Metrics",
                 "health": "Health",
@@ -38,7 +38,7 @@
                 "logs": "Logs",
                 "audits": "Audits",
                 "apidocs": "API",
-                "database": "Database",
+                "database": "قاعدة البيانات",
                 "jhipster-needle-menu-add-admin-element": "JHipster will add additional menu entries here (do not translate!)"
             },
             "language": "اللغة"
@@ -66,7 +66,7 @@
                     "required": "Your password is required.",
                     "minlength": "Your password is required to be at least 4 characters.",
                     "maxlength": "Your password cannot be longer than 50 characters.",
-                    "strength": "Password strength:"
+                    "strength": "قوة كلمة المرور:"
                 },
                 "confirmpassword": {
                     "required": "Your confirmation password is required.",
