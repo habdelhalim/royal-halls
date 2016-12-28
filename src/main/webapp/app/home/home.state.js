@@ -129,7 +129,6 @@
                         templateUrl: 'app/entities/contract/contract-search.html',
                         controller: 'ContractSearchController',
                         controllerAs: 'vm',
-                        backdrop: 'static',
                         size: 'lg',
                         resolve: {
                             entity: function () {
@@ -144,6 +143,9 @@
                                 };
                             }
                         }
+                    }).result.then(function (selected) {
+                        $state.go('home.edit', {id: selected});
+                    }, function () {
                     });
                 }]
             });

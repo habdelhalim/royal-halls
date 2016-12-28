@@ -37,6 +37,7 @@
 
         vm.contract = entity;
         vm.clear = clear;
+        vm.select = select;
         vm.datePickerOpenStatus = {};
         vm.openCalendar = openCalendar;
         vm.save = save;
@@ -47,6 +48,10 @@
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();
         });
+
+        function select(item) {
+            $uibModalInstance.close(item);
+        }
 
         function clear () {
             $uibModalInstance.dismiss('cancel');
