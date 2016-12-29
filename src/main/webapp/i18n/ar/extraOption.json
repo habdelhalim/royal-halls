@@ -18,6 +18,8 @@
             },
             "optionName": "اسم الخدمة",
             "optionType": "نوع الخدمة",
+            "hasVariances": "يتوفر بعدة خيارات",
+            "hasColors": "يتوفر بعدة ألوان ",
             "optionQty": "العدد",
             "price": "السعر"
         }
