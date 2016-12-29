@@ -24,7 +24,8 @@
                     <th jh-sort-by="contractNotes"><span data-translate="royalhallsApp.contract.contractNotes">Contract Notes</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="totalAmount"><span data-translate="royalhallsApp.contract.totalAmount">Total Amount</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="openAmount"><span data-translate="royalhallsApp.contract.openAmount">Open Amount</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="creationDate"><span data-translate="royalhallsApp.contract.creationDate">Creation Date</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="createdDate"><span data-translate="royalhallsApp.contract.createdDate">Created Date</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="createdBy"><span data-translate="royalhallsApp.contract.createdBy">Created By</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="customer.customerName"><span data-translate="royalhallsApp.contract.customer">Customer</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
@@ -37,7 +38,8 @@
                     <td>{{contract.contractNotes}}</td>
                     <td>{{contract.totalAmount}}</td>
                     <td>{{contract.openAmount}}</td>
-                    <td>{{contract.creationDate | date:'medium'}}</td>
+                    <td>{{contract.createdDate | date:'medium'}}</td>
+                    <td>{{contract.createdBy}}</td>
                     <td>
                         <a ui-sref="customer-detail({id:contract.customer.id})">{{contract.customer.customerName}}</a>
                     </td>

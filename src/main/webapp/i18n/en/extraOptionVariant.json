@@ -1,0 +1,24 @@
+{
+    "royalhallsApp": {
+        "extraOptionVariant" : {
+            "home": {
+                "title": "Extra Option Variants",
+                "createLabel": "Create a new Extra Option Variant",
+                "createOrEditLabel": "Create or edit a Extra Option Variant",
+                "search": "Search for Extra Option Variant"
+            },
+            "created": "A new Extra Option Variant is created with identifier {{ param }}",
+            "updated": "A Extra Option Variant is updated with identifier {{ param }}",
+            "deleted": "A Extra Option Variant is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Extra Option Variant {{ id }}?"
+            },
+            "detail": {
+                "title": "Extra Option Variant"
+            },
+            "variantName": "Variant Name",
+            "price": "Price",
+            "option": "Option"
+        }
+    }
+}

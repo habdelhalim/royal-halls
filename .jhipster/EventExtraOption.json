@@ -1,0 +1,44 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "event",
+            "otherEntityName": "event",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "option",
+            "otherEntityName": "extraOption",
+            "otherEntityField": "optionName"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "variant",
+            "otherEntityName": "extraOptionVariant",
+            "otherEntityField": "variantName"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "color",
+            "otherEntityName": "extraOptionColor",
+            "otherEntityField": "colorName"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "optionQty",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "optionNotes",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20161229042140",
+    "entityTableName": "event_extra_option",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceImpl"
+}

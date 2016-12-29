@@ -16,6 +16,14 @@
         <dd>
             <span>{{vm.event.eventEndDate | date:'medium'}}</span>
         </dd>
+        <dt><span data-translate="royalhallsApp.event.createdDate">Created Date</span></dt>
+        <dd>
+            <span>{{vm.event.createdDate | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="royalhallsApp.event.createdBy">Created By</span></dt>
+        <dd>
+            <span>{{vm.event.createdBy}}</span>
+        </dd>
         <dt><span data-translate="royalhallsApp.event.eventType">Event Type</span></dt>
         <dd>
             <a ui-sref="event-type-detail({id:vm.event.eventType.id})">{{vm.event.eventType.eventTypeName}}</a>
@@ -27,12 +35,6 @@
         <dt><span data-translate="royalhallsApp.event.contract">Contract</span></dt>
         <dd>
             <a ui-sref="contract-detail({id:vm.event.contract.id})">{{vm.event.contract.id}}</a>
-        </dd>
-        <dt><span data-translate="royalhallsApp.event.option">Option</span></dt>
-        <dd>
-            <span ng-repeat="option in vm.event.options">
-                <a ui-sref="extra-option-detail({id: option.id})">{{option.optionName}}</a>{{$last ? '' : ', '}}
-            </span>
         </dd>
     </dl>
 

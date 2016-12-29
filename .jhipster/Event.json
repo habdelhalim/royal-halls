@@ -2,6 +2,12 @@
     "fluentMethods": true,
     "relationships": [
         {
+            "relationshipType": "one-to-many",
+            "relationshipName": "option",
+            "otherEntityName": "eventExtraOption",
+            "otherEntityRelationshipName": "event"
+        },
+        {
             "relationshipType": "many-to-one",
             "relationshipName": "eventType",
             "otherEntityName": "eventType",
@@ -18,14 +24,6 @@
             "relationshipName": "contract",
             "otherEntityName": "contract",
             "otherEntityField": "id"
-        },
-        {
-            "relationshipType": "many-to-many",
-            "otherEntityRelationshipName": "",
-            "relationshipName": "option",
-            "otherEntityName": "extraOption",
-            "otherEntityField": "optionName",
-            "ownerSide": true
         }
     ],
     "fields": [
@@ -46,6 +44,14 @@
             "fieldValidateRules": [
                 "required"
             ]
+        },
+        {
+            "fieldName": "createdDate",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "createdBy",
+            "fieldType": "String"
         }
     ],
     "changelogDate": "20161224235138",

@@ -59,7 +59,7 @@ public class EventServiceImpl implements EventService{
     @Transactional(readOnly = true) 
     public Event findOne(Long id) {
         log.debug("Request to get Event : {}", id);
-        Event event = eventRepository.findOneWithEagerRelationships(id);
+        Event event = eventRepository.findOne(id);
         return event;
     }
 

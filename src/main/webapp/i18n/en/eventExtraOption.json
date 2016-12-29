@@ -1,0 +1,27 @@
+{
+    "royalhallsApp": {
+        "eventExtraOption" : {
+            "home": {
+                "title": "Event Extra Options",
+                "createLabel": "Create a new Event Extra Option",
+                "createOrEditLabel": "Create or edit a Event Extra Option",
+                "search": "Search for Event Extra Option"
+            },
+            "created": "A new Event Extra Option is created with identifier {{ param }}",
+            "updated": "A Event Extra Option is updated with identifier {{ param }}",
+            "deleted": "A Event Extra Option is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Event Extra Option {{ id }}?"
+            },
+            "detail": {
+                "title": "Event Extra Option"
+            },
+            "optionQty": "Option Qty",
+            "optionNotes": "Option Notes",
+            "event": "Event",
+            "option": "Option",
+            "variant": "Variant",
+            "color": "Color"
+        }
+    }
+}

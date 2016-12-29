@@ -47,7 +47,7 @@
         }
 
         vm.datePickerOpenStatus.contractDate = false;
-        vm.datePickerOpenStatus.creationDate = false;
+        vm.datePickerOpenStatus.createdDate = false;
 
         function openCalendar (date) {
             vm.datePickerOpenStatus[date] = true;

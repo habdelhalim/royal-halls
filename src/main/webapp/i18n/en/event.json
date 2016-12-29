@@ -19,10 +19,12 @@
             "eventName": "Event Name",
             "eventStartDate": "Event Start Date",
             "eventEndDate": "Event End Date",
+            "createdDate": "Created Date",
+            "createdBy": "Created By",
+            "option": "Option",
             "eventType": "Event Type",
             "hall": "Hall",
-            "contract": "Contract",
-            "option": "Option"
+            "contract": "Contract"
         }
     }
 }

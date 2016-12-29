@@ -52,6 +52,12 @@ public class EventResourceIntTest {
     private static final ZonedDateTime DEFAULT_EVENT_END_DATE = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneOffset.UTC);
     private static final ZonedDateTime UPDATED_EVENT_END_DATE = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
 
+    private static final ZonedDateTime DEFAULT_CREATED_DATE = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneOffset.UTC);
+    private static final ZonedDateTime UPDATED_CREATED_DATE = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
+
+    private static final String DEFAULT_CREATED_BY = "AAAAAAAAAA";
+    private static final String UPDATED_CREATED_BY = "BBBBBBBBBB";
+
     @Inject
     private EventRepository eventRepository;
 
@@ -91,7 +97,9 @@ public class EventResourceIntTest {
         Event event = new Event()
                 .eventName(DEFAULT_EVENT_NAME)
                 .eventStartDate(DEFAULT_EVENT_START_DATE)
-                .eventEndDate(DEFAULT_EVENT_END_DATE);
+                .eventEndDate(DEFAULT_EVENT_END_DATE)
+                .createdDate(DEFAULT_CREATED_DATE)
+                .createdBy(DEFAULT_CREATED_BY);
         return event;
     }
 
@@ -119,6 +127,8 @@ public class EventResourceIntTest {
         assertThat(testEvent.getEventName()).isEqualTo(DEFAULT_EVENT_NAME);
         assertThat(testEvent.getEventStartDate()).isEqualTo(DEFAULT_EVENT_START_DATE);
         assertThat(testEvent.getEventEndDate()).isEqualTo(DEFAULT_EVENT_END_DATE);
+        assertThat(testEvent.getCreatedDate()).isEqualTo(DEFAULT_CREATED_DATE);
+        assertThat(testEvent.getCreatedBy()).isEqualTo(DEFAULT_CREATED_BY);
     }
 
     @Test
@@ -190,7 +200,9 @@ public class EventResourceIntTest {
             .andExpect(jsonPath("$.[*].id").value(hasItem(event.getId().intValue())))
             .andExpect(jsonPath("$.[*].eventName").value(hasItem(DEFAULT_EVENT_NAME.toString())))
             .andExpect(jsonPath("$.[*].eventStartDate").value(hasItem(sameInstant(DEFAULT_EVENT_START_DATE))))
-            .andExpect(jsonPath("$.[*].eventEndDate").value(hasItem(sameInstant(DEFAULT_EVENT_END_DATE))));
+            .andExpect(jsonPath("$.[*].eventEndDate").value(hasItem(sameInstant(DEFAULT_EVENT_END_DATE))))
+            .andExpect(jsonPath("$.[*].createdDate").value(hasItem(sameInstant(DEFAULT_CREATED_DATE))))
+            .andExpect(jsonPath("$.[*].createdBy").value(hasItem(DEFAULT_CREATED_BY.toString())));
     }
 
     @Test
@@ -206,7 +218,9 @@ public class EventResourceIntTest {
             .andExpect(jsonPath("$.id").value(event.getId().intValue()))
             .andExpect(jsonPath("$.eventName").value(DEFAULT_EVENT_NAME.toString()))
             .andExpect(jsonPath("$.eventStartDate").value(sameInstant(DEFAULT_EVENT_START_DATE)))
-            .andExpect(jsonPath("$.eventEndDate").value(sameInstant(DEFAULT_EVENT_END_DATE)));
+            .andExpect(jsonPath("$.eventEndDate").value(sameInstant(DEFAULT_EVENT_END_DATE)))
+            .andExpect(jsonPath("$.createdDate").value(sameInstant(DEFAULT_CREATED_DATE)))
+            .andExpect(jsonPath("$.createdBy").value(DEFAULT_CREATED_BY.toString()));
     }
 
     @Test
@@ -230,7 +244,9 @@ public class EventResourceIntTest {
         updatedEvent
                 .eventName(UPDATED_EVENT_NAME)
                 .eventStartDate(UPDATED_EVENT_START_DATE)
-                .eventEndDate(UPDATED_EVENT_END_DATE);
+                .eventEndDate(UPDATED_EVENT_END_DATE)
+                .createdDate(UPDATED_CREATED_DATE)
+                .createdBy(UPDATED_CREATED_BY);
 
         restEventMockMvc.perform(put("/api/events")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -244,6 +260,8 @@ public class EventResourceIntTest {
         assertThat(testEvent.getEventName()).isEqualTo(UPDATED_EVENT_NAME);
         assertThat(testEvent.getEventStartDate()).isEqualTo(UPDATED_EVENT_START_DATE);
         assertThat(testEvent.getEventEndDate()).isEqualTo(UPDATED_EVENT_END_DATE);
+        assertThat(testEvent.getCreatedDate()).isEqualTo(UPDATED_CREATED_DATE);
+        assertThat(testEvent.getCreatedBy()).isEqualTo(UPDATED_CREATED_BY);
     }
 
     @Test

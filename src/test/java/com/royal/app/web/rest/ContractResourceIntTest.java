@@ -59,8 +59,11 @@ public class ContractResourceIntTest {
     private static final Double DEFAULT_OPEN_AMOUNT = 1D;
     private static final Double UPDATED_OPEN_AMOUNT = 2D;
 
-    private static final ZonedDateTime DEFAULT_CREATION_DATE = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneOffset.UTC);
-    private static final ZonedDateTime UPDATED_CREATION_DATE = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
+    private static final ZonedDateTime DEFAULT_CREATED_DATE = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneOffset.UTC);
+    private static final ZonedDateTime UPDATED_CREATED_DATE = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
+
+    private static final String DEFAULT_CREATED_BY = "AAAAAAAAAA";
+    private static final String UPDATED_CREATED_BY = "BBBBBBBBBB";
 
     @Inject
     private ContractRepository contractRepository;
@@ -104,7 +107,8 @@ public class ContractResourceIntTest {
                 .contractNotes(DEFAULT_CONTRACT_NOTES)
                 .totalAmount(DEFAULT_TOTAL_AMOUNT)
                 .openAmount(DEFAULT_OPEN_AMOUNT)
-                .creationDate(DEFAULT_CREATION_DATE);
+                .createdDate(DEFAULT_CREATED_DATE)
+                .createdBy(DEFAULT_CREATED_BY);
         return contract;
     }
 
@@ -134,7 +138,8 @@ public class ContractResourceIntTest {
         assertThat(testContract.getContractNotes()).isEqualTo(DEFAULT_CONTRACT_NOTES);
         assertThat(testContract.getTotalAmount()).isEqualTo(DEFAULT_TOTAL_AMOUNT);
         assertThat(testContract.getOpenAmount()).isEqualTo(DEFAULT_OPEN_AMOUNT);
-        assertThat(testContract.getCreationDate()).isEqualTo(DEFAULT_CREATION_DATE);
+        assertThat(testContract.getCreatedDate()).isEqualTo(DEFAULT_CREATED_DATE);
+        assertThat(testContract.getCreatedBy()).isEqualTo(DEFAULT_CREATED_BY);
     }
 
     @Test
@@ -209,7 +214,8 @@ public class ContractResourceIntTest {
             .andExpect(jsonPath("$.[*].contractNotes").value(hasItem(DEFAULT_CONTRACT_NOTES.toString())))
             .andExpect(jsonPath("$.[*].totalAmount").value(hasItem(DEFAULT_TOTAL_AMOUNT.doubleValue())))
             .andExpect(jsonPath("$.[*].openAmount").value(hasItem(DEFAULT_OPEN_AMOUNT.doubleValue())))
-            .andExpect(jsonPath("$.[*].creationDate").value(hasItem(sameInstant(DEFAULT_CREATION_DATE))));
+            .andExpect(jsonPath("$.[*].createdDate").value(hasItem(sameInstant(DEFAULT_CREATED_DATE))))
+            .andExpect(jsonPath("$.[*].createdBy").value(hasItem(DEFAULT_CREATED_BY.toString())));
     }
 
     @Test
@@ -228,7 +234,8 @@ public class ContractResourceIntTest {
             .andExpect(jsonPath("$.contractNotes").value(DEFAULT_CONTRACT_NOTES.toString()))
             .andExpect(jsonPath("$.totalAmount").value(DEFAULT_TOTAL_AMOUNT.doubleValue()))
             .andExpect(jsonPath("$.openAmount").value(DEFAULT_OPEN_AMOUNT.doubleValue()))
-            .andExpect(jsonPath("$.creationDate").value(sameInstant(DEFAULT_CREATION_DATE)));
+            .andExpect(jsonPath("$.createdDate").value(sameInstant(DEFAULT_CREATED_DATE)))
+            .andExpect(jsonPath("$.createdBy").value(DEFAULT_CREATED_BY.toString()));
     }
 
     @Test
@@ -255,7 +262,8 @@ public class ContractResourceIntTest {
                 .contractNotes(UPDATED_CONTRACT_NOTES)
                 .totalAmount(UPDATED_TOTAL_AMOUNT)
                 .openAmount(UPDATED_OPEN_AMOUNT)
-                .creationDate(UPDATED_CREATION_DATE);
+                .createdDate(UPDATED_CREATED_DATE)
+                .createdBy(UPDATED_CREATED_BY);
 
         restContractMockMvc.perform(put("/api/contracts")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -271,7 +279,8 @@ public class ContractResourceIntTest {
         assertThat(testContract.getContractNotes()).isEqualTo(UPDATED_CONTRACT_NOTES);
         assertThat(testContract.getTotalAmount()).isEqualTo(UPDATED_TOTAL_AMOUNT);
         assertThat(testContract.getOpenAmount()).isEqualTo(UPDATED_OPEN_AMOUNT);
-        assertThat(testContract.getCreationDate()).isEqualTo(UPDATED_CREATION_DATE);
+        assertThat(testContract.getCreatedDate()).isEqualTo(UPDATED_CREATED_DATE);
+        assertThat(testContract.getCreatedBy()).isEqualTo(UPDATED_CREATED_BY);
     }
 
     @Test

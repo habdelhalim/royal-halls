@@ -1,0 +1,29 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "option",
+            "otherEntityName": "extraOption",
+            "otherEntityField": "optionName"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "variantName",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "price",
+            "fieldType": "Double"
+        }
+    ],
+    "changelogDate": "20161229042142",
+    "entityTableName": "extra_option_variant",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceImpl"
+}

@@ -18,6 +18,7 @@
                         data = angular.fromJson(data);
                         data.eventStartDate = DateUtils.convertDateTimeFromServer(data.eventStartDate);
                         data.eventEndDate = DateUtils.convertDateTimeFromServer(data.eventEndDate);
+                        data.createdDate = DateUtils.convertDateTimeFromServer(data.createdDate);
                     }
                     return data;
                 }

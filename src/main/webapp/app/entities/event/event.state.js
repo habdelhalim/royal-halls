@@ -127,6 +127,8 @@
                                 eventName: null,
                                 eventStartDate: null,
                                 eventEndDate: null,
+                                createdDate: null,
+                                createdBy: null,
                                 id: null
                             };
                         }

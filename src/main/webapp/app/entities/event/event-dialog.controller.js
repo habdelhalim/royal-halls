@@ -5,9 +5,9 @@
         .module('royalhallsApp')
         .controller('EventDialogController', EventDialogController);
 
-    EventDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Event', 'EventType', 'Hall', 'Contract', 'ExtraOption'];
+    EventDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Event', 'EventExtraOption', 'EventType', 'Hall', 'Contract'];
 
-    function EventDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Event, EventType, Hall, Contract, ExtraOption) {
+    function EventDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Event, EventExtraOption, EventType, Hall, Contract) {
         var vm = this;
 
         vm.event = entity;
@@ -15,10 +15,10 @@
         vm.datePickerOpenStatus = {};
         vm.openCalendar = openCalendar;
         vm.save = save;
+        vm.eventextraoptions = EventExtraOption.query();
         vm.eventtypes = EventType.query();
         vm.halls = Hall.query();
         vm.contracts = Contract.query();
-        vm.extraoptions = ExtraOption.query();
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();
@@ -49,6 +49,7 @@
 
         vm.datePickerOpenStatus.eventStartDate = false;
         vm.datePickerOpenStatus.eventEndDate = false;
+        vm.datePickerOpenStatus.createdDate = false;
 
         function openCalendar (date) {
             vm.datePickerOpenStatus[date] = true;

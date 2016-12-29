@@ -1,11 +1,14 @@
 package com.royal.app.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 import com.royal.app.domain.enumeration.OptionType;
@@ -32,11 +35,18 @@ public class ExtraOption implements Serializable {
     @Column(name = "option_type")
     private OptionType optionType;
 
-    @Column(name = "option_qty")
-    private Double optionQty;
-
     @Column(name = "price")
     private Double price;
+
+    @OneToMany(mappedBy = "option")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<ExtraOptionVariant> variants = new HashSet<>();
+
+    @OneToMany(mappedBy = "option")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<ExtraOptionColor> colors = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -72,19 +82,6 @@ public class ExtraOption implements Serializable {
         this.optionType = optionType;
     }
 
-    public Double getOptionQty() {
-        return optionQty;
-    }
-
-    public ExtraOption optionQty(Double optionQty) {
-        this.optionQty = optionQty;
-        return this;
-    }
-
-    public void setOptionQty(Double optionQty) {
-        this.optionQty = optionQty;
-    }
-
     public Double getPrice() {
         return price;
     }
@@ -96,6 +93,56 @@ public class ExtraOption implements Serializable {
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    public Set<ExtraOptionVariant> getVariants() {
+        return variants;
+    }
+
+    public ExtraOption variants(Set<ExtraOptionVariant> extraOptionVariants) {
+        this.variants = extraOptionVariants;
+        return this;
+    }
+
+    public ExtraOption addVariant(ExtraOptionVariant extraOptionVariant) {
+        variants.add(extraOptionVariant);
+        extraOptionVariant.setOption(this);
+        return this;
+    }
+
+    public ExtraOption removeVariant(ExtraOptionVariant extraOptionVariant) {
+        variants.remove(extraOptionVariant);
+        extraOptionVariant.setOption(null);
+        return this;
+    }
+
+    public void setVariants(Set<ExtraOptionVariant> extraOptionVariants) {
+        this.variants = extraOptionVariants;
+    }
+
+    public Set<ExtraOptionColor> getColors() {
+        return colors;
+    }
+
+    public ExtraOption colors(Set<ExtraOptionColor> extraOptionColors) {
+        this.colors = extraOptionColors;
+        return this;
+    }
+
+    public ExtraOption addColor(ExtraOptionColor extraOptionColor) {
+        colors.add(extraOptionColor);
+        extraOptionColor.setOption(this);
+        return this;
+    }
+
+    public ExtraOption removeColor(ExtraOptionColor extraOptionColor) {
+        colors.remove(extraOptionColor);
+        extraOptionColor.setOption(null);
+        return this;
+    }
+
+    public void setColors(Set<ExtraOptionColor> extraOptionColors) {
+        this.colors = extraOptionColors;
     }
 
     @Override
@@ -124,7 +171,6 @@ public class ExtraOption implements Serializable {
             "id=" + id +
             ", optionName='" + optionName + "'" +
             ", optionType='" + optionType + "'" +
-            ", optionQty='" + optionQty + "'" +
             ", price='" + price + "'" +
             '}';
     }

@@ -1,0 +1,25 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "option",
+            "otherEntityName": "extraOption",
+            "otherEntityField": "optionName"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "colorName",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20161229042143",
+    "entityTableName": "extra_option_color",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceImpl"
+}

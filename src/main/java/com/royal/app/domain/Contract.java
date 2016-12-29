@@ -1,17 +1,19 @@
 package com.royal.app.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.royal.app.domain.enumeration.ContractStatus;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.time.ZonedDateTime;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
+import java.util.Objects;
+
+import com.royal.app.domain.enumeration.ContractStatus;
 
 /**
  * A Contract.
@@ -45,8 +47,11 @@ public class Contract implements Serializable {
     @Column(name = "open_amount")
     private Double openAmount;
 
-    @Column(name = "creation_date")
-    private ZonedDateTime creationDate;
+    @Column(name = "created_date")
+    private ZonedDateTime createdDate;
+
+    @Column(name = "created_by")
+    private String createdBy;
 
     @ManyToOne
     private Customer customer;
@@ -132,17 +137,30 @@ public class Contract implements Serializable {
         this.openAmount = openAmount;
     }
 
-    public ZonedDateTime getCreationDate() {
-        return creationDate;
+    public ZonedDateTime getCreatedDate() {
+        return createdDate;
     }
 
-    public Contract creationDate(ZonedDateTime creationDate) {
-        this.creationDate = creationDate;
+    public Contract createdDate(ZonedDateTime createdDate) {
+        this.createdDate = createdDate;
         return this;
     }
 
-    public void setCreationDate(ZonedDateTime creationDate) {
-        this.creationDate = creationDate;
+    public void setCreatedDate(ZonedDateTime createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public Contract createdBy(String createdBy) {
+        this.createdBy = createdBy;
+        return this;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
     }
 
     public Customer getCustomer() {
@@ -237,7 +255,8 @@ public class Contract implements Serializable {
             ", contractNotes='" + contractNotes + "'" +
             ", totalAmount='" + totalAmount + "'" +
             ", openAmount='" + openAmount + "'" +
-            ", creationDate='" + creationDate + "'" +
+            ", createdDate='" + createdDate + "'" +
+            ", createdBy='" + createdBy + "'" +
             '}';
     }
 }

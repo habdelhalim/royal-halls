@@ -30,6 +30,18 @@
         {
             "fieldName": "country",
             "fieldType": "String"
+        },
+        {
+            "fieldName": "mobile",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "telephone",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "nationality",
+            "fieldType": "String"
         }
     ],
     "changelogDate": "20161224235136",

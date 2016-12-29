@@ -5,9 +5,9 @@
         .module('royalhallsApp')
         .controller('ExtraOptionDetailController', ExtraOptionDetailController);
 
-    ExtraOptionDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'ExtraOption'];
+    ExtraOptionDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'ExtraOption', 'ExtraOptionVariant', 'ExtraOptionColor'];
 
-    function ExtraOptionDetailController($scope, $rootScope, $stateParams, previousState, entity, ExtraOption) {
+    function ExtraOptionDetailController($scope, $rootScope, $stateParams, previousState, entity, ExtraOption, ExtraOptionVariant, ExtraOptionColor) {
         var vm = this;
 
         vm.extraOption = entity;

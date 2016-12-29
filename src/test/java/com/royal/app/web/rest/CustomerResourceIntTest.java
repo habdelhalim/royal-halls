@@ -50,6 +50,15 @@ public class CustomerResourceIntTest {
     private static final String DEFAULT_COUNTRY = "AAAAAAAAAA";
     private static final String UPDATED_COUNTRY = "BBBBBBBBBB";
 
+    private static final String DEFAULT_MOBILE = "AAAAAAAAAA";
+    private static final String UPDATED_MOBILE = "BBBBBBBBBB";
+
+    private static final String DEFAULT_TELEPHONE = "AAAAAAAAAA";
+    private static final String UPDATED_TELEPHONE = "BBBBBBBBBB";
+
+    private static final String DEFAULT_NATIONALITY = "AAAAAAAAAA";
+    private static final String UPDATED_NATIONALITY = "BBBBBBBBBB";
+
     @Inject
     private CustomerRepository customerRepository;
 
@@ -90,7 +99,10 @@ public class CustomerResourceIntTest {
                 .customerName(DEFAULT_CUSTOMER_NAME)
                 .identityId(DEFAULT_IDENTITY_ID)
                 .city(DEFAULT_CITY)
-                .country(DEFAULT_COUNTRY);
+                .country(DEFAULT_COUNTRY)
+                .mobile(DEFAULT_MOBILE)
+                .telephone(DEFAULT_TELEPHONE)
+                .nationality(DEFAULT_NATIONALITY);
         return customer;
     }
 
@@ -119,6 +131,9 @@ public class CustomerResourceIntTest {
         assertThat(testCustomer.getIdentityId()).isEqualTo(DEFAULT_IDENTITY_ID);
         assertThat(testCustomer.getCity()).isEqualTo(DEFAULT_CITY);
         assertThat(testCustomer.getCountry()).isEqualTo(DEFAULT_COUNTRY);
+        assertThat(testCustomer.getMobile()).isEqualTo(DEFAULT_MOBILE);
+        assertThat(testCustomer.getTelephone()).isEqualTo(DEFAULT_TELEPHONE);
+        assertThat(testCustomer.getNationality()).isEqualTo(DEFAULT_NATIONALITY);
     }
 
     @Test
@@ -191,7 +206,10 @@ public class CustomerResourceIntTest {
             .andExpect(jsonPath("$.[*].customerName").value(hasItem(DEFAULT_CUSTOMER_NAME.toString())))
             .andExpect(jsonPath("$.[*].identityId").value(hasItem(DEFAULT_IDENTITY_ID.toString())))
             .andExpect(jsonPath("$.[*].city").value(hasItem(DEFAULT_CITY.toString())))
-            .andExpect(jsonPath("$.[*].country").value(hasItem(DEFAULT_COUNTRY.toString())));
+            .andExpect(jsonPath("$.[*].country").value(hasItem(DEFAULT_COUNTRY.toString())))
+            .andExpect(jsonPath("$.[*].mobile").value(hasItem(DEFAULT_MOBILE.toString())))
+            .andExpect(jsonPath("$.[*].telephone").value(hasItem(DEFAULT_TELEPHONE.toString())))
+            .andExpect(jsonPath("$.[*].nationality").value(hasItem(DEFAULT_NATIONALITY.toString())));
     }
 
     @Test
@@ -208,7 +226,10 @@ public class CustomerResourceIntTest {
             .andExpect(jsonPath("$.customerName").value(DEFAULT_CUSTOMER_NAME.toString()))
             .andExpect(jsonPath("$.identityId").value(DEFAULT_IDENTITY_ID.toString()))
             .andExpect(jsonPath("$.city").value(DEFAULT_CITY.toString()))
-            .andExpect(jsonPath("$.country").value(DEFAULT_COUNTRY.toString()));
+            .andExpect(jsonPath("$.country").value(DEFAULT_COUNTRY.toString()))
+            .andExpect(jsonPath("$.mobile").value(DEFAULT_MOBILE.toString()))
+            .andExpect(jsonPath("$.telephone").value(DEFAULT_TELEPHONE.toString()))
+            .andExpect(jsonPath("$.nationality").value(DEFAULT_NATIONALITY.toString()));
     }
 
     @Test
@@ -233,7 +254,10 @@ public class CustomerResourceIntTest {
                 .customerName(UPDATED_CUSTOMER_NAME)
                 .identityId(UPDATED_IDENTITY_ID)
                 .city(UPDATED_CITY)
-                .country(UPDATED_COUNTRY);
+                .country(UPDATED_COUNTRY)
+                .mobile(UPDATED_MOBILE)
+                .telephone(UPDATED_TELEPHONE)
+                .nationality(UPDATED_NATIONALITY);
 
         restCustomerMockMvc.perform(put("/api/customers")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -248,6 +272,9 @@ public class CustomerResourceIntTest {
         assertThat(testCustomer.getIdentityId()).isEqualTo(UPDATED_IDENTITY_ID);
         assertThat(testCustomer.getCity()).isEqualTo(UPDATED_CITY);
         assertThat(testCustomer.getCountry()).isEqualTo(UPDATED_COUNTRY);
+        assertThat(testCustomer.getMobile()).isEqualTo(UPDATED_MOBILE);
+        assertThat(testCustomer.getTelephone()).isEqualTo(UPDATED_TELEPHONE);
+        assertThat(testCustomer.getNationality()).isEqualTo(UPDATED_NATIONALITY);
     }
 
     @Test

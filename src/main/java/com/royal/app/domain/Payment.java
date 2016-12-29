@@ -1,16 +1,18 @@
 package com.royal.app.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.royal.app.domain.enumeration.PaymentStatus;
-import com.royal.app.domain.enumeration.PaymentType;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.time.ZonedDateTime;
 import java.util.Objects;
+
+import com.royal.app.domain.enumeration.PaymentType;
+
+import com.royal.app.domain.enumeration.PaymentStatus;
 
 /**
  * A Payment.

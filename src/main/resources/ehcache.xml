@@ -46,5 +46,15 @@
 
     <cache alias="com.royal.app.domain.Contract.payments" uses-template="simple"/>
 
+    <cache alias="com.royal.app.domain.ExtraOption.variants" uses-template="simple"/>
+
+    <cache alias="com.royal.app.domain.ExtraOption.colors" uses-template="simple"/>
+
+    <cache alias="com.royal.app.domain.EventExtraOption" uses-template="simple"/>
+
+    <cache alias="com.royal.app.domain.ExtraOptionVariant" uses-template="simple"/>
+
+    <cache alias="com.royal.app.domain.ExtraOptionColor" uses-template="simple"/>
+
     <!-- jhipster-needle-ehcache-add-entry -->
 </config>

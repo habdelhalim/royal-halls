@@ -4,7 +4,7 @@ describe('Controller Tests', function() {
 
     describe('ExtraOption Management Detail Controller', function() {
         var $scope, $rootScope;
-        var MockEntity, MockPreviousState, MockExtraOption;
+        var MockEntity, MockPreviousState, MockExtraOption, MockExtraOptionVariant, MockExtraOptionColor;
         var createController;
 
         beforeEach(inject(function($injector) {
@@ -13,6 +13,8 @@ describe('Controller Tests', function() {
             MockEntity = jasmine.createSpy('MockEntity');
             MockPreviousState = jasmine.createSpy('MockPreviousState');
             MockExtraOption = jasmine.createSpy('MockExtraOption');
+            MockExtraOptionVariant = jasmine.createSpy('MockExtraOptionVariant');
+            MockExtraOptionColor = jasmine.createSpy('MockExtraOptionColor');
             
 
             var locals = {
@@ -20,7 +22,9 @@ describe('Controller Tests', function() {
                 '$rootScope': $rootScope,
                 'entity': MockEntity,
                 'previousState': MockPreviousState,
-                'ExtraOption': MockExtraOption
+                'ExtraOption': MockExtraOption,
+                'ExtraOptionVariant': MockExtraOptionVariant,
+                'ExtraOptionColor': MockExtraOptionColor
             };
             createController = function() {
                 $injector.get('$controller')("ExtraOptionDetailController", locals);

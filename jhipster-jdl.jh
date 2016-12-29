@@ -14,7 +14,10 @@ entity Customer {
 	customerName String required,
     identityId String required,
     city String,
-    country String
+    country String,
+    mobile String, 
+    telephone String,
+    nationality String
 }
 
 entity Contact {
@@ -26,14 +29,29 @@ entity Contact {
 entity Event {
 	eventName String,
     eventStartDate ZonedDateTime required,
-    eventEndDate ZonedDateTime required
+    eventEndDate ZonedDateTime required,
+    createdDate ZonedDateTime,
+    createdBy String
+}
+
+entity EventExtraOption {
+    optionQty Double,
+    optionNotes String
 }
 
 entity ExtraOption{
 	optionName String required,
     optionType OptionType,
-    optionQty Double,
     price Double
+}
+
+entity ExtraOptionVariant{
+	variantName String required,
+    price Double
+}
+
+entity ExtraOptionColor{
+	colorName String required,
 }
 
 enum OptionType {
@@ -46,7 +64,8 @@ entity Contract {
     contractNotes String,
     totalAmount Double,
     openAmount Double,
-    creationDate ZonedDateTime
+    createdDate ZonedDateTime,
+    createdBy String
 }
 
 entity EventType {
@@ -83,12 +102,18 @@ relationship ManyToOne {
     Event{eventType(eventTypeName)} to EventType,
     Event{hall(hallName)} to Hall,
     Event{contract} to Contract{event(eventName)},
-    Hall{hallType(hallTypeName)} to HallType
+    Hall{hallType(hallTypeName)} to HallType,
+    EventExtraOption{option(optionName)} to ExtraOption,
+    EventExtraOption{variant(variantName)} to ExtraOptionVariant,
+    EventExtraOption{color(colorName)} to ExtraOptionColor
 }
 
-relationship ManyToMany {
-	Event{option(optionName)} to ExtraOption
+relationship OneToMany {
+	Event{option} to EventExtraOption,
+    ExtraOption{variant(variantName)} to ExtraOptionVariant{option(optionName)},
+    ExtraOption{color(colorName)} to ExtraOptionColor{option(optionName)}
 }
+
 
 // Set pagination options
 paginate all with pagination

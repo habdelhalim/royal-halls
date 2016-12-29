@@ -128,6 +128,9 @@
                                 identityId: null,
                                 city: null,
                                 country: null,
+                                mobile: null,
+                                telephone: null,
+                                nationality: null,
                                 id: null
                             };
                         }

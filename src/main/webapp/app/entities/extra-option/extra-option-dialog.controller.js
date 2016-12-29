@@ -5,14 +5,16 @@
         .module('royalhallsApp')
         .controller('ExtraOptionDialogController', ExtraOptionDialogController);
 
-    ExtraOptionDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'ExtraOption'];
+    ExtraOptionDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'ExtraOption', 'ExtraOptionVariant', 'ExtraOptionColor'];
 
-    function ExtraOptionDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, ExtraOption) {
+    function ExtraOptionDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, ExtraOption, ExtraOptionVariant, ExtraOptionColor) {
         var vm = this;
 
         vm.extraOption = entity;
         vm.clear = clear;
         vm.save = save;
+        vm.extraoptionvariants = ExtraOptionVariant.query();
+        vm.extraoptioncolors = ExtraOptionColor.query();
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();

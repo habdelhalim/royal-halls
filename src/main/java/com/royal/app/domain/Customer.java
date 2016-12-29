@@ -39,6 +39,15 @@ public class Customer implements Serializable {
     @Column(name = "country")
     private String country;
 
+    @Column(name = "mobile")
+    private String mobile;
+
+    @Column(name = "telephone")
+    private String telephone;
+
+    @Column(name = "nationality")
+    private String nationality;
+
     @OneToMany(mappedBy = "customer")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -104,6 +113,45 @@ public class Customer implements Serializable {
         this.country = country;
     }
 
+    public String getMobile() {
+        return mobile;
+    }
+
+    public Customer mobile(String mobile) {
+        this.mobile = mobile;
+        return this;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public Customer telephone(String telephone) {
+        this.telephone = telephone;
+        return this;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
+    }
+
+    public String getNationality() {
+        return nationality;
+    }
+
+    public Customer nationality(String nationality) {
+        this.nationality = nationality;
+        return this;
+    }
+
+    public void setNationality(String nationality) {
+        this.nationality = nationality;
+    }
+
     public Set<Contact> getContacts() {
         return contacts;
     }
@@ -157,6 +205,9 @@ public class Customer implements Serializable {
             ", identityId='" + identityId + "'" +
             ", city='" + city + "'" +
             ", country='" + country + "'" +
+            ", mobile='" + mobile + "'" +
+            ", telephone='" + telephone + "'" +
+            ", nationality='" + nationality + "'" +
             '}';
     }
 }

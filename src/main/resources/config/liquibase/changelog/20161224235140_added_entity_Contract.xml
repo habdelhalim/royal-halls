@@ -44,7 +44,11 @@
                 <constraints nullable="true" />
             </column>
             
-            <column name="creation_date" type="timestamp">
+            <column name="created_date" type="timestamp">
+                <constraints nullable="true" />
+            </column>
+            
+            <column name="created_by" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
             
@@ -55,7 +59,7 @@
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
         <dropDefaultValue tableName="contract" columnName="contract_date" columnDataType="datetime"/>
-        <dropDefaultValue tableName="contract" columnName="creation_date" columnDataType="datetime"/>
+        <dropDefaultValue tableName="contract" columnName="created_date" columnDataType="datetime"/>
         
     </changeSet>
 </databaseChangeLog>

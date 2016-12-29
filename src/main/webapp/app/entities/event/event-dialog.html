@@ -59,6 +59,22 @@
                 </p>
             </div>
         </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="royalhallsApp.event.createdDate" for="field_createdDate">Created Date</label>
+                <div class="input-group">
+                    <input id="field_createdDate" type="text" class="form-control" name="createdDate" datetime-picker="{{dateformat}}" ng-model="vm.event.createdDate" is-open="vm.datePickerOpenStatus.createdDate"
+                      />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('createdDate')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="royalhallsApp.event.createdBy" for="field_createdBy">Created By</label>
+            <input type="text" class="form-control" name="createdBy" id="field_createdBy"
+                    ng-model="vm.event.createdBy"
+                     />
+        </div>
 
         <div class="form-group">
             <label data-translate="royalhallsApp.event.eventType" for="field_eventType">Event Type</label>
@@ -77,10 +93,6 @@
             <select class="form-control" id="field_contract" name="contract" ng-model="vm.event.contract" ng-options="contract as contract.id for contract in vm.contracts track by contract.id">
                 <option value=""></option>
             </select>
-        </div>
-        <div class="form-group">
-            <label data-translate="royalhallsApp.event.option" for="field_option">Option</label>
-            <select class="form-control" id="field_option" multiple name="option" ng-model="vm.event.options" ng-options="extraOption as extraOption.optionName for extraOption in vm.extraoptions track by extraOption.id"></select>
         </div>
     </div>
     <div class="modal-footer">

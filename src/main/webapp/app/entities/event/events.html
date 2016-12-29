@@ -22,6 +22,8 @@
                     <th jh-sort-by="eventName"><span data-translate="royalhallsApp.event.eventName">Event Name</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="eventStartDate"><span data-translate="royalhallsApp.event.eventStartDate">Event Start Date</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="eventEndDate"><span data-translate="royalhallsApp.event.eventEndDate">Event End Date</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="createdDate"><span data-translate="royalhallsApp.event.createdDate">Created Date</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="createdBy"><span data-translate="royalhallsApp.event.createdBy">Created By</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="eventType.eventTypeName"><span data-translate="royalhallsApp.event.eventType">Event Type</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="hall.hallName"><span data-translate="royalhallsApp.event.hall">Hall</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="contract.id"><span data-translate="royalhallsApp.event.contract">Contract</span> <span class="glyphicon glyphicon-sort"></span></th>
@@ -34,6 +36,8 @@
                     <td>{{event.eventName}}</td>
                     <td>{{event.eventStartDate | date:'medium'}}</td>
                     <td>{{event.eventEndDate | date:'medium'}}</td>
+                    <td>{{event.createdDate | date:'medium'}}</td>
+                    <td>{{event.createdBy}}</td>
                     <td>
                         <a ui-sref="event-type-detail({id:event.eventType.id})">{{event.eventType.eventTypeName}}</a>
                     </td>

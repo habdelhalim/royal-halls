@@ -131,7 +131,8 @@
                                 contractNotes: null,
                                 totalAmount: null,
                                 openAmount: null,
-                                creationDate: null,
+                                createdDate: null,
+                                createdBy: null,
                                 id: null
                             };
                         }

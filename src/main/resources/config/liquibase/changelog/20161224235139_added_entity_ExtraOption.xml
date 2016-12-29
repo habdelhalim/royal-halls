@@ -32,10 +32,6 @@
                 <constraints nullable="true" />
             </column>
             
-            <column name="option_qty" type="double">
-                <constraints nullable="true" />
-            </column>
-            
             <column name="price" type="double">
                 <constraints nullable="true" />
             </column>

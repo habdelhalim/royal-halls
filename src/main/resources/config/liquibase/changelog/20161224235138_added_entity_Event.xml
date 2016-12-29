@@ -36,6 +36,14 @@
                 <constraints nullable="false" />
             </column>
             
+            <column name="created_date" type="timestamp">
+                <constraints nullable="true" />
+            </column>
+            
+            <column name="created_by" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            
             <column name="event_type_id" type="bigint">
                 <constraints nullable="true" />
             </column>
@@ -52,17 +60,7 @@
         </createTable>
         <dropDefaultValue tableName="event" columnName="event_start_date" columnDataType="datetime"/>
         <dropDefaultValue tableName="event" columnName="event_end_date" columnDataType="datetime"/>
-        
-        <createTable tableName="event_option">
-            <column name="options_id" type="bigint">
-                <constraints nullable="false"/>
-            </column>
-            <column name="events_id" type="bigint">
-                <constraints nullable="false"/>
-            </column>
-        </createTable>
-
-        <addPrimaryKey columnNames="events_id, options_id" tableName="event_option"/>
+        <dropDefaultValue tableName="event" columnName="created_date" columnDataType="datetime"/>
         
     </changeSet>
 </databaseChangeLog>

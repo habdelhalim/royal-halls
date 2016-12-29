@@ -21,7 +21,8 @@
             "contractNotes": "Contract Notes",
             "totalAmount": "Total Amount",
             "openAmount": "Open Amount",
-            "creationDate": "Creation Date",
+            "createdDate": "Created Date",
+            "createdBy": "Created By",
             "customer": "Customer",
             "payment": "Payment",
             "event": "Event"

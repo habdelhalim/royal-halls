@@ -49,8 +49,12 @@
             "fieldType": "Double"
         },
         {
-            "fieldName": "creationDate",
+            "fieldName": "createdDate",
             "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "createdBy",
+            "fieldType": "String"
         }
     ],
     "changelogDate": "20161224235140",

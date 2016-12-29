@@ -17,6 +17,9 @@
                 "payment": "Payment",
                 "hallType": "Hall Type",
                 "eventType": "Event Type",
+                "eventExtraOption": "Event Extra Option",
+                "extraOptionVariant": "Extra Option Variant",
+                "extraOptionColor": "Extra Option Color",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

@@ -26,16 +26,5 @@
                                  referencedColumnNames="id"
                                  referencedTableName="contract"/>
 
-        <addForeignKeyConstraint baseColumnNames="events_id"
-                                 baseTableName="event_option"
-                                 constraintName="fk_event_option_events_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="event"/>
-        <addForeignKeyConstraint baseColumnNames="options_id"
-                                 baseTableName="event_option"
-                                 constraintName="fk_event_option_options_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="extra_option"/>
-        
     </changeSet>
 </databaseChangeLog>

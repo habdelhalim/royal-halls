@@ -1,16 +1,17 @@
 package com.royal.app.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.time.ZonedDateTime;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
+import java.util.Objects;
 
 /**
  * A Event.
@@ -37,6 +38,17 @@ public class Event implements Serializable {
     @Column(name = "event_end_date", nullable = false)
     private ZonedDateTime eventEndDate;
 
+    @Column(name = "created_date")
+    private ZonedDateTime createdDate;
+
+    @Column(name = "created_by")
+    private String createdBy;
+
+    @OneToMany(mappedBy = "event")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<EventExtraOption> options = new HashSet<>();
+
     @ManyToOne
     private EventType eventType;
 
@@ -46,13 +58,6 @@ public class Event implements Serializable {
     @ManyToOne
     @JsonBackReference
     private Contract contract;
-
-    @ManyToMany
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    @JoinTable(name = "event_option",
-        joinColumns = @JoinColumn(name = "events_id", referencedColumnName = "ID"),
-        inverseJoinColumns = @JoinColumn(name = "options_id", referencedColumnName = "ID"))
-    private Set<ExtraOption> options = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -101,6 +106,57 @@ public class Event implements Serializable {
         this.eventEndDate = eventEndDate;
     }
 
+    public ZonedDateTime getCreatedDate() {
+        return createdDate;
+    }
+
+    public Event createdDate(ZonedDateTime createdDate) {
+        this.createdDate = createdDate;
+        return this;
+    }
+
+    public void setCreatedDate(ZonedDateTime createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public Event createdBy(String createdBy) {
+        this.createdBy = createdBy;
+        return this;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public Set<EventExtraOption> getOptions() {
+        return options;
+    }
+
+    public Event options(Set<EventExtraOption> eventExtraOptions) {
+        this.options = eventExtraOptions;
+        return this;
+    }
+
+    public Event addOption(EventExtraOption eventExtraOption) {
+        options.add(eventExtraOption);
+        eventExtraOption.setEvent(this);
+        return this;
+    }
+
+    public Event removeOption(EventExtraOption eventExtraOption) {
+        options.remove(eventExtraOption);
+        eventExtraOption.setEvent(null);
+        return this;
+    }
+
+    public void setOptions(Set<EventExtraOption> eventExtraOptions) {
+        this.options = eventExtraOptions;
+    }
+
     public EventType getEventType() {
         return eventType;
     }
@@ -140,29 +196,6 @@ public class Event implements Serializable {
         this.contract = contract;
     }
 
-    public Set<ExtraOption> getOptions() {
-        return options;
-    }
-
-    public Event options(Set<ExtraOption> extraOptions) {
-        this.options = extraOptions;
-        return this;
-    }
-
-    public Event addOption(ExtraOption extraOption) {
-        options.add(extraOption);
-        return this;
-    }
-
-    public Event removeOption(ExtraOption extraOption) {
-        options.remove(extraOption);
-        return this;
-    }
-
-    public void setOptions(Set<ExtraOption> extraOptions) {
-        this.options = extraOptions;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -190,6 +223,8 @@ public class Event implements Serializable {
             ", eventName='" + eventName + "'" +
             ", eventStartDate='" + eventStartDate + "'" +
             ", eventEndDate='" + eventEndDate + "'" +
+            ", createdDate='" + createdDate + "'" +
+            ", createdBy='" + createdBy + "'" +
             '}';
     }
 }

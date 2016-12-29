@@ -1,0 +1,23 @@
+{
+    "royalhallsApp": {
+        "extraOptionColor" : {
+            "home": {
+                "title": "Extra Option Colors",
+                "createLabel": "Create a new Extra Option Color",
+                "createOrEditLabel": "Create or edit a Extra Option Color",
+                "search": "Search for Extra Option Color"
+            },
+            "created": "A new Extra Option Color is created with identifier {{ param }}",
+            "updated": "A Extra Option Color is updated with identifier {{ param }}",
+            "deleted": "A Extra Option Color is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Extra Option Color {{ id }}?"
+            },
+            "detail": {
+                "title": "Extra Option Color"
+            },
+            "colorName": "Color Name",
+            "option": "Option"
+        }
+    }
+}

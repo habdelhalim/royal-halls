@@ -1,6 +1,19 @@
 {
     "fluentMethods": true,
-    "relationships": [],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "variant",
+            "otherEntityName": "extraOptionVariant",
+            "otherEntityRelationshipName": "option"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "color",
+            "otherEntityName": "extraOptionColor",
+            "otherEntityRelationshipName": "option"
+        }
+    ],
     "fields": [
         {
             "fieldName": "optionName",
@@ -13,10 +26,6 @@
             "fieldName": "optionType",
             "fieldType": "OptionType",
             "fieldValues": "BASIC,OPTIONAL"
-        },
-        {
-            "fieldName": "optionQty",
-            "fieldType": "Double"
         },
         {
             "fieldName": "price",

@@ -20,6 +20,9 @@
             "identityId": "Identity Id",
             "city": "City",
             "country": "Country",
+            "mobile": "Mobile",
+            "telephone": "Telephone",
+            "nationality": "Nationality",
             "contact": "Contact"
         }
     }
