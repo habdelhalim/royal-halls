@@ -144,6 +144,55 @@
                     });
                 }]
             })
+            .state('home.edit.event-edit', {
+                parent: 'home.edit',
+                url: '/event/update/{eventId}',
+                data: {
+                    authorities: ['ROLE_USER']
+                },
+                onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
+                    $uibModal.open({
+                        templateUrl: 'app/entities/event/event-dialog.html',
+                        controller: 'EventDialogController',
+                        controllerAs: 'vm',
+                        backdrop: 'static',
+                        size: 'lg',
+                        resolve: {
+                            entity: ['Event', function(Event) {
+                                return Event.get({id : $stateParams.eventId}).$promise;
+                            }]
+                        }
+                    }).result.then(function() {
+                        $state.go('home.edit', {id: $stateParams.id}, { reload: 'home.edit' });
+                    }, function() {
+                        $state.go('^');
+                    });
+                }]
+            })
+            .state('home.edit.event-delete', {
+                parent: 'home.edit',
+                url: '/event/delete/{eventId}',
+                data: {
+                    authorities: ['ROLE_USER']
+                },
+                onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
+                    $uibModal.open({
+                        templateUrl: 'app/entities/event/event-delete-dialog.html',
+                        controller: 'EventDeleteController',
+                        controllerAs: 'vm',
+                        size: 'md',
+                        resolve: {
+                            entity: ['Event', function(Event) {
+                                return Event.get({id : $stateParams.eventId}).$promise;
+                            }]
+                        }
+                    }).result.then(function() {
+                        $state.go('home.edit', {id: $stateParams.id}, { reload: 'home.edit' });
+                    }, function() {
+                        $state.go('^');
+                    });
+                }]
+            })
             .state('home.search', {
                 parent: 'app',
                 url: '/search',
