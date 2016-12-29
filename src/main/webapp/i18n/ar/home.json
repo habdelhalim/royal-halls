@@ -1,9 +1,9 @@
 {
     "home": {
         "title": "اهلا و سهلا",
-        "subtitle": "This is your homepage",
+        "subtitle": " اهلا بك في نظام القاعات الملكية",
         "logged": {
-            "message": "You are logged in as user \"{{username}}\"."
+            "message": "الرجاء اختيار احد الخيارات من اجل انشاء  أو تعديل عقد"
         },
         "question": "If you have any question on JHipster:",
         "link": {

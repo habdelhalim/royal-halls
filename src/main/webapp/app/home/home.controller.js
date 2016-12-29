@@ -19,8 +19,6 @@
         vm.searchContract = searchContract;
         vm.save = save;
 
-        console.log(vm.contract);
-
         $scope.$on('authenticationSuccess', function() {
             getAccount();
         });
@@ -37,7 +35,7 @@
             $state.go('register');
         }
         function createContract(){
-            $state.go('home');
+            $state.go('home.new');
         }
         function searchContract(){
             $state.go('home.search');
