@@ -102,6 +102,7 @@
                         $translatePartialLoader.addPart('contact');
                         $translatePartialLoader.addPart('customer');
                         $translatePartialLoader.addPart('event');
+                        $translatePartialLoader.addPart('eventExtraOption');
                         $translatePartialLoader.addPart('payment');
                         $translatePartialLoader.addPart('paymentStatus');
                         $translatePartialLoader.addPart('paymentType');

@@ -1,5 +1,6 @@
 package com.royal.app.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -28,6 +29,7 @@ public class EventExtraOption implements Serializable {
     private String optionNotes;
 
     @ManyToOne
+    @JsonBackReference
     private Event event;
 
     @ManyToOne

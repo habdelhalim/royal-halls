@@ -1,4 +1,3 @@
-
 <form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
 
     <div class="modal-header">
@@ -11,57 +10,60 @@
         <div class="form-group" ng-show="vm.event.id">
             <label for="id" data-translate="global.field.id">ID</label>
             <input type="text" class="form-control" id="id" name="id"
-                    ng-model="vm.event.id" readonly />
+                   ng-model="vm.event.id" readonly/>
         </div>
         <div class="form-group">
             <label class="control-label" data-translate="royalhallsApp.event.eventName" for="field_eventName">Event Name</label>
             <input type="text" class="form-control" name="eventName" id="field_eventName"
-                    ng-model="vm.event.eventName"
-                     />
+                   ng-model="vm.event.eventName"
+            />
         </div>
         <div class="form-group">
             <label class="control-label" data-translate="royalhallsApp.event.eventStartDate" for="field_eventStartDate">Event Start Date</label>
-                <div class="input-group">
-                    <input id="field_eventStartDate" type="text" class="form-control" name="eventStartDate" datetime-picker="{{dateformat}}" ng-model="vm.event.eventStartDate" is-open="vm.datePickerOpenStatus.eventStartDate"
-                    required  />
+            <div class="input-group">
+                <input id="field_eventStartDate" type="text" class="form-control" name="eventStartDate" datetime-picker="{{dateformat}}" ng-model="vm.event.eventStartDate"
+                       is-open="vm.datePickerOpenStatus.eventStartDate"
+                       required/>
                     <span class="input-group-btn">
                         <button type="button" class="btn btn-default" ng-click="vm.openCalendar('eventStartDate')"><i class="glyphicon glyphicon-calendar"></i></button>
                     </span>
-                </div>
+            </div>
             <div ng-show="editForm.eventStartDate.$invalid">
                 <p class="help-block"
-                    ng-show="editForm.eventStartDate.$error.required" data-translate="entity.validation.required">
+                   ng-show="editForm.eventStartDate.$error.required" data-translate="entity.validation.required">
                     This field is required.
                 </p>
                 <p class="help-block"
-                    ng-show="editForm.eventStartDate.$error.ZonedDateTimelocal" data-translate="entity.validation.ZonedDateTimelocal">
+                   ng-show="editForm.eventStartDate.$error.ZonedDateTimelocal" data-translate="entity.validation.ZonedDateTimelocal">
                     This field should be a date and time.
                 </p>
             </div>
         </div>
         <div class="form-group">
             <label class="control-label" data-translate="royalhallsApp.event.eventEndDate" for="field_eventEndDate">Event End Date</label>
-                <div class="input-group">
-                    <input id="field_eventEndDate" type="text" class="form-control" name="eventEndDate" datetime-picker="{{dateformat}}" ng-model="vm.event.eventEndDate" is-open="vm.datePickerOpenStatus.eventEndDate"
-                    required  />
+            <div class="input-group">
+                <input id="field_eventEndDate" type="text" class="form-control" name="eventEndDate" datetime-picker="{{dateformat}}" ng-model="vm.event.eventEndDate"
+                       is-open="vm.datePickerOpenStatus.eventEndDate"
+                       required/>
                     <span class="input-group-btn">
                         <button type="button" class="btn btn-default" ng-click="vm.openCalendar('eventEndDate')"><i class="glyphicon glyphicon-calendar"></i></button>
                     </span>
-                </div>
+            </div>
             <div ng-show="editForm.eventEndDate.$invalid">
                 <p class="help-block"
-                    ng-show="editForm.eventEndDate.$error.required" data-translate="entity.validation.required">
+                   ng-show="editForm.eventEndDate.$error.required" data-translate="entity.validation.required">
                     This field is required.
                 </p>
                 <p class="help-block"
-                    ng-show="editForm.eventEndDate.$error.ZonedDateTimelocal" data-translate="entity.validation.ZonedDateTimelocal">
+                   ng-show="editForm.eventEndDate.$error.ZonedDateTimelocal" data-translate="entity.validation.ZonedDateTimelocal">
                     This field should be a date and time.
                 </p>
             </div>
         </div>
         <div class="form-group">
             <label data-translate="royalhallsApp.event.eventType" for="field_eventType">Event Type</label>
-            <select class="form-control" id="field_eventType" name="eventType" ng-model="vm.event.eventType" ng-options="eventType as eventType.eventTypeName for eventType in vm.eventtypes track by eventType.id">
+            <select class="form-control" id="field_eventType" name="eventType" ng-model="vm.event.eventType"
+                    ng-options="eventType as eventType.eventTypeName for eventType in vm.eventtypes track by eventType.id">
                 <option value=""></option>
             </select>
         </div>
@@ -73,9 +75,70 @@
         </div>
         <div class="form-group">
             <label data-translate="royalhallsApp.event.contract" for="field_contract">Contract</label>
-            <select class="form-control" id="field_contract" name="contract" ng-model="vm.event.contract" ng-options="contract as contract.id for contract in vm.contracts track by contract.id">
+            <select class="form-control" id="field_contract" name="contract" ng-model="vm.event.contract"
+                    ng-options="contract as contract.id for contract in vm.contracts track by contract.id">
                 <option value=""></option>
             </select>
+        </div>
+        <div class="form-group">
+            <label data-translate="royalhallsApp.eventExtraOption.home.title">Event Extra Options</label>
+
+            <div class="table-responsive">
+                <table class="jh-table table table-striped">
+                    <thead>
+                    <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
+                        <th jh-sort-by="option.optionName"><span data-translate="royalhallsApp.eventExtraOption.option">Option</span> <span class="glyphicon glyphicon-sort"></span>
+                        </th>
+                        <th jh-sort-by="variant.variantName"><span data-translate="royalhallsApp.eventExtraOption.variant">Variant</span> <span
+                            class="glyphicon glyphicon-sort"></span></th>
+                        <th jh-sort-by="color.colorName"><span data-translate="royalhallsApp.eventExtraOption.color">Color</span> <span class="glyphicon glyphicon-sort"></span>
+                        </th>
+                        <th jh-sort-by="optionQty"><span data-translate="royalhallsApp.eventExtraOption.optionQty">Option Qty</span> <span class="glyphicon glyphicon-sort"></span>
+                        </th>
+                        <th jh-sort-by="optionNotes"><span data-translate="royalhallsApp.eventExtraOption.optionNotes">Option Notes</span> <span
+                            class="glyphicon glyphicon-sort"></span></th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="eventExtraOption in vm.event.options track by eventExtraOption.id">
+                        <td>
+                            <a ui-sref="extra-option-detail({id:eventExtraOption.option.id})">{{eventExtraOption.option.optionName}}</a>
+                        </td>
+                        <td>
+                            <a ui-sref="extra-option-variant-detail({id:eventExtraOption.variant.id})">{{eventExtraOption.variant.variantName}}</a>
+                        </td>
+                        <td>
+                            <a ui-sref="extra-option-color-detail({id:eventExtraOption.color.id})">{{eventExtraOption.color.colorName}}</a>
+                        </td>
+                        <td>{{eventExtraOption.optionQty}}</td>
+                        <td>{{eventExtraOption.optionNotes}}</td>
+                        <td class="text-right">
+                            <div class="btn-group flex-btn-group-container">
+                                <button type="submit"
+                                        ui-sref="event-extra-option.edit({id:eventExtraOption.id})"
+                                        class="btn btn-primary btn-sm">
+                                    <span class="glyphicon glyphicon-pencil"></span>
+                                    <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"></span>
+                                </button>
+                                <button type="submit"
+                                        ui-sref="event-extra-option.delete({id:eventExtraOption.id})"
+                                        class="btn btn-danger btn-sm">
+                                    <span class="glyphicon glyphicon-remove-circle"></span>
+                                    <span class="hidden-xs hidden-sm" data-translate="entity.action.delete"></span>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <button class="btn btn-primary" ui-sref="event-extra-option.new">
+                <span class="glyphicon glyphicon-plus"></span>
+                    <span data-translate="royalhallsApp.eventExtraOption.home.createLabel">
+                        Create new Event Extra Option
+                    </span>
+            </button>
         </div>
     </div>
     <div class="modal-footer">

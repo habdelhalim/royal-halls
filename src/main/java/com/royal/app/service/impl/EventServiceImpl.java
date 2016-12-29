@@ -21,7 +21,7 @@ import java.util.List;
 public class EventServiceImpl implements EventService{
 
     private final Logger log = LoggerFactory.getLogger(EventServiceImpl.class);
-    
+
     @Inject
     private EventRepository eventRepository;
 
@@ -39,11 +39,11 @@ public class EventServiceImpl implements EventService{
 
     /**
      *  Get all the events.
-     *  
+     *
      *  @param pageable the pagination information
      *  @return the list of entities
      */
-    @Transactional(readOnly = true) 
+    @Transactional(readOnly = true)
     public Page<Event> findAll(Pageable pageable) {
         log.debug("Request to get all Events");
         Page<Event> result = eventRepository.findAll(pageable);
@@ -56,10 +56,11 @@ public class EventServiceImpl implements EventService{
      *  @param id the id of the entity
      *  @return the entity
      */
-    @Transactional(readOnly = true) 
+    @Transactional(readOnly = true)
     public Event findOne(Long id) {
         log.debug("Request to get Event : {}", id);
         Event event = eventRepository.findOne(id);
+        event.getOptions().size();
         return event;
     }
 

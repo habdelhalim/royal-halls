@@ -1,7 +1,7 @@
 package com.royal.app.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -45,7 +45,7 @@ public class Event implements Serializable {
     private String createdBy;
 
     @OneToMany(mappedBy = "event")
-    @JsonIgnore
+    @JsonManagedReference
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<EventExtraOption> options = new HashSet<>();
 
