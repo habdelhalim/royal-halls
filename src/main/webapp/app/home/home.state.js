@@ -73,7 +73,7 @@
                             contractNotes: null,
                             totalAmount: null,
                             openAmount: null,
-                            creationDate: new Date(),
+                            createdDate: new Date(),
                             id: null
                         };
 
