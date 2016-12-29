@@ -110,7 +110,7 @@
         })
         .state('event-extra-option.new', {
             parent: 'event-extra-option',
-            url: '/new',
+            url: '/new/{eventId}',
             data: {
                 authorities: ['ROLE_USER']
             },
@@ -124,6 +124,7 @@
                     resolve: {
                         entity: function () {
                             return {
+                                event: {id: $stateParams.eventId},
                                 optionQty: null,
                                 optionNotes: null,
                                 id: null

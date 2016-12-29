@@ -5,9 +5,9 @@
         .module('royalhallsApp')
         .controller('EventExtraOptionDeleteController',EventExtraOptionDeleteController);
 
-    EventExtraOptionDeleteController.$inject = ['$uibModalInstance', 'entity', 'EventExtraOption'];
+    EventExtraOptionDeleteController.$inject = ['$uibModalInstance', '$scope', 'entity', 'EventExtraOption'];
 
-    function EventExtraOptionDeleteController($uibModalInstance, entity, EventExtraOption) {
+    function EventExtraOptionDeleteController($uibModalInstance, $scope, entity, EventExtraOption) {
         var vm = this;
 
         vm.eventExtraOption = entity;
@@ -21,6 +21,7 @@
         function confirmDelete (id) {
             EventExtraOption.delete({id: id},
                 function () {
+                    $scope.$emit('royalhallsApp:eventExtraOptionUpdate',{});
                     $uibModalInstance.close(true);
                 });
         }

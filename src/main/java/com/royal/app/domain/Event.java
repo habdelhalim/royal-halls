@@ -46,7 +46,6 @@ public class Event implements Serializable {
 
     @OneToMany(mappedBy = "event")
     @JsonManagedReference
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<EventExtraOption> options = new HashSet<>();
 
     @ManyToOne

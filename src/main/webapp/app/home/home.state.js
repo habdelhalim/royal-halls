@@ -172,6 +172,88 @@
                     }).result.then(function () {
                         $state.go('home.edit', {id: $stateParams.id}, {reload: 'home.edit'});
                     }, function () {
+                        $state.go('home.edit', {id: $stateParams.id}, {reload: 'home.edit'});
+                    });
+                }]
+            })
+            .state('home.edit.event-edit.event-extra-option-new', {
+                parent: 'home.edit.event-edit',
+                url: '/option/new',
+                data: {
+                    authorities: ['ROLE_USER']
+                },
+                onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
+                    $uibModal.open({
+                        templateUrl: 'app/entities/event-extra-option/event-extra-option-dialog.html',
+                        controller: 'EventExtraOptionDialogController',
+                        controllerAs: 'vm',
+                        backdrop: 'static',
+                        size: 'lg',
+                        resolve: {
+                            entity: function () {
+                                return {
+                                    event: {id: $stateParams.eventId},
+                                    optionQty: null,
+                                    optionNotes: null,
+                                    id: null
+                                };
+                            }
+                        }
+                    }).result.then(function() {
+                    }, function() {
+                    });
+                }]
+            })
+            .state('home.edit.event-edit.event-extra-option-edit', {
+                parent: 'home.edit.event-edit',
+                url: '/option/edit/{optionId}',
+                data: {
+                    authorities: ['ROLE_USER']
+                },
+                onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
+                    $uibModal.open({
+                        templateUrl: 'app/entities/event-extra-option/event-extra-option-dialog.html',
+                        controller: 'EventExtraOptionDialogController',
+                        controllerAs: 'vm',
+                        backdrop: 'static',
+                        size: 'lg',
+                        resolve: {
+                            entity: ['EventExtraOption', function(EventExtraOption) {
+                                var promise = EventExtraOption.get({id : $stateParams.optionId}).$promise;
+
+                                return promise.then(function (extraOption) {
+                                    extraOption.event = {id: $stateParams.eventId};
+                                    return extraOption;
+                                });
+                            }]
+                        }
+                    }).result.then(function() {
+                        $state.go('^');
+                    }, function() {
+                        $state.go('^');
+                    });
+                }]
+            })
+            .state('home.edit.event-edit.event-extra-option-delete', {
+                parent: 'home.edit.event-edit',
+                url: '/option/delete/{optionId}',
+                data: {
+                    authorities: ['ROLE_USER']
+                },
+                onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
+                    $uibModal.open({
+                        templateUrl: 'app/entities/event-extra-option/event-extra-option-delete-dialog.html',
+                        controller: 'EventExtraOptionDeleteController',
+                        controllerAs: 'vm',
+                        size: 'md',
+                        resolve: {
+                            entity: ['EventExtraOption', function(EventExtraOption) {
+                                return EventExtraOption.get({id : $stateParams.optionId}).$promise;
+                            }]
+                        }
+                    }).result.then(function() {
+                        $state.go('^');
+                    }, function() {
                         $state.go('^');
                     });
                 }]
