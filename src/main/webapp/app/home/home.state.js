@@ -193,6 +193,89 @@
                     });
                 }]
             })
+            .state('home.edit.payment-new', {
+                parent: 'home.edit',
+                url: '/payment',
+                data: {
+                    authorities: ['ROLE_USER']
+                },
+                onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
+                    $uibModal.open({
+                        templateUrl: 'app/entities/payment/payment-dialog.html',
+                        controller: 'PaymentDialogController',
+                        controllerAs: 'vm',
+                        backdrop: 'static',
+                        size: 'lg',
+                        resolve: {
+                            entity: function () {
+                                return {
+                                    paymentType: null,
+                                    paymentAmount: null,
+                                    paymentDueDate: null,
+                                    paymentStatus: null,
+                                    chequeNo: null,
+                                    bankName: null,
+                                    creationDate: null,
+                                    id: null
+                                };
+                            }
+                        }
+                    }).result.then(function() {
+                        $state.go('home.edit', {id: $stateParams.id}, { reload: 'home.edit' });
+                    }, function() {
+                        $state.go('^');
+                    });
+                }]
+            })
+            .state('home.edit.payment-edit', {
+                parent: 'home.edit',
+                url: '/payment/edit/{paymentId}',
+                data: {
+                    authorities: ['ROLE_USER']
+                },
+                onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
+                    $uibModal.open({
+                        templateUrl: 'app/entities/payment/payment-dialog.html',
+                        controller: 'PaymentDialogController',
+                        controllerAs: 'vm',
+                        backdrop: 'static',
+                        size: 'lg',
+                        resolve: {
+                            entity: ['Payment', function(Payment) {
+                                return Payment.get({id : $stateParams.paymentId}).$promise;
+                            }]
+                        }
+                    }).result.then(function() {
+                        $state.go('home.edit', {id: $stateParams.id}, { reload: 'home.edit' });
+                    }, function() {
+                        $state.go('^');
+                    });
+                }]
+            })
+            .state('home.edit.payment-delete', {
+                parent: 'home.edit',
+                url: '/payment/delete/{paymentId}',
+                data: {
+                    authorities: ['ROLE_USER']
+                },
+                onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
+                    $uibModal.open({
+                        templateUrl: 'app/entities/payment/payment-delete-dialog.html',
+                        controller: 'PaymentDeleteController',
+                        controllerAs: 'vm',
+                        size: 'md',
+                        resolve: {
+                            entity: ['Payment', function(Payment) {
+                                return Payment.get({id : $stateParams.paymentId}).$promise;
+                            }]
+                        }
+                    }).result.then(function() {
+                        $state.go('home.edit', {id: $stateParams.id}, { reload: 'home.edit' });
+                    }, function() {
+                        $state.go('^');
+                    });
+                }]
+            })
             .state('home.search', {
                 parent: 'app',
                 url: '/search',

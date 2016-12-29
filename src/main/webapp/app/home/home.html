@@ -224,13 +224,13 @@
                                                 <span class="hidden-xs hidden-sm" data-translate="entity.action.view"></span>
                                             </button>
                                             <button type="submit"
-                                                    ui-sref="payment.edit({id:payment.id})"
+                                                    ui-sref="home.edit.payment-edit({paymentId:payment.id})"
                                                     class="btn btn-primary btn-sm">
                                                 <span class="glyphicon glyphicon-pencil"></span>
                                                 <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"></span>
                                             </button>
                                             <button type="submit"
-                                                    ui-sref="payment.delete({id:payment.id})"
+                                                    ui-sref="home.edit.payment-delete({paymentId:payment.id})"
                                                     class="btn btn-danger btn-sm">
                                                 <span class="glyphicon glyphicon-remove-circle"></span>
                                                 <span class="hidden-xs hidden-sm" data-translate="entity.action.delete"></span>
@@ -242,7 +242,7 @@
                             </table>
                         </div>
                         <div class="btn-group btn-group-sm">
-                            <button class="btn btn-primary" ui-sref="payment.new">
+                            <button class="btn btn-primary" ui-sref="home.edit.payment-new">
                                 <span class="glyphicon glyphicon-plus"></span>
                                 <span data-translate="royalhallsApp.payment.home.createLabel">
                                     Create new Payment
