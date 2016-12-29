@@ -42,7 +42,6 @@
                     end: event.eventEndDate
                 }
             });
-            console.log(vm.events);
             vm.eventSources.pop();
             vm.eventSources.push(vm.events);
         }
