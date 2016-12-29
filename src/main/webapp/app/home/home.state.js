@@ -35,7 +35,7 @@
                         $translatePartialLoader.addPart('contractStatus');
                         return $translate.refresh();
                     }],
-                    entity: function() {
+                    entity: function () {
                         return null
                     }
                 }
@@ -67,7 +67,7 @@
                         return $translate.refresh();
                     }],
                     entity: ['$stateParams', 'Contract', '$state', function ($stateParams, Contract, $state) {
-                        var contract =  {
+                        var contract = {
                             contractDate: new Date(),
                             contractStatus: "CREATED",
                             contractNotes: null,
@@ -77,7 +77,7 @@
                             id: null
                         };
 
-                        return Contract.save(contract, function(result){
+                        return Contract.save(contract, function (result) {
                             $state.go('home.edit', {id: result.id});
                         }).$promise;
                     }]
@@ -120,7 +120,7 @@
                 data: {
                     authorities: ['ROLE_USER']
                 },
-                onEnter: ['$stateParams', '$state', '$uibModal',  function($stateParams, $state, $uibModal) {
+                onEnter: ['$stateParams', '$state', '$uibModal', function ($stateParams, $state, $uibModal) {
                     $uibModal.open({
                         templateUrl: 'app/entities/event/event-dialog.html',
                         controller: 'EventDialogController',
@@ -130,6 +130,7 @@
                         resolve: {
                             entity: function () {
                                 return {
+                                    contract: {id: $stateParams.id},
                                     eventName: null,
                                     eventStartDate: null,
                                     eventEndDate: null,
@@ -137,9 +138,9 @@
                                 };
                             }
                         }
-                    }).result.then(function() {
-                        $state.go('home.edit', {id: $stateParams.id}, { reload: 'home.edit' });
-                    }, function() {
+                    }).result.then(function () {
+                        $state.go('home.edit', {id: $stateParams.id}, {reload: 'home.edit'});
+                    }, function () {
                         $state.go('^');
                     });
                 }]
@@ -150,7 +151,7 @@
                 data: {
                     authorities: ['ROLE_USER']
                 },
-                onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
+                onEnter: ['$stateParams', '$state', '$uibModal', function ($stateParams, $state, $uibModal) {
                     $uibModal.open({
                         templateUrl: 'app/entities/event/event-dialog.html',
                         controller: 'EventDialogController',
@@ -158,13 +159,18 @@
                         backdrop: 'static',
                         size: 'lg',
                         resolve: {
-                            entity: ['Event', function(Event) {
-                                return Event.get({id : $stateParams.eventId}).$promise;
+                            entity: ['Event', function (Event) {
+                                var promise = Event.get({id: $stateParams.eventId}).$promise;
+
+                                return promise.then(function(event){
+                                    event.contract = {id: $stateParams.id};
+                                    return event;
+                                });
                             }]
                         }
-                    }).result.then(function() {
-                        $state.go('home.edit', {id: $stateParams.id}, { reload: 'home.edit' });
-                    }, function() {
+                    }).result.then(function () {
+                        $state.go('home.edit', {id: $stateParams.id}, {reload: 'home.edit'});
+                    }, function () {
                         $state.go('^');
                     });
                 }]
@@ -175,20 +181,20 @@
                 data: {
                     authorities: ['ROLE_USER']
                 },
-                onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
+                onEnter: ['$stateParams', '$state', '$uibModal', function ($stateParams, $state, $uibModal) {
                     $uibModal.open({
                         templateUrl: 'app/entities/event/event-delete-dialog.html',
                         controller: 'EventDeleteController',
                         controllerAs: 'vm',
                         size: 'md',
                         resolve: {
-                            entity: ['Event', function(Event) {
-                                return Event.get({id : $stateParams.eventId}).$promise;
+                            entity: ['Event', function (Event) {
+                                return Event.get({id: $stateParams.eventId}).$promise;
                             }]
                         }
-                    }).result.then(function() {
-                        $state.go('home.edit', {id: $stateParams.id}, { reload: 'home.edit' });
-                    }, function() {
+                    }).result.then(function () {
+                        $state.go('home.edit', {id: $stateParams.id}, {reload: 'home.edit'});
+                    }, function () {
                         $state.go('^');
                     });
                 }]
@@ -199,7 +205,7 @@
                 data: {
                     authorities: ['ROLE_USER']
                 },
-                onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
+                onEnter: ['$stateParams', '$state', '$uibModal', function ($stateParams, $state, $uibModal) {
                     $uibModal.open({
                         templateUrl: 'app/entities/payment/payment-dialog.html',
                         controller: 'PaymentDialogController',
@@ -209,20 +215,21 @@
                         resolve: {
                             entity: function () {
                                 return {
+                                    contract: {id: $stateParams.id},
                                     paymentType: null,
                                     paymentAmount: null,
                                     paymentDueDate: null,
                                     paymentStatus: null,
                                     chequeNo: null,
                                     bankName: null,
-                                    creationDate: null,
+                                    creationDate: new Date(),
                                     id: null
                                 };
                             }
                         }
-                    }).result.then(function() {
-                        $state.go('home.edit', {id: $stateParams.id}, { reload: 'home.edit' });
-                    }, function() {
+                    }).result.then(function () {
+                        $state.go('home.edit', {id: $stateParams.id}, {reload: 'home.edit'});
+                    }, function () {
                         $state.go('^');
                     });
                 }]
@@ -233,7 +240,7 @@
                 data: {
                     authorities: ['ROLE_USER']
                 },
-                onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
+                onEnter: ['$stateParams', '$state', '$uibModal', function ($stateParams, $state, $uibModal) {
                     $uibModal.open({
                         templateUrl: 'app/entities/payment/payment-dialog.html',
                         controller: 'PaymentDialogController',
@@ -241,13 +248,18 @@
                         backdrop: 'static',
                         size: 'lg',
                         resolve: {
-                            entity: ['Payment', function(Payment) {
-                                return Payment.get({id : $stateParams.paymentId}).$promise;
+                            entity: ['Payment', function (Payment) {
+                                var promise = Payment.get({id: $stateParams.paymentId}).$promise;
+
+                                return promise.then(function (payment) {
+                                    payment.contract = {id: $stateParams.id};
+                                    return payment;
+                                });
                             }]
                         }
-                    }).result.then(function() {
-                        $state.go('home.edit', {id: $stateParams.id}, { reload: 'home.edit' });
-                    }, function() {
+                    }).result.then(function () {
+                        $state.go('home.edit', {id: $stateParams.id}, {reload: 'home.edit'});
+                    }, function () {
                         $state.go('^');
                     });
                 }]
@@ -258,20 +270,20 @@
                 data: {
                     authorities: ['ROLE_USER']
                 },
-                onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
+                onEnter: ['$stateParams', '$state', '$uibModal', function ($stateParams, $state, $uibModal) {
                     $uibModal.open({
                         templateUrl: 'app/entities/payment/payment-delete-dialog.html',
                         controller: 'PaymentDeleteController',
                         controllerAs: 'vm',
                         size: 'md',
                         resolve: {
-                            entity: ['Payment', function(Payment) {
-                                return Payment.get({id : $stateParams.paymentId}).$promise;
+                            entity: ['Payment', function (Payment) {
+                                return Payment.get({id: $stateParams.paymentId}).$promise;
                             }]
                         }
-                    }).result.then(function() {
-                        $state.go('home.edit', {id: $stateParams.id}, { reload: 'home.edit' });
-                    }, function() {
+                    }).result.then(function () {
+                        $state.go('home.edit', {id: $stateParams.id}, {reload: 'home.edit'});
+                    }, function () {
                         $state.go('^');
                     });
                 }]
