@@ -114,6 +114,36 @@
                     }]
                 }
             })
+            .state('home.edit.event', {
+                parent: 'home.edit',
+                url: '/event',
+                data: {
+                    authorities: ['ROLE_USER']
+                },
+                onEnter: ['$stateParams', '$state', '$uibModal',  function($stateParams, $state, $uibModal) {
+                    $uibModal.open({
+                        templateUrl: 'app/entities/event/event-dialog.html',
+                        controller: 'EventDialogController',
+                        controllerAs: 'vm',
+                        backdrop: 'static',
+                        size: 'lg',
+                        resolve: {
+                            entity: function () {
+                                return {
+                                    eventName: null,
+                                    eventStartDate: null,
+                                    eventEndDate: null,
+                                    id: null
+                                };
+                            }
+                        }
+                    }).result.then(function() {
+                        $state.go('home.edit', {id: $stateParams.id}, { reload: 'home.edit' });
+                    }, function() {
+                        $state.go('^');
+                    });
+                }]
+            })
             .state('home.search', {
                 parent: 'app',
                 url: '/search',
