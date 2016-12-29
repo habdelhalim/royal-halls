@@ -129,6 +129,8 @@
                                 optionName: null,
                                 optionType: null,
                                 price: null,
+                                hasVariances: null,
+                                hasColors: null,
                                 id: null
                             };
                         }

@@ -27,13 +27,17 @@
             <column name="event_type_name" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            
+
             <column name="description" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            
+
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
-        
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/event_types.csv"
+                  separator=";"
+                  tableName="event_type">
+        </loadData>
     </changeSet>
 </databaseChangeLog>

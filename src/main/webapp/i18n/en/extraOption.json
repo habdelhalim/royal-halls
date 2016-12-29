@@ -19,6 +19,8 @@
             "optionName": "Option Name",
             "optionType": "Option Type",
             "price": "Price",
+            "hasVariances": "Has Variances",
+            "hasColors": "Has Colors",
             "variant": "Variant",
             "color": "Color"
         }

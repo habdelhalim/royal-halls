@@ -38,6 +38,12 @@ public class ExtraOption implements Serializable {
     @Column(name = "price")
     private Double price;
 
+    @Column(name = "has_variances")
+    private Boolean hasVariances;
+
+    @Column(name = "has_colors")
+    private Boolean hasColors;
+
     @OneToMany(mappedBy = "option")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -93,6 +99,32 @@ public class ExtraOption implements Serializable {
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    public Boolean isHasVariances() {
+        return hasVariances;
+    }
+
+    public ExtraOption hasVariances(Boolean hasVariances) {
+        this.hasVariances = hasVariances;
+        return this;
+    }
+
+    public void setHasVariances(Boolean hasVariances) {
+        this.hasVariances = hasVariances;
+    }
+
+    public Boolean isHasColors() {
+        return hasColors;
+    }
+
+    public ExtraOption hasColors(Boolean hasColors) {
+        this.hasColors = hasColors;
+        return this;
+    }
+
+    public void setHasColors(Boolean hasColors) {
+        this.hasColors = hasColors;
     }
 
     public Set<ExtraOptionVariant> getVariants() {
@@ -172,6 +204,8 @@ public class ExtraOption implements Serializable {
             ", optionName='" + optionName + "'" +
             ", optionType='" + optionType + "'" +
             ", price='" + price + "'" +
+            ", hasVariances='" + hasVariances + "'" +
+            ", hasColors='" + hasColors + "'" +
             '}';
     }
 }

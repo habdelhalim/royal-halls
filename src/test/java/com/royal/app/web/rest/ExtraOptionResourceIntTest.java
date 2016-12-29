@@ -48,6 +48,12 @@ public class ExtraOptionResourceIntTest {
     private static final Double DEFAULT_PRICE = 1D;
     private static final Double UPDATED_PRICE = 2D;
 
+    private static final Boolean DEFAULT_HAS_VARIANCES = false;
+    private static final Boolean UPDATED_HAS_VARIANCES = true;
+
+    private static final Boolean DEFAULT_HAS_COLORS = false;
+    private static final Boolean UPDATED_HAS_COLORS = true;
+
     @Inject
     private ExtraOptionRepository extraOptionRepository;
 
@@ -87,7 +93,9 @@ public class ExtraOptionResourceIntTest {
         ExtraOption extraOption = new ExtraOption()
                 .optionName(DEFAULT_OPTION_NAME)
                 .optionType(DEFAULT_OPTION_TYPE)
-                .price(DEFAULT_PRICE);
+                .price(DEFAULT_PRICE)
+                .hasVariances(DEFAULT_HAS_VARIANCES)
+                .hasColors(DEFAULT_HAS_COLORS);
         return extraOption;
     }
 
@@ -115,6 +123,8 @@ public class ExtraOptionResourceIntTest {
         assertThat(testExtraOption.getOptionName()).isEqualTo(DEFAULT_OPTION_NAME);
         assertThat(testExtraOption.getOptionType()).isEqualTo(DEFAULT_OPTION_TYPE);
         assertThat(testExtraOption.getPrice()).isEqualTo(DEFAULT_PRICE);
+        assertThat(testExtraOption.isHasVariances()).isEqualTo(DEFAULT_HAS_VARIANCES);
+        assertThat(testExtraOption.isHasColors()).isEqualTo(DEFAULT_HAS_COLORS);
     }
 
     @Test
@@ -168,7 +178,9 @@ public class ExtraOptionResourceIntTest {
             .andExpect(jsonPath("$.[*].id").value(hasItem(extraOption.getId().intValue())))
             .andExpect(jsonPath("$.[*].optionName").value(hasItem(DEFAULT_OPTION_NAME.toString())))
             .andExpect(jsonPath("$.[*].optionType").value(hasItem(DEFAULT_OPTION_TYPE.toString())))
-            .andExpect(jsonPath("$.[*].price").value(hasItem(DEFAULT_PRICE.doubleValue())));
+            .andExpect(jsonPath("$.[*].price").value(hasItem(DEFAULT_PRICE.doubleValue())))
+            .andExpect(jsonPath("$.[*].hasVariances").value(hasItem(DEFAULT_HAS_VARIANCES.booleanValue())))
+            .andExpect(jsonPath("$.[*].hasColors").value(hasItem(DEFAULT_HAS_COLORS.booleanValue())));
     }
 
     @Test
@@ -184,7 +196,9 @@ public class ExtraOptionResourceIntTest {
             .andExpect(jsonPath("$.id").value(extraOption.getId().intValue()))
             .andExpect(jsonPath("$.optionName").value(DEFAULT_OPTION_NAME.toString()))
             .andExpect(jsonPath("$.optionType").value(DEFAULT_OPTION_TYPE.toString()))
-            .andExpect(jsonPath("$.price").value(DEFAULT_PRICE.doubleValue()));
+            .andExpect(jsonPath("$.price").value(DEFAULT_PRICE.doubleValue()))
+            .andExpect(jsonPath("$.hasVariances").value(DEFAULT_HAS_VARIANCES.booleanValue()))
+            .andExpect(jsonPath("$.hasColors").value(DEFAULT_HAS_COLORS.booleanValue()));
     }
 
     @Test
@@ -208,7 +222,9 @@ public class ExtraOptionResourceIntTest {
         updatedExtraOption
                 .optionName(UPDATED_OPTION_NAME)
                 .optionType(UPDATED_OPTION_TYPE)
-                .price(UPDATED_PRICE);
+                .price(UPDATED_PRICE)
+                .hasVariances(UPDATED_HAS_VARIANCES)
+                .hasColors(UPDATED_HAS_COLORS);
 
         restExtraOptionMockMvc.perform(put("/api/extra-options")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -222,6 +238,8 @@ public class ExtraOptionResourceIntTest {
         assertThat(testExtraOption.getOptionName()).isEqualTo(UPDATED_OPTION_NAME);
         assertThat(testExtraOption.getOptionType()).isEqualTo(UPDATED_OPTION_TYPE);
         assertThat(testExtraOption.getPrice()).isEqualTo(UPDATED_PRICE);
+        assertThat(testExtraOption.isHasVariances()).isEqualTo(UPDATED_HAS_VARIANCES);
+        assertThat(testExtraOption.isHasColors()).isEqualTo(UPDATED_HAS_COLORS);
     }
 
     @Test

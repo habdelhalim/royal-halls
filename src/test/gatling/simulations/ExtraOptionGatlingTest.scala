@@ -67,7 +67,7 @@ class ExtraOptionGatlingTest extends Simulation {
             .exec(http("Create new extraOption")
             .post("/api/extra-options")
             .headers(headers_http_authenticated)
-            .body(StringBody("""{"id":null, "optionName":"SAMPLE_TEXT", "optionType":null, "price":null}""")).asJSON
+            .body(StringBody("""{"id":null, "optionName":"SAMPLE_TEXT", "optionType":null, "price":null, "hasVariances":null, "hasColors":null}""")).asJSON
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_extraOption_url"))).exitHereIfFailed
             .pause(10)

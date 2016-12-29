@@ -42,7 +42,9 @@ entity EventExtraOption {
 entity ExtraOption{
 	optionName String required,
     optionType OptionType,
-    price Double
+    price Double,
+    hasVariances Boolean,
+    hasColors Boolean
 }
 
 entity ExtraOptionVariant{

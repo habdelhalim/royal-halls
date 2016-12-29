@@ -22,6 +22,8 @@
                     <th jh-sort-by="optionName"><span data-translate="royalhallsApp.extraOption.optionName">Option Name</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="optionType"><span data-translate="royalhallsApp.extraOption.optionType">Option Type</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="price"><span data-translate="royalhallsApp.extraOption.price">Price</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="hasVariances"><span data-translate="royalhallsApp.extraOption.hasVariances">Has Variances</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="hasColors"><span data-translate="royalhallsApp.extraOption.hasColors">Has Colors</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
             </thead>
@@ -31,6 +33,8 @@
                     <td>{{extraOption.optionName}}</td>
                     <td data-translate="{{'royalhallsApp.OptionType.' + extraOption.optionType}}">{{extraOption.optionType}}</td>
                     <td>{{extraOption.price}}</td>
+                    <td>{{extraOption.hasVariances}}</td>
+                    <td>{{extraOption.hasColors}}</td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"
