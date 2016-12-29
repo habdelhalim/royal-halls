@@ -1,0 +1,23 @@
+{
+    "royalhallsApp": {
+        "extraOptionColor" : {
+            "home": {
+                "title": "ألوان الخدمات",
+                "createLabel": "تعريف لون جديد",
+                "createOrEditLabel": "تعديل لون",
+                "search": "بحث عن لون"
+            },
+            "created": "A new Extra Option Color is created with identifier {{ param }}",
+            "updated": "A Extra Option Color is updated with identifier {{ param }}",
+            "deleted": "A Extra Option Color is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Extra Option Color {{ id }}?"
+            },
+            "detail": {
+                "title": "لون الخدمة"
+            },
+            "colorName": "اسم اللون",
+            "option": "الخدمة"
+        }
+    }
+}

@@ -1,0 +1,24 @@
+{
+    "royalhallsApp": {
+        "extraOptionVariant" : {
+            "home": {
+                "title": "خيارات الخدمات",
+                "createLabel": "تعريف خيار جديد",
+                "createOrEditLabel": "تعديل خيار",
+                "search": "بحث عن خيار"
+            },
+            "created": "A new Extra Option Variant is created with identifier {{ param }}",
+            "updated": "A Extra Option Variant is updated with identifier {{ param }}",
+            "deleted": "A Extra Option Variant is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Extra Option Variant {{ id }}?"
+            },
+            "detail": {
+                "title": "خيارات الخدمات"
+            },
+            "variantName": "اسم الخيار",
+            "price": "السعر",
+            "option": "الخدمة"
+        }
+    }
+}

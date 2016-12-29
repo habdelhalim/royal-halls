@@ -1,0 +1,27 @@
+{
+    "royalhallsApp": {
+        "eventExtraOption" : {
+            "home": {
+                "title": "خدمات الحجوزات",
+                "createLabel": "اضافة خدمة على الحجز",
+                "createOrEditLabel": "تعديل خدمة للحجز",
+                "search": "بحث عن خدمة"
+            },
+            "created": "A new Event Extra Option is created with identifier {{ param }}",
+            "updated": "A Event Extra Option is updated with identifier {{ param }}",
+            "deleted": "A Event Extra Option is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Event Extra Option {{ id }}?"
+            },
+            "detail": {
+                "title": "خدمة على الحجز"
+            },
+            "optionQty": "العدد",
+            "optionNotes": "ملاحظات",
+            "event": "الحجز",
+            "option": "الخدمة",
+            "variant": "الخيار",
+            "color": "اللون"
+        }
+    }
+}

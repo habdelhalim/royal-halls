@@ -17,6 +17,9 @@
                 "payment": "الدفعات",
                 "hallType": "انواع القاعات",
                 "eventType": "انواع الحجوزات",
+                "eventExtraOption": "خدمات الحجوزات",
+                "extraOptionVariant": "خيارات الخدمات",
+                "extraOptionColor": "ألوان الخدمات",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
