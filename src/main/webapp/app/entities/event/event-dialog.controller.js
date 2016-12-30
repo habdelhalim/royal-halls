@@ -21,10 +21,14 @@
 
         $rootScope.$on('royalhallsApp:eventExtraOptionUpdate', function() {
             if (vm.event.id !== null) {
+                var contractId = vm.event.contract.id;
                 Event.get({
                     id: vm.event.id
                 }, function(entity) {
                     vm.event = entity;
+                    vm.event.contract = {
+                        id: contractId
+                    }
                 });
             }
         });
