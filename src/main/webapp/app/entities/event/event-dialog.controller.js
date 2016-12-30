@@ -15,10 +15,8 @@
         vm.datePickerOpenStatus = {};
         vm.openCalendar = openCalendar;
         vm.save = save;
-        vm.eventextraoptions = EventExtraOption.query();
         vm.eventtypes = EventType.query();
         vm.halls = Hall.query();
-        vm.contracts = Contract.query();
 
 
         $rootScope.$on('royalhallsApp:eventExtraOptionUpdate', function() {

@@ -186,9 +186,9 @@
                     });
                 }]
             })
-            .state('home.edit.event-edit.event-extra-option-new', {
-                parent: 'home.edit.event-edit',
-                url: '/option/new',
+            .state('option-new', {
+                parent: 'event-edit',
+                url: '/option-new',
                 data: {
                     authorities: ['ROLE_USER']
                 },
@@ -211,12 +211,16 @@
                                 };
                             }
                         }
-                    }).result.then(function() {}, function() {});
+                    }).result.then(function() {
+                        $state.go('^');
+                    }, function() {
+                        $state.go('^');
+                    });
                 }]
             })
-            .state('home.edit.event-edit.event-extra-option-edit', {
-                parent: 'home.edit.event-edit',
-                url: '/option/edit/{optionId}',
+            .state('option-edit', {
+                parent: 'event-edit',
+                url: '/option-edit/{optionId}',
                 data: {
                     authorities: ['ROLE_USER']
                 },
@@ -248,9 +252,9 @@
                     });
                 }]
             })
-            .state('home.edit.event-edit.event-extra-option-delete', {
-                parent: 'home.edit.event-edit',
-                url: '/option/delete/{optionId}',
+            .state('option-delete', {
+                parent: 'event-edit',
+                url: '/option-delete/{optionId}',
                 data: {
                     authorities: ['ROLE_USER']
                 },
