@@ -44,7 +44,7 @@ public class Event implements Serializable {
     @Column(name = "created_by")
     private String createdBy;
 
-    @OneToMany(mappedBy = "event")
+    @OneToMany(mappedBy = "event", orphanRemoval = true)
     @JsonManagedReference
     private Set<EventExtraOption> options = new HashSet<>();
 

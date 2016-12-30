@@ -5,9 +5,9 @@
         .module('royalhallsApp')
         .controller('EventDeleteController',EventDeleteController);
 
-    EventDeleteController.$inject = ['$uibModalInstance', 'entity', 'Event'];
+    EventDeleteController.$inject = ['$uibModalInstance', '$scope', 'entity', 'Event'];
 
-    function EventDeleteController($uibModalInstance, entity, Event) {
+    function EventDeleteController($uibModalInstance, $scope, entity, Event) {
         var vm = this;
 
         vm.event = entity;
@@ -21,6 +21,7 @@
         function confirmDelete (id) {
             Event.delete({id: id},
                 function () {
+                    $scope.$emit('royalhallsApp:eventUpdate', {id: id});
                     $uibModalInstance.close(true);
                 });
         }

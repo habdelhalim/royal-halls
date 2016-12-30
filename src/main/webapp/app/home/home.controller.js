@@ -1,13 +1,13 @@
-(function() {
+(function () {
     'use strict';
 
     angular
         .module('royalhallsApp')
         .controller('HomeController', HomeController);
 
-    HomeController.$inject = ['$scope', 'Principal', 'LoginService', '$state', 'entity', 'Contract'];
+    HomeController.$inject = ['$scope', '$rootScope', 'Principal', 'LoginService', '$state', 'entity', 'Contract'];
 
-    function HomeController ($scope, Principal, LoginService, $state, entity, Contract) {
+    function HomeController($scope, $rootScope, Principal, LoginService, $state, entity, Contract) {
         var vm = this;
 
         vm.account = null;
@@ -19,29 +19,38 @@
         vm.searchContract = searchContract;
         vm.save = save;
 
-        $scope.$on('authenticationSuccess', function() {
+        $scope.$on('authenticationSuccess', function () {
             getAccount();
+        });
+
+        $rootScope.$on('royalhallsApp:eventUpdate', function () {
+            Contract.get({id: vm.contract.id}, function (entity) {
+                vm.contract = entity;
+            });
         });
 
         getAccount();
 
         function getAccount() {
-            Principal.identity().then(function(account) {
+            Principal.identity().then(function (account) {
                 vm.account = account;
                 vm.isAuthenticated = Principal.isAuthenticated;
             });
         }
-        function register () {
+
+        function register() {
             $state.go('register');
         }
-        function createContract(){
+
+        function createContract() {
             $state.go('home.new');
         }
-        function searchContract(){
+
+        function searchContract() {
             $state.go('home.search');
         }
 
-        function save () {
+        function save() {
             vm.isSaving = true;
             if (vm.contract.id !== null) {
                 Contract.update(vm.contract, onSaveSuccess, onSaveError);
@@ -50,12 +59,12 @@
             }
         }
 
-        function onSaveSuccess (result) {
+        function onSaveSuccess(result) {
             $scope.$emit('royalhallsApp:contractUpdate', result);
             vm.isSaving = false;
         }
 
-        function onSaveError () {
+        function onSaveError() {
             vm.isSaving = false;
         }
     }

@@ -22,7 +22,7 @@
                 </thead>
                 <tbody>
                 <tr ng-repeat="contract in vm.contracts track by contract.id"  data-dismiss="modal" ng-click="vm.select(contract.id)">
-                    <td><a ui-sref="home.edit({id:contract.id})">{{contract.id}}</a></td>
+                    <td><a ui-sref="contract-edit({id:contract.id})">{{contract.id}}</a></td>
                     <td>{{contract.contractDate | date:'medium'}}</td>
                     <td data-translate="{{'royalhallsApp.ContractStatus.' + contract.contractStatus}}">{{contract.contractStatus}}</td>
                     <td>{{contract.contractNotes}}</td>

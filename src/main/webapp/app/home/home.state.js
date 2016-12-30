@@ -40,11 +40,11 @@
                     }
                 }
             })
-            .state('home.new', {
-                parent: 'app',
-                url: '/new',
+            .state('new-contract', {
+                parent: 'home',
+                url: 'contract-new',
                 data: {
-                    authorities: []
+                    authorities: ['ROLE_USER']
                 },
                 views: {
                     'content@': {
@@ -78,16 +78,16 @@
                         };
 
                         return Contract.save(contract, function (result) {
-                            $state.go('home.edit', {id: result.id});
+                            $state.go('contract-edit', {id: result.id});
                         }).$promise;
                     }]
                 }
             })
-            .state('home.edit', {
-                parent: 'app',
-                url: '/edit/{id}',
+            .state('contract-edit', {
+                parent: 'home',
+                url: 'contract-edit/{id}',
                 data: {
-                    authorities: []
+                    authorities: ['ROLE_USER']
                 },
                 views: {
                     'content@': {
@@ -115,9 +115,9 @@
                     }]
                 }
             })
-            .state('home.edit.event', {
-                parent: 'home.edit',
-                url: '/event',
+            .state('event-new', {
+                parent: 'contract-edit',
+                url: '/event-new',
                 data: {
                     authorities: ['ROLE_USER']
                 },
@@ -140,15 +140,15 @@
                             }
                         }
                     }).result.then(function () {
-                        $state.go('home.edit', {id: $stateParams.id}, {reload: 'home.edit'});
+                        $state.go('^');
                     }, function () {
                         $state.go('^');
                     });
                 }]
             })
-            .state('home.edit.event-edit', {
-                parent: 'home.edit',
-                url: '/event/update/{eventId}',
+            .state('event-edit', {
+                parent: 'contract-edit',
+                url: '/event-edit/{eventId}',
                 data: {
                     authorities: ['ROLE_USER']
                 },
@@ -163,16 +163,16 @@
                             entity: ['Event', function (Event) {
                                 var promise = Event.get({id: $stateParams.eventId}).$promise;
 
-                                return promise.then(function(event){
+                                return promise.then(function (event) {
                                     event.contract = {id: $stateParams.id};
                                     return event;
                                 });
                             }]
                         }
                     }).result.then(function () {
-                        $state.go('home.edit', {id: $stateParams.id}, {reload: 'home.edit'});
+                        $state.go('^');
                     }, function () {
-                        $state.go('home.edit', {id: $stateParams.id}, {reload: 'home.edit'});
+                        $state.go('^');
                     });
                 }]
             })
@@ -182,7 +182,7 @@
                 data: {
                     authorities: ['ROLE_USER']
                 },
-                onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
+                onEnter: ['$stateParams', '$state', '$uibModal', function ($stateParams, $state, $uibModal) {
                     $uibModal.open({
                         templateUrl: 'app/entities/event-extra-option/event-extra-option-dialog.html',
                         controller: 'EventExtraOptionDialogController',
@@ -199,8 +199,8 @@
                                 };
                             }
                         }
-                    }).result.then(function() {
-                    }, function() {
+                    }).result.then(function () {
+                    }, function () {
                     });
                 }]
             })
@@ -210,7 +210,7 @@
                 data: {
                     authorities: ['ROLE_USER']
                 },
-                onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
+                onEnter: ['$stateParams', '$state', '$uibModal', function ($stateParams, $state, $uibModal) {
                     $uibModal.open({
                         templateUrl: 'app/entities/event-extra-option/event-extra-option-dialog.html',
                         controller: 'EventExtraOptionDialogController',
@@ -218,8 +218,8 @@
                         backdrop: 'static',
                         size: 'lg',
                         resolve: {
-                            entity: ['EventExtraOption', function(EventExtraOption) {
-                                var promise = EventExtraOption.get({id : $stateParams.optionId}).$promise;
+                            entity: ['EventExtraOption', function (EventExtraOption) {
+                                var promise = EventExtraOption.get({id: $stateParams.optionId}).$promise;
 
                                 return promise.then(function (extraOption) {
                                     extraOption.event = {id: $stateParams.eventId};
@@ -227,9 +227,9 @@
                                 });
                             }]
                         }
-                    }).result.then(function() {
+                    }).result.then(function () {
                         $state.go('^');
-                    }, function() {
+                    }, function () {
                         $state.go('^');
                     });
                 }]
@@ -240,27 +240,27 @@
                 data: {
                     authorities: ['ROLE_USER']
                 },
-                onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
+                onEnter: ['$stateParams', '$state', '$uibModal', function ($stateParams, $state, $uibModal) {
                     $uibModal.open({
                         templateUrl: 'app/entities/event-extra-option/event-extra-option-delete-dialog.html',
                         controller: 'EventExtraOptionDeleteController',
                         controllerAs: 'vm',
                         size: 'md',
                         resolve: {
-                            entity: ['EventExtraOption', function(EventExtraOption) {
-                                return EventExtraOption.get({id : $stateParams.optionId}).$promise;
+                            entity: ['EventExtraOption', function (EventExtraOption) {
+                                return EventExtraOption.get({id: $stateParams.optionId}).$promise;
                             }]
                         }
-                    }).result.then(function() {
+                    }).result.then(function () {
                         $state.go('^');
-                    }, function() {
+                    }, function () {
                         $state.go('^');
                     });
                 }]
             })
-            .state('home.edit.event-delete', {
-                parent: 'home.edit',
-                url: '/event/delete/{eventId}',
+            .state('event-delete', {
+                parent: 'contract-edit',
+                url: '/event-delete/{eventId}',
                 data: {
                     authorities: ['ROLE_USER']
                 },
@@ -276,7 +276,7 @@
                             }]
                         }
                     }).result.then(function () {
-                        $state.go('home.edit', {id: $stateParams.id}, {reload: 'home.edit'});
+                        $state.go('^');
                     }, function () {
                         $state.go('^');
                     });
@@ -311,7 +311,7 @@
                             }
                         }
                     }).result.then(function () {
-                        $state.go('home.edit', {id: $stateParams.id}, {reload: 'home.edit'});
+                        $state.go('^');
                     }, function () {
                         $state.go('^');
                     });
@@ -341,7 +341,7 @@
                             }]
                         }
                     }).result.then(function () {
-                        $state.go('home.edit', {id: $stateParams.id}, {reload: 'home.edit'});
+                        $state.go('^');
                     }, function () {
                         $state.go('^');
                     });
@@ -365,7 +365,7 @@
                             }]
                         }
                     }).result.then(function () {
-                        $state.go('home.edit', {id: $stateParams.id}, {reload: 'home.edit'});
+                        $state.go('^');
                     }, function () {
                         $state.go('^');
                     });
@@ -397,7 +397,7 @@
                             }
                         }
                     }).result.then(function (selected) {
-                        $state.go('home.edit', {id: selected});
+                        $state.go('contract-edit', {id: selected});
                     }, function () {
                     });
                 }]
