@@ -20,9 +20,12 @@
             "identityId": "رقم الهوية",
             "groomName": "اسم العريس",
             "prideName": "اسم العروس",
+            "mobile": "الموبيل",
+            "telephone": "الهاتف",
             "city": "البلدة",
             "country": "البلد",
-            "contact": "طرق الاتصال"
+            "contact": "طرق الاتصال",
+            "nationality": "الجنسية"
         }
     }
 }

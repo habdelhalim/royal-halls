@@ -7,11 +7,11 @@
                 "createOrEditLabel": "تعديل حجز",
                 "search": "بحث عن حجز"
             },
-            "created": "A new Event is created with identifier {{ param }}",
-            "updated": "A Event is updated with identifier {{ param }}",
-            "deleted": "A Event is deleted with identifier {{ param }}",
+            "created": "تم انشاء الحجز {{ param }}",
+            "updated": "تم تعديل الحجز {{ param }}",
+            "deleted":  "تم حذف الحجز {{ param }}",
             "delete": {
-                "question": "Are you sure you want to delete Event {{ id }}?"
+                "question": "هل أنت متأكد من حذف الحجز {{ id }}?"
             },
             "detail": {
                 "title": "حجز"
