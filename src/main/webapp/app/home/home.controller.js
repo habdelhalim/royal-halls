@@ -1,4 +1,4 @@
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -19,20 +19,29 @@
         vm.searchContract = searchContract;
         vm.save = save;
 
-        $scope.$on('authenticationSuccess', function () {
+        $scope.$on('authenticationSuccess', function() {
             getAccount();
         });
 
-        $rootScope.$on('royalhallsApp:contractUpdate', function () {
-            Contract.get({id: vm.contract.id}, function (entity) {
-                vm.contract = entity;
-            });
+        var updateListener = $rootScope.$on('royalhallsApp:contractUpdate', function() {
+            if (vm.contract) {
+                Contract.get({
+                    id: vm.contract.id
+                }, function(entity) {
+                    vm.contract = entity;
+                });
+            }
+        });
+
+        $scope.$on('$destroy', function() {
+            console.log('calling destroy');
+            updateListener();
         });
 
         getAccount();
 
         function getAccount() {
-            Principal.identity().then(function (account) {
+            Principal.identity().then(function(account) {
                 vm.account = account;
                 vm.isAuthenticated = Principal.isAuthenticated;
             });

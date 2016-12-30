@@ -56,11 +56,11 @@ public class Contract implements Serializable {
     @ManyToOne
     private Customer customer;
 
-    @OneToMany(mappedBy = "contract")
+    @OneToMany(mappedBy = "contract", orphanRemoval = true)
     @JsonManagedReference
     private Set<Payment> payments = new HashSet<>();
 
-    @OneToMany(mappedBy = "contract")
+    @OneToMany(mappedBy = "contract", orphanRemoval = true)
     @JsonManagedReference
     private Set<Event> events = new HashSet<>();
 
