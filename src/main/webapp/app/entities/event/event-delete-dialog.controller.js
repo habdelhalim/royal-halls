@@ -23,10 +23,8 @@
                     id: id
                 },
                 function() {
-                    $scope.$emit('royalhallsApp:eventUpdate', {
-                        id: id
-                    });
-                    $scope.$emit('royalhallsApp:contractUpdate', result);
+                    $scope.$emit('royalhallsApp:eventUpdate', {});
+                    $scope.$emit('royalhallsApp:contractUpdate', {});
                     $uibModalInstance.close(true);
                 });
         }

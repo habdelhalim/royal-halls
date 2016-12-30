@@ -48,12 +48,15 @@ public class Event implements Serializable {
     @JsonManagedReference
     private Set<EventExtraOption> options = new HashSet<>();
 
+    @NotNull
     @ManyToOne
     private EventType eventType;
 
+    @NotNull
     @ManyToOne
     private Hall hall;
 
+    @NotNull
     @ManyToOne
     @JsonBackReference
     private Contract contract;

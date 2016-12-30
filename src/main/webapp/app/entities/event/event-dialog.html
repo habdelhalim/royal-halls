@@ -63,15 +63,27 @@
         <div class="form-group">
             <label data-translate="royalhallsApp.event.eventType" for="field_eventType">Event Type</label>
             <select class="form-control" id="field_eventType" name="eventType" ng-model="vm.event.eventType"
-                    ng-options="eventType as eventType.eventTypeName for eventType in vm.eventtypes track by eventType.id">
+                    ng-options="eventType as eventType.eventTypeName for eventType in vm.eventtypes track by eventType.id" required>
                 <option value=""></option>
             </select>
+            <div ng-show="editForm.eventType.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.eventType.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
         </div>
         <div class="form-group">
             <label data-translate="royalhallsApp.event.hall" for="field_hall">Hall</label>
-            <select class="form-control" id="field_hall" name="hall" ng-model="vm.event.hall" ng-options="hall as hall.hallName for hall in vm.halls track by hall.id">
+            <select class="form-control" id="field_hall" name="hall" ng-model="vm.event.hall" ng-options="hall as hall.hallName for hall in vm.halls track by hall.id" required>
                 <option value=""></option>
             </select>
+            <div ng-show="editForm.hall.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.hall.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
         </div>
         <div class="form-group">
             <label data-translate="royalhallsApp.eventExtraOption.home.title">Event Extra Options</label>
