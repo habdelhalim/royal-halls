@@ -1,4 +1,4 @@
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -22,8 +22,15 @@
             }
         };
 
-        $rootScope.$on('$translateChangeSuccess', function () {
+        var unsubscribe = $rootScope.$on('$translateChangeSuccess', function() {
             vm.uiConfig.calendar.lang = $translate.proposedLanguage();
+        });
+
+        //cleanup rootScope listener
+        $scope.$on('$destroy', function() {
+            if (unsubscribe) {
+                unsubscribe();
+            }
         });
 
         loadAll();
@@ -34,10 +41,10 @@
 
         function onSuccess(data, headers) {
             vm.queryCount = vm.totalItems;
-            vm.events = data.map(function (event) {
-                var hallName = event.hall ? event.hall.hallName: '';
+            vm.events = data.map(function(event) {
+                var hallName = event.hall ? event.hall.hallName : '';
                 return {
-                    title: event.eventName + '  -  [' + hallName + ']' ,
+                    title: event.eventName + '  -  [' + hallName + ']',
                     start: event.eventStartDate,
                     end: event.eventEndDate
                 }

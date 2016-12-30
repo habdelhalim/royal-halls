@@ -19,7 +19,7 @@
         vm.halls = Hall.query();
 
 
-        $rootScope.$on('royalhallsApp:eventExtraOptionUpdate', function() {
+        var unsubscribe = $rootScope.$on('royalhallsApp:eventExtraOptionUpdate', function() {
             if (vm.event.id !== null) {
                 var contractId = vm.event.contract.id;
                 Event.get({
@@ -30,6 +30,13 @@
                         id: contractId
                     }
                 });
+            }
+        });
+
+        //cleanup rootScope listener
+        $scope.$on('$destroy', function() {
+            if (unsubscribe) {
+                unsubscribe();
             }
         });
 

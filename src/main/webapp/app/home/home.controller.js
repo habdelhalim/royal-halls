@@ -23,7 +23,7 @@
             getAccount();
         });
 
-        var updateListener = $rootScope.$on('royalhallsApp:contractUpdate', function() {
+        var unsubscribe = $rootScope.$on('royalhallsApp:contractUpdate', function() {
             if (vm.contract) {
                 Contract.get({
                     id: vm.contract.id
@@ -34,8 +34,9 @@
         });
 
         $scope.$on('$destroy', function() {
-            console.log('calling destroy');
-            updateListener();
+            if (unsubscribe) {
+                unsubscribe();
+            }
         });
 
         getAccount();
