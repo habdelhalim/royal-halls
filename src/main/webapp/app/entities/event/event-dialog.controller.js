@@ -1,4 +1,4 @@
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -21,15 +21,17 @@
         vm.contracts = Contract.query();
 
 
-        $rootScope.$on('royalhallsApp:eventExtraOptionUpdate', function () {
+        $rootScope.$on('royalhallsApp:eventExtraOptionUpdate', function() {
             if (vm.event.id !== null) {
-                Event.get({id: vm.event.id}, function (entity) {
+                Event.get({
+                    id: vm.event.id
+                }, function(entity) {
                     vm.event = entity;
                 });
             }
         });
 
-        $timeout(function () {
+        $timeout(function() {
             angular.element('.form-group:eq(1)>input').focus();
         });
 
@@ -48,6 +50,8 @@
 
         function onSaveSuccess(result) {
             $scope.$emit('royalhallsApp:eventUpdate', result);
+            $scope.$emit('royalhallsApp:contractUpdate', result);
+
             $uibModalInstance.close(result);
             vm.isSaving = false;
         }

@@ -3,7 +3,7 @@
 
     angular
         .module('royalhallsApp')
-        .controller('EventDeleteController',EventDeleteController);
+        .controller('EventDeleteController', EventDeleteController);
 
     EventDeleteController.$inject = ['$uibModalInstance', '$scope', 'entity', 'Event'];
 
@@ -14,14 +14,19 @@
         vm.clear = clear;
         vm.confirmDelete = confirmDelete;
 
-        function clear () {
+        function clear() {
             $uibModalInstance.dismiss('cancel');
         }
 
-        function confirmDelete (id) {
-            Event.delete({id: id},
-                function () {
-                    $scope.$emit('royalhallsApp:eventUpdate', {id: id});
+        function confirmDelete(id) {
+            Event.delete({
+                    id: id
+                },
+                function() {
+                    $scope.$emit('royalhallsApp:eventUpdate', {
+                        id: id
+                    });
+                    $scope.$emit('royalhallsApp:contractUpdate', result);
                     $uibModalInstance.close(true);
                 });
         }

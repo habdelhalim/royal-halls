@@ -23,7 +23,7 @@
             getAccount();
         });
 
-        $rootScope.$on('royalhallsApp:eventUpdate', function () {
+        $rootScope.$on('royalhallsApp:contractUpdate', function () {
             Contract.get({id: vm.contract.id}, function (entity) {
                 vm.contract = entity;
             });
