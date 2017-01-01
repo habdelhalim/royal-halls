@@ -120,13 +120,13 @@
                         <td>{{eventExtraOption.optionNotes}}</td>
                         <td class="text-right">
                             <div class="btn-group flex-btn-group-container">
-                                <button type="submit"
+                                <button type="button"
                                         ui-sref="option-edit({optionId:eventExtraOption.id})"
                                         class="btn btn-primary btn-sm">
                                     <span class="glyphicon glyphicon-pencil"></span>
                                     <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"></span>
                                 </button>
-                                <button type="submit"
+                                <button type="button"
                                         ui-sref="option-delete({optionId:eventExtraOption.id})"
                                         class="btn btn-danger btn-sm">
                                     <span class="glyphicon glyphicon-remove-circle"></span>
@@ -138,7 +138,7 @@
                     </tbody>
                 </table>
             </div>
-            <button class="btn btn-primary" ui-sref="option-new">
+            <button class="btn btn-primary" ui-sref="option-new" type="button">
                 <span class="glyphicon glyphicon-plus"></span>
                     <span data-translate="royalhallsApp.eventExtraOption.home.createLabel">
                         Create new Event Extra Option

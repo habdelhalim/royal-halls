@@ -148,13 +148,13 @@
                                     </td>
                                     <td class="text-right">
                                         <div class="btn-group flex-btn-group-container">
-                                            <button type="submit"
+                                            <button type="button"
                                                     ui-sref="event-edit({eventId:event.id})"
                                                     class="btn btn-primary btn-sm">
                                                 <span class="glyphicon glyphicon-pencil"></span>
                                                 <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"></span>
                                             </button>
-                                            <button type="submit"
+                                            <button type="button"
                                                     ui-sref="event-delete({eventId:event.id})"
                                                     class="btn btn-danger btn-sm">
                                                 <span class="glyphicon glyphicon-remove-circle"></span>
@@ -167,7 +167,7 @@
                             </table>
                         </div>
                         <div class="btn-group btn-group-sm">
-                            <button class="btn btn-primary" ui-sref="event-new">
+                            <button class="btn btn-primary" ui-sref="event-new" type="button">
                                 <span class="glyphicon glyphicon-plus"></span>
                                 <span data-translate="royalhallsApp.event.home.createLabel">
                                     Create new Event
@@ -211,13 +211,13 @@
                                     <td>{{payment.creationDate |  date:'yyyy-MM-dd HH:mm'}}</td>
                                     <td class="text-right">
                                         <div class="btn-group flex-btn-group-container">
-                                            <button type="submit"
+                                            <button type="button"
                                                     ui-sref="payment-edit({paymentId:payment.id})"
                                                     class="btn btn-primary btn-sm">
                                                 <span class="glyphicon glyphicon-pencil"></span>
                                                 <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"></span>
                                             </button>
-                                            <button type="submit"
+                                            <button type="button"
                                                     ui-sref="payment-delete({paymentId:payment.id})"
                                                     class="btn btn-danger btn-sm">
                                                 <span class="glyphicon glyphicon-remove-circle"></span>
@@ -230,7 +230,7 @@
                             </table>
                         </div>
                         <div class="btn-group btn-group-sm">
-                            <button class="btn btn-primary" ui-sref="payment-new">
+                            <button class="btn btn-primary" ui-sref="payment-new" type="button">
                                 <span class="glyphicon glyphicon-plus"></span>
                                 <span data-translate="royalhallsApp.payment.home.createLabel">
                                     Create new Payment
