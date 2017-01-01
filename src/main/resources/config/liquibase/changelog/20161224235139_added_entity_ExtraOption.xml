@@ -27,25 +27,25 @@
             <column name="option_name" type="varchar(255)">
                 <constraints nullable="false" />
             </column>
-            
+
             <column name="option_type" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            
+
             <column name="price" type="double">
                 <constraints nullable="true" />
             </column>
-            
-            <column name="has_variances" type="bit">
+
+            <column name="has_variances" type="boolean">
                 <constraints nullable="true" />
             </column>
-            
-            <column name="has_colors" type="bit">
+
+            <column name="has_colors" type="boolean">
                 <constraints nullable="true" />
             </column>
-            
+
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
-        
+
     </changeSet>
 </databaseChangeLog>

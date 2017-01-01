@@ -138,8 +138,8 @@
                                 <tbody>
                                 <tr ng-repeat="event in vm.contract.events track by event.id">
                                     <td>{{event.eventName}}</td>
-                                    <td>{{event.eventStartDate | date:'medium'}}</td>
-                                    <td>{{event.eventEndDate | date:'medium'}}</td>
+                                    <td><span style="direction: ltr">{{event.eventStartDate | date:'yyyy-MM-dd HH:mm'}}</span></td>
+                                    <td><span style="direction: ltr">{{event.eventEndDate | date:'yyyy-MM-dd HH:mm'}}</span></td>
                                     <td>
                                         <a ui-sref="event-type-detail({id:event.eventType.id})">{{event.eventType.eventTypeName}}</a>
                                     </td>
@@ -204,11 +204,11 @@
                                 <tr ng-repeat="payment in vm.contract.payments track by payment.id">
                                     <td data-translate="{{'royalhallsApp.PaymentType.' + payment.paymentType}}">{{payment.paymentType}}</td>
                                     <td>{{payment.paymentAmount}}</td>
-                                    <td>{{payment.paymentDueDate | date:'medium'}}</td>
+                                    <td>{{payment.paymentDueDate |  date:'yyyy-MM-dd HH:mm'}}</td>
                                     <td data-translate="{{'royalhallsApp.PaymentStatus.' + payment.paymentStatus}}">{{payment.paymentStatus}}</td>
                                     <td>{{payment.chequeNo}}</td>
                                     <td>{{payment.bankName}}</td>
-                                    <td>{{payment.creationDate | date:'medium'}}</td>
+                                    <td>{{payment.creationDate |  date:'yyyy-MM-dd HH:mm'}}</td>
                                     <td class="text-right">
                                         <div class="btn-group flex-btn-group-container">
                                             <button type="submit"
