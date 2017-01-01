@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
+import java.util.List;
 
 /**
  * Service Implementation for managing Event.
@@ -73,5 +74,15 @@ public class EventServiceImpl implements EventService {
     public void delete(Long id) {
         log.debug("Request to delete Event : {}", id);
         eventRepository.delete(id);
+    }
+
+    /**
+     * Find events by  contract Id
+     *
+     * @param contractId
+     * @return
+     */
+    @Override public List<Event> findAllByContractId(Long contractId) {
+        return eventRepository.findDistinctByContractId(contractId);
     }
 }

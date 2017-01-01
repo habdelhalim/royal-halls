@@ -5,7 +5,6 @@ import com.royal.app.domain.Event;
 import com.royal.app.service.EventService;
 import com.royal.app.web.rest.util.HeaderUtil;
 import com.royal.app.web.rest.util.PaginationUtil;
-
 import io.swagger.annotations.ApiParam;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,7 +30,7 @@ import java.util.Optional;
 public class EventResource {
 
     private final Logger log = LoggerFactory.getLogger(EventResource.class);
-        
+
     @Inject
     private EventService eventService;
 
@@ -92,6 +91,22 @@ public class EventResource {
         Page<Event> page = eventService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/events");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    }
+
+    /**
+     * GET  /events/by-contract : get all the events.
+     *
+     * @param contractId the id of the contract to retrieve
+     * @return the ResponseEntity with status 200 (OK) and the list of events in body
+     * @throws URISyntaxException if there is an error to generate the pagination HTTP headers
+     */
+    @GetMapping("/events/by-contract/{contractId}")
+    @Timed
+    public ResponseEntity<List<Event>> getAllEventsByContract(@PathVariable Long contractId)
+        throws URISyntaxException {
+        log.debug("REST request to get a page of Events by contract: {}", contractId);
+        List<Event> events = eventService.findAllByContractId(contractId);
+        return new ResponseEntity<>(events, HttpStatus.OK);
     }
 
     /**

@@ -1,0 +1,28 @@
+<h2 data-translate="royalhallsApp.eventExtraOption.home.title">Event Extra Options</h2>
+<div class="form-group">
+
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+            <tr>
+                <th><span data-translate="royalhallsApp.event.eventName">Event Name</span></th>
+                <th><span data-translate="royalhallsApp.eventExtraOption.option">Option</span></th>
+                <th><span data-translate="royalhallsApp.eventExtraOption.variant">Variant</span></th>
+                <th><span data-translate="royalhallsApp.eventExtraOption.color">Color</span></th>
+                <th><span data-translate="royalhallsApp.eventExtraOption.optionQty">Option Qty</span></th>
+                <th><span data-translate="royalhallsApp.eventExtraOption.optionNotes">Option Notes</span></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="eventExtraOption in vm.options track by eventExtraOption.id">
+                <td>{{eventExtraOption.event.eventName}}</td>
+                <td>{{eventExtraOption.option.optionName}}</td>
+                <td>{{eventExtraOption.variant.variantName}}</td>
+                <td>{{eventExtraOption.color.colorName}}</td>
+                <td>{{eventExtraOption.optionQty}}</td>
+                <td>{{eventExtraOption.optionNotes}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

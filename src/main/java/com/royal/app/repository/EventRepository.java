@@ -12,4 +12,6 @@ import java.util.List;
 @SuppressWarnings("unused")
 public interface EventRepository extends JpaRepository<Event,Long> {
 
+    @EntityGraph(attributePaths = { "options" })
+    List<Event> findDistinctByContractId(Long contractId);
 }

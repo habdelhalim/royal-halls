@@ -204,11 +204,11 @@
                                 <tr ng-repeat="payment in vm.contract.payments track by payment.id">
                                     <td data-translate="{{'royalhallsApp.PaymentType.' + payment.paymentType}}">{{payment.paymentType}}</td>
                                     <td>{{payment.paymentAmount}}</td>
-                                    <td>{{payment.paymentDueDate |  date:'yyyy-MM-dd HH:mm'}}</td>
+                                    <td>{{payment.paymentDueDate | date:'yyyy-MM-dd HH:mm'}}</td>
                                     <td data-translate="{{'royalhallsApp.PaymentStatus.' + payment.paymentStatus}}">{{payment.paymentStatus}}</td>
                                     <td>{{payment.chequeNo}}</td>
                                     <td>{{payment.bankName}}</td>
-                                    <td>{{payment.creationDate |  date:'yyyy-MM-dd HH:mm'}}</td>
+                                    <td>{{payment.creationDate | date:'yyyy-MM-dd HH:mm'}}</td>
                                     <td class="text-right">
                                         <div class="btn-group flex-btn-group-container">
                                             <button type="button"
@@ -237,6 +237,10 @@
                                 </span>
                             </button>
                         </div>
+                    </div>
+                    <div class="col-md-12">
+                        <hr>
+                        <contract-options contract="vm.contract"></contract-options>
                     </div>
                     <hr>
                     <div class="row">

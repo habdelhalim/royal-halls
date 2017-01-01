@@ -20,7 +20,7 @@ public interface EventService {
 
     /**
      *  Get all the events.
-     *  
+     *
      *  @param pageable the pagination information
      *  @return the list of entities
      */
@@ -40,4 +40,12 @@ public interface EventService {
      *  @param id the id of the entity
      */
     void delete(Long id);
+
+    /**
+     * Find events by  contract Id
+     *
+     * @param contractId
+     * @return
+     */
+    List<Event> findAllByContractId(Long contractId);
 }
