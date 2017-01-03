@@ -203,7 +203,7 @@
                                 <tbody>
                                 <tr ng-repeat="payment in vm.contract.payments track by payment.id">
                                     <td data-translate="{{'royalhallsApp.PaymentType.' + payment.paymentType}}">{{payment.paymentType}}</td>
-                                    <td>{{payment.paymentAmount}}</td>
+                                    <td>{{payment.paymentAmount | currency }}</td>
                                     <td>{{payment.paymentDueDate | date:'yyyy-MM-dd HH:mm'}}</td>
                                     <td data-translate="{{'royalhallsApp.PaymentStatus.' + payment.paymentStatus}}">{{payment.paymentStatus}}</td>
                                     <td>{{payment.chequeNo}}</td>
@@ -242,27 +242,6 @@
                         <hr>
                         <contract-options contract="vm.contract"></contract-options>
                     </div>
-                    <hr>
-                    <div class="row">
-
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="control-label" data-translate="royalhallsApp.contract.openAmount" for="field_openAmount">Open Amount</label>
-                                <input type="number" class="form-control" name="openAmount" id="field_openAmount" ng-disabled="true"
-                                       ng-model="vm.contract.openAmount"
-                                />
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="control-label" data-translate="royalhallsApp.contract.totalAmount" for="field_totalAmount">Total Amount</label>
-                                <input type="number" class="form-control" name="totalAmount" id="field_totalAmount" ng-disabled="true"
-                                       ng-model="vm.contract.totalAmount"
-                                />
-                            </div>
-                        </div>
-                    </div>
-
 
                     <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
                         <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
