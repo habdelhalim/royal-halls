@@ -105,6 +105,7 @@
                         $translatePartialLoader.addPart('customer');
                         $translatePartialLoader.addPart('event');
                         $translatePartialLoader.addPart('eventExtraOption');
+                        $translatePartialLoader.addPart('extraOption');
                         $translatePartialLoader.addPart('payment');
                         $translatePartialLoader.addPart('paymentStatus');
                         $translatePartialLoader.addPart('paymentType');

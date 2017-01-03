@@ -46,6 +46,9 @@
                                 var options =
                                     ev.options.map(function (op) {
                                         op.event = {id: ev.id, eventName: ev.eventName};
+                                        op.price = (op.variant === null) ? op.option.price : op.variant.price;
+                                        op.total = (op.optionQty === null) ? op.price : op.optionQty * op.price;
+
                                         return op;
                                     });
 
