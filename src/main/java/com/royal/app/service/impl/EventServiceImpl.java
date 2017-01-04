@@ -3,6 +3,7 @@ package com.royal.app.service.impl;
 import com.royal.app.domain.Event;
 import com.royal.app.repository.EventRepository;
 import com.royal.app.service.EventService;
+import com.royal.app.web.rest.errors.CustomParameterizedException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
+import java.time.Duration;
 import java.util.List;
 
 /**
@@ -33,6 +35,11 @@ public class EventServiceImpl implements EventService {
      */
     public Event save(Event event) {
         log.debug("Request to save Event : {}", event);
+        Duration duration = Duration.between(event.getEventStartDate(), event.getEventEndDate());
+        if (duration.toMinutes() < 60) {
+            throw new CustomParameterizedException("event.invalid-date-range");
+        }
+
         Event result = eventRepository.save(event);
         return result;
     }

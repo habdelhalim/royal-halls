@@ -3,6 +3,7 @@ package com.royal.app.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import com.royal.app.domain.Event;
 import com.royal.app.service.EventService;
+import com.royal.app.web.rest.errors.CustomParameterizedException;
 import com.royal.app.web.rest.util.HeaderUtil;
 import com.royal.app.web.rest.util.PaginationUtil;
 import io.swagger.annotations.ApiParam;
@@ -48,7 +49,14 @@ public class EventResource {
         if (event.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("event", "idexists", "A new event cannot already have an ID")).body(null);
         }
-        Event result = eventService.save(event);
+
+        Event result = null;
+        try {
+            result = eventService.save(event);
+        } catch (CustomParameterizedException e) {
+            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("event", e.getMessage(), e.getMessage())).body(null);
+        }
+
         return ResponseEntity.created(new URI("/api/events/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert("event", result.getId().toString()))
             .body(result);
@@ -70,7 +78,14 @@ public class EventResource {
         if (event.getId() == null) {
             return createEvent(event);
         }
-        Event result = eventService.save(event);
+
+        Event result = null;
+        try {
+            result = eventService.save(event);
+        } catch (CustomParameterizedException e) {
+            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("event", e.getMessage(), e.getMessage())).body(null);
+        }
+
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert("event", event.getId().toString()))
             .body(result);

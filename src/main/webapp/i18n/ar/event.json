@@ -1,6 +1,6 @@
 {
     "royalhallsApp": {
-        "event" : {
+        "event": {
             "home": {
                 "title": "الحجوزات",
                 "createLabel": "ادخال حجز",
@@ -9,7 +9,7 @@
             },
             "created": "تم انشاء الحجز {{ param }}",
             "updated": "تم تعديل الحجز {{ param }}",
-            "deleted":  "تم حذف الحجز {{ param }}",
+            "deleted": "تم حذف الحجز {{ param }}",
             "delete": {
                 "question": "هل أنت متأكد من حذف الحجز {{ id }}?"
             },
@@ -26,5 +26,8 @@
             "contract": "العقد",
             "option": "التفاصيل"
         }
+    },
+    "error": {
+        "event.invalid-date": "Invalid date inserted"
     }
 }
