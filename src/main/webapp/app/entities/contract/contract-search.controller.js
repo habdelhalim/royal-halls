@@ -1,4 +1,4 @@
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -9,6 +9,11 @@
 
     function ContractSearchController($timeout, $scope, $stateParams, ParseLinks, $uibModalInstance, entity, Contract, Customer, Payment, Event) {
         var vm = this;
+        vm.search = '';
+
+        $timeout(function () {
+            angular.element('#field_search').focus();
+        });
 
         loadAll();
 
@@ -31,6 +36,7 @@
                 vm.totalItems = headers('X-Total-Count');
                 vm.queryCount = vm.totalItems;
                 vm.contracts = data;
+                vm.page = 0;
             }
 
             function onError(error) {
@@ -45,7 +51,7 @@
         vm.openCalendar = openCalendar;
         vm.save = save;
 
-        $timeout(function() {
+        $timeout(function () {
             angular.element('.form-group:eq(1)>input').focus();
         });
 
