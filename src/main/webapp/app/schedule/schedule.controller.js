@@ -1,4 +1,4 @@
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -22,12 +22,12 @@
             }
         };
 
-        var unsubscribe = $rootScope.$on('$translateChangeSuccess', function() {
+        var unsubscribe = $rootScope.$on('$translateChangeSuccess', function () {
             vm.uiConfig.calendar.lang = $translate.proposedLanguage();
         });
 
         //cleanup rootScope listener
-        $scope.$on('$destroy', function() {
+        $scope.$on('$destroy', function () {
             if (unsubscribe) {
                 unsubscribe();
             }
@@ -41,12 +41,16 @@
 
         function onSuccess(data, headers) {
             vm.queryCount = vm.totalItems;
-            vm.events = data.map(function(event) {
+            vm.events = data.map(function (event) {
                 var hallName = event.hall ? event.hall.hallName : '';
+                var hallId = event.hall ? event.hall.id - 1 : 0;
+                var colors = ['#0086AB', '#485357', '#F59958', '#FF8787'];
+
                 return {
                     title: event.eventName + '  -  [' + hallName + ']',
                     start: event.eventStartDate,
-                    end: event.eventEndDate
+                    end: event.eventEndDate,
+                    color: colors[hallId]
                 }
             });
             vm.eventSources.pop();
