@@ -9,7 +9,7 @@
         <jhi-alert-error></jhi-alert-error>
         <div class="form-group">
             <label for="field_search" data-translate="royalhallsApp.contract.home.search">Search</label>
-            <input id="field_search" type="text" class="form-control"  ng-model="vm.search">
+            <input id="field_search" type="text" class="form-control"  ng-model="vm.search" ng-change="vm.filter()">
         </div>
         <hr>
         <div class="table-responsive">
@@ -28,7 +28,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="contract in vm.contracts | filter:vm.search " data-dismiss="modal" ng-click="vm.select(contract.id)">
+                <tr ng-repeat="contract in vm.contracts track by contract.id"  data-dismiss="modal" ng-click="vm.select(contract.id)">
                     <td><a ui-sref="contract-edit({id:contract.id})">{{contract.id}}</a></td>
                     <td>{{contract.customer.customerName}}</td>
                     <td>{{contract.contractDate | date:'medium'}}</td>

@@ -3,7 +3,6 @@ package com.royal.app.service;
 import com.royal.app.domain.Contract;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import java.util.List;
 
 /**
  * Service Interface for managing Contract.
@@ -20,11 +19,19 @@ public interface ContractService {
 
     /**
      *  Get all the contracts.
-     *  
+     *
      *  @param pageable the pagination information
      *  @return the list of entities
      */
     Page<Contract> findAll(Pageable pageable);
+
+    /**
+     *  Get all the contracts with contact Name.
+     *
+     *  @param pageable the pagination information
+     *  @return the list of entities
+     */
+    Page<Contract> search(Pageable pageable, String searchName);
 
     /**
      *  Get the "id" contract.

@@ -5,7 +5,6 @@ import com.royal.app.domain.Contract;
 import com.royal.app.service.ContractService;
 import com.royal.app.web.rest.util.HeaderUtil;
 import com.royal.app.web.rest.util.PaginationUtil;
-
 import io.swagger.annotations.ApiParam;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,7 +30,7 @@ import java.util.Optional;
 public class ContractResource {
 
     private final Logger log = LoggerFactory.getLogger(ContractResource.class);
-        
+
     @Inject
     private ContractService contractService;
 
@@ -86,10 +85,10 @@ public class ContractResource {
      */
     @GetMapping("/contracts")
     @Timed
-    public ResponseEntity<List<Contract>> getAllContracts(@ApiParam Pageable pageable)
+    public ResponseEntity<List<Contract>> getAllContracts(@ApiParam Pageable pageable, @ApiParam String search)
         throws URISyntaxException {
-        log.debug("REST request to get a page of Contracts");
-        Page<Contract> page = contractService.findAll(pageable);
+        log.debug("REST request to get a page of Contracts with search: " + search);
+        Page<Contract> page = contractService.search(pageable, search);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/contracts");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

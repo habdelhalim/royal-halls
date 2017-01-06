@@ -58,6 +58,24 @@ public class ContractServiceImpl implements ContractService {
     }
 
     /**
+     *  Get all the contracts with contact Name.
+     *
+     *  @param pageable the pagination information
+     *  @return the list of entities
+     */
+    @Transactional(readOnly = true)
+    public Page<Contract> search(Pageable pageable, String searchName) {
+        log.debug("Request to get all Contracts");
+        long searchId = 0;
+        try {
+            searchId = Long.parseLong(searchName);
+        } catch (NumberFormatException e) {
+        }
+        Page<Contract> result = contractRepository.findByCustomerCustomerNameContainsOrId(pageable, searchName, searchId);
+        return result;
+    }
+
+    /**
      *  Get one contract by id.
      *
      *  @param id the id of the entity

@@ -10,10 +10,18 @@
     function ContractSearchController($timeout, $scope, $stateParams, ParseLinks, $uibModalInstance, entity, Contract, Customer, Payment, Event) {
         var vm = this;
         vm.search = '';
+        vm.filter = filter;
 
         $timeout(function () {
             angular.element('#field_search').focus();
         });
+
+        function filter() {
+            console.log('searching for ', vm.search);
+            if (vm.search.length >= 3 || vm.search.length == 0) {
+                loadAll();
+            }
+        }
 
         loadAll();
 
@@ -21,6 +29,7 @@
             Contract.query({
                 page: 0,
                 size: 10,
+                search: vm.search
             }, onSuccess, onError);
 
             function sort() {
@@ -47,13 +56,6 @@
         vm.contract = entity;
         vm.clear = clear;
         vm.select = select;
-        vm.datePickerOpenStatus = {};
-        vm.openCalendar = openCalendar;
-        vm.save = save;
-
-        $timeout(function () {
-            angular.element('.form-group:eq(1)>input').focus();
-        });
 
         function select(item) {
             $uibModalInstance.close(item);
@@ -63,30 +65,5 @@
             $uibModalInstance.dismiss('cancel');
         }
 
-        function save() {
-            vm.isSaving = true;
-            if (vm.contract.id !== null) {
-                Contract.update(vm.contract, onSaveSuccess, onSaveError);
-            } else {
-                Contract.save(vm.contract, onSaveSuccess, onSaveError);
-            }
-        }
-
-        function onSaveSuccess(result) {
-            $scope.$emit('royalhallsApp:contractUpdate', result);
-            $uibModalInstance.close(result);
-            vm.isSaving = false;
-        }
-
-        function onSaveError() {
-            vm.isSaving = false;
-        }
-
-        vm.datePickerOpenStatus.contractDate = false;
-        vm.datePickerOpenStatus.creationDate = false;
-
-        function openCalendar(date) {
-            vm.datePickerOpenStatus[date] = true;
-        }
     }
 })();
