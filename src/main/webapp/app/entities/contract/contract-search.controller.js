@@ -26,7 +26,7 @@
         loadAll();
 
         function loadAll() {
-            Contract.query({
+            Contract.search({
                 page: 0,
                 size: 10,
                 search: vm.search

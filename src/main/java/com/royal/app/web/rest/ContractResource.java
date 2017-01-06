@@ -83,12 +83,28 @@ public class ContractResource {
      * @return the ResponseEntity with status 200 (OK) and the list of contracts in body
      * @throws URISyntaxException if there is an error to generate the pagination HTTP headers
      */
-    @GetMapping("/contracts")
+    @GetMapping("/contracts/search")
     @Timed
-    public ResponseEntity<List<Contract>> getAllContracts(@ApiParam Pageable pageable, @ApiParam String search)
+    public ResponseEntity<List<Contract>> searchContracts(@ApiParam Pageable pageable, @ApiParam String search)
         throws URISyntaxException {
         log.debug("REST request to get a page of Contracts with search: " + search);
         Page<Contract> page = contractService.search(pageable, search);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/contracts/search");
+        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    }
+
+    /**
+     * GET  /contracts : get all the contracts.
+     *
+     * @param pageable the pagination information
+     * @return the ResponseEntity with status 200 (OK) and the list of contracts in body
+     * @throws URISyntaxException if there is an error to generate the pagination HTTP headers
+     */
+    @GetMapping("/contracts")
+    @Timed
+    public ResponseEntity<List<Contract>> getAllContracts(@ApiParam Pageable pageable)
+        throws URISyntaxException {
+        Page<Contract> page = contractService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/contracts");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
