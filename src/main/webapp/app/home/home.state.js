@@ -101,6 +101,7 @@
                 resolve: {
                     mainTranslatePartialLoader: ['$translate', '$translatePartialLoader', function($translate, $translatePartialLoader) {
                         $translatePartialLoader.addPart('home');
+                        $translatePartialLoader.addPart('hall');
                         $translatePartialLoader.addPart('contact');
                         $translatePartialLoader.addPart('customer');
                         $translatePartialLoader.addPart('event');

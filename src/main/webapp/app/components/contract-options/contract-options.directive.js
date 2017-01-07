@@ -61,6 +61,12 @@
 
                         //flatten array
                         vm.options = [].concat.apply([], vm.options);
+
+                        vm.halls =
+                            vm.events.map(function (ev) {
+                                vm.totalAmount = vm.totalAmount + ev.hall.price;
+                                return ev.hall;
+                            });
                     }
 
                     if (vm.contract.payments) {
@@ -73,6 +79,9 @@
 
                         vm.openAmount = vm.totalAmount - vm.paidAmount;
                     }
+
+                    vm.contract.totalAmount = angular.copy(vm.totalAmount);
+                    vm.contract.openAmount = angular.copy(vm.openAmount);
                 });
             }
         }

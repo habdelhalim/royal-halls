@@ -1,6 +1,30 @@
+<h2 data-translate="royalhallsApp.hall.home.title">Halls</h2>
+<div class="form-group">
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+            <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
+                <th jh-sort-by="hallName"><span data-translate="royalhallsApp.hall.hallName">Hall Name</span></th>
+                <th jh-sort-by="description"><span data-translate="royalhallsApp.hall.description">Description</span></th>
+                <th jh-sort-by="hallType.hallTypeName"><span data-translate="royalhallsApp.hall.hallType">Hall Type</span></th>
+                <th jh-sort-by="capacity"><span data-translate="royalhallsApp.hall.capacity">Capacity</span></th>
+                <th jh-sort-by="price"><span data-translate="royalhallsApp.hall.price">Price</span></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="hall in vm.halls">
+                <td>{{hall.hallName}}</td>
+                <td>{{hall.description}}</td>
+                <td>{{hall.hallType.hallTypeName}}</td>
+                <td>{{hall.capacity}}</td>
+                <td>{{hall.price}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 <h2 data-translate="royalhallsApp.eventExtraOption.home.title">Event Extra Options</h2>
 <div class="form-group">
-
     <div class="table-responsive">
         <table class="jh-table table table-striped">
             <thead>
@@ -32,7 +56,7 @@
 </div>
 <hr>
 <div class="form-group">
-    <label class="control-label" data-translate="royalhallsApp.contract.totalAmount" >Total Amount </label> :
+    <label class="control-label" data-translate="royalhallsApp.contract.totalAmount">Total Amount </label> :
     {{vm.totalAmount | currency }}
 </div>
 <div class="form-group">
