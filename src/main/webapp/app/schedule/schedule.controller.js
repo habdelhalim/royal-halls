@@ -5,11 +5,13 @@
         .module('royalhallsApp')
         .controller('ScheduleController', ScheduleController);
 
-    ScheduleController.$inject = ['$scope', '$state', '$translate', '$rootScope', 'Event'];
+    ScheduleController.$inject = ['$scope', '$compile', '$translate', '$rootScope', 'Event'];
 
-    function ScheduleController($scope, $state, $translate, $rootScope, Event) {
+    function ScheduleController($scope, $compile, $translate, $rootScope, Event) {
         var vm = this;
         vm.eventSources = [];
+        vm.eventRender = eventRender;
+
         vm.uiConfig = {
             calendar: {
                 editable: true,
@@ -18,7 +20,8 @@
                     center: 'title',
                     right: 'today prev,next'
                 },
-                lang: $translate.proposedLanguage()
+                lang: $translate.proposedLanguage(),
+                eventRender: vm.eventRender
             }
         };
 
@@ -35,8 +38,16 @@
 
         loadAll();
 
+        function eventRender(event, element, view) {
+            element.attr({
+                'uib-tooltip': event.title,
+                'tooltip-placement': 'top'
+            });
+            $compile(element)($scope);
+        }
+
         function loadAll() {
-            Event.query({}, onSuccess, onError);
+            Event.query({size: 1000}, onSuccess, onError);
         }
 
         function onSuccess(data, headers) {

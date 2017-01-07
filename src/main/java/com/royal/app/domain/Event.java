@@ -1,17 +1,17 @@
 package com.royal.app.domain;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.ZonedDateTime;
 import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * A Event.
@@ -19,6 +19,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "event")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "@id")
 public class Event implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -45,7 +46,6 @@ public class Event implements Serializable {
     private String createdBy;
 
     @OneToMany(mappedBy = "event", orphanRemoval = true)
-    @JsonManagedReference
     private Set<EventExtraOption> options = new HashSet<>();
 
     @NotNull
@@ -58,7 +58,6 @@ public class Event implements Serializable {
 
     @NotNull
     @ManyToOne
-    @JsonBackReference
     private Contract contract;
 
     public Long getId() {

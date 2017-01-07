@@ -17,7 +17,6 @@
         });
 
         function filter() {
-            console.log('searching for ', vm.search);
             if (vm.search.length >= 3 || vm.search.length == 0) {
                 loadAll();
             }

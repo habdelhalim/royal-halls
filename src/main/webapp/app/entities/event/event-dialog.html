@@ -22,7 +22,7 @@
             <label class="control-label" data-translate="royalhallsApp.event.eventStartDate" for="field_eventStartDate">Event Start Date</label>
             <div class="input-group">
                 <input id="field_eventStartDate" type="text" class="form-control" name="eventStartDate" datetime-picker="{{dateformat}}" ng-model="vm.event.eventStartDate"
-                       is-open="vm.datePickerOpenStatus.eventStartDate"
+                       is-open="vm.datePickerOpenStatus.eventStartDate" ng-change="vm.setEndDate()"
                        required/>
                     <span class="input-group-btn">
                         <button type="button" class="btn btn-default" ng-click="vm.openCalendar('eventStartDate')"><i class="glyphicon glyphicon-calendar"></i></button>

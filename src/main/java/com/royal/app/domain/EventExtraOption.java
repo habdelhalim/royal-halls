@@ -1,6 +1,8 @@
 package com.royal.app.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -14,6 +16,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "event_extra_option")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "@id")
 public class EventExtraOption implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -29,7 +32,6 @@ public class EventExtraOption implements Serializable {
     private String optionNotes;
 
     @ManyToOne
-    @JsonBackReference
     private Event event;
 
     @ManyToOne

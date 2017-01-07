@@ -1,18 +1,17 @@
 package com.royal.app.domain;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.royal.app.domain.enumeration.PaymentStatus;
+import com.royal.app.domain.enumeration.PaymentType;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.ZonedDateTime;
 import java.util.Objects;
-
-import com.royal.app.domain.enumeration.PaymentType;
-
-import com.royal.app.domain.enumeration.PaymentStatus;
 
 /**
  * A Payment.
@@ -20,6 +19,7 @@ import com.royal.app.domain.enumeration.PaymentStatus;
 @Entity
 @Table(name = "payment")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "@id")
 public class Payment implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -54,7 +54,6 @@ public class Payment implements Serializable {
     private ZonedDateTime creationDate;
 
     @ManyToOne
-    @JsonBackReference
     private Contract contract;
 
     public Long getId() {

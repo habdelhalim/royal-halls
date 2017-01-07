@@ -1,4 +1,4 @@
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -15,16 +15,17 @@
         vm.datePickerOpenStatus = {};
         vm.openCalendar = openCalendar;
         vm.save = save;
+        vm.setEndDate = setEndDate;
         vm.eventtypes = EventType.query();
         vm.halls = Hall.query();
 
 
-        var unsubscribe = $rootScope.$on('royalhallsApp:eventExtraOptionUpdate', function() {
+        var unsubscribe = $rootScope.$on('royalhallsApp:eventExtraOptionUpdate', function () {
             if (vm.event.id !== null) {
                 var contractId = vm.event.contract.id;
                 Event.get({
                     id: vm.event.id
-                }, function(entity) {
+                }, function (entity) {
                     vm.event = entity;
                     vm.event.contract = {
                         id: contractId
@@ -34,13 +35,13 @@
         });
 
         //cleanup rootScope listener
-        $scope.$on('$destroy', function() {
+        $scope.$on('$destroy', function () {
             if (unsubscribe) {
                 unsubscribe();
             }
         });
 
-        $timeout(function() {
+        $timeout(function () {
             angular.element('.form-group:eq(1)>input').focus();
         });
 
@@ -75,6 +76,14 @@
 
         function openCalendar(date) {
             vm.datePickerOpenStatus[date] = true;
+        }
+
+        function setEndDate() {
+            if (vm.event.eventEndDate === undefined || vm.event.eventEndDate === null) {
+                var hours = 2;
+                vm.event.eventEndDate = vm.event.eventStartDate;
+                vm.event.eventEndDate.setTime(vm.event.eventEndDate.getTime() + (hours * 60 * 60 * 1000))
+            }
         }
     }
 })();
