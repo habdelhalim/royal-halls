@@ -81,8 +81,8 @@
         function setEndDate() {
             if (vm.event.eventEndDate === undefined || vm.event.eventEndDate === null) {
                 var hours = 2;
-                vm.event.eventEndDate = vm.event.eventStartDate;
-                vm.event.eventEndDate.setTime(vm.event.eventEndDate.getTime() + (hours * 60 * 60 * 1000))
+                vm.event.eventEndDate = angular.copy(vm.event.eventStartDate);
+                vm.event.eventEndDate.setTime(vm.event.eventEndDate.getTime() + (hours * 60 * 60 * 1000));
             }
         }
     }
