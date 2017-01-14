@@ -29,8 +29,7 @@ public class Customer implements Serializable {
     @Column(name = "customer_name", nullable = false)
     private String customerName;
 
-    @NotNull
-    @Column(name = "identity_id", nullable = false)
+    @Column(name = "identity_id")
     private String identityId;
 
     @Column(name = "city")
