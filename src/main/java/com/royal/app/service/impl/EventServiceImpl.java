@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
 import java.time.Duration;
+import java.time.ZonedDateTime;
 import java.util.List;
 
 /**
@@ -35,6 +36,11 @@ public class EventServiceImpl implements EventService {
      */
     public Event save(Event event) {
         log.debug("Request to save Event : {}", event);
+        Duration offsetFromNow = Duration.between(ZonedDateTime.now(), event.getEventStartDate());
+        if (offsetFromNow.toMinutes() < 0) {
+            throw new CustomParameterizedException("event.past-date-range");
+        }
+
         Duration duration = Duration.between(event.getEventStartDate(), event.getEventEndDate());
         if (duration.toMinutes() < 60) {
             throw new CustomParameterizedException("event.invalid-date-range");

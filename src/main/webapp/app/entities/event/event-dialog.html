@@ -19,48 +19,6 @@
             />
         </div>
         <div class="form-group">
-            <label class="control-label" data-translate="royalhallsApp.event.eventStartDate" for="field_eventStartDate">Event Start Date</label>
-            <div class="input-group">
-                <input id="field_eventStartDate" type="text" class="form-control" name="eventStartDate" datetime-picker="{{dateformat}}" ng-model="vm.event.eventStartDate"
-                       is-open="vm.datePickerOpenStatus.eventStartDate" ng-change="vm.setEndDate()"
-                       required/>
-                    <span class="input-group-btn">
-                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('eventStartDate')"><i class="glyphicon glyphicon-calendar"></i></button>
-                    </span>
-            </div>
-            <div ng-show="editForm.eventStartDate.$invalid">
-                <p class="help-block"
-                   ng-show="editForm.eventStartDate.$error.required" data-translate="entity.validation.required">
-                    This field is required.
-                </p>
-                <p class="help-block"
-                   ng-show="editForm.eventStartDate.$error.ZonedDateTimelocal" data-translate="entity.validation.ZonedDateTimelocal">
-                    This field should be a date and time.
-                </p>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label" data-translate="royalhallsApp.event.eventEndDate" for="field_eventEndDate">Event End Date</label>
-            <div class="input-group">
-                <input id="field_eventEndDate" type="text" class="form-control" name="eventEndDate" datetime-picker="{{dateformat}}" ng-model="vm.event.eventEndDate"
-                       is-open="vm.datePickerOpenStatus.eventEndDate"
-                       required/>
-                    <span class="input-group-btn">
-                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('eventEndDate')"><i class="glyphicon glyphicon-calendar"></i></button>
-                    </span>
-            </div>
-            <div ng-show="editForm.eventEndDate.$invalid">
-                <p class="help-block"
-                   ng-show="editForm.eventEndDate.$error.required" data-translate="entity.validation.required">
-                    This field is required.
-                </p>
-                <p class="help-block"
-                   ng-show="editForm.eventEndDate.$error.ZonedDateTimelocal" data-translate="entity.validation.ZonedDateTimelocal">
-                    This field should be a date and time.
-                </p>
-            </div>
-        </div>
-        <div class="form-group">
             <label data-translate="royalhallsApp.event.eventType" for="field_eventType">Event Type</label>
             <select class="form-control" id="field_eventType" name="eventType" ng-model="vm.event.eventType"
                     ng-options="eventType as eventType.eventTypeName for eventType in vm.eventtypes track by eventType.id" required>
@@ -68,7 +26,7 @@
             </select>
             <div ng-show="editForm.eventType.$invalid">
                 <p class="help-block"
-                    ng-show="editForm.eventType.$error.required" data-translate="entity.validation.required">
+                   ng-show="editForm.eventType.$error.required" data-translate="entity.validation.required">
                     This field is required.
                 </p>
             </div>
@@ -80,11 +38,72 @@
             </select>
             <div ng-show="editForm.hall.$invalid">
                 <p class="help-block"
-                    ng-show="editForm.hall.$error.required" data-translate="entity.validation.required">
+                   ng-show="editForm.hall.$error.required" data-translate="entity.validation.required">
                     This field is required.
                 </p>
             </div>
         </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="royalhallsApp.event.eventStartDate" for="field_eventDate">Event Start Date</label>
+            <div class="input-group">
+                <input id="field_eventDate" type="text" class="form-control"
+                       name="field_eventDate" uib-datepicker-popup="{{dateformat}}"
+                       ng-model="vm.event.eventStartDate"
+                       is-open="vm.datePickerOpenStatus.eventDate" ng-change="vm.setEndDate()"
+                       required/>
+                <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('eventDate')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+            </div>
+            <div ng-show="editForm.field_eventDate.$invalid">
+                <p class="help-block"
+                   ng-show="editForm.field_eventDate.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                   ng-show="editForm.field_eventDate.$error.ZonedDateTimelocal" data-translate="entity.validation.ZonedDateTimelocal">
+                    This field should be a date and time.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="control-label" data-translate="royalhallsApp.event.eventStartTime" for="field_eventStartDate">Event Start Date</label>
+                    <div class="input-group">
+                        <div uib-timepicker id="field_eventStartDate" ng-model="vm.event.eventStartDate"></div>
+                    </div>
+                    <div ng-show="editForm.eventStartDate.$invalid">
+                        <p class="help-block"
+                           ng-show="editForm.eventStartDate.$error.required" data-translate="entity.validation.required">
+                            This field is required.
+                        </p>
+                        <p class="help-block"
+                           ng-show="editForm.eventStartDate.$error.ZonedDateTimelocal" data-translate="entity.validation.ZonedDateTimelocal">
+                            This field should be a date and time.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label class="control-label" data-translate="royalhallsApp.event.eventEndDate" for="field_eventEndDate">Event End Date</label>
+                    <div class="input-group">
+                        <div uib-timepicker id="field_eventEndDate" ng-model="vm.event.eventEndDate"></div>
+                    </div>
+                    <div ng-show="editForm.eventEndDate.$invalid">
+                        <p class="help-block"
+                           ng-show="editForm.eventEndDate.$error.required" data-translate="entity.validation.required">
+                            This field is required.
+                        </p>
+                        <p class="help-block"
+                           ng-show="editForm.eventEndDate.$error.ZonedDateTimelocal" data-translate="entity.validation.ZonedDateTimelocal">
+                            This field should be a date and time.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
         <div class="form-group">
             <label data-translate="royalhallsApp.eventExtraOption.home.title">Event Extra Options</label>
 
@@ -140,7 +159,7 @@
             </div>
             <button class="btn btn-primary" ui-sref="option-new" type="button">
                 <span class="glyphicon glyphicon-plus"></span>
-                    <span data-translate="royalhallsApp.eventExtraOption.home.createLabel">
+                <span data-translate="royalhallsApp.eventExtraOption.home.createLabel">
                         Create new Event Extra Option
                     </span>
             </button>
