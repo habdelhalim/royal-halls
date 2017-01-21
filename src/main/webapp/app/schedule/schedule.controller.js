@@ -16,7 +16,7 @@
             calendar: {
                 editable: true,
                 header: {
-                    left: 'month agendaWeek agendaDay',
+                    left: 'month agendaWeek agendaDay listYear',
                     center: 'title',
                     right: 'today prev,next'
                 },

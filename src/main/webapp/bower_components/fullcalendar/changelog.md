@@ -1,4 +1,366 @@
 
+v3.1.0 (2016-12-05)
+-------------------
+
+- experimental support for implicitly batched ("debounced") event rendering (#2938)
+	- `eventRenderWait` (off by default)
+- new `footer` option, similar to header toolbar (#654, #3299)
+- event rendering batch methods (#3351):
+	- `renderEvents`
+	- `updateEvents`
+- more granular touch settings (#3377):
+	- `eventLongPressDelay`
+	- `selectLongPressDelay`
+- eventDestroy not called when removing the popover (#3416, #3419)
+- print stylesheet and gcal extension now offered as minified (#3415)
+- fc-today in agenda header cells (#3361, #3365)
+- height-related options in tandem with other options (#3327, #3384)
+- Kazakh locale (#3394)
+- Afrikaans locale (#3390)
+- internal refactor related to timing of rendering and firing handlers.
+  calls to rerender the current date-range and events from within handlers
+  might not execute immediately. instead, will execute after handler finishes.
+
+
+v3.0.1 (2016-09-26)
+-------------------
+
+Bugfixes:
+- list view rendering event times incorrectly (#3334)
+- list view rendering events/days out of order (#3347)
+- events with no title rendering as "undefined"
+- add .fc scope to table print styles (#3343)
+- "display no events" text fix for German (#3354)
+
+
+v3.0.0 (2016-09-04)
+-------------------
+
+Features:
+- List View (#560)
+	- new views: `listDay`, `listWeek`, `listMonth`, `listYear`, and simply `list`
+	- `listDayFormat`
+	- `listDayAltFormat`
+	- `noEventsMessage`
+- Clickable day/week numbers for easier navigation (#424)
+	- `navLinks`
+	- `navLinkDayClick`
+	- `navLinkWeekClick`
+- Programmatically allow/disallow user interactions:
+	- `eventAllow` (#2740)
+	- `selectAllow` (#2511)
+- Option to display week numbers in cells (#3024)
+	- `weekNumbersWithinDays` (set to `true` to activate)
+- When week calc is ISO, default first day-of-week to Monday (#3255)
+- Macedonian locale (#2739)
+- Malay locale
+
+Breaking Changes:
+- IE8 support dropped
+- jQuery: minimum support raised to v2.0.0
+- MomentJS: minimum support raised to v2.9.0
+- `lang` option renamed to `locale`
+- dist files have been renamed to be more consistent with MomentJS:
+	- `lang/` -> `locale/`
+	- `lang-all.js` -> `locale-all.js`
+- behavior of moment methods no longer affected by ambiguousness:
+	- `isSame`
+	- `isBefore`
+	- `isAfter`
+- View-Option-Hashes no longer supported (deprecated in 2.2.4)
+- removed `weekMode` setting
+- removed `axisFormat` setting
+- DOM structure of month/basic-view day cell numbers changed
+
+Bugfixes:
+- `$.fullCalendar.version` incorrect (#3292)
+
+Build System:
+- using gulp instead of grunt (faster)
+- using npm internally for dependencies instead of bower
+- changed repo directory structure
+
+
+v2.9.1 (2016-07-31)
+-------------------
+
+- multiple definitions for businessHours (#2686)
+- businessHours for single day doesn't display weekends (#2944)
+- height/contentHeight can accept a function or 'parent' for dynamic value (#3271)
+- fix +more popover clipped by overflow (#3232)
+- fix +more popover positioned incorrectly when scrolled (#3137)
+- Norwegian Nynorsk translation (#3246)
+- fix isAnimating JS error (#3285)
+
+
+v2.9.0 (2016-07-10)
+-------------------
+
+- Setters for (almost) all options (#564).
+  See [docs](http://fullcalendar.io/docs/utilities/dynamic_options/) for more info.
+- Travis CI improvements (#3266)
+
+
+v2.8.0 (2016-06-19)
+-------------------
+
+- getEventSources method (#3103, #2433)
+- getEventSourceById method (#3223)
+- refetchEventSources method (#3103, #1328, #254)
+- removeEventSources method (#3165, #948)
+- prevent flicker when refetchEvents is called (#3123, #2558)
+- fix for removing event sources that share same URL (#3209)
+- jQuery 3 support (#3197, #3124)
+- Travis CI integration (#3218)
+- EditorConfig for promoting consistent code style (#141)
+- use en dash when formatting ranges (#3077)
+- height:auto always shows scrollbars in month view on FF (#3202)
+- new languages:
+	- Basque (#2992)
+	- Galician (#194)
+	- Luxembourgish (#2979)
+
+
+v2.7.3 (2016-06-02)
+-------------------
+
+internal enhancements that plugins can benefit from:
+- EventEmitter not correctly working with stopListeningTo
+- normalizeEvent hook for manipulating event data
+
+
+v2.7.2 (2016-05-20)
+-------------------
+
+- fixed desktops/laptops with touch support not accepting mouse events for
+  dayClick/dragging/resizing (#3154, #3149)
+- fixed dayClick incorrectly triggered on touch scroll (#3152)
+- fixed touch event dragging wrongfully beginning upon scrolling document (#3160)
+- fixed minified JS still contained comments
+- UI change: mouse users must hover over an event to reveal its resizers
+
+
+v2.7.1 (2016-05-01)
+-------------------
+
+- dayClick not firing on touch devices (#3138)
+- icons for prev/next not working in MS Edge (#2852)
+- fix bad languages troubles with firewalls (#3133, #3132)
+- update all dev dependencies (#3145, #3010, #2901, #251)
+- git-ignore npm debug logs (#3011)
+- misc automated test updates (#3139, #3147)
+- Google Calendar htmlLink not always defined (#2844)
+
+
+v2.7.0 (2016-04-23)
+-------------------
+
+touch device support (#994):
+	- smoother scrolling
+	- interactions initiated via "long press":
+		- event drag-n-drop
+		- event resize
+		- time-range selecting
+	- `longPressDelay`
+
+
+v2.6.1 (2016-02-17)
+-------------------
+
+- make `nowIndicator` positioning refresh on window resize
+
+
+v2.6.0 (2016-01-07)
+-------------------
+
+- current time indicator (#414)
+- bundled with most recent version of moment (2.11.0)
+- UMD wrapper around lang files now handles commonjs (#2918)
+- fix bug where external event dragging would not respect eventOverlap
+- fix bug where external event dropping would not render the whole-day highlight
+
+
+v2.5.0 (2015-11-30)
+-------------------
+
+- internal timezone refactor. fixes #2396, #2900, #2945, #2711
+- internal "grid" system refactor. improved API for plugins.
+
+
+v2.4.0 (2015-08-16)
+-------------------
+
+- add new buttons to the header via `customButtons` ([225])
+- control stacking order of events via `eventOrder` ([364])
+- control frequency of slot text via `slotLabelInterval` ([946])
+- `displayEventTime` ([1904])
+- `on` and `off` methods ([1910])
+- renamed `axisFormat` to `slotLabelFormat`
+
+[225]: https://code.google.com/p/fullcalendar/issues/detail?id=225
+[364]: https://code.google.com/p/fullcalendar/issues/detail?id=364
+[946]: https://code.google.com/p/fullcalendar/issues/detail?id=946
+[1904]: https://code.google.com/p/fullcalendar/issues/detail?id=1904
+[1910]: https://code.google.com/p/fullcalendar/issues/detail?id=1910
+
+
+v2.3.2 (2015-06-14)
+-------------------
+
+- minor code adjustment in preparation for plugins
+
+
+v2.3.1 (2015-03-08)
+-------------------
+
+- Fix week view column title for en-gb ([PR220])
+- Publish to NPM ([2447])
+- Detangle bower from npm package ([PR179])
+
+[PR220]: https://github.com/arshaw/fullcalendar/pull/220
+[2447]: https://code.google.com/p/fullcalendar/issues/detail?id=2447
+[PR179]: https://github.com/arshaw/fullcalendar/pull/179
+
+
+v2.3.0 (2015-02-21)
+-------------------
+
+- internal refactoring in preparation for other views
+- businessHours now renders on whole-days in addition to timed areas
+- events in "more" popover not sorted by time ([2385])
+- avoid using moment's deprecated zone method ([2443])
+- destroying the calendar sometimes causes all window resize handlers to be unbound ([2432])
+- multiple calendars on one page, can't accept external elements after navigating ([2433])
+- accept external events from jqui sortable ([1698])
+- external jqui drop processed before reverting ([1661])
+- IE8 fix: month view renders incorrectly ([2428])
+- IE8 fix: eventLimit:true wouldn't activate "more" link ([2330])
+- IE8 fix: dragging an event with an href
+- IE8 fix: invisible element while dragging agenda view events
+- IE8 fix: erratic external element dragging
+
+[2385]: https://code.google.com/p/fullcalendar/issues/detail?id=2385
+[2443]: https://code.google.com/p/fullcalendar/issues/detail?id=2443
+[2432]: https://code.google.com/p/fullcalendar/issues/detail?id=2432
+[2433]: https://code.google.com/p/fullcalendar/issues/detail?id=2433
+[1698]: https://code.google.com/p/fullcalendar/issues/detail?id=1698
+[1661]: https://code.google.com/p/fullcalendar/issues/detail?id=1661
+[2428]: https://code.google.com/p/fullcalendar/issues/detail?id=2428
+[2330]: https://code.google.com/p/fullcalendar/issues/detail?id=2330
+
+
+v2.2.7 (2015-02-10)
+-------------------
+
+- view.title wasn't defined in viewRender callback ([2407])
+- FullCalendar versions >= 2.2.5 brokenness with Moment versions <= 2.8.3 ([2417])
+- Support Bokmal Norwegian language specifically ([2427])
+
+[2407]: https://code.google.com/p/fullcalendar/issues/detail?id=2407
+[2417]: https://code.google.com/p/fullcalendar/issues/detail?id=2417
+[2427]: https://code.google.com/p/fullcalendar/issues/detail?id=2427
+
+
+v2.2.6 (2015-01-11)
+-------------------
+
+- Compatibility with Moment v2.9. Was breaking GCal plugin ([2408])
+- View object's `title` property mistakenly omitted ([2407])
+- Single-day views with hiddens days could cause prev/next misbehavior ([2406])
+- Don't let the current date ever be a hidden day (solves [2395])
+- Hebrew locale ([2157])
+
+[2408]: https://code.google.com/p/fullcalendar/issues/detail?id=2408
+[2407]: https://code.google.com/p/fullcalendar/issues/detail?id=2407
+[2406]: https://code.google.com/p/fullcalendar/issues/detail?id=2406
+[2395]: https://code.google.com/p/fullcalendar/issues/detail?id=2395
+[2157]: https://code.google.com/p/fullcalendar/issues/detail?id=2157
+
+
+v2.2.5 (2014-12-30)
+-------------------
+
+- `buttonText` specified for custom views via the `views` option
+	- bugfix: wrong default value, couldn't override default
+	- feature: default value taken from locale
+
+
+v2.2.4 (2014-12-29)
+-------------------
+
+- Arbitrary durations for basic/agenda views with the `views` option ([692])
+- Specify view-specific options using the `views` option. fixes [2283]
+- Deprecate view-option-hashes
+- Formalize and expose View API ([1055])
+- updateEvent method, more intuitive behavior. fixes [2194]
+
+[692]: https://code.google.com/p/fullcalendar/issues/detail?id=692
+[2283]: https://code.google.com/p/fullcalendar/issues/detail?id=2283
+[1055]: https://code.google.com/p/fullcalendar/issues/detail?id=1055
+[2194]: https://code.google.com/p/fullcalendar/issues/detail?id=2194
+
+
+v2.2.3 (2014-11-26)
+-------------------
+
+- removeEventSource with Google Calendar object source, would not remove ([2368])
+- Events with invalid end dates are still accepted and rendered ([2350], [2237], [2296])
+- Bug when rendering business hours and navigating away from original view ([2365])
+- Links to Google Calendar events will use current timezone ([2122])
+- Google Calendar plugin works with timezone names that have spaces
+- Google Calendar plugin accepts person email addresses as calendar IDs
+- Internally use numeric sort instead of alphanumeric sort ([2370])
+
+[2368]: https://code.google.com/p/fullcalendar/issues/detail?id=2368
+[2350]: https://code.google.com/p/fullcalendar/issues/detail?id=2350
+[2237]: https://code.google.com/p/fullcalendar/issues/detail?id=2237
+[2296]: https://code.google.com/p/fullcalendar/issues/detail?id=2296
+[2365]: https://code.google.com/p/fullcalendar/issues/detail?id=2365
+[2122]: https://code.google.com/p/fullcalendar/issues/detail?id=2122
+[2370]: https://code.google.com/p/fullcalendar/issues/detail?id=2370
+
+
+v2.2.2 (2014-11-19)
+-------------------
+
+- Fixes to Google Calendar API V3 code
+	- wouldn't recognize a lone-string Google Calendar ID if periods before the @ symbol
+	- removeEventSource wouldn't work when given a Google Calendar ID
+
+
+v2.2.1 (2014-11-19)
+-------------------
+
+- Migrate Google Calendar plugin to use V3 of the API ([1526])
+
+[1526]: https://code.google.com/p/fullcalendar/issues/detail?id=1526
+
+
+v2.2.0 (2014-11-14)
+-------------------
+
+- Background events. Event object's `rendering` property ([144], [1286])
+- `businessHours` option ([144])
+- Controlling where events can be dragged/resized and selections can go ([396], [1286], [2253])
+	- `eventOverlap`, `selectOverlap`, and similar
+	- `eventConstraint`, `selectConstraint`, and similar
+- Improvements to dragging and dropping external events ([2004])
+	- Associating with real event data. used with `eventReceive`
+	- Associating a `duration`
+- Performance boost for moment creation
+	- Be aware, FullCalendar-specific methods now attached directly to global moment.fn
+	- Helps with [issue 2259][2259]
+- Reintroduced forgotten `dropAccept` option ([2312])
+
+[144]: https://code.google.com/p/fullcalendar/issues/detail?id=144
+[396]: https://code.google.com/p/fullcalendar/issues/detail?id=396
+[1286]: https://code.google.com/p/fullcalendar/issues/detail?id=1286
+[2004]: https://code.google.com/p/fullcalendar/issues/detail?id=2004
+[2253]: https://code.google.com/p/fullcalendar/issues/detail?id=2253
+[2259]: https://code.google.com/p/fullcalendar/issues/detail?id=2259
+[2312]: https://code.google.com/p/fullcalendar/issues/detail?id=2312
+
+
 v2.1.1 (2014-08-29)
 -------------------
 
