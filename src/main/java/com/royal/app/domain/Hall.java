@@ -4,7 +4,7 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -28,6 +28,9 @@ public class Hall implements Serializable {
 
     @Column(name = "description")
     private String description;
+
+    @Column(name = "colour")
+    private String colour;
 
     @Column(name = "price")
     private Double price;
@@ -111,6 +114,14 @@ public class Hall implements Serializable {
         this.hallType = hallType;
     }
 
+    public String getColour() {
+        return colour;
+    }
+
+    public void setColour(String colour) {
+        this.colour = colour;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -141,4 +152,5 @@ public class Hall implements Serializable {
             ", capacity='" + capacity + "'" +
             '}';
     }
+
 }

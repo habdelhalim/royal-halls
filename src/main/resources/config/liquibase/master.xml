@@ -28,5 +28,6 @@
     <include file="classpath:config/liquibase/changelog/20161229042143_added_entity_constraints_ExtraOptionColor.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20170106042143_added_index_Contract.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20170106042143_drop_constraint_Customer_IdentityId.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170121042143_add_hall_color.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

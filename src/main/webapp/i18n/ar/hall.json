@@ -20,7 +20,8 @@
             "hallType": "نوع القاعة",
             "description": "وصف القاعة",
             "price": "السعر",
-            "capacity": "سعة القاعة"
+            "capacity": "سعة القاعة",
+            "colour" : "لون القاعة"
         }
     }
 }

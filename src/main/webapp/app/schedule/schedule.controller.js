@@ -56,12 +56,13 @@
                 var hallName = event.hall ? event.hall.hallName : '';
                 var hallId = event.hall ? event.hall.id - 1 : 0;
                 var colors = ['#0086AB', '#485357', '#F59958', '#FF8787'];
+                var color = event.hall && event.hall.colour ? event.hall.colour : colors[hallId];
 
                 return {
                     title: event.eventName + '  -  [' + hallName + ']',
                     start: event.eventStartDate,
                     end: event.eventEndDate,
-                    color: colors[hallId]
+                    color: color
                 }
             });
             vm.eventSources.pop();

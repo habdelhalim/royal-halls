@@ -50,6 +50,12 @@
                 <option value=""></option>
             </select>
         </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="royalhallsApp.hall.colour" for="field_colour">Colour</label>
+            <input type="color" class="form-control" name="capacity" id="field_colour"
+                   ng-model="vm.hall.colour"
+            />
+        </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">

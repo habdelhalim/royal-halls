@@ -4,9 +4,9 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-xs-4 no-padding-left">
-                <button class="btn btn-primary" ui-sref="hall.new" >
+                <button class="btn btn-primary" ui-sref="hall.new">
                     <span class="glyphicon glyphicon-plus"></span>
-                    <span  data-translate="royalhallsApp.hall.home.createLabel">
+                    <span data-translate="royalhallsApp.hall.home.createLabel">
                         Create new Hall
                     </span>
                 </button>
@@ -17,49 +17,51 @@
     <div class="table-responsive">
         <table class="jh-table table table-striped">
             <thead>
-                <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
-                    <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="hallName"><span data-translate="royalhallsApp.hall.hallName">Hall Name</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="description"><span data-translate="royalhallsApp.hall.description">Description</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="price"><span data-translate="royalhallsApp.hall.price">Price</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="capacity"><span data-translate="royalhallsApp.hall.capacity">Capacity</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="hallType.hallTypeName"><span data-translate="royalhallsApp.hall.hallType">Hall Type</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th></th>
-                </tr>
+            <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
+                <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                <th jh-sort-by="hallName"><span data-translate="royalhallsApp.hall.hallName">Hall Name</span> <span class="glyphicon glyphicon-sort"></span></th>
+                <th jh-sort-by="description"><span data-translate="royalhallsApp.hall.description">Description</span> <span class="glyphicon glyphicon-sort"></span></th>
+                <th jh-sort-by="price"><span data-translate="royalhallsApp.hall.price">Price</span> <span class="glyphicon glyphicon-sort"></span></th>
+                <th jh-sort-by="capacity"><span data-translate="royalhallsApp.hall.capacity">Capacity</span> <span class="glyphicon glyphicon-sort"></span></th>
+                <th jh-sort-by="colour"><span data-translate="royalhallsApp.hall.colour">Colour</span> <span class="glyphicon glyphicon-sort"></span></th>
+                <th jh-sort-by="hallType.hallTypeName"><span data-translate="royalhallsApp.hall.hallType">Hall Type</span> <span class="glyphicon glyphicon-sort"></span></th>
+                <th></th>
+            </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="hall in vm.halls track by hall.id">
-                    <td><a ui-sref="hall-detail({id:hall.id})">{{hall.id}}</a></td>
-                    <td>{{hall.hallName}}</td>
-                    <td>{{hall.description}}</td>
-                    <td>{{hall.price}}</td>
-                    <td>{{hall.capacity}}</td>
-                    <td>
-                        <a ui-sref="hall-type-detail({id:hall.hallType.id})">{{hall.hallType.hallTypeName}}</a>
-                    </td>
-                    <td class="text-right">
-                        <div class="btn-group flex-btn-group-container">
-                            <button type="submit"
-                                    ui-sref="hall-detail({id:hall.id})"
-                                    class="btn btn-info btn-sm">
-                                <span class="glyphicon glyphicon-eye-open"></span>
-                                <span class="hidden-xs hidden-sm" data-translate="entity.action.view"></span>
-                            </button>
-                            <button type="submit"
-                                    ui-sref="hall.edit({id:hall.id})"
-                                    class="btn btn-primary btn-sm">
-                                <span class="glyphicon glyphicon-pencil"></span>
-                                <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"></span>
-                            </button>
-                            <button type="submit"
-                                    ui-sref="hall.delete({id:hall.id})"
-                                    class="btn btn-danger btn-sm">
-                                <span class="glyphicon glyphicon-remove-circle"></span>
-                                <span class="hidden-xs hidden-sm" data-translate="entity.action.delete"></span>
-                            </button>
-                        </div>
-                    </td>
-                </tr>
+            <tr ng-repeat="hall in vm.halls track by hall.id">
+                <td><a ui-sref="hall-detail({id:hall.id})">{{hall.id}}</a></td>
+                <td>{{hall.hallName}}</td>
+                <td>{{hall.description}}</td>
+                <td>{{hall.price}}</td>
+                <td>{{hall.capacity}}</td>
+                <td><span ng-style="{'background-color': hall.colour}">&nbsp;&nbsp;&nbsp;</span></td>
+                <td>
+                    <a ui-sref="hall-type-detail({id:hall.hallType.id})">{{hall.hallType.hallTypeName}}</a>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                ui-sref="hall-detail({id:hall.id})"
+                                class="btn btn-info btn-sm">
+                            <span class="glyphicon glyphicon-eye-open"></span>
+                            <span class="hidden-xs hidden-sm" data-translate="entity.action.view"></span>
+                        </button>
+                        <button type="submit"
+                                ui-sref="hall.edit({id:hall.id})"
+                                class="btn btn-primary btn-sm">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                            <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"></span>
+                        </button>
+                        <button type="submit"
+                                ui-sref="hall.delete({id:hall.id})"
+                                class="btn btn-danger btn-sm">
+                            <span class="glyphicon glyphicon-remove-circle"></span>
+                            <span class="hidden-xs hidden-sm" data-translate="entity.action.delete"></span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
             </tbody>
         </table>
     </div>
