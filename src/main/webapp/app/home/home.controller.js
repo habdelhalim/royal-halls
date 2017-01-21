@@ -1,4 +1,4 @@
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -18,22 +18,24 @@
         vm.createContract = createContract;
         vm.searchContract = searchContract;
         vm.save = save;
+        vm.newEvent = newEvent;
+        vm.newPayment = newPayment;
 
-        $scope.$on('authenticationSuccess', function() {
+        $scope.$on('authenticationSuccess', function () {
             getAccount();
         });
 
-        var unsubscribe = $rootScope.$on('royalhallsApp:contractUpdate', function() {
+        var unsubscribe = $rootScope.$on('royalhallsApp:contractUpdate', function () {
             if (vm.contract) {
                 Contract.get({
                     id: vm.contract.id
-                }, function(entity) {
+                }, function (entity) {
                     vm.contract = entity;
                 });
             }
         });
 
-        $scope.$on('$destroy', function() {
+        $scope.$on('$destroy', function () {
             if (unsubscribe) {
                 unsubscribe();
             }
@@ -42,7 +44,7 @@
         getAccount();
 
         function getAccount() {
-            Principal.identity().then(function(account) {
+            Principal.identity().then(function (account) {
                 vm.account = account;
                 vm.isAuthenticated = Principal.isAuthenticated;
             });
@@ -76,6 +78,16 @@
 
         function onSaveError() {
             vm.isSaving = false;
+        }
+
+        function newEvent() {
+            vm.save();
+            $state.go('event-new');
+        }
+
+        function newPayment() {
+            vm.save();
+            $state.go('payment-new');
         }
     }
 })();
