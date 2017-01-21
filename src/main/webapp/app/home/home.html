@@ -126,7 +126,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr ng-repeat="event in vm.contract.events track by event.id">
+                                <tr ng-repeat="event in vm.contract.events | orderBy: 'eventStartDate' track by event.id">
                                     <td>{{event.eventName}}</td>
                                     <td><span style="direction: ltr">{{event.eventStartDate | date:'yyyy-MM-dd'}}</span></td>
                                     <td><span style="direction: ltr">{{event.eventStartDate | date:'HH:mm'}}</span></td>

@@ -29,7 +29,7 @@
                     squash: true
                 },
                 sort: {
-                    value: 'id,asc',
+                    value: 'eventStartDate,asc',
                     squash: true
                 },
                 search: null
