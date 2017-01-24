@@ -18,6 +18,8 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "event")
+@NamedQueries(@NamedQuery(name = "Event.findEventsInInterval",
+    query = "select e from Event e where  e.hall = :hall and  ( e.eventStartDate between :start and :end or e.eventEndDate between :start and :end )"))
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "@id")
 public class Event implements Serializable {

@@ -46,6 +46,12 @@ public class EventServiceImpl implements EventService {
             throw new CustomParameterizedException("event.invalid-date-range");
         }
 
+        List<Event> events = eventRepository.findEventsInInterval(event.getEventStartDate(), event.getEventEndDate(), event.getHall());
+        long otherEvents = events.stream().filter(event1 -> !event1.getId().equals(event.getId())).count();
+        if (otherEvents > 0) {
+            throw new CustomParameterizedException("event.data-conflict");
+        }
+
         Event result = eventRepository.save(event);
         return result;
     }
