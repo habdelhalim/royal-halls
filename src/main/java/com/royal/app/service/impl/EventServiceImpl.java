@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.inject.Inject;
 import java.time.Duration;
 import java.time.ZonedDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 /**
@@ -46,14 +47,22 @@ public class EventServiceImpl implements EventService {
             throw new CustomParameterizedException("event.invalid-date-range");
         }
 
-        List<Event> events = eventRepository.findEventsInInterval(event.getEventStartDate(), event.getEventEndDate(), event.getHall());
+        checkTimeSlotAvailability(event);
+
+        Event result = eventRepository.save(event);
+        return result;
+    }
+
+    private void checkTimeSlotAvailability(Event event) {
+        //add margin of one hour before and after the event
+        ZonedDateTime startTime = event.getEventStartDate().minus(59, ChronoUnit.MINUTES);
+        ZonedDateTime endTime = event.getEventEndDate().plus(59, ChronoUnit.MINUTES);
+
+        List<Event> events = eventRepository.findEventsInInterval(startTime, endTime, event.getHall());
         long otherEvents = events.stream().filter(event1 -> !event1.getId().equals(event.getId())).count();
         if (otherEvents > 0) {
             throw new CustomParameterizedException("event.data-conflict");
         }
-
-        Event result = eventRepository.save(event);
-        return result;
     }
 
     /**

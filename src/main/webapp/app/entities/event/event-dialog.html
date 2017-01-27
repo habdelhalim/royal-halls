@@ -81,7 +81,7 @@
                     <div class="row">
                         <label class="control-label" data-translate="royalhallsApp.event.eventEndDate" for="field_eventEndDate">Event End Date</label>
                         <div class="input-group">
-                            <div uib-timepicker id="field_eventEndDate" ng-model="vm.event.eventEndDate"></div>
+                            <div uib-timepicker id="field_eventEndDate" ng-model="vm.event.eventEndDate" ng-change="vm.copyStartDate()"></div>
                         </div>
                         <div ng-show="editForm.eventEndDate.$invalid">
                             <p class="help-block"

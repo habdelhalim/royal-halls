@@ -15,9 +15,10 @@
         vm.datePickerOpenStatus = {};
         vm.openCalendar = openCalendar;
         vm.save = save;
-        vm.setEndDate = setEndDate;
         vm.eventtypes = EventType.query();
         vm.halls = Hall.query();
+        vm.setEndDate = setEndDate;
+        vm.copyStartDate = copyStartDate;
 
 
         var unsubscribe = $rootScope.$on('royalhallsApp:eventExtraOptionUpdate', function () {
@@ -83,6 +84,12 @@
             var hours = 2;
             vm.event.eventEndDate = angular.copy(vm.event.eventStartDate);
             vm.event.eventEndDate.setTime(vm.event.eventEndDate.getTime() + (hours * 60 * 60 * 1000));
+        }
+
+        function copyStartDate() {
+            vm.event.eventEndDate.setDate(vm.event.eventStartDate.getDate());
+            vm.event.eventEndDate.setMonth(vm.event.eventStartDate.getMonth());
+            vm.event.eventEndDate.setFullYear(vm.event.eventStartDate.getFullYear());
         }
     }
 })();

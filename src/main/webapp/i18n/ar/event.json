@@ -29,6 +29,8 @@
         }
     },
     "error": {
-        "event.invalid-date": "Invalid date inserted"
+        "event.invalid-date-range": "الفترة المختاره تحتوي على خطأ !",
+        "event.past-date-range": "الفترة المختاره في الماضي !",
+        "event.data-conflict": "يوجد حجز اخر في هذه الفترة لنفس القاعة !"
     }
 }
