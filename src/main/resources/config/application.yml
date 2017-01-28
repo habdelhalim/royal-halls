@@ -33,6 +33,14 @@ spring:
             naming:
                 physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
                 implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
+        properties:
+            hibernate:
+                search:
+                    default:
+                        locking_strategy: simple
+                        directory_provider : filesystem
+                        indexBase: ./search
+
     messages:
         basename: i18n/messages
     mvc:

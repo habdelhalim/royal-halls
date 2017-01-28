@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.royal.app.domain.enumeration.ContractStatus;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.search.annotations.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -17,6 +18,7 @@ import java.util.Set;
 /**
  * A Contract.
  */
+@Indexed
 @Entity
 @Table(name = "contract")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -29,6 +31,8 @@ public class Contract implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Field(analyze = Analyze.NO)
+    @DateBridge(resolution = Resolution.DAY, encoding = EncodingType.STRING)
     @NotNull
     @Column(name = "contract_date", nullable = false)
     private ZonedDateTime contractDate;
@@ -38,6 +42,7 @@ public class Contract implements Serializable {
     @Column(name = "contract_status", nullable = false)
     private ContractStatus contractStatus;
 
+    @Field
     @Column(name = "contract_notes")
     private String contractNotes;
 
@@ -53,12 +58,14 @@ public class Contract implements Serializable {
     @Column(name = "created_by")
     private String createdBy;
 
+    @IndexedEmbedded
     @ManyToOne
     private Customer customer;
 
     @OneToMany(mappedBy = "contract", orphanRemoval = true)
     private Set<Payment> payments = new HashSet<>();
 
+    @IndexedEmbedded
     @OneToMany(mappedBy = "contract", orphanRemoval = true)
     private Set<Event> events = new HashSet<>();
 

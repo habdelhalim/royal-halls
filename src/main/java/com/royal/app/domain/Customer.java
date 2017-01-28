@@ -3,13 +3,14 @@ package com.royal.app.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.search.annotations.Field;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * A Customer.
@@ -25,10 +26,12 @@ public class Customer implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Field
     @NotNull
     @Column(name = "customer_name", nullable = false)
     private String customerName;
 
+    @Field
     @Column(name = "identity_id")
     private String identityId;
 
@@ -38,9 +41,11 @@ public class Customer implements Serializable {
     @Column(name = "country")
     private String country;
 
+    @Field
     @Column(name = "mobile")
     private String mobile;
 
+    @Field
     @Column(name = "telephone")
     private String telephone;
 

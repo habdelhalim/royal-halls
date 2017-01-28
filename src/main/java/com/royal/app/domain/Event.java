@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.search.annotations.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -30,9 +31,12 @@ public class Event implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Field
     @Column(name = "event_name")
     private String eventName;
 
+    @Field(analyze = Analyze.NO)
+    @DateBridge(resolution = Resolution.DAY, encoding = EncodingType.STRING)
     @NotNull
     @Column(name = "event_start_date", nullable = false)
     private ZonedDateTime eventStartDate;

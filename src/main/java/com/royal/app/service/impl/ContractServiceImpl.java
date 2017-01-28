@@ -4,14 +4,20 @@ import com.royal.app.domain.Contract;
 import com.royal.app.repository.ContractRepository;
 import com.royal.app.service.ContractService;
 import com.royal.app.service.CustomerService;
+import org.hibernate.search.jpa.FullTextEntityManager;
+import org.hibernate.search.query.dsl.QueryBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import java.util.ArrayList;
 
 /**
  * Service Implementation for managing Contract.
@@ -21,6 +27,9 @@ import javax.inject.Inject;
 public class ContractServiceImpl implements ContractService {
 
     private final Logger log = LoggerFactory.getLogger(ContractServiceImpl.class);
+
+    @PersistenceContext
+    private EntityManager entityManager;
 
     @Inject
     private ContractRepository contractRepository;
@@ -66,13 +75,46 @@ public class ContractServiceImpl implements ContractService {
     @Transactional(readOnly = true)
     public Page<Contract> search(Pageable pageable, String searchName) {
         log.debug("Request to get all Contracts");
-        long searchId = 0;
-        try {
-            searchId = Long.parseLong(searchName);
-        } catch (NumberFormatException e) {
+        Page<Contract> contracts = searchUsingLucene(searchName);
+        return contracts;
+    }
+
+    private Page<Contract> searchUsingLucene(String searchName) {
+        if (searchName == null || searchName.length() < 1) {
+            return new PageImpl<>(new ArrayList<>());
         }
-        Page<Contract> result = contractRepository.findByCustomerCustomerNameContainsOrId(pageable, searchName, searchId);
-        return result;
+        // get the full text entity manager
+        FullTextEntityManager fullTextEntityManager =
+            org.hibernate.search.jpa.Search.
+                getFullTextEntityManager(entityManager);
+
+        // create the query using Hibernate Search query DSL
+        QueryBuilder queryBuilder =
+            fullTextEntityManager.getSearchFactory()
+                .buildQueryBuilder().forEntity(Contract.class).get();
+
+        // a very basic query by keywords
+        org.apache.lucene.search.Query query =
+            queryBuilder
+                .phrase()
+                .withSlop(5)
+                .onField("id")
+                .andField("events.eventName").boostedTo(5)
+                .andField("customer.customerName").boostedTo(3)
+                .andField("customer.mobile")
+                .andField("customer.telephone")
+                .andField("contractNotes")
+                .andField("contractDate").ignoreFieldBridge()
+                .andField("eventStartDate").ignoreFieldBridge()
+                .sentence(searchName)
+                .createQuery();
+
+        // wrap Lucene query in an Hibernate Query object
+        org.hibernate.search.jpa.FullTextQuery jpaQuery =
+            fullTextEntityManager.createFullTextQuery(query, Contract.class);
+
+        // execute search and return results (sorted by relevance as default)
+        return new PageImpl<>(jpaQuery.getResultList());
     }
 
     /**
