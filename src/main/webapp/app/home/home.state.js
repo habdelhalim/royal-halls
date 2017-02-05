@@ -28,6 +28,7 @@
                         $translatePartialLoader.addPart('contact');
                         $translatePartialLoader.addPart('customer');
                         $translatePartialLoader.addPart('event');
+                        $translatePartialLoader.addPart('extraOptionVariant');
                         $translatePartialLoader.addPart('payment');
                         $translatePartialLoader.addPart('paymentStatus');
                         $translatePartialLoader.addPart('paymentType');
