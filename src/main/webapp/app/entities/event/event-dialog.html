@@ -132,7 +132,7 @@
                             <a ui-sref="extra-option-color-detail({id:eventExtraOption.color.id})">{{eventExtraOption.color.colorName}}</a>
                         </td>
                         <td>{{eventExtraOption.optionQty}}</td>
-                        <td>{{eventExtraOption.variant.price}}</td>
+                        <td>{{eventExtraOption.variant.price || eventExtraOption.option.price }}</td>
                         <td>{{eventExtraOption.optionNotes}}</td>
                         <td class="text-right">
                             <div class="btn-group flex-btn-group-container">
