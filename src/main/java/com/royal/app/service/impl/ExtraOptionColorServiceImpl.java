@@ -21,7 +21,7 @@ import java.util.List;
 public class ExtraOptionColorServiceImpl implements ExtraOptionColorService{
 
     private final Logger log = LoggerFactory.getLogger(ExtraOptionColorServiceImpl.class);
-    
+
     @Inject
     private ExtraOptionColorRepository extraOptionColorRepository;
 
@@ -39,11 +39,11 @@ public class ExtraOptionColorServiceImpl implements ExtraOptionColorService{
 
     /**
      *  Get all the extraOptionColors.
-     *  
+     *
      *  @param pageable the pagination information
      *  @return the list of entities
      */
-    @Transactional(readOnly = true) 
+    @Transactional(readOnly = true)
     public Page<ExtraOptionColor> findAll(Pageable pageable) {
         log.debug("Request to get all ExtraOptionColors");
         Page<ExtraOptionColor> result = extraOptionColorRepository.findAll(pageable);
@@ -56,7 +56,7 @@ public class ExtraOptionColorServiceImpl implements ExtraOptionColorService{
      *  @param id the id of the entity
      *  @return the entity
      */
-    @Transactional(readOnly = true) 
+    @Transactional(readOnly = true)
     public ExtraOptionColor findOne(Long id) {
         log.debug("Request to get ExtraOptionColor : {}", id);
         ExtraOptionColor extraOptionColor = extraOptionColorRepository.findOne(id);
@@ -71,5 +71,10 @@ public class ExtraOptionColorServiceImpl implements ExtraOptionColorService{
     public void delete(Long id) {
         log.debug("Request to delete ExtraOptionColor : {}", id);
         extraOptionColorRepository.delete(id);
+    }
+
+    @Override public List<ExtraOptionColor> findByOptionId(Long optionId) {
+        log.debug("Request to get ExtraOptionColor : {}", optionId);
+        return extraOptionColorRepository.findByOptionId(optionId);
     }
 }

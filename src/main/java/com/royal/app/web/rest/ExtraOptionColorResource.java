@@ -31,7 +31,7 @@ import java.util.Optional;
 public class ExtraOptionColorResource {
 
     private final Logger log = LoggerFactory.getLogger(ExtraOptionColorResource.class);
-        
+
     @Inject
     private ExtraOptionColorService extraOptionColorService;
 
@@ -92,6 +92,22 @@ public class ExtraOptionColorResource {
         Page<ExtraOptionColor> page = extraOptionColorService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/extra-option-colors");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    }
+
+    /**
+     * GET  /extra-option-colors : get all the extraOptionColors.
+     *
+     * @param optionId the pagination information
+     * @return the ResponseEntity with status 200 (OK) and the list of extraOptionColors in body
+     * @throws URISyntaxException if there is an error to generate the pagination HTTP headers
+     */
+    @GetMapping("/extra-option-colors/by-option/{optionId}")
+    @Timed
+    public ResponseEntity<List<ExtraOptionColor>> getAllExtraOptionColors(@PathVariable Long optionId)
+        throws URISyntaxException {
+        log.debug("REST request to get a page of ExtraOptionColors by option");
+        List<ExtraOptionColor> colors = extraOptionColorService.findByOptionId(optionId);
+        return new ResponseEntity<>(colors, HttpStatus.OK);
     }
 
     /**

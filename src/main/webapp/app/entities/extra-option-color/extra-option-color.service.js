@@ -1,4 +1,4 @@
-(function() {
+(function () {
     'use strict';
     angular
         .module('royalhallsApp')
@@ -6,11 +6,12 @@
 
     ExtraOptionColor.$inject = ['$resource'];
 
-    function ExtraOptionColor ($resource) {
-        var resourceUrl =  'api/extra-option-colors/:id';
+    function ExtraOptionColor($resource) {
+        var resourceUrl = 'api/extra-option-colors/:id';
 
         return $resource(resourceUrl, {}, {
-            'query': { method: 'GET', isArray: true},
+            'query': {method: 'GET', isArray: true},
+            'queryByOption': {url: 'api/extra-option-colors/by-option/:optionId', method: 'GET', isArray: true},
             'get': {
                 method: 'GET',
                 transformResponse: function (data) {
@@ -20,7 +21,7 @@
                     return data;
                 }
             },
-            'update': { method:'PUT' }
+            'update': {method: 'PUT'}
         });
     }
 })();

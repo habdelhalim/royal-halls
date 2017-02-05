@@ -5,7 +5,6 @@ import com.royal.app.domain.ExtraOptionVariant;
 import com.royal.app.service.ExtraOptionVariantService;
 import com.royal.app.web.rest.util.HeaderUtil;
 import com.royal.app.web.rest.util.PaginationUtil;
-
 import io.swagger.annotations.ApiParam;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,7 +30,7 @@ import java.util.Optional;
 public class ExtraOptionVariantResource {
 
     private final Logger log = LoggerFactory.getLogger(ExtraOptionVariantResource.class);
-        
+
     @Inject
     private ExtraOptionVariantService extraOptionVariantService;
 
@@ -47,7 +46,8 @@ public class ExtraOptionVariantResource {
     public ResponseEntity<ExtraOptionVariant> createExtraOptionVariant(@Valid @RequestBody ExtraOptionVariant extraOptionVariant) throws URISyntaxException {
         log.debug("REST request to save ExtraOptionVariant : {}", extraOptionVariant);
         if (extraOptionVariant.getId() != null) {
-            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("extraOptionVariant", "idexists", "A new extraOptionVariant cannot already have an ID")).body(null);
+            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("extraOptionVariant", "idexists", "A new extraOptionVariant cannot already have an ID"))
+                .body(null);
         }
         ExtraOptionVariant result = extraOptionVariantService.save(extraOptionVariant);
         return ResponseEntity.created(new URI("/api/extra-option-variants/" + result.getId()))
@@ -92,6 +92,22 @@ public class ExtraOptionVariantResource {
         Page<ExtraOptionVariant> page = extraOptionVariantService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/extra-option-variants");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    }
+
+    /**
+     * GET  /extra-option-variants : get all the extraOptionVariants by option.
+     *
+     * @param optionId the pagination information
+     * @return the ResponseEntity with status 200 (OK) and the list of extraOptionVariants in body
+     * @throws URISyntaxException if there is an error to generate the pagination HTTP headers
+     */
+    @GetMapping("/extra-option-variants/by-option/{optionId}")
+    @Timed
+    public ResponseEntity<List<ExtraOptionVariant>> getAllExtraOptionVariantsByOption(@PathVariable Long optionId)
+        throws URISyntaxException {
+        log.debug("REST request to get a page of ExtraOptionVariants by option");
+        List<ExtraOptionVariant> variants = extraOptionVariantService.findByOptionId(optionId);
+        return new ResponseEntity<>(variants, HttpStatus.OK);
     }
 
     /**

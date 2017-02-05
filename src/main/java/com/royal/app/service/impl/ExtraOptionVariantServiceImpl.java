@@ -1,14 +1,14 @@
 package com.royal.app.service.impl;
 
-import com.royal.app.service.ExtraOptionVariantService;
 import com.royal.app.domain.ExtraOptionVariant;
 import com.royal.app.repository.ExtraOptionVariantRepository;
+import com.royal.app.service.ExtraOptionVariantService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
 import java.util.List;
@@ -18,10 +18,10 @@ import java.util.List;
  */
 @Service
 @Transactional
-public class ExtraOptionVariantServiceImpl implements ExtraOptionVariantService{
+public class ExtraOptionVariantServiceImpl implements ExtraOptionVariantService {
 
     private final Logger log = LoggerFactory.getLogger(ExtraOptionVariantServiceImpl.class);
-    
+
     @Inject
     private ExtraOptionVariantRepository extraOptionVariantRepository;
 
@@ -39,11 +39,11 @@ public class ExtraOptionVariantServiceImpl implements ExtraOptionVariantService{
 
     /**
      *  Get all the extraOptionVariants.
-     *  
+     *
      *  @param pageable the pagination information
      *  @return the list of entities
      */
-    @Transactional(readOnly = true) 
+    @Transactional(readOnly = true)
     public Page<ExtraOptionVariant> findAll(Pageable pageable) {
         log.debug("Request to get all ExtraOptionVariants");
         Page<ExtraOptionVariant> result = extraOptionVariantRepository.findAll(pageable);
@@ -56,7 +56,7 @@ public class ExtraOptionVariantServiceImpl implements ExtraOptionVariantService{
      *  @param id the id of the entity
      *  @return the entity
      */
-    @Transactional(readOnly = true) 
+    @Transactional(readOnly = true)
     public ExtraOptionVariant findOne(Long id) {
         log.debug("Request to get ExtraOptionVariant : {}", id);
         ExtraOptionVariant extraOptionVariant = extraOptionVariantRepository.findOne(id);
@@ -71,5 +71,10 @@ public class ExtraOptionVariantServiceImpl implements ExtraOptionVariantService{
     public void delete(Long id) {
         log.debug("Request to delete ExtraOptionVariant : {}", id);
         extraOptionVariantRepository.delete(id);
+    }
+
+    @Override public List<ExtraOptionVariant> findByOptionId(Long optionId) {
+        log.debug("Request to get findByOptionId : {}", optionId);
+        return extraOptionVariantRepository.findByOptionId(optionId);
     }
 }

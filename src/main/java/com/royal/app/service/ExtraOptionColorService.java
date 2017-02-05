@@ -20,7 +20,7 @@ public interface ExtraOptionColorService {
 
     /**
      *  Get all the extraOptionColors.
-     *  
+     *
      *  @param pageable the pagination information
      *  @return the list of entities
      */
@@ -40,4 +40,6 @@ public interface ExtraOptionColorService {
      *  @param id the id of the entity
      */
     void delete(Long id);
+
+    List<ExtraOptionColor> findByOptionId(Long optionId);
 }
