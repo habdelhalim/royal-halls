@@ -5,12 +5,13 @@
         .module('royalhallsApp')
         .controller('ScheduleController', ScheduleController);
 
-    ScheduleController.$inject = ['$scope', '$compile', '$translate', '$rootScope', 'Event'];
+    ScheduleController.$inject = ['$scope', '$compile', '$translate', '$rootScope', '$state', 'Event'];
 
-    function ScheduleController($scope, $compile, $translate, $rootScope, Event) {
+    function ScheduleController($scope, $compile, $translate, $rootScope, $state, Event) {
         var vm = this;
         vm.eventSources = [];
         vm.eventRender = eventRender;
+        vm.eventClick = eventClick;
 
         vm.uiConfig = {
             calendar: {
@@ -21,7 +22,8 @@
                     right: 'today prev,next'
                 },
                 lang: $translate.proposedLanguage(),
-                eventRender: vm.eventRender
+                eventRender: vm.eventRender,
+                eventClick: vm.eventClick
             }
         };
 
@@ -37,6 +39,14 @@
         });
 
         loadAll();
+
+        function eventClick(event, element, view) {
+            if (event.contract !== undefined) {
+                $state.go('contract-edit', {
+                    id: event.contract
+                });
+            }
+        }
 
         function eventRender(event, element, view) {
             element.attr({
@@ -62,6 +72,7 @@
                     title: event.eventName + '  -  [' + hallName + ']',
                     start: event.eventStartDate,
                     end: event.eventEndDate,
+                    contract: event.contract.id,
                     color: color
                 }
             });
