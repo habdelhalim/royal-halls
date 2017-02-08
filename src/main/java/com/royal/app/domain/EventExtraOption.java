@@ -7,6 +7,7 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -31,9 +32,11 @@ public class EventExtraOption implements Serializable {
     @Column(name = "option_notes")
     private String optionNotes;
 
+    @NotNull
     @ManyToOne
     private Event event;
 
+    @NotNull
     @ManyToOne
     private ExtraOption option;
 
