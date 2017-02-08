@@ -31,7 +31,7 @@ import java.util.Optional;
 public class ExtraOptionResource {
 
     private final Logger log = LoggerFactory.getLogger(ExtraOptionResource.class);
-        
+
     @Inject
     private ExtraOptionService extraOptionService;
 
@@ -92,6 +92,22 @@ public class ExtraOptionResource {
         Page<ExtraOption> page = extraOptionService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/extra-options");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    }
+
+    /**
+     * GET  /extra-options : get all the extraOptions.
+     *
+     * @param type the option type information
+     * @return the ResponseEntity with status 200 (OK) and the list of extraOptions in body
+     * @throws URISyntaxException if there is an error to generate the pagination HTTP headers
+     */
+    @GetMapping("/extra-options/by-type/{type}")
+    @Timed
+    public ResponseEntity<List<ExtraOption>> getAllExtraOptionsByType(@PathVariable String type)
+        throws URISyntaxException {
+        log.debug("REST request to get a page of ExtraOptions by type {}", type);
+        List<ExtraOption> options = extraOptionService.findAllByType(type);
+        return new ResponseEntity<>(options, HttpStatus.OK);
     }
 
     /**

@@ -1,4 +1,4 @@
-(function() {
+(function () {
     'use strict';
     angular
         .module('royalhallsApp')
@@ -6,11 +6,12 @@
 
     ExtraOption.$inject = ['$resource'];
 
-    function ExtraOption ($resource) {
-        var resourceUrl =  'api/extra-options/:id';
+    function ExtraOption($resource) {
+        var resourceUrl = 'api/extra-options/:id';
 
         return $resource(resourceUrl, {}, {
-            'query': { method: 'GET', isArray: true},
+            'query': {method: 'GET', isArray: true},
+            'queryByType': {url: 'api/extra-options/by-type/:type', method: 'GET', isArray: true},
             'get': {
                 method: 'GET',
                 transformResponse: function (data) {
@@ -20,7 +21,7 @@
                     return data;
                 }
             },
-            'update': { method:'PUT' }
+            'update': {method: 'PUT'}
         });
     }
 })();

@@ -5,16 +5,23 @@
         .module('royalhallsApp')
         .controller('EventExtraOptionDialogController', EventExtraOptionDialogController);
 
-    EventExtraOptionDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'EventExtraOption', 'Event', 'ExtraOption', 'ExtraOptionVariant', 'ExtraOptionColor'];
+    EventExtraOptionDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'optionType', 'EventExtraOption', 'Event', 'ExtraOption', 'ExtraOptionVariant', 'ExtraOptionColor'];
 
-    function EventExtraOptionDialogController($timeout, $scope, $stateParams, $uibModalInstance, entity, EventExtraOption, Event, ExtraOption, ExtraOptionVariant, ExtraOptionColor) {
+    function EventExtraOptionDialogController($timeout, $scope, $stateParams, $uibModalInstance, entity, optionType, EventExtraOption, Event, ExtraOption, ExtraOptionVariant, ExtraOptionColor) {
         var vm = this;
 
         vm.eventExtraOption = entity;
+        if (optionType === undefined) {
+            optionType = 'BASIC'
+        }
+
+        if (entity.option !== undefined) {
+            optionType = entity.option.optionType
+        }
+
         vm.clear = clear;
         vm.save = save;
-        vm.events = Event.query();
-        vm.extraoptions = ExtraOption.query({}, onOptionLoad);
+        vm.extraoptions = ExtraOption.queryByType({type: optionType}, onOptionLoad);
         vm.extraoptionvariants = [];
         vm.extraoptioncolors = [];
 

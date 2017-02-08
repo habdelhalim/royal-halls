@@ -20,7 +20,7 @@ public interface ExtraOptionService {
 
     /**
      *  Get all the extraOptions.
-     *  
+     *
      *  @param pageable the pagination information
      *  @return the list of entities
      */
@@ -40,4 +40,6 @@ public interface ExtraOptionService {
      *  @param id the id of the entity
      */
     void delete(Long id);
+
+    List<ExtraOption> findAllByType(String type);
 }

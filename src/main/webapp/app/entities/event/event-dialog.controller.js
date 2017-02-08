@@ -19,6 +19,16 @@
         vm.halls = Hall.query();
         vm.setEndDate = setEndDate;
         vm.copyStartDate = copyStartDate;
+        vm.basicOptions = {
+            option: {
+                optionType: "BASIC"
+            }
+        };
+        vm.secondaryOptions = {
+            option: {
+                optionType: "OPTIONAL"
+            }
+        };
 
 
         var unsubscribe = $rootScope.$on('royalhallsApp:eventExtraOptionUpdate', function () {

@@ -1,14 +1,15 @@
 package com.royal.app.service.impl;
 
-import com.royal.app.service.ExtraOptionService;
 import com.royal.app.domain.ExtraOption;
+import com.royal.app.domain.enumeration.OptionType;
 import com.royal.app.repository.ExtraOptionRepository;
+import com.royal.app.service.ExtraOptionService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
 import java.util.List;
@@ -18,10 +19,10 @@ import java.util.List;
  */
 @Service
 @Transactional
-public class ExtraOptionServiceImpl implements ExtraOptionService{
+public class ExtraOptionServiceImpl implements ExtraOptionService {
 
     private final Logger log = LoggerFactory.getLogger(ExtraOptionServiceImpl.class);
-    
+
     @Inject
     private ExtraOptionRepository extraOptionRepository;
 
@@ -39,11 +40,11 @@ public class ExtraOptionServiceImpl implements ExtraOptionService{
 
     /**
      *  Get all the extraOptions.
-     *  
+     *
      *  @param pageable the pagination information
      *  @return the list of entities
      */
-    @Transactional(readOnly = true) 
+    @Transactional(readOnly = true)
     public Page<ExtraOption> findAll(Pageable pageable) {
         log.debug("Request to get all ExtraOptions");
         Page<ExtraOption> result = extraOptionRepository.findAll(pageable);
@@ -56,7 +57,7 @@ public class ExtraOptionServiceImpl implements ExtraOptionService{
      *  @param id the id of the entity
      *  @return the entity
      */
-    @Transactional(readOnly = true) 
+    @Transactional(readOnly = true)
     public ExtraOption findOne(Long id) {
         log.debug("Request to get ExtraOption : {}", id);
         ExtraOption extraOption = extraOptionRepository.findOne(id);
@@ -71,5 +72,10 @@ public class ExtraOptionServiceImpl implements ExtraOptionService{
     public void delete(Long id) {
         log.debug("Request to delete ExtraOption : {}", id);
         extraOptionRepository.delete(id);
+    }
+
+    @Override public List<ExtraOption> findAllByType(String type) {
+        log.debug("Request to get all ExtraOptions by type {} ", type);
+        return extraOptionRepository.findByOptionType(Enum.valueOf(OptionType.class, type.toUpperCase()));
     }
 }
