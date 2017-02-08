@@ -55,7 +55,7 @@
 
         function selectOption() {
 
-            if (vm.eventExtraOption.option.id !== null) {
+            if (vm.eventExtraOption.option !== undefined) {
                 vm.extraoptionvariants = ExtraOptionVariant.queryByOption(
                     {optionId: vm.eventExtraOption.option.id}
                 );
@@ -63,7 +63,7 @@
         }
 
         function selectVariant() {
-            if (vm.eventExtraOption.option.id !== null) {
+            if (vm.eventExtraOption.option !== undefined) {
                 vm.extraoptioncolors = ExtraOptionColor.queryByOption(
                     {optionId: vm.eventExtraOption.option.id}
                 );
