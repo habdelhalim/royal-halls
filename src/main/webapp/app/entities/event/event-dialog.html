@@ -106,17 +106,13 @@
                 <table class="jh-table table table-striped">
                     <thead>
                     <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
-                        <th jh-sort-by="option.optionName"><span data-translate="royalhallsApp.eventExtraOption.option">Option</span> <span class="glyphicon glyphicon-sort"></span>
-                        </th>
-                        <th jh-sort-by="variant.variantName"><span data-translate="royalhallsApp.eventExtraOption.variant">Variant</span> <span
-                            class="glyphicon glyphicon-sort"></span></th>
-                        <th jh-sort-by="color.colorName"><span data-translate="royalhallsApp.eventExtraOption.color">Color</span> <span class="glyphicon glyphicon-sort"></span>
-                        </th>
-                        <th jh-sort-by="optionQty"><span data-translate="royalhallsApp.eventExtraOption.optionQty">Option Qty</span> <span class="glyphicon glyphicon-sort"></span>
-                        </th>
-                        <th jh-sort-by="price"><span data-translate="royalhallsApp.extraOptionVariant.price">Price</span> <span class="glyphicon glyphicon-sort"></span></th>
-                        <th jh-sort-by="optionNotes"><span data-translate="royalhallsApp.eventExtraOption.optionNotes">Option Notes</span> <span
-                            class="glyphicon glyphicon-sort"></span></th>
+                        <th jh-sort-by="option.optionName"><span data-translate="royalhallsApp.eventExtraOption.option">Option</span></th>
+                        <th jh-sort-by="variant.variantName"><span data-translate="royalhallsApp.eventExtraOption.variant">Variant</span></th>
+                        <th jh-sort-by="color.colorName"><span data-translate="royalhallsApp.eventExtraOption.color">Color</span></th>
+                        <th jh-sort-by="optionQty"><span data-translate="royalhallsApp.eventExtraOption.optionQty">Option Qty</span></th>
+                        <th jh-sort-by="price"><span data-translate="royalhallsApp.extraOptionVariant.price">Price</span></th>
+                        <th jh-sort-by="total"><span data-translate="royalhallsApp.extraOption.total">Total</span></th>
+                        <th jh-sort-by="optionNotes"><span data-translate="royalhallsApp.eventExtraOption.optionNotes">Option Notes</span></th>
                         <th></th>
                     </tr>
                     </thead>
@@ -133,6 +129,7 @@
                         </td>
                         <td>{{eventExtraOption.optionQty}}</td>
                         <td>{{eventExtraOption.variant.price || eventExtraOption.option.price }}</td>
+                        <td>{{eventExtraOption.variant.price * eventExtraOption.optionQty || eventExtraOption.option.price * eventExtraOption.optionQty }}</td>
                         <td>{{eventExtraOption.optionNotes}}</td>
                         <td class="text-right">
                             <div class="btn-group flex-btn-group-container">
@@ -169,19 +166,13 @@
                 <table class="jh-table table table-striped">
                     <thead>
                     <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
-                        <th jh-sort-by="option.optionName"><span data-translate="royalhallsApp.eventExtraOption.option">Option</span> <span
-                            class="glyphicon glyphicon-sort"></span>
-                        </th>
-                        <th jh-sort-by="variant.variantName"><span data-translate="royalhallsApp.eventExtraOption.variant">Variant</span> <span
-                            class="glyphicon glyphicon-sort"></span></th>
-                        <th jh-sort-by="color.colorName"><span data-translate="royalhallsApp.eventExtraOption.color">Color</span> <span class="glyphicon glyphicon-sort"></span>
-                        </th>
-                        <th jh-sort-by="optionQty"><span data-translate="royalhallsApp.eventExtraOption.optionQty">Option Qty</span> <span
-                            class="glyphicon glyphicon-sort"></span>
-                        </th>
-                        <th jh-sort-by="price"><span data-translate="royalhallsApp.extraOptionVariant.price">Price</span> <span class="glyphicon glyphicon-sort"></span></th>
-                        <th jh-sort-by="optionNotes"><span data-translate="royalhallsApp.eventExtraOption.optionNotes">Option Notes</span> <span
-                            class="glyphicon glyphicon-sort"></span></th>
+                        <th jh-sort-by="option.optionName"><span data-translate="royalhallsApp.eventExtraOption.option">Option</span></th>
+                        <th jh-sort-by="variant.variantName"><span data-translate="royalhallsApp.eventExtraOption.variant">Variant</span></th>
+                        <th jh-sort-by="color.colorName"><span data-translate="royalhallsApp.eventExtraOption.color">Color</span></th>
+                        <th jh-sort-by="optionQty"><span data-translate="royalhallsApp.eventExtraOption.optionQty">Option Qty</span></th>
+                        <th jh-sort-by="price"><span data-translate="royalhallsApp.extraOptionVariant.price">Price</span></th>
+                        <th jh-sort-by="total"><span data-translate="royalhallsApp.extraOption.total">Total</span></th>
+                        <th jh-sort-by="optionNotes"><span data-translate="royalhallsApp.eventExtraOption.optionNotes">Option Notes</span></th>
                         <th></th>
                     </tr>
                     </thead>
@@ -198,6 +189,7 @@
                         </td>
                         <td>{{eventExtraOption.optionQty}}</td>
                         <td>{{eventExtraOption.variant.price || eventExtraOption.option.price }}</td>
+                        <td>{{eventExtraOption.variant.price * eventExtraOption.optionQty || eventExtraOption.option.price * eventExtraOption.optionQty }}</td>
                         <td>{{eventExtraOption.optionNotes}}</td>
                         <td class="text-right">
                             <div class="btn-group flex-btn-group-container">
