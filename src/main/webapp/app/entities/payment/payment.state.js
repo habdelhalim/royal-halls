@@ -45,6 +45,7 @@
                     };
                 }],
                 translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                    $translatePartialLoader.addPart('customer');
                     $translatePartialLoader.addPart('payment');
                     $translatePartialLoader.addPart('paymentType');
                     $translatePartialLoader.addPart('paymentStatus');

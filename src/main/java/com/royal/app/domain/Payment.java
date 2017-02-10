@@ -53,6 +53,7 @@ public class Payment implements Serializable {
     @Column(name = "creation_date")
     private ZonedDateTime creationDate;
 
+    @NotNull
     @ManyToOne
     private Contract contract;
 
