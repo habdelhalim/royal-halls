@@ -1,4 +1,4 @@
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -7,23 +7,23 @@
 
     ExtraOptionColorDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'ExtraOptionColor', 'ExtraOption'];
 
-    function ExtraOptionColorDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, ExtraOptionColor, ExtraOption) {
+    function ExtraOptionColorDialogController($timeout, $scope, $stateParams, $uibModalInstance, entity, ExtraOptionColor, ExtraOption) {
         var vm = this;
 
         vm.extraOptionColor = entity;
         vm.clear = clear;
         vm.save = save;
-        vm.extraoptions = ExtraOption.query();
+        vm.extraoptions = ExtraOption.query({page: 0, size: 100});
 
-        $timeout(function (){
+        $timeout(function () {
             angular.element('.form-group:eq(1)>input').focus();
         });
 
-        function clear () {
+        function clear() {
             $uibModalInstance.dismiss('cancel');
         }
 
-        function save () {
+        function save() {
             vm.isSaving = true;
             if (vm.extraOptionColor.id !== null) {
                 ExtraOptionColor.update(vm.extraOptionColor, onSaveSuccess, onSaveError);
@@ -32,13 +32,13 @@
             }
         }
 
-        function onSaveSuccess (result) {
+        function onSaveSuccess(result) {
             $scope.$emit('royalhallsApp:extraOptionColorUpdate', result);
             $uibModalInstance.close(result);
             vm.isSaving = false;
         }
 
-        function onSaveError () {
+        function onSaveError() {
             vm.isSaving = false;
         }
 
