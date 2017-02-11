@@ -51,7 +51,7 @@ public class Event implements Serializable {
     @Column(name = "created_by")
     private String createdBy;
 
-    @OneToMany(mappedBy = "event", orphanRemoval = true)
+    @OneToMany(mappedBy = "event", cascade = {CascadeType.ALL}, orphanRemoval = true)
     private Set<EventExtraOption> options = new HashSet<>();
 
     @NotNull

@@ -98,65 +98,16 @@
             </div>
 
         </div>
-
         <div class="form-group">
             <label data-translate="royalhallsApp.eventExtraOption.primary">Event Extra Options (Primary)</label>
 
-            <div class="table-responsive">
-                <table class="jh-table table table-striped">
-                    <thead>
-                    <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
-                        <th jh-sort-by="option.optionName"><span data-translate="royalhallsApp.eventExtraOption.option">Option</span></th>
-                        <th jh-sort-by="variant.variantName"><span data-translate="royalhallsApp.eventExtraOption.variant">Variant</span></th>
-                        <th jh-sort-by="color.colorName"><span data-translate="royalhallsApp.eventExtraOption.color">Color</span></th>
-                        <th jh-sort-by="optionQty"><span data-translate="royalhallsApp.eventExtraOption.optionQty">Option Qty</span></th>
-                        <th jh-sort-by="price"><span data-translate="royalhallsApp.extraOptionVariant.price">Price</span></th>
-                        <th jh-sort-by="total"><span data-translate="royalhallsApp.extraOption.total">Total</span></th>
-                        <th jh-sort-by="optionNotes"><span data-translate="royalhallsApp.eventExtraOption.optionNotes">Option Notes</span></th>
-                        <th></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr ng-repeat="eventExtraOption in vm.event.options | filter: vm.basicOptions track by eventExtraOption.id">
-                        <td>
-                            <a ui-sref="extra-option-detail({id:eventExtraOption.option.id})">{{eventExtraOption.option.optionName}}</a>
-                        </td>
-                        <td>
-                            <a ui-sref="extra-option-variant-detail({id:eventExtraOption.variant.id})">{{eventExtraOption.variant.variantName}}</a>
-                        </td>
-                        <td>
-                            <a ui-sref="extra-option-color-detail({id:eventExtraOption.color.id})">{{eventExtraOption.color.colorName}}</a>
-                        </td>
-                        <td>{{eventExtraOption.optionQty}}</td>
-                        <td>{{eventExtraOption.variant.price || eventExtraOption.option.price }}</td>
-                        <td>{{eventExtraOption.variant.price * eventExtraOption.optionQty || eventExtraOption.option.price * eventExtraOption.optionQty }}</td>
-                        <td>{{eventExtraOption.optionNotes}}</td>
-                        <td class="text-right">
-                            <div class="btn-group flex-btn-group-container">
-                                <button type="button"
-                                        ui-sref="option-edit({optionId:eventExtraOption.id})"
-                                        class="btn btn-primary btn-sm">
-                                    <span class="glyphicon glyphicon-pencil"></span>
-                                    <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"></span>
-                                </button>
-                                <button type="button"
-                                        ui-sref="option-delete({optionId:eventExtraOption.id})"
-                                        class="btn btn-danger btn-sm">
-                                    <span class="glyphicon glyphicon-remove-circle"></span>
-                                    <span class="hidden-xs hidden-sm" data-translate="entity.action.delete"></span>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
+            <div class="checkbox" ng-repeat="basicOption in vm.basicOptions">
+                <label for="{{basicOption.id}}">
+                    <input type="checkbox" id="{{basicOption.id}}" name="{{basicOption.optionName}}"
+                           ng-model="basicOption.checked" ng-change="vm.addBasicOption()">
+                    {{basicOption.optionName}}
+                </label>
             </div>
-            <button class="btn btn-primary" ui-sref="option-new( {optionType:'BASIC'} )" type="button">
-                <span class="glyphicon glyphicon-plus"></span>
-                <span data-translate="royalhallsApp.eventExtraOption.home.createLabel">
-                        Create new Event Extra Option
-                    </span>
-            </button>
         </div>
 
         <div class="form-group">
@@ -177,7 +128,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr ng-repeat="eventExtraOption in vm.event.options | filter: vm.secondaryOptions  track by eventExtraOption.id">
+                    <tr ng-repeat="eventExtraOption in vm.event.options | filter: vm.secondaryOptionFilter  track by eventExtraOption.id">
                         <td>
                             <a ui-sref="extra-option-detail({id:eventExtraOption.option.id})">{{eventExtraOption.option.optionName}}</a>
                         </td>

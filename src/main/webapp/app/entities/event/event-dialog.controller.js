@@ -5,9 +5,9 @@
         .module('royalhallsApp')
         .controller('EventDialogController', EventDialogController);
 
-    EventDialogController.$inject = ['$timeout', '$scope', '$rootScope', '$stateParams', '$uibModalInstance', 'entity', 'Event', 'EventExtraOption', 'EventType', 'Hall', 'Contract'];
+    EventDialogController.$inject = ['$timeout', '$scope', '$rootScope', '$filter', '$stateParams', '$uibModalInstance', 'entity', 'Event', 'ExtraOption', 'EventExtraOption', 'EventType', 'Hall', 'Contract'];
 
-    function EventDialogController($timeout, $scope, $rootScope, $stateParams, $uibModalInstance, entity, Event, EventExtraOption, EventType, Hall, Contract) {
+    function EventDialogController($timeout, $scope, $rootScope, $filter, $stateParams, $uibModalInstance, entity, Event, ExtraOption, EventExtraOption, EventType, Hall, Contract) {
         var vm = this;
 
         vm.event = entity;
@@ -19,17 +19,20 @@
         vm.halls = Hall.query();
         vm.setEndDate = setEndDate;
         vm.copyStartDate = copyStartDate;
-        vm.basicOptions = {
+        vm.addBasicOption = addBasicOption;
+
+        vm.basicOptionFilter = {
             option: {
-                optionType: "BASIC"
+                optionType: 'BASIC'
             }
         };
-        vm.secondaryOptions = {
+        vm.secondaryOptionFilter = {
             option: {
-                optionType: "OPTIONAL"
+                optionType: 'OPTIONAL'
             }
         };
 
+        ExtraOption.queryByType({type: 'BASIC'}, highlightSelected);
 
         var unsubscribe = $rootScope.$on('royalhallsApp:eventExtraOptionUpdate', function () {
             if (vm.event.id !== null) {
@@ -56,12 +59,62 @@
             angular.element('.form-group:eq(1)>input').focus();
         });
 
+        function addBasicOption() {
+            var secondaryOptions = $filter('filter')(vm.event.options, {option: {optionType: 'OPTIONAL'}}) || [];
+            var basicOptions = $filter('filter')(vm.event.options, {option: {optionType: 'BASIC'}}) || [];
+
+            var selectedBasicOption = $filter('filter')(vm.basicOptions, {checked: true});
+
+            basicOptions = basicOptions.filter(function (basicOpt) {
+                var found = false;
+                selectedBasicOption.forEach(function (selectOpt) {
+                    if (basicOpt.option.id === selectOpt.id)
+                        found = true;
+
+                });
+
+                return found;
+            });
+
+            selectedBasicOption.forEach(function (selectOpt) {
+                var found = false;
+                basicOptions.forEach(function (basicOpt) {
+                    if (basicOpt.option.id === selectOpt.id)
+                        found = true;
+                });
+
+                if (!found) {
+                    basicOptions.push({
+                        event: 1,
+                        option: selectOpt
+                    })
+                }
+            });
+
+            vm.event.options = [].concat([], basicOptions).concat([], secondaryOptions);
+        }
+
+        function highlightSelected(result) {
+            vm.basicOptions = result.map(function (element) {
+                if (vm.event.options !== undefined) {
+                    vm.event.options.forEach(function (selected) {
+                        if (selected.option.id === element.id) {
+                            element.checked = true;
+                        }
+                    });
+                }
+
+                return element;
+            });
+        }
+
         function clear() {
             $uibModalInstance.dismiss('cancel');
         }
 
         function save() {
             vm.isSaving = true;
+            console.log(vm.event.options);
             if (vm.event.id !== null) {
                 Event.update(vm.event, onSaveSuccess, onSaveError);
             } else {
