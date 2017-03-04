@@ -32,7 +32,7 @@
             </thead>
             <tbody>
                 <tr ng-repeat="contract in vm.contracts track by contract.id">
-                    <td><a ui-sref="contract-detail({id:contract.id})">{{contract.id}}</a></td>
+                    <td><a ui-sref="contract-edit({id:contract.id})">{{contract.id}}</a></td>
                     <td>{{contract.contractDate | date:'medium'}}</td>
                     <td data-translate="{{'royalhallsApp.ContractStatus.' + contract.contractStatus}}">{{contract.contractStatus}}</td>
                     <td>{{contract.contractNotes}}</td>
