@@ -11,12 +11,11 @@
         var vm = this;
 
         vm.event = entity;
-        vm.clear = clear;
         vm.datePickerOpenStatus = {};
-        vm.openCalendar = openCalendar;
-        vm.save = save;
         vm.eventtypes = EventType.query();
         vm.halls = Hall.query();
+        vm.clear = clear;
+        vm.save = save;
         vm.setEndDate = setEndDate;
         vm.copyStartDate = copyStartDate;
         vm.addBasicOption = addBasicOption;
@@ -114,7 +113,6 @@
 
         function save() {
             vm.isSaving = true;
-            console.log(vm.event.options);
             if (vm.event.id !== null) {
                 Event.update(vm.event, onSaveSuccess, onSaveError);
             } else {
@@ -132,15 +130,6 @@
 
         function onSaveError() {
             vm.isSaving = false;
-        }
-
-        vm.datePickerOpenStatus.eventDate = false;
-        vm.datePickerOpenStatus.eventStartDate = false;
-        vm.datePickerOpenStatus.eventEndDate = false;
-        vm.datePickerOpenStatus.createdDate = false;
-
-        function openCalendar(date) {
-            vm.datePickerOpenStatus[date] = true;
         }
 
         function setEndDate() {
