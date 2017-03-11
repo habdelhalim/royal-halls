@@ -4,6 +4,6 @@
 # @Revision:    0.0
 
 CURR_DIR=`pwd`
-docker rm postgres-bk && docker run -p 5432:5432 -it -v $CURR_DIR:/royal  --name=postgres-bk postgres
+docker rm postgres-bk && docker run -p 5432:5432 -d -v $CURR_DIR:/royal  --name=postgres-bk postgres
 
 # vi: 
