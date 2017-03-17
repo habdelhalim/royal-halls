@@ -5,9 +5,11 @@
         .module('royalhallsApp')
         .controller('EventDialogController', EventDialogController);
 
-    EventDialogController.$inject = ['$timeout', '$scope', '$rootScope', '$filter', '$stateParams', '$uibModalInstance', 'entity', 'Event', 'ExtraOption', 'EventExtraOption', 'EventType', 'Hall', 'Contract'];
+    EventDialogController.$inject = ['$timeout', '$scope', '$rootScope', '$filter', '$stateParams',
+        '$uibModalInstance', 'entity', 'Event', 'ExtraOption', 'EventExtraOption', 'EventType', 'Hall', 'Contract'];
 
-    function EventDialogController($timeout, $scope, $rootScope, $filter, $stateParams, $uibModalInstance, entity, Event, ExtraOption, EventExtraOption, EventType, Hall, Contract) {
+    function EventDialogController($timeout, $scope, $rootScope, $filter, $stateParams,
+                                   $uibModalInstance, entity, Event, ExtraOption, EventExtraOption, EventType, Hall, Contract) {
         var vm = this;
 
         vm.event = entity;
