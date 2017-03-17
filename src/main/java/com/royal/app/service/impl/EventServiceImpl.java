@@ -57,6 +57,9 @@ public class EventServiceImpl implements EventService {
     }
 
     private void calculateEventPrices(Event event) {
+        double basePrice = event.getHall() != null ? event.getHall().getPrice() : 0;
+        event.setBasePrice(basePrice);
+
         Set<EventExtraOption> options = event.getOptions();
         for (EventExtraOption option : options) {
             evaluateExtraOptionPrice(option);
