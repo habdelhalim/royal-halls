@@ -1,4 +1,4 @@
-(function() {
+(function () {
     'use strict';
     angular
         .module('royalhallsApp')
@@ -6,16 +6,23 @@
 
     Event.$inject = ['$resource', 'DateUtils'];
 
-    function Event ($resource, DateUtils) {
-        var resourceUrl =  'api/events/:id';
+    function Event($resource, DateUtils) {
+        var resourceUrl = 'api/events/:id';
 
         return $resource(resourceUrl, {}, {
-            'query': { method: 'GET', isArray: true},
+            'query': {
+                method: 'GET', isArray: true, transformResponse: function (data) {
+                    if (data) {
+                        data = JSOG.parse(data);
+                    }
+                    return data;
+                }
+            },
             'get': {
                 method: 'GET',
                 transformResponse: function (data) {
                     if (data) {
-                        data = angular.fromJson(data);
+                        data = JSOG.parse(data);
                         data.eventStartDate = DateUtils.convertDateTimeFromServer(data.eventStartDate);
                         data.eventEndDate = DateUtils.convertDateTimeFromServer(data.eventEndDate);
                         data.createdDate = DateUtils.convertDateTimeFromServer(data.createdDate);
@@ -23,7 +30,7 @@
                     return data;
                 }
             },
-            'update': { method:'PUT' }
+            'update': {method: 'PUT'}
         });
     }
 })();

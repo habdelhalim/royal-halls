@@ -31,7 +31,8 @@
     "swagger-ui": "2.1.5",
     "bootstrap-rtl": "^3.4.0",
     "fullcalendar": "v3.1.0",
-    "angular-ui-calendar": "^1.0.2"
+    "angular-ui-calendar": "^1.0.2",
+    "jsog": "^1.0.7"
   },
   "devDependencies": {
     "angular-mocks": "1.5.8"
