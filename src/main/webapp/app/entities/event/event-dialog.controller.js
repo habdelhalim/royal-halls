@@ -86,7 +86,6 @@
 
                 if (!found) {
                     basicOptions.push({
-                        event: 1,
                         option: selectOpt
                     })
                 }
@@ -116,6 +115,10 @@
         function save() {
             vm.isSaving = true;
             if (vm.event.id !== null) {
+                vm.event.options.forEach(function (option) {
+                    option.event = {id: vm.event.id}
+                });
+
                 Event.update(vm.event, onSaveSuccess, onSaveError);
             } else {
                 Event.save(vm.event, onSaveSuccess, onSaveError);
