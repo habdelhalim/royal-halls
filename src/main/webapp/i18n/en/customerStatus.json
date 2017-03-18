@@ -1,0 +1,24 @@
+{
+    "royalhallsApp": {
+        "customerStatus" : {
+            "home": {
+                "title": "Customer Statuses",
+                "createLabel": "Create a new Customer Status",
+                "createOrEditLabel": "Create or edit a Customer Status",
+                "search": "Search for Customer Status"
+            },
+            "created": "A new Customer Status is created with identifier {{ param }}",
+            "updated": "A Customer Status is updated with identifier {{ param }}",
+            "deleted": "A Customer Status is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Customer Status {{ id }}?"
+            },
+            "detail": {
+                "title": "Customer Status"
+            },
+            "name": "Name",
+            "description": "Description",
+            "colour": "Colour"
+        }
+    }
+}

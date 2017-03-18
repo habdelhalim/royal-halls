@@ -20,6 +20,7 @@
                 "eventExtraOption": "Event Extra Option",
                 "extraOptionVariant": "Extra Option Variant",
                 "extraOptionColor": "Extra Option Color",
+                "customerStatus": "Customer Status",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

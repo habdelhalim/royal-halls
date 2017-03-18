@@ -60,7 +60,12 @@
                     ng-model="vm.customer.nationality"
                      />
         </div>
-
+        <div class="form-group">
+            <label data-translate="royalhallsApp.customer.status" for="field_status">Status</label>
+            <select class="form-control" id="field_status" name="status" ng-model="vm.customer.customerStatus" ng-options="status as status.name for status in vm.statuses track by status.id">
+                <option value=""></option>
+            </select>
+        </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">

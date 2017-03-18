@@ -20,6 +20,7 @@
                 "eventExtraOption": "خدمات الحجوزات",
                 "extraOptionVariant": "خيارات الخدمات",
                 "extraOptionColor": "ألوان الخدمات",
+                "customerStatus": "حالات الزبائن",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
