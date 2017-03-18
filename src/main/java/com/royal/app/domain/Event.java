@@ -229,6 +229,11 @@ public class Event implements Serializable {
         return Objects.equals(id, event.id);
     }
 
+    @PrePersist
+    void onCreate() {
+        this.setCreatedDate(ZonedDateTime.now());
+    }
+
     @Override
     public int hashCode() {
         return Objects.hashCode(id);
