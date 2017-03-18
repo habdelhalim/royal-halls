@@ -23,90 +23,99 @@
                 </div>
             </div>
             <form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation ng-show="vm.contract.id">
-
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label class="control-label" data-translate="royalhallsApp.customer.customerName" for="field_customerName">Customer Name</label>
-                        <input type="text" class="form-control" name="customerName" id="field_customerName"
-                               ng-model="vm.contract.customer"
-                               uib-typeahead="customer as customer.customerName for customer in vm.findCustomer($viewValue)"
-                               required/>
-                        <div ng-show="editForm.customerName.$invalid">
-                            <p class="help-block"
-                               ng-show="editForm.customerName.$error.required" data-translate="entity.validation.required">
-                                This field is required.
-                            </p>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group" ng-show="vm.contract.id">
+                            <label for="id" data-translate="global.field.id">ID</label>
+                            <input type="text" class="form-control" id="id" name="id"
+                                   ng-model="vm.contract.id" readonly/>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="control-label" data-translate="royalhallsApp.customer.identityId" for="field_identityId">Identity Id</label>
-                        <input type="text" class="form-control" name="identityId" id="field_identityId"
-                               ng-model="vm.contract.customer.identityId"/>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="control-label" data-translate="royalhallsApp.contract.createdDate" for="field_createdDate">Creation Date</label>
+                            <div class="input-group">
+                                <input id="field_createdDate" type="text" class="form-control" name="creationDate" datetime-picker="{{dateformat}}"
+                                       ng-model="vm.contract.createdDate"
+                                       is-open="vm.datePickerOpenStatus.createdDate" ng-disabled="true"
+                                />
+                                <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="vm.openCalendar('creationDate')"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label class="control-label" data-translate="royalhallsApp.contact.mobile" for="field_mobile">Mobile</label>
-                        <input type="text" class="form-control" name="mobile" id="field_mobile"
-                               ng-model="vm.contract.customer.mobile"
-                        />
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label" data-translate="royalhallsApp.contact.telephone" for="field_telephone">Telephone</label>
-                        <input type="text" class="form-control" name="telephone" id="field_telephone"
-                               ng-model="vm.contract.customer.telephone"
-                        />
-                    </div>
-
-                    <div class="form-group">
-                        <label class="control-label" data-translate="royalhallsApp.customer.city" for="field_city">City</label>
-                        <input type="text" class="form-control" name="city" id="field_city"
-                               ng-model="vm.contract.customer.city"
-                        />
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label" data-translate="royalhallsApp.customer.country" for="field_country">Country</label>
-                        <input type="text" class="form-control" name="country" id="field_country"
-                               ng-model="vm.contract.customer.country"
-                        />
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="control-label" data-translate="royalhallsApp.contract.contractStatus" for="field_contractStatus">Contract Status</label>
+                            <select class="form-control" name="contractStatus" ng-model="vm.contract.contractStatus" id="field_contractStatus" ng-disabled="true" readonly>
+                                <option value="CREATED" data-translate="royalhallsApp.ContractStatus.CREATED">CREATED</option>
+                                <option value="APPROVED" data-translate="royalhallsApp.ContractStatus.APPROVED">APPROVED</option>
+                                <option value="COMPLETED" data-translate="royalhallsApp.ContractStatus.COMPLETED">COMPLETED</option>
+                                <option value="CANCELLED" data-translate="royalhallsApp.ContractStatus.CANCELLED">CANCELLED</option>
+                            </select>
+                            <div ng-show="editForm.contractStatus.$invalid">
+                                <p class="help-block"
+                                   ng-show="editForm.contractStatus.$error.required" data-translate="entity.validation.required">
+                                    This field is required.
+                                </p>
+                            </div>
+                        </div>
                     </div>
 
                 </div>
-                <div class="col-md-6">
-                    <div class="form-group" ng-show="vm.contract.id">
-                        <label for="id" data-translate="global.field.id">ID</label>
-                        <input type="text" class="form-control" id="id" name="id"
-                               ng-model="vm.contract.id" readonly/>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label" data-translate="royalhallsApp.contract.contractStatus" for="field_contractStatus">Contract Status</label>
-                        <select class="form-control" name="contractStatus" ng-model="vm.contract.contractStatus" id="field_contractStatus" ng-disabled="true" readonly>
-                            <option value="CREATED" data-translate="royalhallsApp.ContractStatus.CREATED">CREATED</option>
-                            <option value="APPROVED" data-translate="royalhallsApp.ContractStatus.APPROVED">APPROVED</option>
-                            <option value="COMPLETED" data-translate="royalhallsApp.ContractStatus.COMPLETED">COMPLETED</option>
-                            <option value="CANCELLED" data-translate="royalhallsApp.ContractStatus.CANCELLED">CANCELLED</option>
-                        </select>
-                        <div ng-show="editForm.contractStatus.$invalid">
-                            <p class="help-block"
-                               ng-show="editForm.contractStatus.$error.required" data-translate="entity.validation.required">
-                                This field is required.
-                            </p>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="control-label" data-translate="royalhallsApp.customer.customerName" for="field_customerName">Customer Name</label>
+                            <input type="text" class="form-control" name="customerName" id="field_customerName"
+                                   ng-model="vm.contract.customer"
+                                   uib-typeahead="customer as customer.customerName for customer in vm.findCustomer($viewValue)"
+                                   required/>
+                            <div ng-show="editForm.customerName.$invalid">
+                                <p class="help-block"
+                                   ng-show="editForm.customerName.$error.required" data-translate="entity.validation.required">
+                                    This field is required.
+                                </p>
+                            </div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="control-label" data-translate="royalhallsApp.contract.createdDate" for="field_createdDate">Creation Date</label>
-                        <div class="input-group">
-                            <input id="field_createdDate" type="text" class="form-control" name="creationDate" datetime-picker="{{dateformat}}" ng-model="vm.contract.createdDate"
-                                   is-open="vm.datePickerOpenStatus.createdDate" ng-disabled="true"
+
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label class="control-label" data-translate="royalhallsApp.customer.city" for="field_city">City</label>
+                            <input type="text" class="form-control" name="city" id="field_city"
+                                   ng-model="vm.contract.customer.city"
                             />
-                            <span class="input-group-btn">
-                            <button type="button" class="btn btn-default" ng-click="vm.openCalendar('creationDate')"><i class="glyphicon glyphicon-calendar"></i></button>
-                        </span>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="control-label" data-translate="royalhallsApp.contract.contractNotes" for="field_contractNotes">Contract Notes</label>
-                        <textarea type="text" class="form-control" name="contractNotes" id="field_contractNotes"
-                                  ng-model="vm.contract.contractNotes" rows="8"
-                        ></textarea>
+
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label class="control-label" data-translate="royalhallsApp.contact.mobile" for="field_mobile">Mobile</label>
+                            <input type="text" class="form-control" name="mobile" id="field_mobile"
+                                   ng-model="vm.contract.customer.mobile"
+                            />
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label class="control-label" data-translate="royalhallsApp.customer.identityId" for="field_identityId">Identity Id</label>
+                            <input type="text" class="form-control" name="identityId" id="field_identityId"
+                                   ng-model="vm.contract.customer.identityId"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="control-label" data-translate="royalhallsApp.contract.contractNotes" for="field_contractNotes">Contract Notes</label>
+                            <textarea type="text" class="form-control" name="contractNotes" id="field_contractNotes"
+                                      ng-model="vm.contract.contractNotes" rows="8"
+                            ></textarea>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-12">
