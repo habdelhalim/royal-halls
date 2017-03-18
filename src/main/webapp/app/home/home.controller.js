@@ -93,14 +93,15 @@
         }
 
         function findCustomer(search) {
-            console.log('finding customer', search);
             if (search.length >= 3 || search.length == 0) {
                 return Customer.search({
                     page: 0,
                     size: 10,
                     search: search
                 }).$promise.then(function (response) {
-                    console.log(response);
+                    if (response.length < 1) {
+                        response.push({'customerName': search});
+                    }
                     return response;
                 });
 
