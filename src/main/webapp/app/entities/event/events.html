@@ -4,9 +4,9 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-xs-4 no-padding-left">
-                <button class="btn btn-primary" ui-sref="event.new" >
+                <button class="btn btn-primary" ui-sref="event.new">
                     <span class="glyphicon glyphicon-plus"></span>
-                    <span  data-translate="royalhallsApp.event.home.createLabel">
+                    <span data-translate="royalhallsApp.event.home.createLabel">
                         Create new Event
                     </span>
                 </button>
@@ -17,59 +17,62 @@
     <div class="table-responsive">
         <table class="jh-table table table-striped">
             <thead>
-                <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
-                    <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="eventName"><span data-translate="royalhallsApp.event.eventName">Event Name</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="eventStartDate"><span data-translate="royalhallsApp.event.eventStartDate">Event Start Date</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="eventEndDate"><span data-translate="royalhallsApp.event.eventEndDate">Event End Date</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="createdDate"><span data-translate="royalhallsApp.event.createdDate">Created Date</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="createdBy"><span data-translate="royalhallsApp.event.createdBy">Created By</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="eventType.eventTypeName"><span data-translate="royalhallsApp.event.eventType">Event Type</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="hall.hallName"><span data-translate="royalhallsApp.event.hall">Hall</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="contract.id"><span data-translate="royalhallsApp.event.contract">Contract</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th></th>
-                </tr>
+            <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
+                <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                <th jh-sort-by="eventName"><span data-translate="royalhallsApp.event.eventName">Event Name</span> <span class="glyphicon glyphicon-sort"></span></th>
+                <th jh-sort-by="eventDate"><span data-translate="royalhallsApp.event.eventStartDate">Event Date</span> <span class="glyphicon glyphicon-sort"></span></th>
+                <th jh-sort-by="eventStartDate"><span data-translate="royalhallsApp.event.eventStartTime">Event Start Time</span> <span class="glyphicon glyphicon-sort"></span>
+                </th>
+                <th jh-sort-by="eventEndDate"><span data-translate="royalhallsApp.event.eventEndDate">Event End Date</span> <span class="glyphicon glyphicon-sort"></span></th>
+                <th jh-sort-by="createdBy"><span data-translate="royalhallsApp.event.createdBy">Created By</span> <span class="glyphicon glyphicon-sort"></span></th>
+                <th jh-sort-by="createdDate"><span data-translate="royalhallsApp.event.createdDate">Created Date</span> <span class="glyphicon glyphicon-sort"></span></th>
+                <th jh-sort-by="eventType.eventTypeName"><span data-translate="royalhallsApp.event.eventType">Event Type</span> <span class="glyphicon glyphicon-sort"></span></th>
+                <th jh-sort-by="hall.hallName"><span data-translate="royalhallsApp.event.hall">Hall</span> <span class="glyphicon glyphicon-sort"></span></th>
+                <th jh-sort-by="contract.id"><span data-translate="royalhallsApp.event.contract">Contract</span> <span class="glyphicon glyphicon-sort"></span></th>
+                <th></th>
+            </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="event in vm.events track by event.id">
-                    <td><a ui-sref="event-detail({id:event.id})">{{event.id}}</a></td>
-                    <td>{{event.eventName}}</td>
-                    <td>{{event.eventStartDate | date:'medium'}}</td>
-                    <td>{{event.eventEndDate | date:'medium'}}</td>
-                    <td>{{event.createdDate | date:'medium'}}</td>
-                    <td>{{event.createdBy}}</td>
-                    <td>
-                        <a ui-sref="event-type-detail({id:event.eventType.id})">{{event.eventType.eventTypeName}}</a>
-                    </td>
-                    <td>
-                        <a ui-sref="hall-detail({id:event.hall.id})">{{event.hall.hallName}}</a>
-                    </td>
-                    <td>
-                        <a ui-sref="contract-detail({id:event.contract.id})">{{event.contract.id}}</a>
-                    </td>
-                    <td class="text-right">
-                        <div class="btn-group flex-btn-group-container">
-                            <button type="submit"
-                                    ui-sref="event-detail({id:event.id})"
-                                    class="btn btn-info btn-sm">
-                                <span class="glyphicon glyphicon-eye-open"></span>
-                                <span class="hidden-xs hidden-sm" data-translate="entity.action.view"></span>
-                            </button>
-                            <button type="submit"
-                                    ui-sref="event.edit({id:event.id})"
-                                    class="btn btn-primary btn-sm">
-                                <span class="glyphicon glyphicon-pencil"></span>
-                                <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"></span>
-                            </button>
-                            <button type="submit"
-                                    ui-sref="event.delete({id:event.id})"
-                                    class="btn btn-danger btn-sm">
-                                <span class="glyphicon glyphicon-remove-circle"></span>
-                                <span class="hidden-xs hidden-sm" data-translate="entity.action.delete"></span>
-                            </button>
-                        </div>
-                    </td>
-                </tr>
+            <tr ng-repeat="event in vm.events track by event.id">
+                <td><a ui-sref="event-detail({id:event.id})">{{event.id}}</a></td>
+                <td>{{event.eventName}}</td>
+                <td>{{event.eventStartDate | date:'yyyy-MM-dd'}}</td>
+                <td>{{event.eventStartDate | date:'HH:mm'}}</td>
+                <td>{{event.eventEndDate | date:'HH:mm'}}</td>
+                <td>{{event.contract.customer.customerName}}</td>
+                <td>{{event.createdDate | date:'yyyy-MM-dd'}}</td>
+                <td>
+                    <a ui-sref="event-type-detail({id:event.eventType.id})">{{event.eventType.eventTypeName}}</a>
+                </td>
+                <td>
+                    <a ui-sref="hall-detail({id:event.hall.id})">{{event.hall.hallName}}</a>
+                </td>
+                <td>
+                    <a ui-sref="contract-detail({id:event.contract.id})">{{event.contract.id}}</a>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                ui-sref="event-detail({id:event.id})"
+                                class="btn btn-info btn-sm">
+                            <span class="glyphicon glyphicon-eye-open"></span>
+                            <span class="hidden-xs hidden-sm" data-translate="entity.action.view"></span>
+                        </button>
+                        <button type="submit"
+                                ui-sref="event.edit({id:event.id})"
+                                class="btn btn-primary btn-sm">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                            <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"></span>
+                        </button>
+                        <button type="submit"
+                                ui-sref="event.delete({id:event.id})"
+                                class="btn btn-danger btn-sm">
+                            <span class="glyphicon glyphicon-remove-circle"></span>
+                            <span class="hidden-xs hidden-sm" data-translate="entity.action.delete"></span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
             </tbody>
         </table>
     </div>
