@@ -1,4 +1,4 @@
-(function() {
+(function () {
     'use strict';
     angular
         .module('royalhallsApp')
@@ -6,11 +6,12 @@
 
     Customer.$inject = ['$resource'];
 
-    function Customer ($resource) {
-        var resourceUrl =  'api/customers/:id';
+    function Customer($resource) {
+        var resourceUrl = 'api/customers/:id';
 
         return $resource(resourceUrl, {}, {
-            'query': { method: 'GET', isArray: true},
+            'query': {method: 'GET', isArray: true},
+            'search': {url: 'api/customers/search', method: 'GET', isArray: true},
             'get': {
                 method: 'GET',
                 transformResponse: function (data) {
@@ -20,7 +21,7 @@
                     return data;
                 }
             },
-            'update': { method:'PUT' }
+            'update': {method: 'PUT'}
         });
     }
 })();

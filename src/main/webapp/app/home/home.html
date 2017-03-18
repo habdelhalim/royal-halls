@@ -28,7 +28,8 @@
                     <div class="form-group">
                         <label class="control-label" data-translate="royalhallsApp.customer.customerName" for="field_customerName">Customer Name</label>
                         <input type="text" class="form-control" name="customerName" id="field_customerName"
-                               ng-model="vm.contract.customer.customerName"
+                               ng-model="vm.contract.customer"
+                               uib-typeahead="customer as customer.customerName for customer in vm.findCustomer($viewValue)"
                                required/>
                         <div ng-show="editForm.customerName.$invalid">
                             <p class="help-block"
