@@ -3,7 +3,7 @@
         "ContractStatus" : {
             "null": "",
             "CREATED": "جديد",
-            "APPROVED": "موافق عليه",
+            "APPROVED": "مؤكد",
             "COMPLETED": "مكتمل",
             "CANCELLED": "ملغى"
         }
