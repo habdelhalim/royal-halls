@@ -19,7 +19,7 @@
                 header: {
                     left: 'month agendaWeek agendaDay listYear',
                     center: 'title',
-                    right: 'today prev,next'
+                    right: 'today next,prev'
                 },
                 lang: $translate.proposedLanguage(),
                 eventRender: vm.eventRender,

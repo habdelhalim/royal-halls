@@ -1,6 +1,5 @@
 package com.royal.app.domain;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.hibernate.annotations.Cache;
@@ -31,6 +30,9 @@ public class EventExtraOption implements Serializable {
 
     @Column(name = "option_notes")
     private String optionNotes;
+
+    @Column(name = "price")
+    private Double price;
 
     @NotNull
     @ManyToOne
@@ -78,6 +80,14 @@ public class EventExtraOption implements Serializable {
 
     public void setOptionNotes(String optionNotes) {
         this.optionNotes = optionNotes;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
     }
 
     public Event getEvent() {

@@ -52,6 +52,10 @@ public class Customer implements Serializable {
     @Column(name = "nationality")
     private String nationality;
 
+    @OneToOne
+    @JoinColumn(name = "customer_status_id")
+    private CustomerStatus customerStatus;
+
     @OneToMany(mappedBy = "customer")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -154,6 +158,14 @@ public class Customer implements Serializable {
 
     public void setNationality(String nationality) {
         this.nationality = nationality;
+    }
+
+    public CustomerStatus getCustomerStatus() {
+        return customerStatus;
+    }
+
+    public void setCustomerStatus(CustomerStatus customerStatus) {
+        this.customerStatus = customerStatus;
     }
 
     public Set<Contact> getContacts() {

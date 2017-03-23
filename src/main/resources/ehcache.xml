@@ -56,5 +56,7 @@
 
     <cache alias="com.royal.app.domain.ExtraOptionColor" uses-template="simple"/>
 
+    <cache alias="com.royal.app.domain.CustomerStatus" uses-template="simple"/>
+
     <!-- jhipster-needle-ehcache-add-entry -->
 </config>

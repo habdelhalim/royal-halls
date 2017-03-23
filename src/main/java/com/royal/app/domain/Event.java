@@ -51,7 +51,10 @@ public class Event implements Serializable {
     @Column(name = "created_by")
     private String createdBy;
 
-    @OneToMany(mappedBy = "event", orphanRemoval = true)
+    @Column(name = "base_price")
+    private Double basePrice;
+
+    @OneToMany(mappedBy = "event", cascade = {CascadeType.ALL}, orphanRemoval = true)
     private Set<EventExtraOption> options = new HashSet<>();
 
     @NotNull
@@ -139,6 +142,14 @@ public class Event implements Serializable {
         this.createdBy = createdBy;
     }
 
+    public Double getBasePrice() {
+        return basePrice;
+    }
+
+    public void setBasePrice(Double basePrice) {
+        this.basePrice = basePrice;
+    }
+
     public Set<EventExtraOption> getOptions() {
         return options;
     }
@@ -216,6 +227,11 @@ public class Event implements Serializable {
             return false;
         }
         return Objects.equals(id, event.id);
+    }
+
+    @PrePersist
+    void onCreate() {
+        this.setCreatedDate(ZonedDateTime.now());
     }
 
     @Override

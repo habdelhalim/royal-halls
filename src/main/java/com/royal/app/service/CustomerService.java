@@ -20,7 +20,7 @@ public interface CustomerService {
 
     /**
      *  Get all the customers.
-     *  
+     *
      *  @param pageable the pagination information
      *  @return the list of entities
      */
@@ -40,4 +40,6 @@ public interface CustomerService {
      *  @param id the id of the entity
      */
     void delete(Long id);
+
+    Page<Customer> search(Pageable pageable, String search);
 }

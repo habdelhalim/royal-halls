@@ -25,7 +25,8 @@
             "city": "البلدة",
             "country": "البلد",
             "contact": "طرق الاتصال",
-            "nationality": "الجنسية"
+            "nationality": "الجنسية",
+            "status": "الحالة"
         }
     }
 }

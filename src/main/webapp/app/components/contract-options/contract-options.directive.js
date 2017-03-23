@@ -49,7 +49,6 @@
                                 var options =
                                     ev.options.map(function (op) {
                                         op.event = {id: ev.id, eventName: ev.eventName};
-                                        op.price = (op.variant === null) ? op.option.price : op.variant.price;
                                         op.total = (op.optionQty === null) ? op.price : op.optionQty * op.price;
 
                                         vm.totalAmount = vm.totalAmount + op.total;
@@ -64,7 +63,8 @@
 
                         vm.halls =
                             vm.events.map(function (ev) {
-                                vm.totalAmount = vm.totalAmount + ev.hall.price;
+                                vm.totalAmount = vm.totalAmount + ev.basePrice;
+                                ev.hall.price = ev.basePrice;
                                 return ev.hall;
                             });
                     }

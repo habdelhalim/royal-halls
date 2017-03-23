@@ -5,9 +5,10 @@
         .module('royalhallsApp')
         .controller('HomeController', HomeController);
 
-    HomeController.$inject = ['$scope', '$rootScope', 'Principal', 'LoginService', '$state', 'entity', 'Contract'];
+    HomeController.$inject = ['$scope', '$rootScope', 'Principal', 'LoginService', '$state',
+        'entity', 'Contract', 'Customer'];
 
-    function HomeController($scope, $rootScope, Principal, LoginService, $state, entity, Contract) {
+    function HomeController($scope, $rootScope, Principal, LoginService, $state, entity, Contract, Customer) {
         var vm = this;
 
         vm.account = null;
@@ -20,6 +21,7 @@
         vm.save = save;
         vm.newEvent = newEvent;
         vm.newPayment = newPayment;
+        vm.findCustomer = findCustomer;
 
         $scope.$on('authenticationSuccess', function () {
             getAccount();
@@ -88,6 +90,22 @@
         function newPayment() {
             vm.save();
             $state.go('payment-new');
+        }
+
+        function findCustomer(search) {
+            if (search.length >= 3 || search.length == 0) {
+                return Customer.search({
+                    page: 0,
+                    size: 10,
+                    search: search
+                }).$promise.then(function (response) {
+                    if (response.length < 1) {
+                        response.push({'customerName': search});
+                    }
+                    return response;
+                });
+
+            }
         }
     }
 })();

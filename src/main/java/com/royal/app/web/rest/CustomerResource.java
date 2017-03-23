@@ -5,7 +5,6 @@ import com.royal.app.domain.Customer;
 import com.royal.app.service.CustomerService;
 import com.royal.app.web.rest.util.HeaderUtil;
 import com.royal.app.web.rest.util.PaginationUtil;
-
 import io.swagger.annotations.ApiParam;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,7 +30,7 @@ import java.util.Optional;
 public class CustomerResource {
 
     private final Logger log = LoggerFactory.getLogger(CustomerResource.class);
-        
+
     @Inject
     private CustomerService customerService;
 
@@ -124,6 +123,22 @@ public class CustomerResource {
         log.debug("REST request to delete Customer : {}", id);
         customerService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("customer", id.toString())).build();
+    }
+
+    /**
+     * SEARCH  /customers/search : search by customer name.
+     *
+     * @param search the id of the customer to delete
+     * @return the ResponseEntity with status 200 (OK) and the list of customers in body
+     * @throws URISyntaxException if the Location URI syntax is incorrect
+     */
+    @GetMapping("/customers/search")
+    @Timed
+    public ResponseEntity<List<Customer>> searchCustomer(@ApiParam Pageable pageable, @ApiParam String search) throws URISyntaxException {
+        log.debug("REST request to search Customer : {}", search);
+        Page<Customer> page = customerService.search(pageable, search);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/customers/search");
+        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 
 }

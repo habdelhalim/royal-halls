@@ -1,6 +1,9 @@
 package com.royal.app.service.impl;
 
 import com.royal.app.domain.Contract;
+import com.royal.app.domain.Payment;
+import com.royal.app.domain.enumeration.ContractStatus;
+import com.royal.app.domain.enumeration.PaymentStatus;
 import com.royal.app.repository.ContractRepository;
 import com.royal.app.service.ContractService;
 import com.royal.app.service.CustomerService;
@@ -18,6 +21,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.ArrayList;
+import java.util.Set;
 
 /**
  * Service Implementation for managing Contract.
@@ -49,8 +53,24 @@ public class ContractServiceImpl implements ContractService {
             customerService.save(contract.getCustomer());
         }
 
+        updateContractStatus(contract);
         Contract result = contractRepository.save(contract);
         return result;
+    }
+
+    private void updateContractStatus(Contract contract) {
+        if (ContractStatus.CANCELLED.equals(contract.getContractStatus())
+            || ContractStatus.COMPLETED.equals(contract.getContractStatus())) {
+            return;
+        }
+
+        Set<Payment> payments = contract.getPayments();
+        for (Payment payment : payments) {
+            if (PaymentStatus.PAID.equals(payment.getPaymentStatus())) {
+                contract.setContractStatus(ContractStatus.APPROVED);
+                break;
+            }
+        }
     }
 
     /**

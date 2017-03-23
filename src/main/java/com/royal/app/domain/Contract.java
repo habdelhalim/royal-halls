@@ -1,8 +1,8 @@
 package com.royal.app.domain;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.royal.app.domain.enumeration.ContractStatus;
+import com.voodoodyne.jackson.jsog.JSOGGenerator;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.search.annotations.*;
@@ -22,7 +22,7 @@ import java.util.Set;
 @Entity
 @Table(name = "contract")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "@id")
+@JsonIdentityInfo(generator = JSOGGenerator.class)
 public class Contract implements Serializable {
 
     private static final long serialVersionUID = 1L;

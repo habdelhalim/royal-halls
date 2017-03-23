@@ -1,6 +1,7 @@
 package com.royal.app.service.impl;
 
 import com.royal.app.domain.Event;
+import com.royal.app.domain.EventExtraOption;
 import com.royal.app.repository.EventRepository;
 import com.royal.app.service.EventService;
 import com.royal.app.web.rest.errors.CustomParameterizedException;
@@ -16,6 +17,7 @@ import java.time.Duration;
 import java.time.ZonedDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Service Implementation for managing Event.
@@ -48,9 +50,26 @@ public class EventServiceImpl implements EventService {
         }
 
         checkTimeSlotAvailability(event);
+        calculateEventPrices(event);
 
         Event result = eventRepository.save(event);
         return result;
+    }
+
+    private void calculateEventPrices(Event event) {
+        double basePrice = event.getHall() != null ? event.getHall().getPrice() : 0;
+        event.setBasePrice(basePrice);
+
+        Set<EventExtraOption> options = event.getOptions();
+        for (EventExtraOption option : options) {
+            evaluateExtraOptionPrice(option);
+        }
+    }
+
+    private void evaluateExtraOptionPrice(EventExtraOption eventExtraOption) {
+        Double optionPrice = eventExtraOption.getOption().getPrice();
+        Double eventExtraOptionPrice = eventExtraOption.getVariant() != null ? eventExtraOption.getVariant().getPrice() : optionPrice;
+        eventExtraOption.setPrice(eventExtraOptionPrice);
     }
 
     private void checkTimeSlotAvailability(Event event) {

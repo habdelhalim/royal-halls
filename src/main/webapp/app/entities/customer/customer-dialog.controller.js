@@ -5,15 +5,17 @@
         .module('royalhallsApp')
         .controller('CustomerDialogController', CustomerDialogController);
 
-    CustomerDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Customer', 'Contact'];
+    CustomerDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance',
+        'entity', 'Customer', 'Contact', 'CustomerStatus'];
 
-    function CustomerDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Customer, Contact) {
+    function CustomerDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Customer, Contact, CustomerStatus) {
         var vm = this;
 
         vm.customer = entity;
         vm.clear = clear;
         vm.save = save;
         vm.contacts = Contact.query();
+        vm.statuses = CustomerStatus.query();
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();

@@ -1,0 +1,24 @@
+{
+    "royalhallsApp": {
+        "customerStatus" : {
+            "home": {
+                "title": "حال الزبون",
+                "createLabel": "ادخال حال زبون",
+                "createOrEditLabel": "تعديل حال زبون",
+                "search": "البحث عن حال زبون"
+            },
+            "created": "تم اضافة حالة {{ param }}",
+            "updated": " تم تعديل حالة {{ param }}",
+            "deleted": "تم حذف حالة {{ param }}",
+            "delete": {
+                "question": "هل تريد حذف حالة الزبون {{ id }}?"
+            },
+            "detail": {
+                "title": "حال زبون"
+            },
+            "name": "الحاله",
+            "description": "الوصف",
+            "colour": "لون الحاله"
+        }
+    }
+}

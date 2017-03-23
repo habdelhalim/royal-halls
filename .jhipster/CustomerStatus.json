@@ -1,0 +1,23 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "colour",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170317233025",
+    "dto": "no",
+    "service": "serviceImpl",
+    "entityTableName": "customer_status",
+    "pagination": "pager"
+}
