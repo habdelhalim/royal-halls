@@ -72,14 +72,25 @@
 
                 </div>
 
+                <script type="text/ng-template" id="customerLookup.html">
+                    <a ng-style="{backgroundColor: match.model.customerStatus.colour}">
+                        <span ng-bind-html="match.label | uibTypeaheadHighlight:query"></span>
+                    </a>
+                </script>
+
                 <div class="row">
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label class="control-label" data-translate="royalhallsApp.customer.customerName" for="field_customerName"></label>
-                            <input type="text" class="form-control" name="customerName" id="field_customerName"
-                                   ng-model="vm.contract.customer"
-                                   uib-typeahead="customer as customer.customerName for customer in vm.findCustomer($viewValue)"
-                                   required/>
+                            <div class="input-group">
+                                <label class="input-group-addon" data-translate="royalhallsApp.customer.customerName" for="field_customerName"></label>
+                                <input type="text" class="form-control" name="customerName" id="field_customerName"
+                                       ng-model="vm.contract.customer"
+                                       uib-typeahead="customer as customer.customerName for customer in vm.findCustomer($viewValue)"
+                                       typeahead-template-url="customerLookup.html"
+                                       required/>
+                                <div class="input-group-addon"><span ng-style="{backgroundColor: vm.contract.customer.customerStatus.colour}">&nbsp;&nbsp;</span></div>
+                            </div>
+
                             <div ng-show="editForm.customerName.$invalid">
                                 <p class="help-block"
                                    ng-show="editForm.customerName.$error.required" data-translate="entity.validation.required">
@@ -91,27 +102,31 @@
 
                     <div class="col-md-2">
                         <div class="form-group">
-                            <label class="control-label" data-translate="royalhallsApp.customer.city" for="field_city">City</label>
-                            <input type="text" class="form-control" name="city" id="field_city"
-                                   ng-model="vm.contract.customer.city"
-                            />
+                            <div class="input-group">
+                                <label class="input-group-addon" data-translate="royalhallsApp.customer.city" for="field_city">City</label>
+                                <input type="text" class="form-control" name="city" id="field_city"
+                                       ng-model="vm.contract.customer.city"/>
+                            </div>
                         </div>
                     </div>
 
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label class="control-label" data-translate="royalhallsApp.contact.mobile" for="field_mobile">Mobile</label>
-                            <input type="text" class="form-control" name="mobile" id="field_mobile"
-                                   ng-model="vm.contract.customer.mobile"
-                            />
+                            <div class="input-group">
+                                <label class="input-group-addon" data-translate="royalhallsApp.contact.mobile" for="field_mobile">Mobile</label>
+                                <input type="text" class="form-control" name="mobile" id="field_mobile"
+                                       ng-model="vm.contract.customer.mobile"/>
+                            </div>
                         </div>
                     </div>
 
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label class="control-label" data-translate="royalhallsApp.customer.identityId" for="field_identityId">Identity Id</label>
-                            <input type="text" class="form-control" name="identityId" id="field_identityId"
-                                   ng-model="vm.contract.customer.identityId"/>
+                            <div class="input-group">
+                                <label class="input-group-addon" data-translate="royalhallsApp.customer.identityId" for="field_identityId">Identity Id</label>
+                                <input type="text" class="form-control" name="identityId" id="field_identityId"
+                                       ng-model="vm.contract.customer.identityId"/>
+                            </div>
                         </div>
                     </div>
                 </div>
