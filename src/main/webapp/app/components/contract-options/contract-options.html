@@ -1,4 +1,4 @@
-<h2 data-translate="royalhallsApp.hall.home.title">Halls</h2>
+<h2 data-translate="royalhallsApp.hall.home.titleWithOptions">Halls &amp; basic options</h2>
 <div class="form-group">
     <div class="table-responsive">
         <table class="jh-table table table-striped">
@@ -8,6 +8,7 @@
                 <th jh-sort-by="description"><span data-translate="royalhallsApp.hall.description">Description</span></th>
                 <th jh-sort-by="hallType.hallTypeName"><span data-translate="royalhallsApp.hall.hallType">Hall Type</span></th>
                 <th jh-sort-by="capacity"><span data-translate="royalhallsApp.hall.capacity">Capacity</span></th>
+                <th jh-sort-by="options"><span data-translate="royalhallsApp.hall.options">Options</span></th>
                 <th jh-sort-by="price"><span data-translate="royalhallsApp.hall.price">Price</span></th>
             </tr>
             </thead>
@@ -17,13 +18,20 @@
                 <td>{{hall.description}}</td>
                 <td>{{hall.hallType.hallTypeName}}</td>
                 <td>{{hall.capacity}}</td>
+                <td>
+                    <ul class="list-unstyled">
+                        <li ng-repeat="opt in hall.options">
+                            {{opt.option.optionName}}
+                        </li>
+                    </ul>
+                </td>
                 <td>{{hall.price}}</td>
             </tr>
             </tbody>
         </table>
     </div>
 </div>
-<h2 data-translate="royalhallsApp.eventExtraOption.home.title">Event Extra Options</h2>
+<h2 data-translate="royalhallsApp.eventExtraOption.secondary">Event Extra Options</h2>
 <div class="form-group">
     <div class="table-responsive">
         <table class="jh-table table table-striped">

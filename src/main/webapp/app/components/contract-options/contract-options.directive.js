@@ -15,9 +15,9 @@
         .module('royalhallsApp')
         .component('contractOptions', contractOptions);
 
-    ContractOptionsController.$inject = ['$rootScope', 'ContractOption'];
+    ContractOptionsController.$inject = ['$rootScope', '$filter', 'ContractOption'];
 
-    function ContractOptionsController($rootScope, ContractOption) {
+    function ContractOptionsController($rootScope, $filter, ContractOption) {
         var vm = this;
         vm.options = [];
         vm.totalAmount = 0;
@@ -46,8 +46,9 @@
                     if (vm.events) {
                         vm.options =
                             vm.events.map(function (ev) {
+                                var secondaryOptions = $filter('filter')(ev.options, {option: {optionType: 'OPTIONAL'}}) || [];
                                 var options =
-                                    ev.options.map(function (op) {
+                                    secondaryOptions.map(function (op) {
                                         op.event = {id: ev.id, eventName: ev.eventName};
                                         op.total = (op.optionQty === null) ? op.price : op.optionQty * op.price;
 
@@ -63,10 +64,20 @@
 
                         vm.halls =
                             vm.events.map(function (ev) {
-                                vm.totalAmount = vm.totalAmount + ev.basePrice;
-                                ev.hall.price = ev.basePrice;
+                                ev.hall.options = $filter('filter')(ev.options, {option: {optionType: 'BASIC'}});
+
+                                var optionsPrice = 0;
+                                if (ev.hall.options.length > 0) {
+                                    optionsPrice = ev.hall.options.reduce(function (total, option) {
+                                        return total + option.price;
+                                    }, 0);
+                                }
+
+                                ev.hall.price = ev.basePrice + optionsPrice;
+                                vm.totalAmount = vm.totalAmount + ev.hall.price;
                                 return ev.hall;
                             });
+
                     }
 
                     if (vm.contract.payments) {

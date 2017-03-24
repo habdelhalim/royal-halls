@@ -1,8 +1,9 @@
 {
     "royalhallsApp": {
-        "hall" : {
+        "hall": {
             "home": {
                 "title": "القاعات",
+                "titleWithOptions": "القاعات و الخدمات الرئيسية",
                 "createLabel": "تعريف قاعة جديدة",
                 "createOrEditLabel": "تعديل قاعة",
                 "search": "البحث عن قاعة"
@@ -21,7 +22,8 @@
             "description": "وصف القاعة",
             "price": "السعر",
             "capacity": "سعة القاعة",
-            "colour" : "لون القاعة"
+            "options": "الخدمات الاساسية",
+            "colour": "لون القاعة"
         }
     }
 }
