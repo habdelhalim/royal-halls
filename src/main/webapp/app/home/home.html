@@ -145,7 +145,7 @@
                     <div class="form-group">
                         <h2 data-translate="royalhallsApp.event.home.title">Events</h2>
                         <div class="table-responsive">
-                            <table class="jh-table table table-striped">
+                            <table class="jh-table table table-striped table-condensed">
                                 <thead>
                                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
                                     <th jh-sort-by="eventName"><span data-translate="royalhallsApp.event.eventName">Event Name</span></th>
@@ -170,18 +170,18 @@
                                         <a ui-sref="hall-detail({id:event.hall.id})">{{event.hall.hallName}}</a>
                                     </td>
                                     <td class="text-right">
-                                        <div class="btn-group flex-btn-group-container">
+                                        <div class="btn-group btn-group-sm flex-btn-group-container">
                                             <button type="button"
                                                     ui-sref="event-edit({eventId:event.id})"
-                                                    class="btn btn-primary btn-sm">
+                                                    class="btn btn-primary">
                                                 <span class="glyphicon glyphicon-pencil"></span>
-                                                <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"></span>
+                                                <span class="hidden-xs hidden-sm hidden-md" data-translate="entity.action.edit"></span>
                                             </button>
                                             <button type="button"
                                                     ui-sref="event-delete({eventId:event.id})"
-                                                    class="btn btn-danger btn-sm">
+                                                    class="btn btn-danger">
                                                 <span class="glyphicon glyphicon-remove-circle"></span>
-                                                <span class="hidden-xs hidden-sm" data-translate="entity.action.delete"></span>
+                                                <span class="hidden-xs hidden-sm hidden-md" data-translate="entity.action.delete"></span>
                                             </button>
                                         </div>
                                     </td>
@@ -203,7 +203,7 @@
                         <h2 data-translate="royalhallsApp.payment.home.title">Payments</h2>
 
                         <div class="table-responsive">
-                            <table class="jh-table table table-striped">
+                            <table class="jh-table table table-striped table-condensed">
                                 <thead>
                                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
                                     <th jh-sort-by="paymentType"><span data-translate="royalhallsApp.payment.paymentType">Payment Type</span></th>
@@ -226,18 +226,18 @@
                                     <td>{{payment.bankName}}</td>
                                     <td>{{payment.creationDate | date:'yyyy-MM-dd HH:mm'}}</td>
                                     <td class="text-right">
-                                        <div class="btn-group flex-btn-group-container">
+                                        <div class="btn-group  btn-group-sm flex-btn-group-container">
                                             <button type="button"
                                                     ui-sref="payment-edit({paymentId:payment.id})"
-                                                    class="btn btn-primary btn-sm">
+                                                    class="btn btn-primary">
                                                 <span class="glyphicon glyphicon-pencil"></span>
-                                                <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"></span>
+                                                <span class="hidden-xs hidden-sm hidden-md" data-translate="entity.action.edit"></span>
                                             </button>
                                             <button type="button"
                                                     ui-sref="payment-delete({paymentId:payment.id})"
-                                                    class="btn btn-danger btn-sm">
+                                                    class="btn btn-danger">
                                                 <span class="glyphicon glyphicon-remove-circle"></span>
-                                                <span class="hidden-xs hidden-sm" data-translate="entity.action.delete"></span>
+                                                <span class="hidden-xs hidden-sm hidden-md" data-translate="entity.action.delete"></span>
                                             </button>
                                         </div>
                                     </td>

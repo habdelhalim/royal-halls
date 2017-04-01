@@ -9,7 +9,7 @@
         <jhi-alert-error></jhi-alert-error>
         <div class="row">
             <div class="col-md-3">
-                <div class="form-group" ng-show="vm.event.id">
+                <div class="form-group  form-group-sm" ng-show="vm.event.id">
                     <label for="id" data-translate="global.field.id">ID</label>
                     <input type="text" class="form-control" id="id" name="id"
                            ng-model="vm.event.id" readonly/>
@@ -17,7 +17,7 @@
             </div>
 
             <div class="col-md-3">
-                <div class="form-group">
+                <div class="form-group  form-group-sm">
                     <label for="field_createdDate" data-translate="royalhallsApp.event.createdDate">Created Date</label>
                     <input id="field_createdDate" type="text" class="form-control" name="createdDate" datetime-picker="{{dateformat}}"
                            ng-model="vm.event.createdDate" ng-disabled="true"/>
@@ -25,7 +25,7 @@
             </div>
 
             <div class="col-md-3">
-                <div class="form-group">
+                <div class="form-group  form-group-sm">
                     <label data-translate="royalhallsApp.event.hall" for="field_hall">Hall</label>
                     <select class="form-control" id="field_hall" name="hall" ng-model="vm.event.hall" ng-options="hall as hall.hallName for hall in vm.halls track by hall.id"
                             required>
@@ -41,7 +41,7 @@
             </div>
 
             <div class="col-md-3">
-                <div class="form-group">
+                <div class="form-group  form-group-sm">
                     <label data-translate="royalhallsApp.event.eventType" for="field_eventType">Event Type</label>
                     <select class="form-control" id="field_eventType" name="eventType" ng-model="vm.event.eventType"
                             ng-options="eventType as eventType.eventTypeName for eventType in vm.eventtypes track by eventType.id" required>
@@ -59,7 +59,7 @@
 
         <div class="row">
             <div class="col-md-6">
-                <div class="form-group">
+                <div class="form-group  form-group-sm">
                     <div class="input-group">
                         <label class="input-group-addon" data-translate="royalhallsApp.event.firstBeneficiary" for="field_firstBeneficiary">First Beneficiary</label>
                         <input type="text" class="form-control" name="customerName" id="field_firstBeneficiary"
@@ -72,7 +72,7 @@
             </div>
 
             <div class="col-md-3">
-                <div class="form-group">
+                <div class="form-group  form-group-sm">
                     <div class="input-group">
                         <label class="input-group-addon" data-translate="royalhallsApp.customer.city" for="field_firstBeneficiary_city">City</label>
                         <input type="text" class="form-control" name="city" id="field_firstBeneficiary_city"
@@ -82,7 +82,7 @@
             </div>
 
             <div class="col-md-3">
-                <div class="form-group">
+                <div class="form-group  form-group-sm">
                     <div class="input-group">
                         <label class="input-group-addon" data-translate="royalhallsApp.contact.mobile" for="field_firstBeneficiary_mobile">Mobile</label>
                         <input type="text" class="form-control" name="mobile" id="field_firstBeneficiary_mobile"
@@ -94,7 +94,7 @@
 
         <div class="row">
             <div class="col-md-6">
-                <div class="form-group">
+                <div class="form-group  form-group-sm">
                     <div class="input-group">
                         <label class="input-group-addon" data-translate="royalhallsApp.event.secondBeneficiary" for="field_secondBeneficiary">Second Beneficiary</label>
                         <input type="text" class="form-control" name="customerName" id="field_secondBeneficiary"
@@ -107,7 +107,7 @@
             </div>
 
             <div class="col-md-3">
-                <div class="form-group">
+                <div class="form-group  form-group-sm">
                     <div class="input-group">
                         <label class="input-group-addon" data-translate="royalhallsApp.customer.city" for="field_secondBeneficiary_city">City</label>
                         <input type="text" class="form-control" name="city" id="field_secondBeneficiary_city"
@@ -117,7 +117,7 @@
             </div>
 
             <div class="col-md-3">
-                <div class="form-group">
+                <div class="form-group  form-group-sm">
                     <div class="input-group">
                         <label class="input-group-addon" data-translate="royalhallsApp.contact.mobile" for="field_secondBeneficiary_mobile">Mobile</label>
                         <input type="text" class="form-control" name="mobile" id="field_secondBeneficiary_mobile"
@@ -129,7 +129,7 @@
 
         <div class="row">
             <div class="col-md-12">
-                <div class="form-group">
+                <div class="form-group  form-group-sm">
                     <label class="control-label" data-translate="royalhallsApp.event.eventName" for="field_eventName">Event Name</label>
                     <input type="text" class="form-control" name="eventName" id="field_eventName"
                            ng-model="vm.event.eventName"
@@ -140,7 +140,7 @@
 
         <div class="row">
             <div class="col-md-6">
-                <div class="form-group">
+                <div class="form-group form-group-sm">
                     <label class="control-label" data-translate="royalhallsApp.event.eventStartDate" for="field_eventDate">Event Start Date</label>
                     <div uib-datepicker id="field_eventDate" type="text" ng-model="vm.event.eventStartDate"
                          ng-change="vm.setEndDate()" required></div>
@@ -158,7 +158,7 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <div class="form-group">
+                <div class="form-group form-group-sm">
                     <label class="control-label" data-translate="royalhallsApp.event.eventStartTime" for="field_eventStartDate">Event Start Date</label>
                     <div class="input-group">
                         <div uib-timepicker id="field_eventStartDate" ng-model="vm.event.eventStartDate" ng-change="vm.setEndDate()"></div>
@@ -174,7 +174,7 @@
                         </p>
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group form-group-sm">
                     <label class="control-label" data-translate="royalhallsApp.event.eventEndDate" for="field_eventEndDate">Event End Date</label>
                     <div class="input-group">
                         <div uib-timepicker id="field_eventEndDate" ng-model="vm.event.eventEndDate" ng-change="vm.copyStartDate()"></div>
@@ -196,7 +196,7 @@
 
         <div class="row">
             <div class="col-md-12">
-                <div class="form-group">
+                <div class="form-group form-group-sm">
                     <label data-translate="royalhallsApp.eventExtraOption.primary">Event Extra Options (Primary)</label>
 
                     <div class="row">
@@ -213,11 +213,11 @@
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group form-group-sm">
             <label data-translate="royalhallsApp.eventExtraOption.secondary">Event Extra Options (Optional)</label>
 
             <div class="table-responsive">
-                <table class="jh-table table table-striped">
+                <table class="jh-table table table-striped table-condensed">
                     <thead>
                     <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
                         <th jh-sort-by="option.optionName"><span data-translate="royalhallsApp.eventExtraOption.option">Option</span></th>
@@ -246,16 +246,16 @@
                         <td>{{eventExtraOption.variant.price * eventExtraOption.optionQty || eventExtraOption.option.price * eventExtraOption.optionQty }}</td>
                         <td>{{eventExtraOption.optionNotes}}</td>
                         <td class="text-right">
-                            <div class="btn-group flex-btn-group-container">
+                            <div class="btn-group btn-group-xs flex-btn-group-container">
                                 <button type="button"
                                         ui-sref="option-edit({optionId:eventExtraOption.id})"
-                                        class="btn btn-primary btn-sm">
+                                        class="btn btn-primary">
                                     <span class="glyphicon glyphicon-pencil"></span>
                                     <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"></span>
                                 </button>
                                 <button type="button"
                                         ui-sref="option-delete({optionId:eventExtraOption.id})"
-                                        class="btn btn-danger btn-sm">
+                                        class="btn btn-danger">
                                     <span class="glyphicon glyphicon-remove-circle"></span>
                                     <span class="hidden-xs hidden-sm" data-translate="entity.action.delete"></span>
                                 </button>
@@ -265,7 +265,7 @@
                     </tbody>
                 </table>
             </div>
-            <button class="btn btn-primary" ui-sref="option-new( {optionType:'OPTIONAL'} )" type="button">
+            <button class="btn btn-sm btn-primary" ui-sref="option-new( {optionType:'OPTIONAL'} )" type="button">
                 <span class="glyphicon glyphicon-plus"></span>
                 <span data-translate="royalhallsApp.eventExtraOption.home.createLabel">
                         Create new Event Extra Option
