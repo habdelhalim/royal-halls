@@ -69,6 +69,14 @@ public class Event implements Serializable {
     @ManyToOne
     private Contract contract;
 
+    @ManyToOne
+    @JoinColumn(name = "first_beneficiary")
+    private Customer firstBeneficiary;
+
+    @ManyToOne
+    @JoinColumn(name = "second_beneficiary")
+    private Customer secondBeneficiary;
+
     public Long getId() {
         return id;
     }
@@ -212,6 +220,22 @@ public class Event implements Serializable {
 
     public void setContract(Contract contract) {
         this.contract = contract;
+    }
+
+    public Customer getFirstBeneficiary() {
+        return firstBeneficiary;
+    }
+
+    public void setFirstBeneficiary(Customer firstBeneficiary) {
+        this.firstBeneficiary = firstBeneficiary;
+    }
+
+    public Customer getSecondBeneficiary() {
+        return secondBeneficiary;
+    }
+
+    public void setSecondBeneficiary(Customer secondBeneficiary) {
+        this.secondBeneficiary = secondBeneficiary;
     }
 
     @Override

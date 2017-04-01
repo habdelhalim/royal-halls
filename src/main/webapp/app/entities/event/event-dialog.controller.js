@@ -6,10 +6,10 @@
         .controller('EventDialogController', EventDialogController);
 
     EventDialogController.$inject = ['$timeout', '$scope', '$rootScope', '$filter', '$stateParams',
-        '$uibModalInstance', 'entity', 'Event', 'ExtraOption', 'EventExtraOption', 'EventType', 'Hall', 'Contract'];
+        '$uibModalInstance', 'entity', 'Event', 'ExtraOption', 'EventExtraOption', 'EventType', 'Hall', 'Contract', 'Customer'];
 
     function EventDialogController($timeout, $scope, $rootScope, $filter, $stateParams,
-                                   $uibModalInstance, entity, Event, ExtraOption, EventExtraOption, EventType, Hall, Contract) {
+                                   $uibModalInstance, entity, Event, ExtraOption, EventExtraOption, EventType, Hall, Contract, Customer) {
         var vm = this;
 
         vm.event = entity;
@@ -21,6 +21,8 @@
         vm.setEndDate = setEndDate;
         vm.copyStartDate = copyStartDate;
         vm.addBasicOption = addBasicOption;
+        vm.findCustomer = findCustomer;
+
 
         vm.basicOptionFilter = {
             option: {
@@ -147,6 +149,22 @@
             vm.event.eventEndDate.setDate(vm.event.eventStartDate.getDate());
             vm.event.eventEndDate.setMonth(vm.event.eventStartDate.getMonth());
             vm.event.eventEndDate.setFullYear(vm.event.eventStartDate.getFullYear());
+        }
+
+        function findCustomer(search) {
+            if (search.length >= 3 || search.length == 0) {
+                return Customer.search({
+                    page: 0,
+                    size: 10,
+                    search: search
+                }).$promise.then(function (response) {
+                    if (response.length < 1) {
+                        response.push({'customerName': search});
+                    }
+                    return response;
+                });
+
+            }
         }
     }
 })();

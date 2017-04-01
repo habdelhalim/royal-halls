@@ -25,7 +25,9 @@
             "eventType": "نوع الحجز",
             "hall": "القاعة",
             "contract": "العقد",
-            "option": "التفاصيل"
+            "option": "التفاصيل",
+            "firstBeneficiary": "المستفيد الأول",
+            "secondBeneficiary": "المستفيد الثاني"
         }
     },
     "error": {

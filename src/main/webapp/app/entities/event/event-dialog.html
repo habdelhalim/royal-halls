@@ -17,11 +17,11 @@
             </div>
 
             <div class="col-md-3">
-                <form-group>
+                <div class="form-group">
                     <label for="field_createdDate" data-translate="royalhallsApp.event.createdDate">Created Date</label>
                     <input id="field_createdDate" type="text" class="form-control" name="createdDate" datetime-picker="{{dateformat}}"
                            ng-model="vm.event.createdDate" ng-disabled="true"/>
-                </form-group>
+                </div>
             </div>
 
             <div class="col-md-3">
@@ -52,6 +52,76 @@
                            ng-show="editForm.eventType.$error.required" data-translate="entity.validation.required">
                             This field is required.
                         </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div class="input-group">
+                        <label class="input-group-addon" data-translate="royalhallsApp.event.firstBeneficiary" for="field_firstBeneficiary">First Beneficiary</label>
+                        <input type="text" class="form-control" name="customerName" id="field_firstBeneficiary"
+                               ng-model="vm.event.firstBeneficiary"
+                               uib-typeahead="customer as customer.customerName for customer in vm.findCustomer($viewValue)"
+                               typeahead-template-url="customerLookup.html"/>
+                        <div class="input-group-addon"><span ng-style="{backgroundColor: vm.event.firstBeneficiary.customerStatus.colour}">&nbsp;&nbsp;</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="form-group">
+                    <div class="input-group">
+                        <label class="input-group-addon" data-translate="royalhallsApp.customer.city" for="field_firstBeneficiary_city">City</label>
+                        <input type="text" class="form-control" name="city" id="field_firstBeneficiary_city"
+                               ng-model="vm.event.firstBeneficiary.city"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="form-group">
+                    <div class="input-group">
+                        <label class="input-group-addon" data-translate="royalhallsApp.contact.mobile" for="field_firstBeneficiary_mobile">Mobile</label>
+                        <input type="text" class="form-control" name="mobile" id="field_firstBeneficiary_mobile"
+                               ng-model="vm.event.firstBeneficiary.mobile"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div class="input-group">
+                        <label class="input-group-addon" data-translate="royalhallsApp.event.secondBeneficiary" for="field_secondBeneficiary">Second Beneficiary</label>
+                        <input type="text" class="form-control" name="customerName" id="field_secondBeneficiary"
+                               ng-model="vm.event.secondBeneficiary"
+                               uib-typeahead="customer as customer.customerName for customer in vm.findCustomer($viewValue)"
+                               typeahead-template-url="customerLookup.html"/>
+                        <div class="input-group-addon"><span ng-style="{backgroundColor: vm.event.secondBeneficiary.customerStatus.colour}">&nbsp;&nbsp;</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="form-group">
+                    <div class="input-group">
+                        <label class="input-group-addon" data-translate="royalhallsApp.customer.city" for="field_secondBeneficiary_city">City</label>
+                        <input type="text" class="form-control" name="city" id="field_secondBeneficiary_city"
+                               ng-model="vm.event.secondBeneficiary.city"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="form-group">
+                    <div class="input-group">
+                        <label class="input-group-addon" data-translate="royalhallsApp.contact.mobile" for="field_secondBeneficiary_mobile">Mobile</label>
+                        <input type="text" class="form-control" name="mobile" id="field_secondBeneficiary_mobile"
+                               ng-model="vm.event.secondBeneficiary.mobile"/>
                     </div>
                 </div>
             </div>
