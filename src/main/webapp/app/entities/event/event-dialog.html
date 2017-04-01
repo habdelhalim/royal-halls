@@ -130,10 +130,10 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="form-group  form-group-sm">
-                    <label class="control-label" data-translate="royalhallsApp.event.eventName" for="field_eventName">Event Name</label>
-                    <input type="text" class="form-control" name="eventName" id="field_eventName"
-                           ng-model="vm.event.eventName"
-                    />
+                    <div class="input-group">
+                        <label class="input-group-addon" data-translate="royalhallsApp.event.eventName" for="field_eventName">Event Name</label>
+                        <input type="text" class="form-control" name="eventName" id="field_eventName" ng-model="vm.event.eventName"/>
+                    </div>
                 </div>
             </div>
         </div>
@@ -199,7 +199,7 @@
                 <div class="form-group form-group-sm">
                     <label data-translate="royalhallsApp.eventExtraOption.primary">Event Extra Options (Primary)</label>
 
-                    <div class="row">
+                    <div class="col-md-12">
                         <div class="checkbox col-md-3" ng-repeat="basicOption in vm.basicOptions">
                             <label for="{{basicOption.id}}">
                                 <input type="checkbox" id="{{basicOption.id}}" name="{{basicOption.optionName}}"
@@ -246,18 +246,18 @@
                         <td>{{eventExtraOption.variant.price * eventExtraOption.optionQty || eventExtraOption.option.price * eventExtraOption.optionQty }}</td>
                         <td>{{eventExtraOption.optionNotes}}</td>
                         <td class="text-right">
-                            <div class="btn-group btn-group-xs flex-btn-group-container">
+                            <div class="btn-group btn-group-sm flex-btn-group-container">
                                 <button type="button"
                                         ui-sref="option-edit({optionId:eventExtraOption.id})"
                                         class="btn btn-primary">
                                     <span class="glyphicon glyphicon-pencil"></span>
-                                    <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"></span>
+                                    <span class="hidden-xs hidden-sm  hidden-md" data-translate="entity.action.edit"></span>
                                 </button>
                                 <button type="button"
                                         ui-sref="option-delete({optionId:eventExtraOption.id})"
                                         class="btn btn-danger">
                                     <span class="glyphicon glyphicon-remove-circle"></span>
-                                    <span class="hidden-xs hidden-sm" data-translate="entity.action.delete"></span>
+                                    <span class="hidden-xs hidden-sm hidden-md" data-translate="entity.action.delete"></span>
                                 </button>
                             </div>
                         </td>

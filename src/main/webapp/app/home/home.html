@@ -5,15 +5,13 @@
                 <jhi-alert></jhi-alert>
                 <jhi-alert-error></jhi-alert-error>
 
-                <div class="form-group ">
-                    <div class="btn-toolbar">
-                        <a ng-href="#" class="btn btn-default" ng-click="vm.searchContract()">
-                            <span class="glyphicon glyphicon-search"></span>&nbsp;<span data-translate="entity.action.open">Open</span>
-                        </a>
-                        <a ui-sref="new-contract" class="btn btn-default">
-                            <span class="glyphicon glyphicon-star"></span>&nbsp;<span data-translate="entity.action.new">New</span>
-                        </a>
-                    </div>
+                <div class="btn-toolbar">
+                    <a ng-href="#" class="btn btn-sm btn-default" ng-click="vm.searchContract()">
+                        <span class="glyphicon glyphicon-search"></span>&nbsp;<span data-translate="entity.action.open">Open</span>
+                    </a>
+                    <a ui-sref="new-contract" class="btn  btn-sm btn-default">
+                        <span class="glyphicon glyphicon-star"></span>&nbsp;<span data-translate="entity.action.new">New</span>
+                    </a>
                 </div>
                 <div class="form-group">
                     <div class="jumbotron" ng-show="vm.contract.id === undefined">
@@ -140,7 +138,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-12">
+                <div class="row">
                     <hr>
                     <div class="form-group">
                         <h2 data-translate="royalhallsApp.event.home.title">Events</h2>
