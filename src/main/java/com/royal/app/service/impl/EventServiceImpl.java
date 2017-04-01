@@ -3,6 +3,7 @@ package com.royal.app.service.impl;
 import com.royal.app.domain.Event;
 import com.royal.app.domain.EventExtraOption;
 import com.royal.app.repository.EventRepository;
+import com.royal.app.service.CustomerService;
 import com.royal.app.service.EventService;
 import com.royal.app.web.rest.errors.CustomParameterizedException;
 import org.slf4j.Logger;
@@ -31,6 +32,9 @@ public class EventServiceImpl implements EventService {
     @Inject
     private EventRepository eventRepository;
 
+    @Inject
+    private CustomerService customerService;
+
     /**
      * Save a event.
      *
@@ -51,9 +55,20 @@ public class EventServiceImpl implements EventService {
 
         checkTimeSlotAvailability(event);
         calculateEventPrices(event);
+        saveBeneficiaries(event);
 
         Event result = eventRepository.save(event);
         return result;
+    }
+
+    private void saveBeneficiaries(Event event) {
+        if (event.getFirstBeneficiary() != null) {
+            customerService.save(event.getFirstBeneficiary());
+        }
+
+        if (event.getSecondBeneficiary() != null) {
+            customerService.save(event.getSecondBeneficiary());
+        }
     }
 
     private void calculateEventPrices(Event event) {
