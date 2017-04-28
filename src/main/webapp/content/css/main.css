@@ -389,7 +389,7 @@ form .row > [class*='col-'] {
 }
 
 .contract-print {
-    font-size: 20px;
+    font-size: 22px;
     line-height: 2em;
     padding: 30px
 }
@@ -399,8 +399,14 @@ form .row > [class*='col-'] {
     padding-left: 10px;
     font-weight: bold;
     display: inline-block;
-    min-width: 200px;
+    min-width: 150px;
     overflow: visible;
+    text-align: center;
+}
+
+.contract-payment {
+    border: 1px solid #e3e3e3;
+    padding: 20px;
     text-align: center;
 }
 
@@ -412,6 +418,15 @@ form .row > [class*='col-'] {
     .footer,
     .btn {
         display: none;
+    }
+
+    body {
+        font-size: 22px;
+    }
+
+    .well {
+        padding: 0;
+        border: none;
     }
 }
 

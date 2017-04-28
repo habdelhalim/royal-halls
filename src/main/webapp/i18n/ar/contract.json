@@ -16,6 +16,7 @@
             "detail": {
                 "title": "عقد"
             },
+            "contractId": "رقم العقد",
             "contractName": "اسم العقد",
             "contractStatus": "حالة العقد",
             "contractDate": "تاريخ العقد",
