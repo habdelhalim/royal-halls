@@ -407,4 +407,12 @@ form .row > [class*='col-'] {
 .page-break {
     page-break-before: always;
 }
+
+@media print {
+    .footer,
+    .btn {
+        display: none;
+    }
+}
+
 /* jhipster-needle-css-add-main JHipster will add new css style */

@@ -1,7 +1,8 @@
 <div ng-cloak>
+    <div class="visible-print-block" ng-include="'app/entities/contract/contract-print.html'"></div>
     <div class="row">
         <div class="col-md-12">
-            <div class="col-md-12">
+            <div class="col-md-12 hidden-print">
                 <jhi-alert></jhi-alert>
                 <jhi-alert-error></jhi-alert-error>
 
@@ -12,7 +13,7 @@
                     <a ui-sref="new-contract" class="btn  btn-sm btn-default">
                         <span class="glyphicon glyphicon-star"></span>&nbsp;<span data-translate="entity.action.new">New</span>
                     </a>
-                    <a ui-sref="contract-print" class="btn  btn-sm btn-default" ng-hide="vm.contract.id === undefined">
+                    <a ng-click="vm.print()" class="btn  btn-sm btn-default" ng-hide="vm.contract.id === undefined">
                         <span class="glyphicon glyphicon-star"></span>&nbsp;<span data-translate="entity.action.print">Print</span>
                     </a>
                 </div>
