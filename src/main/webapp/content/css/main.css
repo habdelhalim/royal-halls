@@ -394,4 +394,14 @@ form .row > [class*='col-'] {
     padding: 30px
 }
 
+.contract-field {
+    padding-right: 10px;
+    padding-left: 10px;
+    font-weight: bold;
+    display: inline-block;
+    min-width: 200px;
+    overflow: visible;
+    text-align: center;
+}
+
 /* jhipster-needle-css-add-main JHipster will add new css style */
