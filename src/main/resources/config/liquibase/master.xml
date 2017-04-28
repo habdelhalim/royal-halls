@@ -33,5 +33,6 @@
     <include file="classpath:config/liquibase/changelog/20170318042143_add_event_base_price.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20170318042143_add_customer_status.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20170401042143_add_event_beneficiaries.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170428042143_add_payment_payer.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

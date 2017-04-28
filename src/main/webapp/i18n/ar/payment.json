@@ -22,6 +22,7 @@
             "paymentStatus": "حالة الدفعة",
             "chequeNo": "رقم الشيك",
             "bankName": "اسم البنك",
+            "paidBy": "اسم الدافع",
             "creationDate": "تاريخ الانشاء",
             "contract": "العقد"
         }

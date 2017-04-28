@@ -25,6 +25,7 @@
                     <th jh-sort-by="paymentStatus"><span data-translate="royalhallsApp.payment.paymentStatus">Payment Status</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="chequeNo"><span data-translate="royalhallsApp.payment.chequeNo">Cheque No</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="bankName"><span data-translate="royalhallsApp.payment.bankName">Bank Name</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="paidBy"><span data-translate="royalhallsApp.payment.paidBy">Paid By</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="creationDate"><span data-translate="royalhallsApp.payment.creationDate">Creation Date</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="contract.id"><span data-translate="royalhallsApp.payment.contract">Contract</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="contract.customer.customerName"><span data-translate="royalhallsApp.customer.customerName">Customer Name</span> <span class="glyphicon glyphicon-sort"></span></th>
@@ -40,6 +41,7 @@
                     <td data-translate="{{'royalhallsApp.PaymentStatus.' + payment.paymentStatus}}">{{payment.paymentStatus}}</td>
                     <td>{{payment.chequeNo}}</td>
                     <td>{{payment.bankName}}</td>
+                    <td>{{payment.paidBy}}</td>
                     <td>{{payment.creationDate | date:'medium'}}</td>
                     <td>
                         <a ui-sref="contract-detail({id:payment.contract.id})">{{payment.contract.id}}</a>

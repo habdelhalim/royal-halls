@@ -50,6 +50,9 @@ public class Payment implements Serializable {
     @Column(name = "bank_name")
     private String bankName;
 
+    @Column(name = "paid_by")
+    private String paidBy;
+
     @Column(name = "creation_date")
     private ZonedDateTime creationDate;
 
@@ -152,6 +155,14 @@ public class Payment implements Serializable {
         return this;
     }
 
+    public String getPaidBy() {
+        return paidBy;
+    }
+
+    public void setPaidBy(String paidBy) {
+        this.paidBy = paidBy;
+    }
+
     public void setCreationDate(ZonedDateTime creationDate) {
         this.creationDate = creationDate;
     }
@@ -199,6 +210,7 @@ public class Payment implements Serializable {
             ", paymentStatus='" + paymentStatus + "'" +
             ", chequeNo='" + chequeNo + "'" +
             ", bankName='" + bankName + "'" +
+            ", paidBy='" + paidBy + "'" +
             ", creationDate='" + creationDate + "'" +
             '}';
     }
