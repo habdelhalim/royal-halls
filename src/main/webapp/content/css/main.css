@@ -404,4 +404,7 @@ form .row > [class*='col-'] {
     text-align: center;
 }
 
+.page-break {
+    page-break-before: always;
+}
 /* jhipster-needle-css-add-main JHipster will add new css style */

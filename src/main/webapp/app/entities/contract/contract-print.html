@@ -211,30 +211,33 @@
                     <div class="col-xs-6">تيسير حسن محمد عبد الحليم</div>
                     <div class="col-xs-6"></div>
                 </div>
-                <br>
-                <br>
-                <br>
-                <hr>
-                <div class="well well-sm text-center">
-                    <h2>سند لأمر</h2>
-                    <p class="text-right">
-                        أنا الموقع إمضائي أدناه<br>
-                        أتعهد بموجب هذا السند بأن أدفع لأمر السيد تيسير حسن محمد عبد الحليم مبلغا وقدره
-                        (<span class="contract-field">{{vm.contract.openAmount}}</span>)
-                        شيكل في عتيل - طولكرم وذلك عند الطلب،
-                        وعليه
-                        أوقع.
-
-                    </p>
-                    <u class="pull-left">المديين المتعهد</u>
-                    <p>
-                        <br>
-                        <br>
-                        <br>
-                    </p>
-                </div>
-                <small>يسترد هذا السند عند دفع كافة المستحقات</small>
             </div>
         </div>
+    </div>
+    <div class="row page-break">
+        <hr>
+        <div class="well well-sm text-center">
+            <h2>سند لأمر</h2>
+            <p class="text-right">
+                أنا الموقع إمضائي أدناه<br>
+                أتعهد بموجب هذا السند بأن أدفع لأمر السيد تيسير حسن محمد عبد الحليم مبلغا وقدره
+                (<span class="contract-field">{{vm.contract.openAmount}}</span>)
+                شيكل في عتيل - طولكرم وذلك عند الطلب،
+                وعليه
+                أوقع.
+
+            </p>
+            <u class="pull-left">المديين المتعهد</u>
+            <p>
+                <br>
+                <br>
+                <br>
+            </p>
+        </div>
+        <small>يسترد هذا السند عند دفع كافة المستحقات</small>
+    </div>
+    <div class="row page-break">
+        <hr>
+        <contract-options contract="vm.contract"></contract-options>
     </div>
 </div>
