@@ -420,12 +420,23 @@ form .row > [class*='col-'] {
         display: none;
     }
 
-    body {
+    .contract-print {
         font-size: 22px;
+    }
+
+    .form-control,
+    .input-group-addon,
+    body {
+        font-size: 18px;
     }
 
     .well {
         padding: 0;
+        border: none;
+    }
+
+    textarea.form-control {
+        height: 80px;
         border: none;
     }
 }
