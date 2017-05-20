@@ -1,17 +1,14 @@
 <div class="contract-print">
     <div class="row">
-        <h2 class="text-center">القاعات الملكية
-            <br>
-            <small>عتيل - فلسطين تلفون: 2662266-09 جوال: 0597080158</small>
-        </h2>
-        <h2 class="text-center">
-            اتفاق
-        </h2>
-        <hr>
-    </div>
-    <div class="row">
-        <div class="col-xs-6">التاريخ: <span class="contract-field">{{ vm.contract.contractDate | date:'yyyy-MM-dd'}}</span></div>
-        <div class="col-xs-6">الرقم: <span class="contract-field">{{vm.contract.id}}</span></div>
+        <div class="col-xs-3">التاريخ: <span class="contract-field">{{ vm.contract.contractDate | date:'yyyy-MM-dd'}}</span></div>
+        <div class="col-xs-6">
+            <h2 class="text-center" style="margin: 0px">
+                القاعات الملكية
+                <small style="display: block">عتيل - فلسطين تلفون: 2662266-09 جوال: 0597080158</small>
+                اتفاق
+            </h2>
+        </div>
+        <div class="col-xs-3">الرقم: <span class="contract-field">{{vm.contract.id}}</span></div>
     </div>
     <div class="row">
         <div class="col-xs-12">
@@ -59,21 +56,19 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-xs-12">
+            <div class="col-xs-3">
                 العنوان:
                 <span class="contract-field">{{vm.contract.customer.city}}</span>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-4">
+            <div class="col-xs-3">
                 هاتف:
                 <span class="contract-field">{{vm.contract.customer.telephone}}</span>
             </div>
-            <div class="col-xs-4">
+            <div class="col-xs-3">
                 جوال:
                 <span class="contract-field">{{vm.contract.customer.mobile}}</span>
             </div>
-            <div class="col-xs-4">
+            <div class="col-xs-3">
                 وطنية:
                 <span class="contract-field">{{vm.contract.customer.nationality}}</span>
             </div>
@@ -215,12 +210,12 @@
                     <div class="col-xs-6"></div>
                 </div>
                 <div class="row">
-                    <p style="height: 200px"></p>
+                    <p style="height: 100px"></p>
                 </div>
             </div>
         </div>
     </div>
-    <div class="row page-break">
+    <div class="row">
         <hr>
         <div class="contract-payment">
             <h2>سند لأمر</h2>
