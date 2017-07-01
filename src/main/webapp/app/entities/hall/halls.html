@@ -25,6 +25,7 @@
                 <th jh-sort-by="capacity"><span data-translate="royalhallsApp.hall.capacity">Capacity</span> <span class="glyphicon glyphicon-sort"></span></th>
                 <th jh-sort-by="colour"><span data-translate="royalhallsApp.hall.colour">Colour</span> <span class="glyphicon glyphicon-sort"></span></th>
                 <th jh-sort-by="hallType.hallTypeName"><span data-translate="royalhallsApp.hall.hallType">Hall Type</span> <span class="glyphicon glyphicon-sort"></span></th>
+                <th jh-sort-by="googleCalendarId"><span data-translate="royalhallsApp.hall.googleCalendarId">Google Calendar ID</span> <span class="glyphicon glyphicon-sort"></span></th>
                 <th></th>
             </tr>
             </thead>
@@ -39,6 +40,7 @@
                 <td>
                     <a ui-sref="hall-type-detail({id:hall.hallType.id})">{{hall.hallType.hallTypeName}}</a>
                 </td>
+                <td>{{hall.googleCalendarId}}</td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"

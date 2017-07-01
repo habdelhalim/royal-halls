@@ -23,7 +23,8 @@
             "price": "السعر",
             "capacity": "سعة القاعة",
             "options": "الخدمات الاساسية",
-            "colour": "لون القاعة"
+            "colour": "لون القاعة",
+            "googleCalendarId": "تقويم جوجل"
         }
     }
 }

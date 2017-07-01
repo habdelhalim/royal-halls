@@ -77,6 +77,9 @@ public class Event implements Serializable {
     @JoinColumn(name = "second_beneficiary")
     private Customer secondBeneficiary;
 
+    @Column(name = "google_event_id")
+    private String googleEventId;
+
     public Long getId() {
         return id;
     }
@@ -236,6 +239,14 @@ public class Event implements Serializable {
 
     public void setSecondBeneficiary(Customer secondBeneficiary) {
         this.secondBeneficiary = secondBeneficiary;
+    }
+
+    public String getGoogleEventId() {
+        return googleEventId;
+    }
+
+    public void setGoogleEventId(String googleEventId) {
+        this.googleEventId = googleEventId;
     }
 
     @Override

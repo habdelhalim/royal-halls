@@ -1,6 +1,5 @@
 package com.royal.app.service.impl;
 
-import com.google.api.services.calendar.model.CalendarList;
 import com.royal.app.domain.Event;
 import com.royal.app.domain.EventExtraOption;
 import com.royal.app.repository.EventRepository;
@@ -61,9 +60,20 @@ public class EventServiceImpl implements EventService {
         checkTimeSlotAvailability(event);
         calculateEventPrices(event);
         saveBeneficiaries(event);
+        syncToGoogle(event);
 
         Event result = eventRepository.save(event);
         return result;
+    }
+
+    private void syncToGoogle(Event event) {
+        try {
+            if (event.getHall().getGoogleCalendarId() != null) {
+                event.setGoogleEventId(googleCalendarService.saveEvent(event.getHall().getGoogleCalendarId(), event).getId());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void saveBeneficiaries(Event event) {
@@ -113,21 +123,8 @@ public class EventServiceImpl implements EventService {
     @Transactional(readOnly = true)
     public Page<Event> findAll(Pageable pageable) {
         log.debug("Request to get all Events");
-
-        tryGoogleCalendar();
-
         Page<Event> result = eventRepository.findAll(pageable);
         return result;
-    }
-
-    private void tryGoogleCalendar() {
-        try {
-            CalendarList feed = googleCalendarService.getCalendarList();
-            System.out.println(feed);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
     }
 
     /**
