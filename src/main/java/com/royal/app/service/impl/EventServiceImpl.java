@@ -1,5 +1,15 @@
 package com.royal.app.service.impl;
 
+import com.google.api.client.auth.oauth2.Credential;
+import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
+import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
+import com.google.api.client.http.javanet.NetHttpTransport;
+import com.google.api.client.json.JsonFactory;
+import com.google.api.client.json.jackson2.JacksonFactory;
+import com.google.api.client.util.store.FileDataStoreFactory;
+import com.google.api.services.calendar.Calendar;
+import com.google.api.services.calendar.CalendarScopes;
+import com.google.api.services.calendar.model.CalendarList;
 import com.royal.app.domain.Event;
 import com.royal.app.domain.EventExtraOption;
 import com.royal.app.repository.EventRepository;
@@ -17,6 +27,7 @@ import javax.inject.Inject;
 import java.time.Duration;
 import java.time.ZonedDateTime;
 import java.time.temporal.ChronoUnit;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
@@ -34,6 +45,10 @@ public class EventServiceImpl implements EventService {
 
     @Inject
     private CustomerService customerService;
+
+    private final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
+    private NetHttpTransport httpTransport;
+    private FileDataStoreFactory dataStoreFactory;
 
     /**
      * Save a event.
@@ -108,8 +123,33 @@ public class EventServiceImpl implements EventService {
     @Transactional(readOnly = true)
     public Page<Event> findAll(Pageable pageable) {
         log.debug("Request to get all Events");
+
+        tryGoogleCalendar();
+
         Page<Event> result = eventRepository.findAll(pageable);
         return result;
+    }
+
+    private void tryGoogleCalendar() {
+        try {
+            httpTransport = GoogleNetHttpTransport.newTrustedTransport();
+            Credential credential = authorize();
+            Calendar client = new Calendar.Builder(
+                httpTransport, JSON_FACTORY, credential).setApplicationName("royalhalls").build();
+
+            CalendarList feed = client.calendarList().list().execute();
+            System.out.println(feed);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private Credential authorize() throws Exception {
+        GoogleCredential credential = GoogleCredential.fromStream(EventServiceImpl.class.getResourceAsStream("/google-auth-client.json"))
+            .createScoped(Collections.singleton(CalendarScopes.CALENDAR));
+        return credential;
     }
 
     /**
