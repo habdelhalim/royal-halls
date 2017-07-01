@@ -86,4 +86,16 @@ public class GoogleCalendarService {
             .createScoped(Collections.singleton(CalendarScopes.CALENDAR));
         return credential;
     }
+
+    public void removeEvent(String googleCalendarId, com.royal.app.domain.Event reservationEvent) throws Exception {
+        Credential credential = authorize();
+        httpTransport = GoogleNetHttpTransport.newTrustedTransport();
+
+        Calendar client = new Calendar.Builder(httpTransport, JSON_FACTORY, credential)
+            .setApplicationName("royalhalls")
+            .build();
+
+        client.events()
+            .delete(googleCalendarId, reservationEvent.getGoogleEventId()).execute();
+    }
 }

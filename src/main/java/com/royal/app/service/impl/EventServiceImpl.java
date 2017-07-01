@@ -150,7 +150,19 @@ public class EventServiceImpl implements EventService {
      */
     public void delete(Long id) {
         log.debug("Request to delete Event : {}", id);
+        removeFromGoogle(id);
         eventRepository.delete(id);
+    }
+
+    private void removeFromGoogle(Long id) {
+        try {
+            Event event = findOne(id);
+            if (event.getHall().getGoogleCalendarId() != null) {
+                googleCalendarService.removeEvent(event.getHall().getGoogleCalendarId(), event);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
