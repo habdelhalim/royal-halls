@@ -69,7 +69,7 @@ public class EventServiceImpl implements EventService {
     private void syncToGoogle(Event event) {
         try {
             if (event.getHall().getGoogleCalendarId() != null) {
-                event.setGoogleEventId(googleCalendarService.saveEvent(event.getHall().getGoogleCalendarId(), event).getId());
+                event.setGoogleEventId(googleCalendarService.saveEvent(event.getHall().getGoogleCalendarId(), event, event.getHall().getGoogleCalendarColor()).getId());
             }
         } catch (Exception e) {
             e.printStackTrace();

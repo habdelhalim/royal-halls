@@ -24,7 +24,8 @@
             "capacity": "سعة القاعة",
             "options": "الخدمات الاساسية",
             "colour": "لون القاعة",
-            "googleCalendarId": "تقويم جوجل"
+            "googleCalendarId": "تقويم جوجل",
+            "googleCalendarColor": "لون تقويم جوجل"
         }
     }
 }

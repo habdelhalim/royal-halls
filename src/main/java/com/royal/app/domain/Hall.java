@@ -44,6 +44,9 @@ public class Hall implements Serializable {
     @Column(name = "google_calendar_id")
     private String googleCalendarId;
 
+    @Column(name = "google_calendar_color")
+    private String googleCalendarColor;
+
     public Long getId() {
         return id;
     }
@@ -131,6 +134,14 @@ public class Hall implements Serializable {
 
     public void setGoogleCalendarId(String googleCalendarId) {
         this.googleCalendarId = googleCalendarId;
+    }
+
+    public String getGoogleCalendarColor() {
+        return googleCalendarColor;
+    }
+
+    public void setGoogleCalendarColor(String googleCalendarColor) {
+        this.googleCalendarColor = googleCalendarColor;
     }
 
     @Override

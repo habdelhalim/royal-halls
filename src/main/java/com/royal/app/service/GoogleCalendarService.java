@@ -37,7 +37,7 @@ public class GoogleCalendarService {
         return client.calendarList().list().execute();
     }
 
-    public Event saveEvent(String googleCalendarId, com.royal.app.domain.Event reservationEvent) throws Exception {
+    public Event saveEvent(String googleCalendarId, com.royal.app.domain.Event reservationEvent, String googleCalendarColor) throws Exception {
         if (googleCalendarId == null) {
             throw new IllegalArgumentException("calendar Id is mandatory ");
         }
@@ -64,6 +64,7 @@ public class GoogleCalendarService {
         event.setDescription(reservationEvent.getHall().getHallName());
         event.setStart(startDate);
         event.setEnd(endDate);
+        event.setColorId(googleCalendarColor);
 
         Event googleEvent = null;
         if (reservationEvent.getGoogleEventId() != null) {
