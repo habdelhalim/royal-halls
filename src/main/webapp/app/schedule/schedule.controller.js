@@ -16,7 +16,7 @@
         vm.uiConfig = {
             calendar: {
                 editable: true,
-                ignoreTimezone: false,
+                timezone: 'local',
                 header: {
                     left: 'month agendaWeek agendaDay listYear',
                     center: 'title',
