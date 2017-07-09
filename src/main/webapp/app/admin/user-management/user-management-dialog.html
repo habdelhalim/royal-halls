@@ -88,6 +88,13 @@
         </div>
 
         <div class="form-group">
+            <label for="password" data-translate="userManagement.password">
+                Password
+            </label>
+                <input type="password" id="password"  class="form-control" name="password" ng-model="vm.user.password">
+        </div>
+
+        <div class="form-group">
             <label data-translate="userManagement.langKey">Lang Key</label>
             <select class="form-control" name="langKey" ng-model="vm.user.langKey"
                     ng-options="language as language for language in vm.languages track by language">
