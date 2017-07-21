@@ -12,6 +12,9 @@ import com.google.api.services.calendar.CalendarScopes;
 import com.google.api.services.calendar.model.CalendarList;
 import com.google.api.services.calendar.model.Event;
 import com.google.api.services.calendar.model.EventDateTime;
+import com.royal.app.domain.Contract;
+import com.royal.app.domain.Customer;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Date;
@@ -26,6 +29,8 @@ public class GoogleCalendarService {
 
     private NetHttpTransport httpTransport;
     private final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
+    @Autowired
+    private ContractService contractService;
 
     public CalendarList getCalendarList() throws Exception {
         httpTransport = GoogleNetHttpTransport.newTrustedTransport();
@@ -60,8 +65,9 @@ public class GoogleCalendarService {
             event.setId(reservationEvent.getGoogleEventId());
         }
 
-        event.setSummary(reservationEvent.getEventName());
-        event.setDescription(reservationEvent.getHall().getHallName());
+        setEventSummary(reservationEvent, event);
+        setEventDescription(reservationEvent, event);
+        setEventLocation(googleCalendarId, client, event);
         event.setStart(startDate);
         event.setEnd(endDate);
         event.setColorId(googleCalendarColor);
@@ -78,6 +84,49 @@ public class GoogleCalendarService {
         }
 
         return googleEvent;
+    }
+
+    private void setEventSummary(com.royal.app.domain.Event reservationEvent, Event event) {
+        try {
+            event.setSummary(reservationEvent.getEventName());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void setEventDescription(com.royal.app.domain.Event reservationEvent, Event event) {
+        try {
+            StringBuilder description = new StringBuilder();
+            Contract contract = contractService.findOne(reservationEvent.getContract().getId());
+            addCustomerLine(description, contract.getCustomer());
+            addCustomerLine(description, reservationEvent.getFirstBeneficiary());
+            addCustomerLine(description, reservationEvent.getSecondBeneficiary());
+            description.append(reservationEvent.getHall().getHallName());
+            event.setDescription(description.toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void addCustomerLine(StringBuilder description, final Customer customer) {
+        if (customer != null) {
+            description.append(customer.getCustomerName());
+
+            if (customer.getMobile() != null) {
+                description.append(" : ");
+                description.append(customer.getMobile());
+            }
+
+            description.append('\n');
+        }
+    }
+
+    private void setEventLocation(String googleCalendarId, Calendar client, Event event) {
+        try {
+            event.setLocation(client.calendars().get(googleCalendarId).execute().getLocation());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private Credential authorize() throws Exception {
